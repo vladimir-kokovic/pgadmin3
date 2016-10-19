@@ -25,6 +25,7 @@
 #include "utils/pgfeatures.h"
 #include "schema/pgRule.h"
 #include "schema/pgTrigger.h"
+#include "schema/pgPolicy.h"
 #include "schema/pgConstraints.h"
 #include "schema/gpPartition.h"
 
@@ -59,6 +60,8 @@ void pgTable::Init()
 
 	isPartitioned = false;
 	hasOids = false;
+	rlsEnabled = false;
+	forceRLSEnabled = false;
 	unlogged = false;
 	hasSubclass = false;
 	rowsCounted = false;
@@ -179,6 +182,8 @@ wxMenu *pgTable::GetNewMenu()
 		indexFactory.AppendMenu(menu);
 		ruleFactory.AppendMenu(menu);
 		triggerFactory.AppendMenu(menu);
+		if (GetConnection()->BackendMinimumVersion(9, 5))
+			policyFactory.AppendMenu(menu);
 
 		/*
 		 * TEMPORARY:  Disable adding new partitions until that code is working right.
@@ -929,6 +934,8 @@ void pgTable::ShowTreeDetail(ctlTree *browser, frmMain *form, ctlListView *prope
 		browser->AppendCollection(this, indexFactory);
 		browser->AppendCollection(this, ruleFactory);
 		browser->AppendCollection(this, triggerFactory);
+		if (GetConnection()->BackendMinimumVersion(9, 5))
+			browser->AppendCollection(this, policyFactory);
 
 		if (GetConnection() != 0 && GetConnection()->GetIsGreenplum() && GetIsPartitioned())
 			browser->AppendCollection(this, partitionFactory);
@@ -1027,6 +1034,11 @@ void pgTable::ShowTreeDetail(ctlTree *browser, frmMain *form, ctlListView *prope
 		properties->AppendItem(_("Inherited tables count"), GetInheritedTableCount());
 		if (GetInheritedTableCount())
 			properties->AppendItem(_("Inherited tables"), GetInheritedTables());
+		if (GetConnection()->BackendMinimumVersion(9, 5))
+		{
+			properties->AppendYesNoItem(_("Row Level Security enabled?"), GetRLSEnabled());
+			properties->AppendYesNoItem(_("Force Row Level Security enabled?"), GetForceRLSEnabled());
+		}
 		if (GetConnection()->BackendMinimumVersion(9, 1))
 			properties->AppendYesNoItem(_("Unlogged?"), GetUnlogged());
 		properties->AppendYesNoItem(_("Has OIDs?"), GetHasOids());
@@ -1452,6 +1464,9 @@ pgObject *pgTableFactory::CreateObjects(pgCollection *collection, ctlTree *brows
 
 		if (collection->GetConnection()->BackendMinimumVersion(9, 1))
 			query += wxT(", rel.relpersistence \n");
+		// Add Policy specific parameters.
+		if (collection->GetConnection()->BackendMinimumVersion(9, 5))
+			query += wxT(", rel.relrowsecurity, rel.relforcerowsecurity \n");
 		if (collection->GetConnection()->BackendMinimumVersion(8, 2))
 			query += wxT(", substring(array_to_string(rel.reloptions, ',') FROM 'fillfactor=([0-9]*)') AS fillfactor \n");
 		if (collection->GetConnection()->GetIsGreenplum())
@@ -1666,6 +1681,12 @@ pgObject *pgTableFactory::CreateObjects(pgCollection *collection, ctlTree *brows
 			{
 				table->iSetProviders(tables->GetVal(wxT("providers")));
 				table->iSetLabels(tables->GetVal(wxT("labels")));
+			}
+
+			if (collection->GetConnection()->BackendMinimumVersion(9, 5))
+			{
+				table->iSetRLSEnabled(tables->GetBool("relrowsecurity"));
+				table->iSetForceRLSEnabled(tables->GetBool("relforcerowsecurity"));
 			}
 
 			if (browser)

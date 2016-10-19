@@ -1,7 +1,7 @@
 #######################################################################
 #
 # pgAdmin III - PostgreSQL Tools
-# 
+#
 # Copyright (C) 2002 - 2016, The pgAdmin Development Team
 # This software is released under the PostgreSQL Licence
 #
@@ -42,6 +42,7 @@ pgadmin3_SOURCES += \
         schema/pgOperator.cpp \
         schema/pgOperatorClass.cpp \
         schema/pgOperatorFamily.cpp \
+        schema/pgPolicy.cpp \
         schema/pgRole.cpp \
         schema/pgRule.cpp \
         schema/pgSchema.cpp \

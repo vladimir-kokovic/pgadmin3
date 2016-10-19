@@ -18,6 +18,7 @@
 #include "utils/pgfeatures.h"
 #include "frm/frmMain.h"
 #include "schema/edbSynonym.h"
+#include "schema/pgPolicy.h"
 #include "schema/pgCast.h"
 #include "schema/pgExtension.h"
 #include "schema/pgForeignDataWrapper.h"

@@ -1,7 +1,7 @@
 #######################################################################
 #
 # pgAdmin III - PostgreSQL Tools
-# 
+#
 # Copyright (C) 2002 - 2016, The pgAdmin Development Team
 # This software is released under the PostgreSQL Licence
 #
@@ -41,6 +41,7 @@ pgadmin3_SOURCES += \
 	dlg/dlgOperator.cpp \
 	dlg/dlgPackage.cpp \
 	dlg/dlgPgpassConfig.cpp \
+	dlg/dlgPolicy.cpp \
 	dlg/dlgProperty.cpp \
 	dlg/dlgReassignDropOwned.cpp \
 	dlg/dlgRole.cpp \
@@ -68,5 +69,5 @@ pgadmin3_SOURCES += \
 	dlg/dlgResourceGroup.cpp
 
 EXTRA_DIST += \
-        dlg/module.mk 
+        dlg/module.mk
 

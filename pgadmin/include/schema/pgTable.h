@@ -201,6 +201,22 @@ public:
 	{
 		hasSubclass = b;
 	}
+	bool GetRLSEnabled() const
+	{
+		return rlsEnabled;
+	}
+	void iSetRLSEnabled(bool b)
+	{
+		rlsEnabled = b;
+	}
+	bool GetForceRLSEnabled() const
+	{
+		return forceRLSEnabled;
+	}
+	void iSetForceRLSEnabled(bool b)
+	{
+		forceRLSEnabled = b;
+	}
 	void iSetIsReplicated(bool b)
 	{
 		isReplicated = b;
@@ -563,6 +579,7 @@ private:
 	wxString partitionDef;
 	bool isPartitioned;
 	bool hasOids, unlogged, hasSubclass, rowsCounted, isReplicated, showExtendedStatistics, distributionIsRandom;
+	bool rlsEnabled, forceRLSEnabled;
 
 	wxString toast_fillFactor, toast_autovacuum_vacuum_threshold,
 	         toast_autovacuum_vacuum_scale_factor, toast_autovacuum_vacuum_cost_delay,

@@ -37,6 +37,10 @@
 
 #define stUnlogged      CTRL_STATIC("stUnlogged")
 #define chkUnlogged     CTRL_CHECKBOX("chkUnlogged")
+#define stEnableRLS     CTRL_STATIC("stEnableRLS")
+#define chkEnableRLS    CTRL_CHECKBOX("chkEnableRLS")
+#define stForceRLS      CTRL_STATIC("stForceRLS")
+#define chkForceRLS     CTRL_CHECKBOX("chkForceRLS")
 #define stHasOids       CTRL_STATIC("stHasOids")
 #define chkHasOids      CTRL_CHECKBOX("chkHasOids")
 #define lbTables        CTRL_LISTBOX("lbTables")
@@ -112,6 +116,8 @@ BEGIN_EVENT_TABLE(dlgTable, dlgSecurityProperty)
 	EVT_TEXT(XRCID("txtFillFactor"),		dlgProperty::OnChange)
 	EVT_COMBOBOX(XRCID("cbOfType"),                 dlgTable::OnChangeOfType)
 	EVT_CHECKBOX(XRCID("chkHasOids"),               dlgProperty::OnChange)
+	EVT_CHECKBOX(XRCID("chkEnableRLS"),             dlgProperty::OnChange)
+	EVT_CHECKBOX(XRCID("chkForceRLS"),              dlgProperty::OnChange)
 	EVT_TEXT(XRCID("cbTables"),                     dlgTable::OnChangeTable)
 	EVT_BUTTON(XRCID("btnAddTable"),                dlgTable::OnAddTable)
 	EVT_BUTTON(XRCID("btnRemoveTable"),             dlgTable::OnRemoveTable)
@@ -265,6 +271,18 @@ int dlgTable::Go(bool modal)
 		// edit mode
 		chkUnlogged->SetValue(table->GetUnlogged());
 		chkHasOids->SetValue(table->GetHasOids());
+		if (connection->BackendMinimumVersion(9, 5))
+		{
+			chkEnableRLS->SetValue(table->GetRLSEnabled());
+			chkForceRLS->SetValue(table->GetForceRLSEnabled());
+		}
+		else
+		{
+			stEnableRLS->Hide();
+			chkEnableRLS->Hide();
+			stForceRLS->Hide();
+			chkForceRLS->Hide();
+		}
 
 		if (table->GetTablespaceOid() != 0)
 			cbTablespace->SetKey(table->GetTablespaceOid());
@@ -897,6 +915,30 @@ wxString dlgTable::GetSql()
 			sql += wxT("ALTER TABLE ") + tabname
 			       +  wxT("\n  SET WITH OIDS;\n");
 		}
+		if (connection->BackendMinimumVersion(9, 5))
+		{
+			if (!chkEnableRLS->GetValue() && table->GetRLSEnabled())
+			{
+				sql += wxT("ALTER TABLE ") + tabname
+				       + wxT("\n  DISABLE ROW LEVEL SECURITY;\n");
+			}
+			if (chkEnableRLS->GetValue() && !table->GetRLSEnabled())
+			{
+				sql += wxT("ALTER TABLE ") + tabname
+				       + wxT("\n  ENABLE ROW LEVEL SECURITY;\n");
+			}
+			if (!chkForceRLS->GetValue() && table->GetForceRLSEnabled())
+			{
+				sql += wxT("ALTER TABLE ") + tabname
+				       + wxT("\n  NO FORCE ROW LEVEL SECURITY;\n");
+			}
+			if (chkEnableRLS->GetValue() && !table->GetForceRLSEnabled())
+			{
+				sql += wxT("ALTER TABLE ") + tabname
+				       + wxT("\n  FORCE ROW LEVEL SECURITY;\n");
+			}
+		}
+
 		if (connection->BackendMinimumVersion(8, 0) && cbTablespace->GetOIDKey() != table->GetTablespaceOid())
 			sql += wxT("ALTER TABLE ") + tabname
 			       +  wxT("\n  SET TABLESPACE ") + qtIdent(cbTablespace->GetValue())

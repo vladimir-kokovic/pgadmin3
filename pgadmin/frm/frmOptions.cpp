@@ -388,6 +388,7 @@ frmOptions::frmOptions(frmMain *parent)
 	lstDisplay->Append(_("Users/login Roles"));
 	lstDisplay->Append(_("Resource Queues"));
 	lstDisplay->Append(_("Resource Groups"));
+	lstDisplay->Append(_("Policies"));
 	lstDisplay->Append(_("Catalogs"));
 	lstDisplay->Append(_("Casts"));
 	lstDisplay->Append(_("Event Triggers"));
