@@ -13,7 +13,6 @@ public:
 
 	void CheckChange();
 	wxString GetSql();
-	wxString GetDefinition();
 	pgObject *CreateObject(pgCollection *collection);
 	pgObject *GetObject();
 	wxString GetHelpPage() const
@@ -27,7 +26,13 @@ private:
 	pgPolicy *policy;
 	pgObject *object;
 
+	void SetRolesToCtrl();
 	void OnChangeValidate(wxCommandEvent &ev);
+
+	void OnRoleSelChange(wxCommandEvent &ev);
+	void OnAddRole(wxCommandEvent &ev);
+	void OnDelRole(wxCommandEvent &ev);
+	void OnRoleChange(wxCommandEvent &ev);
 
 	DECLARE_EVENT_TABLE()
 };

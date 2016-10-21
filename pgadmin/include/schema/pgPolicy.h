@@ -28,11 +28,11 @@ public:
 	bool DropObject(wxFrame *frame, ctlTree *browser, bool cascaded);
 	wxString GetSql(ctlTree *browser);
 	void ParseRoles(const wxString &s);
-	wxString GetRoles() const
+	wxString GetRoles() const;
+	wxArrayString &GetRolesArray()
 	{
 		return roles;
 	}
-
 	wxString GetCommand() const
 	{
 		return command;
@@ -41,21 +41,21 @@ public:
 	{
 		command = s;
 	}
-	wxString GetQual() const
+	wxString GetUsingExpr() const
 	{
-		return qual;
+		return usingExpr;
 	}
-	void iSetQual(const wxString &s)
+	void iSetUsingExpr(const wxString &s)
 	{
-		qual = s;
+		usingExpr = s;
 	}
-	wxString GetWithCheck() const
+	wxString GetCheckExpr() const
 	{
-		return withCheck;
+		return checkExpr;
 	}
-	void iSetWithCheck(const wxString &s)
+	void iSetCheckExpr(const wxString &s)
 	{
-		withCheck = s;
+		checkExpr = s;
 	}
 	wxString GetTableName() const
 	{
@@ -74,7 +74,8 @@ public:
 		schemaname = s;
 	}
 private:
-	wxString command, qual, withCheck, tablename, schemaname, roles;
+	wxString command, usingExpr, checkExpr, tablename, schemaname;
+	wxArrayString roles;
 };
 
 class pgPolicyCollection : public pgSchemaObjCollection

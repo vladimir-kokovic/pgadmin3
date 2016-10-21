@@ -18,16 +18,32 @@
 #include "frm/frmMain.h"
 #include "schema/pgObject.h"
 #include "schema/pgPolicy.h"
+#include "schema/pgUser.h"
+#include "schema/pgGroup.h"
 #include "dlg/dlgPolicy.h"
 
-#define txtWhere        CTRL_TEXT("txtWhere")
-#define chkNoInherit    CTRL_CHECKBOX("chkNoInherit")
-#define chkDontValidate CTRL_CHECKBOX("chkDontValidate")
+#define txtName          CTRL_TEXT("txtName")
+#define ctrlTable        CTRL_TEXT("ctrlTable")
+#define lbRoles          CTRL_LISTBOX("lbRoles")
+#define btnAdd           CTRL_BUTTON("btnAdd")
+#define btnRemove        CTRL_BUTTON("btnRemove")
+#define cbRole           CTRL_CHOICE("cbRole")
+#define cbCommand        CTRL_CHOICE("cbCommand")
+#define ctrlUsingExpr    CTRL_TEXT("ctrlUsingExpr")
+#define ctrlCheckExpr    CTRL_TEXT("ctrlCheckExpr")
 
+//Possible types of policy's commands
+#define CMD_ALL          wxT("ALL")
+#define CMD_SELECT       wxT("SELECT")
+#define CMD_INSERT       wxT("INSERT")
+#define CMD_UPDATE       wxT("UPDATE")
+#define CMD_DELETE       wxT("DELETE")
 
 BEGIN_EVENT_TABLE(dlgPolicy, dlgProperty)
-	EVT_TEXT(XRCID("txtWhere"),                 dlgProperty::OnChange)
-	EVT_CHECKBOX(XRCID("chkDontValidate"),      dlgPolicy::OnChangeValidate)
+	EVT_LISTBOX(XRCID("lbRoles"),             dlgPolicy::OnRoleSelChange)
+	EVT_BUTTON(XRCID("btnAdd"),               dlgPolicy::OnAddRole)
+	EVT_BUTTON(XRCID("btnRemove"),            dlgPolicy::OnDelRole)
+	EVT_TEXT(XRCID("cbRole"),                 dlgPolicy::OnRoleChange)
 END_EVENT_TABLE();
 
 
@@ -42,26 +58,33 @@ dlgPolicy::dlgPolicy(pgaFactory *f, frmMain *frame, pgPolicy *node, pgObject *pa
 {
 	policy = node;
 	object = parentNode;
+	if (object)
+		connection = object->GetConnection();
+
+	//Users list view initialization
+	SetRolesToCtrl();
+
+	//Command box initialization
+	cbCommand->Append(CMD_ALL);
+	cbCommand->Append(CMD_SELECT);
+	cbCommand->Append(CMD_INSERT);
+	cbCommand->Append(CMD_UPDATE);
+	cbCommand->Append(CMD_DELETE);
 }
 
 void dlgPolicy::CheckChange()
 {
 	bool enable = true;
+
 	if (policy)
 	{
-//		enable = txtName->GetValue() != policy->GetName() || txtComment->GetValue() != policy->GetComment();
-//		if (connection->BackendMinimumVersion(9, 2) && !policy->GetValid() && !chkDontValidate->GetValue())
-//			enable = true;
-		EnableOK(enable);
+		EnableOK(!GetSql().IsEmpty());
 	}
 	else
 	{
-		// We don't allow changing the comment if the dialog is launched from dlgTable or dlgDomain
-		// so we check IsModal()
-		txtComment->Enable(!GetName().IsEmpty() && !IsModal() && object->GetTypeName().Upper() == wxT("TABLE"));
-		CheckValid(enable, !txtWhere->GetValue().IsEmpty(), _("Please specify condition."));
-		EnableOK(enable);
+		CheckValid(enable, !GetName().IsEmpty(), _("Please specify name."));
 	}
+	EnableOK(enable);
 }
 
 
@@ -89,21 +112,19 @@ int dlgPolicy::Go(bool modal)
 {
 	if (policy)
 	{
-		// edit mode
-		txtName->Enable(connection->BackendMinimumVersion(9, 2));
-		txtComment->Enable(object->GetTypeName().Upper() == wxT("TABLE"));
+		ctrlTable->SetValue(policy->GetTableName());
 
-//		txtWhere->SetValue(policy->GetDefinition());
-		txtWhere->Disable();
+		ctrlCheckExpr->SetValue(policy->GetCheckExpr());
+		ctrlUsingExpr->SetValue(policy->GetUsingExpr());
 
-//		if (connection->BackendMinimumVersion(9, 2))
-//		{
-//			chkNoInherit->SetValue(check->GetNoInherit());
-//			chkDontValidate->SetValue(!check->GetValid());
-//		}
-//		else
-//			chkDontValidate->SetValue(true);
-//		chkDontValidate->Enable(connection->BackendMinimumVersion(9, 2) && !check->GetDefinition().IsEmpty() && !check->GetValid());
+		cbCommand->SetSelection(cbCommand->FindString(policy->GetCommand()));
+
+		//Add users to list view
+		for (unsigned int i = 0; i < policy->GetRolesArray().GetCount(); i++)
+		{
+			wxString username = policy->GetRolesArray()[i];
+			lbRoles->Append(username);
+		}
 	}
 	else
 	{
@@ -114,18 +135,63 @@ int dlgPolicy::Go(bool modal)
 			cbClusterSet->Disable();
 			cbClusterSet = 0;
 		}
-		chkDontValidate->Enable(connection->BackendMinimumVersion(9, 2));
+		ctrlTable->SetValue(((pgTable *) object)->GetName());
 	}
 
-//	chkNoInherit->Enable(connection->BackendMinimumVersion(9, 2) && !check);
-
 	return dlgProperty::Go(modal);
+}
+
+
+void dlgPolicy::SetRolesToCtrl()
+{
+	//Add default roles to combobox
+	cbRole->Append(wxT("public"));
+	cbRole->Append(wxT("SESSION_USER"));
+	cbRole->Append(wxT("CURRENT_USER"));
+
+	wxString sql = wxT("SELECT rolname FROM pg_roles ORDER BY rolname");
+	pgSet *users = connection->ExecuteSet(sql, true);
+
+	//Add users
+	if (users)
+	{
+		while (!users->Eof())
+		{
+			cbRole->Append(users->GetVal(wxT("rolname")));
+			users->MoveNext();
+		}
+		delete users;
+	}
 }
 
 
 void dlgPolicy::OnChangeValidate(wxCommandEvent &ev)
 {
 	CheckChange();
+}
+
+
+void dlgPolicy::OnRoleSelChange(wxCommandEvent &ev)
+{
+	std::cerr << "OnRoleSelChange" << std::endl;
+}
+
+
+void dlgPolicy::OnAddRole(wxCommandEvent &ev)
+{
+	std::cerr << "OnAddRole" << std::endl;
+}
+
+
+void dlgPolicy::OnDelRole(wxCommandEvent &ev)
+{
+	std::cerr << "OnDelRole" << std::endl;
+}
+
+
+void dlgPolicy::OnRoleChange(wxCommandEvent &ev)
+{
+	std::cerr << "OnRoleChange" << std::endl;
 }
 
 
@@ -168,18 +234,5 @@ wxString dlgPolicy::GetSql()
 //	if (!name.IsEmpty())
 //		AppendComment(sql, wxT("CONSTRAINT ") + qtIdent(name)
 //		              + wxT(" ON ") + object->GetQuotedFullIdentifier(), check);
-	return sql;
-}
-
-
-wxString dlgPolicy::GetDefinition()
-{
-	wxString sql;
-
-	sql = wxT("(") + txtWhere->GetValue() + wxT(")");
-
-	if (chkDontValidate->GetValue())
-		sql += wxT(" NOT VALID");
-
 	return sql;
 }

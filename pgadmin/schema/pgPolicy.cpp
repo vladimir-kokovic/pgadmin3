@@ -81,10 +81,10 @@ wxString pgPolicy::GetSql(ctlTree *browser)
 		sql += wxT("CREATE POLICY ") + GetIdentifier() + wxT(" ON ") + GetQuotedSchemaPrefix(GetSchemaName()) + qtIdent(GetTableName());
 		sql += wxT("\n  FOR ") + GetCommand() + wxT("\n  TO ") + GetRoles();
 
-		if (!GetQual().IsNull())
-			sql += wxT("\n  USING (") + GetQual() + wxT(")");
-		if (!GetWithCheck().IsNull())
-			sql += wxT("\n  WITH CHECK (") + GetWithCheck() + wxT(")");
+		if (!GetUsingExpr().IsNull())
+			sql += wxT("\n  USING (") + GetUsingExpr() + wxT(")");
+		if (!GetCheckExpr().IsNull())
+			sql += wxT("\n  WITH CHECK (") + GetCheckExpr() + wxT(")");
 		sql += ";\n\n";
 		if (!GetComment().IsNull())
 		{
@@ -100,7 +100,23 @@ wxString pgPolicy::GetSql(ctlTree *browser)
 
 void pgPolicy::ParseRoles(const wxString &s)
 {
-	roles = s.SubString(1, s.Length() - 2);
+	wxString r = s.Mid(1, s.Length() - 2);
+	if (!r.IsEmpty())
+		FillArray(GetRolesArray(), r);
+}
+
+
+wxString pgPolicy::GetRoles() const
+{
+	wxString result = wxEmptyString;
+
+	for (size_t index = 0; index < roles.GetCount(); index++)
+	{
+		result += roles.Item(index);
+		if (!(index + 1 == roles.GetCount()))
+			result += wxT(", ");
+	}
+	return result;
 }
 
 
@@ -114,8 +130,8 @@ void pgPolicy::ShowTreeDetail(ctlTree *browser, frmMain *form, ctlListView *prop
 		properties->AppendItem(_("OID"), GetOid());
 		properties->AppendItem(_("Roles"), GetRoles());
 		properties->AppendItem(_("Defined for"), GetCommand());
-		properties->AppendItem(_("Using expression"), GetQual());
-		properties->AppendItem(_("Check expression"), GetWithCheck());
+		properties->AppendItem(_("Using expression"), GetUsingExpr());
+		properties->AppendItem(_("Check expression"), GetCheckExpr());
 		properties->AppendItem(_("Comment"), GetComment());
 	}
 }
@@ -139,8 +155,8 @@ pgObject *pgPolicyFactory::CreateObjects(pgCollection *coll, ctlTree *browser, c
 	pgPolicy *policy = 0;
 
 	wxString sql = wxT("SELECT p.oid AS oid, p.polname AS polname, ")
-	               wxT(" pp.schemaname AS schemaname, pp.tablename AS tablename, pp.roles AS roles, pp.cmd AS cmd,")
-	               wxT(" pp.qual AS qual, pp.with_check AS check, d.description AS description ")
+	               wxT(" pp.schemaname AS schemaname, pp.tablename AS tablename, pp.roles AS roles, pp.cmd AS cmd, ")
+	               wxT(" pp.qual AS using, pp.with_check AS check, d.description AS description ")
 	               wxT("  FROM pg_policy p\n")
 	               wxT("  JOIN pg_policies pp ON p.polname = policyname\n")
 	               wxT("  LEFT JOIN pg_description d ON p.oid = d.objoid\n")
@@ -161,8 +177,8 @@ pgObject *pgPolicyFactory::CreateObjects(pgCollection *coll, ctlTree *browser, c
 			policy->iSetTableName(policies->GetVal(wxT("tablename")));
 			policy->ParseRoles(policies->GetVal(wxT("roles")));
 			policy->iSetCommand(policies->GetVal(wxT("cmd")));
-			policy->iSetQual(policies->GetVal(wxT("qual")));
-			policy->iSetWithCheck(policies->GetVal(wxT("check")));
+			policy->iSetUsingExpr(policies->GetVal(wxT("using")));
+			policy->iSetCheckExpr(policies->GetVal(wxT("check")));
 			policy->iSetComment(policies->GetVal(wxT("description")));
 
 			if (browser)

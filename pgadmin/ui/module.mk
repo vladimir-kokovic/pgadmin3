@@ -49,6 +49,7 @@ TMP_ui += \
 	ui/dlgOperator.xrc \
 	ui/dlgPackage.xrc \
 	ui/dlgPgpassConfig.xrc \
+	ui/dlgPolicy.xrc \
 	ui/dlgReassignDropOwned.xrc \
 	ui/dlgRepCluster.xrc \
 	ui/dlgRepClusterUpgrade.xrc \
