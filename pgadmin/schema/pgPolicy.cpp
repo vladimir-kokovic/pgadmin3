@@ -5,7 +5,7 @@
 // Copyright (C) 2002 - 2016, The pgAdmin Development Team
 // This software is released under the PostgreSQL Licence
 //
-// pgCheck.cpp - Check class
+// pgPolicy.cpp - Policy class
 //
 //////////////////////////////////////////////////////////////////////////
 
@@ -127,9 +127,10 @@ void pgPolicy::ShowTreeDetail(ctlTree *browser, frmMain *form, ctlListView *prop
 		CreateListColumns(properties);
 
 		properties->AppendItem(_("Name"), GetName());
+		properties->AppendItem(_("Defined for"), GetTableName());
 		properties->AppendItem(_("OID"), GetOid());
 		properties->AppendItem(_("Roles"), GetRoles());
-		properties->AppendItem(_("Defined for"), GetCommand());
+		properties->AppendItem(_("Command"), GetCommand());
 		properties->AppendItem(_("Using expression"), GetUsingExpr());
 		properties->AppendItem(_("Check expression"), GetCheckExpr());
 		properties->AppendItem(_("Comment"), GetComment());

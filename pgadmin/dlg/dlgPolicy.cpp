@@ -5,7 +5,7 @@
 // Copyright (C) 2002 - 2016, The pgAdmin Development Team
 // This software is released under the PostgreSQL Licence
 //
-// dlgPolicy.cpp - PostgreSQL Operator Property
+// dlgPolicy.cpp - PostgreSQL Policy Property
 //
 //////////////////////////////////////////////////////////////////////////
 
@@ -39,11 +39,12 @@
 #define CMD_UPDATE       wxT("UPDATE")
 #define CMD_DELETE       wxT("DELETE")
 
+//public role
+static wxString publicRole = wxT("public");
+
 BEGIN_EVENT_TABLE(dlgPolicy, dlgProperty)
-	EVT_LISTBOX(XRCID("lbRoles"),             dlgPolicy::OnRoleSelChange)
 	EVT_BUTTON(XRCID("btnAdd"),               dlgPolicy::OnAddRole)
 	EVT_BUTTON(XRCID("btnRemove"),            dlgPolicy::OnDelRole)
-	EVT_TEXT(XRCID("cbRole"),                 dlgPolicy::OnRoleChange)
 END_EVENT_TABLE();
 
 
@@ -57,9 +58,9 @@ dlgPolicy::dlgPolicy(pgaFactory *f, frmMain *frame, pgPolicy *node, pgObject *pa
 	: dlgProperty(f, frame, wxT("dlgPolicy"))
 {
 	policy = node;
-	object = parentNode;
-	if (object)
-		connection = object->GetConnection();
+	table = (pgTable *) parentNode;
+	if (table)
+		connection = table->GetConnection();
 
 	//Users list view initialization
 	SetRolesToCtrl();
@@ -74,17 +75,15 @@ dlgPolicy::dlgPolicy(pgaFactory *f, frmMain *frame, pgPolicy *node, pgObject *pa
 
 void dlgPolicy::CheckChange()
 {
-	bool enable = true;
-
 	if (policy)
-	{
 		EnableOK(!GetSql().IsEmpty());
-	}
 	else
 	{
+		bool enable = true;
+
 		CheckValid(enable, !GetName().IsEmpty(), _("Please specify name."));
+		EnableOK(enable);
 	}
-	EnableOK(enable);
 }
 
 
@@ -101,41 +100,42 @@ pgObject *dlgPolicy::CreateObject(pgCollection *collection)
 	if (name.IsEmpty())
 		return 0;
 
-	pgObject *obj = policyFactory.CreateObjects(collection, 0, wxT(
-	                    "\n   AND conname=") + qtDbString(name) + wxT(
-	                    "\n   AND relnamespace=") + object->GetSchema()->GetOidStr());
-	return obj;
+	return policyFactory.CreateObjects(collection, 0);
 }
 
 
 int dlgPolicy::Go(bool modal)
 {
+	ctrlTable->SetValue(table->GetQuotedFullIdentifier());
 	if (policy)
 	{
-		ctrlTable->SetValue(policy->GetTableName());
-
 		ctrlCheckExpr->SetValue(policy->GetCheckExpr());
 		ctrlUsingExpr->SetValue(policy->GetUsingExpr());
 
 		cbCommand->SetSelection(cbCommand->FindString(policy->GetCommand()));
 
 		//Add users to list view
-		for (unsigned int i = 0; i < policy->GetRolesArray().GetCount(); i++)
+		roles = policy->GetRolesArray();
+		for (unsigned int i = 0; i < roles.GetCount(); i++)
 		{
-			wxString username = policy->GetRolesArray()[i];
-			lbRoles->Append(username);
+			wxString role = roles[i];
+			lbRoles->Append(role);
+			if (role == publicRole)
+			{
+				cbRole->Disable();
+				btnAdd->Disable();
+			}
 		}
+		cbCommand->Disable();
 	}
 	else
 	{
 		// create mode
-		txtComment->Disable();
-		if (!object)
+		if (!table)
 		{
 			cbClusterSet->Disable();
 			cbClusterSet = 0;
 		}
-		ctrlTable->SetValue(((pgTable *) object)->GetName());
 	}
 
 	return dlgProperty::Go(modal);
@@ -165,74 +165,121 @@ void dlgPolicy::SetRolesToCtrl()
 }
 
 
-void dlgPolicy::OnChangeValidate(wxCommandEvent &ev)
+wxString dlgPolicy::GetRoles() const
 {
-	CheckChange();
+	wxString result = wxEmptyString;
+
+	for (unsigned int i = 0; i < lbRoles->GetCount(); i++)
+	{
+		result += lbRoles->GetString(i);
+		if (i + 1 != lbRoles->GetCount())
+			result += wxT(", ");
+	}
+
+	return result;
 }
 
 
-void dlgPolicy::OnRoleSelChange(wxCommandEvent &ev)
+bool dlgPolicy::CompareRoles() const
 {
-	std::cerr << "OnRoleSelChange" << std::endl;
+	wxArrayString policyRolesArray = policy->GetRolesArray();
+	if (roles.GetCount() != policyRolesArray.GetCount())
+		return false;
+
+	for (unsigned int i = 0; i < policyRolesArray.GetCount(); i++)
+	{
+		if (roles.Index(policyRolesArray[i]) == wxNOT_FOUND)
+			return false;
+	}
+	return true;
 }
 
 
 void dlgPolicy::OnAddRole(wxCommandEvent &ev)
 {
-	std::cerr << "OnAddRole" << std::endl;
+	int pos = cbRole->GetCurrentSelection();
+	wxString role = cbRole->GetString(pos);
+	if (role.IsEmpty())
+		return;
+
+	//If we modify already exists policy,
+	//check, that role exists in view
+	if (roles.Index(role) != wxNOT_FOUND)
+		return;
+
+	lbRoles->Append(role);
+	roles.push_back(role);
+	if (role == publicRole)
+	{
+		cbRole->Disable();
+		btnAdd->Disable();
+	}
+	CheckChange();
 }
 
 
 void dlgPolicy::OnDelRole(wxCommandEvent &ev)
 {
-	std::cerr << "OnDelRole" << std::endl;
-}
+	int pos = lbRoles->GetSelection();
+	wxString role = lbRoles->GetString(pos);
 
-
-void dlgPolicy::OnRoleChange(wxCommandEvent &ev)
-{
-	std::cerr << "OnRoleChange" << std::endl;
+	if (pos >= 0)
+	{
+		roles.Remove(role);
+		lbRoles->Delete(pos);
+	}
+	if (role == publicRole)
+	{
+		cbRole->Enable();
+		btnAdd->Enable();
+	}
+	CheckChange();
 }
 
 
 wxString dlgPolicy::GetSql()
 {
-	wxString sql;
+	wxString sql = wxEmptyString;
 	wxString name = GetName();
 
 	if (!policy)
 	{
-//		sql = wxT("ALTER ") + object->GetTypeName().Upper() + wxT(" ") + object->GetQuotedFullIdentifier()
-//		      + wxT("\n  ADD");
-//		if (name.Length() > 0)
-//		{
-//			sql += wxT(" CONSTRAINT ") + qtIdent(name) + wxT("\n ");
-//		}
-//		sql += wxT(" CHECK ");
-//		sql += GetDefinition();
-//		if (connection->BackendMinimumVersion(9, 2) && chkNoInherit->GetValue())
-//		{
-//			sql += wxT(" NO INHERIT");
-//		}
-//		sql += wxT(";\n");
+		int commandPos = cbCommand->GetSelection();
+		sql = wxT("CREATE POLICY ") + GetName() + wxT(" ON ") + table->GetQuotedFullIdentifier();
+		if (commandPos != wxNOT_FOUND)
+			sql += wxT("\n  FOR ") + cbCommand->GetString(commandPos);
+		//Add roles
+		if (lbRoles->GetCount())
+			sql += wxT("\n  TO ") + GetRoles();
+		if (!ctrlUsingExpr->GetValue().IsNull())
+			sql += wxT("\n  USING (") + ctrlUsingExpr->GetValue() + wxT(")");
+		if (!ctrlCheckExpr->GetValue().IsNull())
+			sql += wxT("\n  WITH CHECK (") + ctrlCheckExpr->GetValue() + wxT(")");
+		sql += ";\n\n";
 	}
 	else
 	{
-//		if (check->GetName() != name)
-//		{
-//			sql = wxT("ALTER ") + object->GetTypeName().Upper() + wxT(" ") + object->GetQuotedFullIdentifier()
-//			      + wxT("\n  RENAME CONSTRAINT ") + qtIdent(check->GetName())
-//			      + wxT(" TO ") + qtIdent(name) + wxT(";\n");
-//		}
-//		if (connection->BackendMinimumVersion(9, 2) && !check->GetValid() && !chkDontValidate->GetValue())
-//		{
-//			sql += wxT("ALTER ") + object->GetTypeName().Upper() + wxT(" ") + object->GetQuotedFullIdentifier()
-//			       + wxT("\n  VALIDATE CONSTRAINT ") + qtIdent(name) + wxT(";\n");
-//		}
+		//edit mode
+		if (policy->GetName() != name)
+		{
+			sql = wxT("ALTER POLICY ") + policy->GetName() + wxT(" ON ") + table->GetQuotedFullIdentifier();
+			sql += wxT(" RENAME TO ") + name + wxT(";\n\n");
+		}
+		else if (!CompareRoles() ||
+				 (ctrlUsingExpr->GetValue() != policy->GetUsingExpr()) ||
+				 (ctrlCheckExpr->GetValue() != policy->GetCheckExpr()))
+		{
+			sql = wxT("ALTER POLICY ") + policy->GetName() + wxT(" ON ") + table->GetQuotedFullIdentifier();
+			if (!CompareRoles() && !GetRoles().IsNull())
+				sql += wxT("\n  TO ") + GetRoles();
+			if (ctrlUsingExpr->GetValue() != policy->GetUsingExpr())
+				sql += wxT("\n  USING(") + ctrlUsingExpr->GetValue() + wxT(")");
+			if (ctrlCheckExpr->GetValue() != policy->GetCheckExpr())
+				sql += wxT("\n  WITH CHECK(") + ctrlCheckExpr->GetValue() + wxT(")");
+			sql += ";\n\n";
+		}
 	}
+	AppendComment(sql, wxT("POLICY ") + GetName() + wxT(" ON ") + table->GetQuotedFullIdentifier(), policy);
 
-//	if (!name.IsEmpty())
-//		AppendComment(sql, wxT("CONSTRAINT ") + qtIdent(name)
-//		              + wxT(" ON ") + object->GetQuotedFullIdentifier(), check);
 	return sql;
 }
