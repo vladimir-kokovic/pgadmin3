@@ -28,7 +28,6 @@
 #define chkClustered    CTRL_CHECKBOX("chkClustered")
 #define chkConcurrent   CTRL_CHECKBOX("chkConcurrent")
 #define txtWhere        CTRL_TEXT("txtWhere")
-#define txtFillFactor   CTRL_TEXT("txtFillFactor")
 #define cbOpClass       CTRL_COMBOBOX("cbOpClass")
 #define chkDesc         CTRL_CHECKBOX("chkDesc")
 #define rdbNullsFirst   CTRL_RADIOBUTTON("rdbNullsFirst")
@@ -39,7 +38,6 @@
 BEGIN_EVENT_TABLE(dlgIndexBase, dlgCollistProperty)
 	EVT_TEXT(XRCID("cbTablespace"),                 dlgProperty::OnChange)
 	EVT_COMBOBOX(XRCID("cbTablespace"),             dlgProperty::OnChange)
-	EVT_TEXT(XRCID("txtFillFactor"),                dlgProperty::OnChange)
 	EVT_LIST_ITEM_SELECTED(XRCID("lstColumns"),     dlgIndexBase::OnSelectListCol)
 	EVT_COMBOBOX(XRCID("cbColumns"),                dlgIndexBase::OnSelectComboCol)
 END_EVENT_TABLE();
@@ -81,23 +79,10 @@ int dlgIndexBase::Go(bool modal)
 		txtName->Enable(connection->BackendMinimumVersion(9, 2));
 		cbColumns->Disable();
 
-		if (txtFillFactor)
-		{
-			txtFillFactor->SetValue(index->GetFillFactor());
-		}
 	}
 	else
 	{
 		// create mode
-	}
-
-	if (txtFillFactor)
-	{
-		txtFillFactor->SetValidator(numericValidator);
-		if (connection->BackendMinimumVersion(8, 2))
-			txtFillFactor->Enable();
-		else
-			txtFillFactor->Disable();
 	}
 
 	btnAddCol->Disable();
@@ -171,8 +156,9 @@ void dlgIndexBase::CheckChange()
 	{
 		EnableOK(txtName->GetValue() != index->GetName() ||
 		         txtComment->GetValue() != index->GetComment() ||
-		         cbTablespace->GetOIDKey() != index->GetTablespaceOid() ||
-		         txtFillFactor->GetValue() != index->GetFillFactor());
+		         cbTablespace->GetOIDKey() != index->GetTablespaceOid());
+				// TODO: FIXME
+//		         txtFillFactor->GetValue() != index->GetFillFactor());
 	}
 	else
 	{
@@ -216,11 +202,6 @@ void dlgIndex::CheckChange()
 
 	if (index)
 	{
-		if (txtFillFactor)
-		{
-			fill = txtFillFactor->GetValue() != index->GetFillFactor() && !txtFillFactor->GetValue().IsEmpty();
-		}
-
 		EnableOK(fill ||
 		         txtComment->GetValue() != index->GetComment() ||
 		         chkClustered->GetValue() != index->GetIsClustered() ||
@@ -588,12 +569,6 @@ wxString dlgIndex::GetSql()
 			sql += wxT(" (") + GetColumns()
 			       + wxT(")");
 
-			if (txtFillFactor)
-			{
-				if (connection->BackendMinimumVersion(8, 2) && txtFillFactor->GetValue().Length() > 0)
-					sql += wxT("\n  WITH (FILLFACTOR=") + txtFillFactor->GetValue() + wxT(")");
-			}
-
 			if (cbTablespace->GetOIDKey() > 0)
 				AppendIfFilled(sql, wxT("\n  TABLESPACE "), qtIdent(cbTablespace->GetValue()));
 
@@ -602,11 +577,6 @@ wxString dlgIndex::GetSql()
 		}
 		else
 		{
-			if (connection->BackendMinimumVersion(8, 2) && txtFillFactor->GetValue().Length() > 0)
-				sql += wxT("ALTER INDEX ") + qtIdent(index->GetSchema()->GetName()) + wxT(".")
-				       + qtIdent(index->GetName()) +  wxT("\n  SET (FILLFACTOR=")
-				       + txtFillFactor->GetValue() + wxT(");\n");
-
 			if(connection->BackendMinimumVersion(8, 0))
 			{
 				if (index->GetName() != txtName->GetValue() &&
