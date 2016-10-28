@@ -112,8 +112,8 @@ wxString pgIndexConstraint::GetDefinition()
 
 	sql += wxT("(") + GetQuotedColumns() + wxT(")");
 
-	if (GetConnection()->BackendMinimumVersion(8, 2) && GetFillFactor().Length() > 0)
-		sql += wxT("\n  WITH (FILLFACTOR=") + GetFillFactor() + wxT(")");
+	if (GetConnection()->BackendMinimumVersion(8, 2) && GetRelOptions().GetCount() > 0)
+		sql += wxT("\n  WITH (") + GetRelOptionsStr() << wxT(")");
 
 	if (GetConnection()->BackendMinimumVersion(8, 0) && GetTablespace() != GetDatabase()->GetDefaultTablespace())
 		sql += wxT("\n  USING INDEX TABLESPACE ") + qtIdent(GetTablespace());
@@ -193,8 +193,9 @@ void pgIndexConstraint::ShowTreeDetail(ctlTree *browser, frmMain *form, ctlListV
 		properties->AppendItem(_("Access method"), GetIndexType());
 		properties->AppendItem(_("Constraint"), GetConstraint());
 		properties->AppendYesNoItem(_("System index?"), GetSystemObject());
+		// TODO: FIXME
 		if (GetConnection()->BackendMinimumVersion(8, 2))
-			properties->AppendItem(_("Fill factor"), GetFillFactor());
+			AppendIndexReloptions(properties);
 		properties->AppendItem(_("Comment"), firstLineOnly(GetComment()));
 	}
 }

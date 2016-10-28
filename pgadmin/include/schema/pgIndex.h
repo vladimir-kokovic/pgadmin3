@@ -178,6 +178,8 @@ public:
 	{
 		return reloptions;
 	}
+	wxString GetRelOptionsStr() const;
+	void AppendIndexReloptions(ctlListView *properties);
 	wxString GetProcName() const
 	{
 		return procName;
