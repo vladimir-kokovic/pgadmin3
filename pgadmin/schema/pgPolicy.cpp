@@ -102,7 +102,7 @@ void pgPolicy::ParseRoles(const wxString &s)
 {
 	wxString r = s.Mid(1, s.Length() - 2);
 	if (!r.IsEmpty())
-		FillArray(GetRolesArray(), r);
+		FillArray(roles, r);
 }
 
 
