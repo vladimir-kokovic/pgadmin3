@@ -193,7 +193,6 @@ void pgIndexConstraint::ShowTreeDetail(ctlTree *browser, frmMain *form, ctlListV
 		properties->AppendItem(_("Access method"), GetIndexType());
 		properties->AppendItem(_("Constraint"), GetConstraint());
 		properties->AppendYesNoItem(_("System index?"), GetSystemObject());
-		// TODO: FIXME
 		if (GetConnection()->BackendMinimumVersion(8, 2))
 			AppendIndexReloptions(properties);
 		properties->AppendItem(_("Comment"), firstLineOnly(GetComment()));
