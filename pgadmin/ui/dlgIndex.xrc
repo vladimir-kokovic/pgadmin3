@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="ISO-8859-1" ?>
 <resource>
   <object class="wxDialog" name="dlgIndex">
     <size>300,265d</size>
@@ -69,7 +69,7 @@
                 <vgap>5</vgap>
                 <hgap>5</hgap>
                 <growablecols>1</growablecols>
-                <growablerows>6</growablerows>
+                <growablerows>5</growablerows>
                 <object class="sizeritem">
                   <object class="wxStaticText" name="stTablespace">
                     <label>Tablespace</label>
@@ -143,6 +143,7 @@
                 </object>
                 <object class="sizeritem">
                   <object class="wxTextCtrl" name="txtWhere">
+                    <size>387,19</size>
                     <style>wxTE_MULTILINE</style>
                   </object>
                   <flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
@@ -151,6 +152,102 @@
               </object>
             </object>
             <label>Definition</label>
+          </object>
+          <object class="notebookpage">
+            <object class="wxPanel" name="pnlStorageParams">
+              <object class="wxFlexGridSizer">
+                <cols>1</cols>
+                <vgap>4</vgap>
+                <hgap>5</hgap>
+                <growablecols>0</growablecols>
+                <growablerows>0</growablerows>
+                <object class="sizeritem">
+                  <object class="wxListCtrl" name="lstParams">
+                    <pos>5,6d</pos>
+                    <style>wxLC_REPORT|wxLC_SINGLE_SEL</style>
+                  </object>
+                  <flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+                  <border>4</border>
+                </object>
+                <object class="sizeritem">
+                  <object class="wxFlexGridSizer">
+                    <cols>3</cols>
+                    <growablecols>0</growablecols>
+                    <object class="spacer">
+                      <flag>wxALIGN_LEFT|wxALIGN_TOP</flag>
+                    </object>
+                    <object class="sizeritem">
+                      <object class="wxButton" name="wxID_ADD">
+                        <label>Add/Change</label>
+                        <pos>90,132d</pos>
+                      </object>
+                      <flag>wxTOP|wxLEFT|wxRIGHT|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+                      <border>4</border>
+                    </object>
+                    <object class="sizeritem">
+                      <object class="wxButton" name="wxID_REMOVE">
+                        <label>Remove</label>
+                        <pos>150,132d</pos>
+                      </object>
+                      <flag>wxTOP|wxLEFT|wxRIGHT|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+                      <border>4</border>
+                    </object>
+                  </object>
+                  <flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+                  <border>3</border>
+                </object>
+                <object class="sizeritem">
+                  <object class="wxFlexGridSizer">
+                    <cols>2</cols>
+                    <vgap>5</vgap>
+                    <hgap>5</hgap>
+                    <growablecols>1</growablecols>
+                    <object class="sizeritem">
+                      <object class="wxStaticText" name="stParamName">
+                        <label>Parameter name</label>
+                      </object>
+                      <flag>wxTOP|wxLEFT|wxRIGHT|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+                      <border>4</border>
+                    </object>
+                    <object class="sizeritem">
+                      <object class="ctlComboBox" name="cbParam">
+                        <style>wxCB_DROPDOWN</style>
+                        <content />
+                      </object>
+                      <flag>wxTOP|wxLEFT|wxRIGHT|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+                      <border>4</border>
+                    </object>
+                    <object class="sizeritem">
+                      <object class="wxStaticText" name="stParamValue">
+                        <label>Parameter value</label>
+                      </object>
+                      <flag>wxTOP|wxLEFT|wxRIGHT|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+                      <border>4</border>
+                    </object>
+                    <object class="sizeritem">
+                      <object class="wxFlexGridSizer">
+                        <cols>2</cols>
+                        <vgap>5</vgap>
+                        <hgap>5</hgap>
+                        <growablecols>0,1</growablecols>
+                        <object class="sizeritem">
+                          <object class="wxTextCtrl" name="txtParamValue" />
+                          <flag>wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+                        </object>
+                        <object class="sizeritem">
+                          <object class="wxCheckBox" name="chkParamValue" />
+                          <flag>wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+                        </object>
+                      </object>
+                      <flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+                      <border>4</border>
+                    </object>
+                  </object>
+                  <flag>wxEXPAND|wxALIGN_LEFT|wxALIGN_TOP</flag>
+                </object>
+              </object>
+            </object>
+            <label>Storage parametres</label>
           </object>
           <object class="notebookpage">
             <object class="wxPanel" name="pnlColumns">
@@ -195,8 +292,7 @@
                     </object>
                     <object class="sizeritem">
                       <object class="ctlComboBox" name="cbCollation">
-                        <style>wxCB&amp;DROPDOWN</style>
-                        <style>wxCB&amp;DROPDOWN</style>
+                        <style>wxCB_DROPDOWN</style>
                         <content />
                       </object>
                       <flag>wxTOP|wxLEFT|wxRIGHT|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
@@ -347,6 +443,13 @@
           </object>
         </object>
         <flag>wxTOP|wxLEFT|wxRIGHT|wxEXPAND|wxALIGN_LEFT|wxALIGN_TOP</flag>
+      </object>
+      <object class="sizeritem">
+        <object class="wxStatusBar" name="unkStatusBar">
+          <style>wxST_SIZEGRIP</style>
+        </object>
+        <flag>wxEXPAND|wxALIGN_CENTRE</flag>
+        <border>3</border>
       </object>
     </object>
   </object>
