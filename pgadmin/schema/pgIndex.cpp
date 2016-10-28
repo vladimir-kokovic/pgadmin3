@@ -668,6 +668,8 @@ wxString pgIndexBase::GetRelOptionsStr() const
 				wxString value = tokenizer.GetNextToken();
 				result += key + wxT("=") + value;
 			}
+			if (i + 1 != reloptions.GetCount())
+				result += wxT(", ");
 		}
 	}
 	return result;
@@ -687,7 +689,7 @@ void pgIndexBase::AppendIndexReloptions(ctlListView *properties)
 			else if (key == wxT("buffering"))
 				properties->AppendItem(_("Buffering"), value);
 			else if (key == wxT("fastupdate"))
-				properties->AppendYesNoItem(_("Fast update"), StrToBool(value));
+				properties->AppendYesNoItem(_("Fast update?"), StrToBool(value));
 			else if (key == wxT("gin_pending_list_limit"))
 				properties->AppendItem(_("Pending list limit"), value + wxT("Kb"));
 			else if (key == wxT("pages_per_range"))

@@ -33,6 +33,10 @@
 #define rdbNullsFirst   CTRL_RADIOBUTTON("rdbNullsFirst")
 #define rdbNullsLast    CTRL_RADIOBUTTON("rdbNullsLast")
 #define cbCollation     CTRL_COMBOBOX("cbCollation")
+#define lstParams       CTRL_LISTVIEW("lstParams")
+#define cbParam         CTRL_COMBOBOX2("cbParam")
+#define txtParamValue   CTRL_TEXT("txtParamValue")
+#define chkParamValue   CTRL_CHECKBOX("chkParamValue")
 
 
 BEGIN_EVENT_TABLE(dlgIndexBase, dlgCollistProperty)
@@ -179,6 +183,9 @@ BEGIN_EVENT_TABLE(dlgIndex, dlgIndexBase)
 	EVT_SIZE(                                       dlgIndex::OnChangeSize)
 #endif
 	EVT_COMBOBOX(XRCID("cbType"),                   dlgIndex::OnSelectType)
+	EVT_COMBOBOX(XRCID("cbParam"),                  dlgIndex::OnChangeStorageParam)
+	EVT_BUTTON(wxID_ADD,                            dlgIndex::OnStParamAdd)
+	EVT_BUTTON(wxID_REMOVE,                         dlgIndex::OnStParamRemove)
 END_EVENT_TABLE();
 
 
@@ -190,6 +197,7 @@ dlgIndex::dlgIndex(pgaFactory *f, frmMain *frame, pgIndex *index, pgTable *paren
 	lstColumns->AddColumn(_("NULLs order"), 50);
 	lstColumns->AddColumn(_("Op. class"), 40);
 	lstColumns->AddColumn(_("Collation"), 40);
+	lstParams->CreateColumns(0, _("Parameter"), _("Value"), -1);
 }
 
 
@@ -207,7 +215,9 @@ void dlgIndex::CheckChange()
 		         chkClustered->GetValue() != index->GetIsClustered() ||
 		         cbTablespace->GetOIDKey() != index->GetTablespaceOid() ||
 		         (txtName->GetValue() != index->GetName() &&
-		          txtName->GetValue().Length() != 0));
+		          txtName->GetValue().Length() != 0) ||
+		         indexRemoveRelOptions.GetCount() != 0 ||
+		         indexUpdateRelOptions.GetCount() != 0);
 	}
 	else
 	{
@@ -218,6 +228,100 @@ void dlgIndex::CheckChange()
 		CheckValid(enable, lstColumns->GetItemCount() > 0, _("Please specify columns."));
 		EnableOK(enable);
 	}
+}
+
+void dlgIndex::OnChangeStorageParam(wxCommandEvent &ev)
+{
+	wxString value = cbParam->GetValue();
+
+	if (value.IsNull())
+		return;
+
+	if (value == wxT("fastupdate"))
+	{
+		txtParamValue->Hide();
+		chkParamValue->Show();
+		chkParamValue->GetParent()->Layout();
+	}
+	else
+	{
+		txtParamValue->Show();
+		txtParamValue->GetParent()->Layout();
+		chkParamValue->Hide();
+	}
+}
+
+void dlgIndex::OnStParamAdd(wxCommandEvent &ev)
+{
+	wxString paramName = cbParam->GetValue();
+	wxString value;
+	if (chkParamValue->IsShown())
+		value = chkParamValue->GetValue() ? wxT("on") : wxT("off");
+	else
+		value = txtParamValue->GetValue().Strip(wxString::both);
+
+	if (value.IsEmpty())
+		return;
+
+	if (!paramName.IsEmpty())
+	{
+		bool found = false;
+		long prevpos = -1;
+		for (long item = 0; item < lstParams->GetItemCount(); item++)
+		{
+			if (paramName == lstParams->GetText(item, 0))
+			{
+				found = true;
+				lstParams->SetItem(item, 1, value);
+			}
+			else
+			{
+				prevpos = item;
+			}
+		}
+		if (!found)
+		{
+			if (prevpos != -1)
+			{
+				lstParams->InsertItem(prevpos, paramName, 1);
+				lstParams->SetItem(prevpos, 1, value);
+			}
+			else
+			{
+				long pos = lstParams->GetItemCount();
+				lstParams->InsertItem(pos, paramName, 1);
+				lstParams->SetItem(pos, 1, value);
+			}
+		}
+		indexUpdateRelOptions.Add(paramName + wxT("=") + value);
+	}
+	CheckChange();
+}
+
+void dlgIndex::OnStParamRemove(wxCommandEvent &ev)
+{
+	int pos = lstParams->GetSelection();
+	unsigned int paramPos = -1;
+
+	if (pos < 0)
+		return;
+
+	wxString paramName = lstParams->GetText(pos, 0);
+	for (unsigned int i = 0; i < indexUpdateRelOptions.GetCount(); i++)
+	{
+		if (indexUpdateRelOptions[i].StartsWith(paramName))
+		{
+			paramPos = i;
+			break;
+		}
+	}
+	if (paramPos != -1)
+		indexUpdateRelOptions.RemoveAt(paramPos);
+	else
+		indexRemoveRelOptions.Add(paramName);
+
+	lstParams->DeleteItem(pos);
+	CheckChange();
 }
 
 void dlgIndex::OnSelectType(wxCommandEvent &ev)
@@ -268,6 +372,19 @@ void dlgIndex::OnSelectType(wxCommandEvent &ev)
 		rdbNullsLast->Enable(false);
 	}
 
+	// Updates list of params, available for current index type
+	FillStorageParamsCB(newType);
+
+	// Clear params list if new type and previous type are not equal
+	if (m_previousType != newType)
+	{
+		for (unsigned int i = 0; i < lstParams->GetItemCount(); i++)
+			lstParams->DeleteItem(i);
+		indexUpdateRelOptions.Clear();
+		indexRemoveRelOptions.Clear();
+		txtParamValue->Clear();
+	}
+
 	// Make a note of the type so we can compare if it changes again.
 	m_previousType = cbType->GetValue();
 }
@@ -316,6 +433,10 @@ int dlgIndex::Go(bool modal)
 {
 	if (!connection->BackendMinimumVersion(7, 4))
 		chkClustered->Disable();
+
+	// Add fillfactor param as default for btree
+	cbParam->Append(wxT("fillfactor"));
+	chkParamValue->Hide();
 
 	if (index)
 	{
@@ -379,6 +500,17 @@ int dlgIndex::Go(bool modal)
 		rdbNullsLast->Disable();
 		cbCollation->Disable();
 		lstColumns->Disable();
+
+		// Add index reloptions if exists
+		wxArrayString indexRelOptions = index->GetRelOptions();
+		for (unsigned int i = 0; i < indexRelOptions.GetCount(); i++)
+		{
+			wxStringTokenizer tokenizer(indexRelOptions[i], wxT("="));
+			wxString key = tokenizer.GetNextToken();
+			wxString value = tokenizer.GetNextToken();
+			lstParams->AppendItem(key, value);
+		}
+		FillStorageParamsCB(index->GetIndexType());
 	}
 	else
 	{
@@ -569,6 +701,18 @@ wxString dlgIndex::GetSql()
 			sql += wxT(" (") + GetColumns()
 			       + wxT(")");
 
+			if (lstParams->GetItemCount())
+			{
+				sql += wxT("\n   WITH (");
+				for (unsigned int i = 0; i < lstParams->GetItemCount(); i++)
+				{
+					sql += lstParams->GetText(i, 0) + wxT("=") + lstParams->GetText(i, 1);
+					if (i + 1 != lstParams->GetItemCount())
+						sql += wxT(", ");
+				}
+				sql += wxT(")");
+			}
+
 			if (cbTablespace->GetOIDKey() > 0)
 				AppendIfFilled(sql, wxT("\n  TABLESPACE "), qtIdent(cbTablespace->GetValue()));
 
@@ -589,6 +733,31 @@ wxString dlgIndex::GetSql()
 					sql += wxT("ALTER INDEX ") + qtIdent(index->GetSchema()->GetName()) + wxT(".") + qtIdent(name)
 					       +  wxT("\n  SET TABLESPACE ") + qtIdent(cbTablespace->GetValue())
 					       +  wxT(";\n");
+
+				if (indexRemoveRelOptions.GetCount())
+				{
+					sql += wxT("ALTER INDEX ") + qtIdent(index->GetSchema()->GetName()) + wxT(".") + qtIdent(name)
+					       + wxT("\n  RESET (");
+					for (unsigned int i = 0; i < indexRemoveRelOptions.GetCount(); i++)
+					{
+						sql += indexRemoveRelOptions[i];
+						if (i + 1 != indexRemoveRelOptions.GetCount())
+							sql += wxT(", ");
+					}
+					sql += wxT(");\n");
+				}
+				if (indexUpdateRelOptions.GetCount())
+				{
+					sql += wxT("ALTER INDEX ") + qtIdent(index->GetSchema()->GetName()) + wxT(".") + qtIdent(name)
+					       + wxT("\n  SET (");
+					for (unsigned int i = 0; i < indexUpdateRelOptions.GetCount(); i++)
+					{
+						sql += indexUpdateRelOptions[i];
+						if (i + 1 != indexUpdateRelOptions.GetCount())
+							sql += wxT(", ");
+					}
+					sql += wxT(");\n");
+				}
 			}
 		}
 		if (connection->BackendMinimumVersion(7, 4) && chkClustered->IsEnabled())
@@ -618,6 +787,37 @@ pgObject *dlgIndex::CreateObject(pgCollection *collection)
 	                    "\n   AND cls.relname=") + qtDbString(name) + wxT(
 	                    "\n   AND cls.relnamespace=") + table->GetSchema()->GetOidStr());
 	return obj;
+}
+
+void dlgIndex::FillStorageParamsCB(const wxString &indexType)
+{
+	cbParam->Clear();
+	if (indexType == wxT("btree"))
+	{
+		cbParam->Append(wxT("fillfactor"));
+	}
+	else if (indexType == wxT("hash"))
+	{
+		cbParam->Append(wxT("fillfactor"));
+	}
+	else if (indexType == wxT("gist"))
+	{
+		cbParam->Append(wxT("fillfactor"));
+		cbParam->Append(wxT("buffering"));
+	}
+	else if (indexType == wxT("gin"))
+	{
+		cbParam->Append(wxT("fastupdate"));
+		cbParam->Append(wxT("gin_pending_list_limit"));
+	}
+	else if (indexType == wxT("spgist"))
+	{
+		cbParam->Append("fillfactor");
+	}
+	else if (indexType == wxT("brin"))
+	{
+		cbParam->Append(wxT("pages_per_range"));
+	}
 }
 
 void dlgIndex::OnDescChange(wxCommandEvent &ev)

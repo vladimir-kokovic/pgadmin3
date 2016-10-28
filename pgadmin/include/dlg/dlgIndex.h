@@ -58,13 +58,19 @@ private:
 #ifdef __WXMAC__
 	void OnChangeSize(wxSizeEvent &ev);
 #endif
+	void FillStorageParamsCB(const wxString &indexType);
 
+	void OnChangeStorageParam(wxCommandEvent &ev);
+	void OnStParamAdd(wxCommandEvent &ev);
+	void OnStParamRemove(wxCommandEvent &ev);
 	void OnSelectType(wxCommandEvent &ev);
 	void OnDescChange(wxCommandEvent &ev);
 	void OnAddCol(wxCommandEvent &ev);
 	void OnRemoveCol(wxCommandEvent &ev);
 
 	wxString m_previousType;
+	wxArrayString indexUpdateRelOptions;
+	wxArrayString indexRemoveRelOptions;
 
 	DECLARE_EVENT_TABLE()
 };
