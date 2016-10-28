@@ -1,7 +1,7 @@
 #######################################################################
 #
 # pgAdmin III - PostgreSQL Tools
-# 
+#
 # Copyright (C) 2002 - 2016, The pgAdmin Development Team
 # This software is released under the PostgreSQL Licence
 #
@@ -218,6 +218,8 @@ pgadmin3_SOURCES += \
 	include/images/pgAdmin3.png \
 	include/images/pgAdmin3-16.png \
 	include/images/pgAdmin3-32.png \
+	include/images/policies.png \
+	include/images/policy.png \
 	include/images/primarykey.png \
 	include/images/procedures.png \
 	include/images/procedure.png \

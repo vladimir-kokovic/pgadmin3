@@ -226,11 +226,11 @@ wxString pgPolicyCollection::GetTranslatedMessage(int kindOfMessage) const
 
 /////////////////////////////
 
-#include "images/constraints.pngc"
-#include "images/check.pngc"
+#include "images/policies.pngc"
+#include "images/policy.pngc"
 
 pgPolicyFactory::pgPolicyFactory()
-	: pgSchemaObjFactory(__("Policy"), __("New Policy..."), __("Create a new Policy."), check_png_img)
+	: pgSchemaObjFactory(__("Policy"), __("New Policy..."), __("Create a new Policy."), policy_png_img)
 {
 	metaType = PGM_POLICY;
 }
@@ -242,4 +242,4 @@ pgCollection *pgPolicyFactory::CreateCollection(pgObject *obj)
 
 
 pgPolicyFactory policyFactory;
-pgaCollectionFactory policyCollectionFactory(&policyFactory, __("Policies"), constraints_png_img);
+pgaCollectionFactory policyCollectionFactory(&policyFactory, __("Policies"), policies_png_img);
