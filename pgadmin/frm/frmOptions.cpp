@@ -388,8 +388,8 @@ frmOptions::frmOptions(frmMain *parent)
 	lstDisplay->Append(_("Users/login Roles"));
 	lstDisplay->Append(_("Resource Queues"));
 	lstDisplay->Append(_("Resource Groups"));
-	lstDisplay->Append(_("Policies"));
 	lstDisplay->Append(_("Catalogs"));
+	lstDisplay->Append(_("Access Methods"));
 	lstDisplay->Append(_("Casts"));
 	lstDisplay->Append(_("Event Triggers"));
 	lstDisplay->Append(_("Extensions"));
@@ -418,6 +418,7 @@ frmOptions::frmOptions(frmMain *parent)
 	lstDisplay->Append(_("Procedures"));
 	lstDisplay->Append(_("Sequences"));
 	lstDisplay->Append(_("Tables"));
+	lstDisplay->Append(_("Policies"));
 	lstDisplay->Append(_("Trigger Functions"));
 	lstDisplay->Append(_("Types"));
 	lstDisplay->Append(_("Views"));
