@@ -10,6 +10,7 @@
 #######################################################################
 
 pgadmin3_SOURCES += \
+	dlg/dlgAccessMethod.cpp \
 	dlg/dlgAddFavourite.cpp \
 	dlg/dlgAggregate.cpp \
 	dlg/dlgCast.cpp \
