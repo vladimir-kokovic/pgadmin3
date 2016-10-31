@@ -19,7 +19,6 @@
 #include "utils/misc.h"
 #include "schema/pgPolicy.h"
 
-#include <iostream>
 
 pgPolicy::pgPolicy(pgSchema *newSchema, const wxString &newName)
 	: pgSchemaObject(newSchema, policyFactory, newName)
