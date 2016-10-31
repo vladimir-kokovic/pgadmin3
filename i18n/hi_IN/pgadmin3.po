@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pgadmin3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-23 17:44+0300\n"
+"POT-Creation-Date: 2016-10-31 09:31+0300\n"
 "PO-Revision-Date: 2008-03-10 22:01+0530\n"
 "Last-Translator: Robins Tharakan <tharakan@gmail.com>\n"
 "Language-Team: The pgAdmin Development Team <pgadmin-hackers@postgresql."
@@ -637,8 +637,8 @@ msgstr ""
 #: pgadmin/ui/dlgForeignDataWrapper.xrc:257 pgadmin/ui/dlgForeignKey.xrc:329
 #: pgadmin/ui/dlgForeignServer.xrc:253 pgadmin/ui/dlgForeignTable.xrc:381
 #: pgadmin/ui/dlgFunction.xrc:596 pgadmin/ui/dlgGroup.xrc:167
-#: pgadmin/ui/dlgHbaConfig.xrc:146 pgadmin/ui/dlgIndexConstraint.xrc:362
-#: pgadmin/ui/dlgIndex.xrc:360 pgadmin/ui/dlgJob.xrc:309
+#: pgadmin/ui/dlgHbaConfig.xrc:146 pgadmin/ui/dlgIndexConstraint.xrc:343
+#: pgadmin/ui/dlgIndex.xrc:439 pgadmin/ui/dlgJob.xrc:309
 #: pgadmin/ui/dlgLanguage.xrc:198 pgadmin/ui/dlgMainConfig.xrc:129
 #: pgadmin/ui/dlgManageFavourites.xrc:73 pgadmin/ui/dlgManageMacros.xrc:123
 #: pgadmin/ui/dlgMoveTablespace.xrc:85 pgadmin/ui/dlgOperator.xrc:353
@@ -973,7 +973,7 @@ msgstr ""
 msgid "&Export..."
 msgstr ""
 
-#: pgadmin/schema/pgIndex.cpp:327 pgadmin/schema/pgIndex.cpp:476
+#: pgadmin/schema/pgIndex.cpp:327 pgadmin/schema/pgIndex.cpp:475
 msgid "&Extended index statistics"
 msgstr ""
 
@@ -1304,7 +1304,7 @@ msgstr ""
 #: pgadmin/ui/dlgForeignKey.xrc:321 pgadmin/ui/dlgForeignServer.xrc:244
 #: pgadmin/ui/dlgForeignTable.xrc:373 pgadmin/ui/dlgFunction.xrc:588
 #: pgadmin/ui/dlgGroup.xrc:159 pgadmin/ui/dlgHbaConfig.xrc:138
-#: pgadmin/ui/dlgIndexConstraint.xrc:354 pgadmin/ui/dlgIndex.xrc:352
+#: pgadmin/ui/dlgIndexConstraint.xrc:335 pgadmin/ui/dlgIndex.xrc:431
 #: pgadmin/ui/dlgJob.xrc:301 pgadmin/ui/dlgLanguage.xrc:190
 #: pgadmin/ui/dlgMainConfig.xrc:121 pgadmin/ui/dlgManageFavourites.xrc:65
 #: pgadmin/ui/dlgManageMacros.xrc:115 pgadmin/ui/dlgMoveTablespace.xrc:77
@@ -2286,8 +2286,8 @@ msgstr ""
 #: pgadmin/dlg/dlgIndex.cpp:381 pgadmin/dlg/dlgTable.cpp:345
 #: pgadmin/dlg/dlgDatabase.cpp:266 pgadmin/dlg/dlgIndex.cpp:439
 #: pgadmin/dlg/dlgIndexConstraint.cpp:102 pgadmin/dlg/dlgTable.cpp:367
-#: pgadmin/dlg/dlgDatabase.cpp:279 pgadmin/dlg/dlgIndex.cpp:454
-#: pgadmin/dlg/dlgIndexConstraint.cpp:279 pgadmin/dlg/dlgTable.cpp:435
+#: pgadmin/dlg/dlgDatabase.cpp:279 pgadmin/dlg/dlgIndex.cpp:567
+#: pgadmin/dlg/dlgIndexConstraint.cpp:273 pgadmin/dlg/dlgTable.cpp:435
 #: pgadmin/dlg/dlgView.cpp:367
 msgid "<default tablespace>"
 msgstr ""
@@ -2511,7 +2511,7 @@ msgstr ""
 #: pgadmin/schema/pgIndex.cpp:407 pgadmin/schema/pgIndexConstraint.cpp:193
 #: pgadmin/schema/pgOperatorClass.cpp:279
 #: pgadmin/schema/pgOperatorFamily.cpp:124
-#: pgadmin/ui/dlgIndexConstraint.xrc:110 pgadmin/ui/dlgIndex.xrc:94
+#: pgadmin/ui/dlgIndexConstraint.xrc:103 pgadmin/ui/dlgIndex.xrc:89
 msgid "Access method"
 msgstr ""
 
@@ -2581,8 +2581,8 @@ msgstr ""
 #: pgadmin/ui/dlgTable.xrc:16 pgadmin/ui/dlgTable.xrc:19
 #: pgadmin/ui/dlgTrigger.xrc:20 pgadmin/ui/dlgDomain.xrc:239
 #: pgadmin/ui/dlgForeignKey.xrc:239 pgadmin/ui/dlgForeignTable.xrc:250
-#: pgadmin/ui/dlgFunction.xrc:393 pgadmin/ui/dlgIndexConstraint.xrc:315
-#: pgadmin/ui/dlgIndex.xrc:313 pgadmin/ui/dlgJob.xrc:209
+#: pgadmin/ui/dlgFunction.xrc:393 pgadmin/ui/dlgIndexConstraint.xrc:291
+#: pgadmin/ui/dlgIndex.xrc:387 pgadmin/ui/dlgJob.xrc:209
 #: pgadmin/ui/dlgJob.xrc:262 pgadmin/ui/dlgSchedule.xrc:397
 #: pgadmin/ui/dlgTable.xrc:243 pgadmin/ui/dlgTable.xrc:376
 #: pgadmin/ui/dlgTable.xrc:425 pgadmin/ui/dlgTrigger.xrc:312
@@ -2754,8 +2754,9 @@ msgstr "सारे कालम"
 #: pgadmin/ctl/ctlSeclabelPanel.cpp:66 pgadmin/ui/dlgColumn.xrc:219
 #: pgadmin/ui/dlgDatabase.xrc:236 pgadmin/ui/dlgForeignDataWrapper.xrc:212
 #: pgadmin/ui/dlgForeignServer.xrc:208 pgadmin/ui/dlgForeignTable.xrc:341
-#: pgadmin/ui/dlgFunction.xrc:497 pgadmin/ui/dlgPolicy.xrc:98
-#: pgadmin/ui/dlgRole.xrc:345 pgadmin/ui/dlgTablespace.xrc:139
+#: pgadmin/ui/dlgFunction.xrc:497 pgadmin/ui/dlgIndex.xrc:181
+#: pgadmin/ui/dlgPolicy.xrc:98 pgadmin/ui/dlgRole.xrc:345
+#: pgadmin/ui/dlgTablespace.xrc:139
 #: pgadmin/ui/dlgTextSearchConfiguration.xrc:244
 #: pgadmin/ui/dlgTextSearchDictionary.xrc:211
 #: pgadmin/ui/dlgUserMapping.xrc:141 pgadmin/ui/dlgUser.xrc:252
@@ -4098,7 +4099,7 @@ msgid "Available Columns"
 msgstr ""
 
 #: pgadmin/schema/pgIndex.cpp:260 pgadmin/schema/pgIndex.cpp:290
-#: pgadmin/schema/pgIndex.cpp:439
+#: pgadmin/schema/pgIndex.cpp:438
 msgid "Average Leaf Density"
 msgstr ""
 
@@ -4356,6 +4357,10 @@ msgstr ""
 
 #: pgadmin/ui/frmOptions.xrc:25 pgadmin/frm/frmOptions.cpp:40
 msgid "Browser"
+msgstr ""
+
+#: pgadmin/schema/pgIndex.cpp:690
+msgid "Buffering"
 msgstr ""
 
 #: pgadmin/schema/pgDatabase.cpp:326 pgadmin/schema/pgDatabase.cpp:1216
@@ -4879,7 +4884,7 @@ msgid "Change Password"
 msgstr ""
 
 #: pgadmin/dlg/dlgIndex.cpp:220 pgadmin/dlg/dlgIndex.cpp:247
-#: pgadmin/dlg/dlgIndex.cpp:259 pgadmin/dlg/dlgIndexConstraint.cpp:464
+#: pgadmin/dlg/dlgIndex.cpp:344 pgadmin/dlg/dlgIndexConstraint.cpp:455
 msgid "Change index type?"
 msgstr ""
 
@@ -4933,7 +4938,7 @@ msgid ""
 msgstr ""
 
 #: pgadmin/dlg/dlgIndex.cpp:220 pgadmin/dlg/dlgIndex.cpp:247
-#: pgadmin/dlg/dlgIndex.cpp:259 pgadmin/dlg/dlgIndexConstraint.cpp:464
+#: pgadmin/dlg/dlgIndex.cpp:344 pgadmin/dlg/dlgIndexConstraint.cpp:455
 msgid ""
 "Changing the index type will cause the column list to be cleared. Do you "
 "wish to continue?"
@@ -5232,7 +5237,7 @@ msgstr ""
 
 # standard
 #: standard input:214 input:251 pgadmin/ui/dlgIndex.xrc:7
-#: pgadmin/ui/dlgIndex.xrc:135
+#: pgadmin/ui/dlgIndex.xrc:115
 msgid "Clustered"
 msgstr ""
 
@@ -5273,9 +5278,9 @@ msgstr ""
 #: pgadmin/schema/pgDatabase.cpp:530 pgadmin/schema/pgCollation.cpp:238
 #: pgadmin/schema/pgColumn.cpp:478 pgadmin/schema/pgDatabase.cpp:720
 #: pgadmin/schema/pgDomain.cpp:206 pgadmin/schema/pgType.cpp:336
-#: pgadmin/dlg/dlgIndex.cpp:206 pgadmin/dlg/dlgType.cpp:122
+#: pgadmin/dlg/dlgIndex.cpp:199 pgadmin/dlg/dlgType.cpp:122
 #: pgadmin/ui/dlgColumn.xrc:121 pgadmin/ui/dlgDatabase.xrc:151
-#: pgadmin/ui/dlgDomain.xrc:191 pgadmin/ui/dlgIndex.xrc:216
+#: pgadmin/ui/dlgDomain.xrc:191 pgadmin/ui/dlgIndex.xrc:288
 #: pgadmin/ui/dlgType.xrc:231 pgadmin/ui/dlgType.xrc:736
 msgid "Collation"
 msgstr ""
@@ -5344,7 +5349,7 @@ msgstr ""
 #: pgadmin/ui/dlgIndex.xrc:13 pgadmin/schema/pgColumn.cpp:528
 #: pgadmin/dlg/dlgTable.cpp:185 pgadmin/ui/dlgTrigger.xrc:19
 #: pgadmin/schema/pgColumn.cpp:779 pgadmin/dlg/dlgTable.cpp:204
-#: pgadmin/ui/dlgIndexConstraint.xrc:203 pgadmin/ui/dlgIndex.xrc:201
+#: pgadmin/ui/dlgIndexConstraint.xrc:179 pgadmin/ui/dlgIndex.xrc:274
 #: pgadmin/ui/dlgTrigger.xrc:286
 msgid "Column"
 msgstr ""
@@ -5393,8 +5398,8 @@ msgstr "आश्रित"
 #: pgadmin/dlg/dlgTable.cpp:173 pgadmin/dlg/dlgEditGridOptions.cpp:88
 #: pgadmin/dlg/dlgIndex.cpp:194 pgadmin/dlg/dlgTable.cpp:175
 #: pgadmin/dlg/dlgTrigger.cpp:81 pgadmin/dlg/dlgEditGridOptions.cpp:95
-#: pgadmin/dlg/dlgIndex.cpp:202 pgadmin/dlg/dlgIndexConstraint.cpp:55
-#: pgadmin/dlg/dlgIndexConstraint.cpp:66 pgadmin/dlg/dlgTable.cpp:189
+#: pgadmin/dlg/dlgIndex.cpp:195 pgadmin/dlg/dlgIndexConstraint.cpp:54
+#: pgadmin/dlg/dlgIndexConstraint.cpp:65 pgadmin/dlg/dlgTable.cpp:189
 #: pgadmin/dlg/dlgTrigger.cpp:89
 msgid "Column name"
 msgstr ""
@@ -5473,7 +5478,7 @@ msgstr "आश्रित"
 #: pgadmin/schema/pgIndexConstraint.cpp:183 pgadmin/schema/pgTrigger.cpp:358
 #: pgadmin/dlg/dlgSearchObject.cpp:72 pgadmin/dlg/dlgSearchObject.cpp:107
 #: pgadmin/ui/dlgForeignKey.xrc:163 pgadmin/ui/dlgForeignTable.xrc:139
-#: pgadmin/ui/dlgIndexConstraint.xrc:181 pgadmin/ui/dlgIndex.xrc:179
+#: pgadmin/ui/dlgIndexConstraint.xrc:312 pgadmin/ui/dlgIndex.xrc:408
 #: pgadmin/ui/dlgTable.xrc:395 pgadmin/ui/dlgTrigger.xrc:264
 #: pgadmin/ui/frmImport.xrc:80
 msgid "Columns"
@@ -5609,7 +5614,7 @@ msgstr ""
 #: pgadmin/schema/pgDomain.cpp:210 pgadmin/schema/pgEventTrigger.cpp:149
 #: pgadmin/schema/pgExtension.cpp:127 pgadmin/schema/pgForeignKey.cpp:254
 #: pgadmin/schema/pgForeignTable.cpp:187 pgadmin/schema/pgFunction.cpp:426
-#: pgadmin/schema/pgIndex.cpp:412 pgadmin/schema/pgIndexConstraint.cpp:198
+#: pgadmin/schema/pgIndex.cpp:411 pgadmin/schema/pgIndexConstraint.cpp:198
 #: pgadmin/schema/pgLanguage.cpp:141 pgadmin/schema/pgOperator.cpp:207
 #: pgadmin/schema/pgOperatorClass.cpp:292
 #: pgadmin/schema/pgOperatorFamily.cpp:126 pgadmin/schema/pgPolicy.cpp:136
@@ -5632,7 +5637,7 @@ msgstr ""
 #: pgadmin/ui/dlgExtTable.xrc:67 pgadmin/ui/dlgForeignDataWrapper.xrc:70
 #: pgadmin/ui/dlgForeignKey.xrc:38 pgadmin/ui/dlgForeignServer.xrc:70
 #: pgadmin/ui/dlgForeignTable.xrc:82 pgadmin/ui/dlgFunction.xrc:79
-#: pgadmin/ui/dlgIndexConstraint.xrc:39 pgadmin/ui/dlgIndex.xrc:38
+#: pgadmin/ui/dlgIndexConstraint.xrc:35 pgadmin/ui/dlgIndex.xrc:35
 #: pgadmin/ui/dlgJob.xrc:160 pgadmin/ui/dlgLanguage.xrc:69
 #: pgadmin/ui/dlgMainConfig.xrc:72 pgadmin/ui/dlgOperator.xrc:80
 #: pgadmin/ui/dlgPackage.xrc:66 pgadmin/ui/dlgPolicy.xrc:51
@@ -5717,7 +5722,7 @@ msgstr ""
 msgid "Compress Ratio"
 msgstr ""
 
-#: standard input:252 pgadmin/ui/dlgIndex.xrc:8 pgadmin/ui/dlgIndex.xrc:149
+#: standard input:252 pgadmin/ui/dlgIndex.xrc:8 pgadmin/ui/dlgIndex.xrc:127
 msgid "Concurrent build?"
 msgstr ""
 
@@ -6022,7 +6027,7 @@ msgstr ""
 #: pgadmin/ui/dlgIndex.xrc:9 pgadmin/schema/pgIndex.cpp:259
 #: pgadmin/schema/pgConstraints.cpp:109 pgadmin/schema/pgIndex.cpp:408
 #: pgadmin/schema/pgIndexConstraint.cpp:194 pgadmin/dlg/dlgForeignTable.cpp:76
-#: pgadmin/ui/dlgIndexConstraint.xrc:165 pgadmin/ui/dlgIndex.xrc:163
+#: pgadmin/ui/dlgIndexConstraint.xrc:141 pgadmin/ui/dlgIndex.xrc:139
 msgid "Constraint"
 msgstr ""
 
@@ -6641,7 +6646,7 @@ msgstr ""
 
 #: src/schema/pgIndex.cpp:361 src/schema/pgIndex.cpp:371
 #: pgadmin/schema/pgIndex.cpp:467 pgadmin/schema/pgIndex.cpp:506
-#: pgadmin/schema/pgIndex.cpp:513 pgadmin/schema/pgIndex.cpp:690
+#: pgadmin/schema/pgIndex.cpp:513 pgadmin/schema/pgIndex.cpp:741
 msgid "Create a new Index."
 msgstr ""
 
@@ -7142,7 +7147,7 @@ msgid "DELETE script"
 msgstr ""
 
 #: pgadmin/ui/dlgIndex.xrc:14 pgadmin/ui/dlgIndex.xrc:15
-#: pgadmin/ui/dlgIndexConstraint.xrc:233 pgadmin/ui/dlgIndex.xrc:246
+#: pgadmin/ui/dlgIndexConstraint.xrc:207 pgadmin/ui/dlgIndex.xrc:317
 msgid "DESC"
 msgstr ""
 
@@ -7683,7 +7688,7 @@ msgstr ""
 # standard
 #: standard input:30 input:127 input:227 input:35 input:164 input:265
 #: pgadmin/ui/dlgForeignKey.xrc:4 pgadmin/ui/dlgIndexConstraint.xrc:4
-#: pgadmin/ui/dlgForeignKey.xrc:78 pgadmin/ui/dlgIndexConstraint.xrc:137
+#: pgadmin/ui/dlgForeignKey.xrc:78 pgadmin/ui/dlgIndexConstraint.xrc:117
 #: pgadmin/ui/dlgTrigger.xrc:124
 msgid "Deferrable"
 msgstr ""
@@ -7696,7 +7701,7 @@ msgstr ""
 # standard
 #: standard input:31 input:128 input:228 input:36 input:165 input:266
 #: pgadmin/ui/dlgForeignKey.xrc:5 pgadmin/ui/dlgIndexConstraint.xrc:5
-#: pgadmin/ui/dlgForeignKey.xrc:92 pgadmin/ui/dlgIndexConstraint.xrc:151
+#: pgadmin/ui/dlgForeignKey.xrc:92 pgadmin/ui/dlgIndexConstraint.xrc:129
 #: pgadmin/ui/dlgTrigger.xrc:138
 msgid "Deferred"
 msgstr ""
@@ -7735,7 +7740,7 @@ msgstr ""
 #: pgadmin/ui/dlgExtTable.xrc:98 pgadmin/ui/dlgForeignDataWrapper.xrc:103
 #: pgadmin/ui/dlgForeignKey.xrc:69 pgadmin/ui/dlgForeignServer.xrc:103
 #: pgadmin/ui/dlgForeignTable.xrc:113 pgadmin/ui/dlgFunction.xrc:110
-#: pgadmin/ui/dlgIndexConstraint.xrc:70 pgadmin/ui/dlgIndex.xrc:69
+#: pgadmin/ui/dlgIndexConstraint.xrc:155 pgadmin/ui/dlgIndex.xrc:154
 #: pgadmin/ui/dlgLanguage.xrc:100 pgadmin/ui/dlgOperator.xrc:111
 #: pgadmin/ui/dlgPolicy.xrc:178 pgadmin/ui/dlgRole.xrc:85
 #: pgadmin/ui/dlgRule.xrc:83 pgadmin/ui/dlgSequence.xrc:115
@@ -7826,7 +7831,7 @@ msgid "Delete/Drop the selected object."
 msgstr ""
 
 #: pgadmin/schema/pgIndex.cpp:259 pgadmin/schema/pgIndex.cpp:289
-#: pgadmin/schema/pgIndex.cpp:438
+#: pgadmin/schema/pgIndex.cpp:437
 msgid "Deleted Pages"
 msgstr ""
 
@@ -9061,7 +9066,7 @@ msgid "Embed pgAdmin's default stylesheet into the report."
 msgstr ""
 
 #: pgadmin/schema/pgIndex.cpp:258 pgadmin/schema/pgIndex.cpp:288
-#: pgadmin/schema/pgIndex.cpp:437
+#: pgadmin/schema/pgIndex.cpp:436
 msgid "Empty Pages"
 msgstr ""
 
@@ -9935,7 +9940,7 @@ msgid "FATAL"
 msgstr ""
 
 #: pgadmin/ui/dlgIndex.xrc:16 pgadmin/ui/dlgIndex.xrc:17
-#: pgadmin/ui/dlgIndexConstraint.xrc:266 pgadmin/ui/dlgIndex.xrc:279
+#: pgadmin/ui/dlgIndexConstraint.xrc:240 pgadmin/ui/dlgIndex.xrc:350
 msgid "FIRST"
 msgstr ""
 
@@ -10453,6 +10458,10 @@ msgstr ""
 msgid "Family"
 msgstr ""
 
+#: pgadmin/schema/pgIndex.cpp:692
+msgid "Fast update?"
+msgstr ""
+
 #: pgadmin/frm/frmQuery.cpp:208 pgadmin/frm/frmQuery.cpp:252
 #: pgadmin/frm/frmQuery.cpp:319 pgadmin/frm/frmQuery.cpp:352
 #: pgadmin/frm/frmQuery.cpp:1524
@@ -10507,9 +10516,8 @@ msgstr ""
 #: pgadmin/schema/pgIndex.cpp:229 pgadmin/schema/pgTable.cpp:569
 #: pgadmin/schema/pgIndex.cpp:262 pgadmin/schema/pgTable.cpp:833
 #: pgadmin/schema/pgTable.cpp:880 pgadmin/ui/dlgIndex.xrc:5
-#: pgadmin/schema/pgIndex.cpp:411 pgadmin/schema/pgIndexConstraint.cpp:197
-#: pgadmin/schema/pgTable.cpp:1000 pgadmin/schema/pgView.cpp:527
-#: pgadmin/ui/dlgIndexConstraint.xrc:125 pgadmin/ui/dlgIndex.xrc:109
+#: pgadmin/schema/pgIndex.cpp:688 pgadmin/schema/pgTable.cpp:1000
+#: pgadmin/schema/pgView.cpp:527
 msgid "Fill factor"
 msgstr ""
 
@@ -11198,7 +11206,7 @@ msgid "Geometric types"
 msgstr ""
 
 #: pgadmin/schema/pgIndex.cpp:287 pgadmin/schema/pgIndex.cpp:327
-#: pgadmin/schema/pgIndex.cpp:476
+#: pgadmin/schema/pgIndex.cpp:475
 msgid "Get extended statistics via pgstatindex for the selected object."
 msgstr ""
 
@@ -11575,7 +11583,7 @@ msgstr ""
 #: pgadmin/ui/dlgForeignKey.xrc:311 pgadmin/ui/dlgForeignServer.xrc:236
 #: pgadmin/ui/dlgForeignTable.xrc:363 pgadmin/ui/dlgFunction.xrc:578
 #: pgadmin/ui/dlgGroup.xrc:149 pgadmin/ui/dlgHbaConfig.xrc:128
-#: pgadmin/ui/dlgIndexConstraint.xrc:344 pgadmin/ui/dlgIndex.xrc:342
+#: pgadmin/ui/dlgIndexConstraint.xrc:324 pgadmin/ui/dlgIndex.xrc:420
 #: pgadmin/ui/dlgJob.xrc:291 pgadmin/ui/dlgLanguage.xrc:180
 #: pgadmin/ui/dlgMainConfig.xrc:111 pgadmin/ui/dlgManageMacros.xrc:105
 #: pgadmin/ui/dlgOperator.xrc:335 pgadmin/ui/dlgPackage.xrc:145
@@ -11936,7 +11944,7 @@ msgstr ""
 #: src/schema/pgIndex.cpp:361 standard input:380 src/schema/pgIndex.cpp:371
 #: input:435 pgadmin/schema/pgIndex.cpp:467 pgadmin/ui/dlgRepTable.xrc:4
 #: pgadmin/schema/pgIndex.cpp:506 pgadmin/schema/pgIndex.cpp:513
-#: pgadmin/schema/pgIndex.cpp:690 pgadmin/ui/dlgIndexConstraint.xrc:95
+#: pgadmin/schema/pgIndex.cpp:741 pgadmin/ui/dlgIndexConstraint.xrc:89
 #: pgadmin/ui/dlgRepTable.xrc:54
 msgid "Index"
 msgstr ""
@@ -11944,14 +11952,14 @@ msgstr ""
 #: src/schema/pgTable.cpp:609 src/schema/pgTable.cpp:712
 #: pgadmin/schema/pgTable.cpp:781 pgadmin/schema/pgIndex.cpp:275
 #: pgadmin/schema/pgTable.cpp:1142 pgadmin/schema/pgTable.cpp:1189
-#: pgadmin/schema/pgIndex.cpp:424 pgadmin/schema/pgTable.cpp:1369
+#: pgadmin/schema/pgIndex.cpp:423 pgadmin/schema/pgTable.cpp:1369
 msgid "Index Blocks Hit"
 msgstr ""
 
 #: src/schema/pgTable.cpp:608 src/schema/pgTable.cpp:711
 #: pgadmin/schema/pgTable.cpp:780 pgadmin/schema/pgIndex.cpp:274
 #: pgadmin/schema/pgTable.cpp:1141 pgadmin/schema/pgTable.cpp:1188
-#: pgadmin/schema/pgIndex.cpp:423 pgadmin/schema/pgTable.cpp:1368
+#: pgadmin/schema/pgIndex.cpp:422 pgadmin/schema/pgTable.cpp:1368
 msgid "Index Blocks Read"
 msgstr ""
 
@@ -11964,7 +11972,7 @@ msgid "Index DDL report"
 msgstr ""
 
 #: src/slony/slTable.cpp:95 pgadmin/slony/slTable.cpp:86
-#: pgadmin/schema/pgIndex.cpp:537 pgadmin/schema/pgIndex.cpp:714
+#: pgadmin/schema/pgIndex.cpp:537 pgadmin/schema/pgIndex.cpp:765
 #: pgadmin/slony/slTable.cpp:160
 msgid "Index Name"
 msgstr ""
@@ -11977,28 +11985,28 @@ msgstr ""
 #: src/schema/pgTable.cpp:601 src/schema/pgTable.cpp:704
 #: pgadmin/schema/pgTable.cpp:773 pgadmin/schema/pgIndex.cpp:271
 #: pgadmin/schema/pgTable.cpp:1125 pgadmin/schema/pgIndex.cpp:538
-#: pgadmin/schema/pgTable.cpp:1172 pgadmin/schema/pgIndex.cpp:420
-#: pgadmin/schema/pgIndex.cpp:715 pgadmin/schema/pgTable.cpp:1352
+#: pgadmin/schema/pgTable.cpp:1172 pgadmin/schema/pgIndex.cpp:419
+#: pgadmin/schema/pgIndex.cpp:766 pgadmin/schema/pgTable.cpp:1352
 msgid "Index Scans"
 msgstr ""
 
 #: src/schema/pgIndex.cpp:220 src/schema/pgIndex.cpp:230
 #: pgadmin/schema/pgIndex.cpp:240 pgadmin/schema/pgIndex.cpp:254
 #: pgadmin/schema/pgIndex.cpp:278 pgadmin/schema/pgIndex.cpp:284
-#: pgadmin/schema/pgIndex.cpp:427 pgadmin/schema/pgIndex.cpp:433
+#: pgadmin/schema/pgIndex.cpp:426 pgadmin/schema/pgIndex.cpp:432
 msgid "Index Size"
 msgstr ""
 
 #: src/schema/pgTable.cpp:602 src/schema/pgTable.cpp:705
 #: pgadmin/schema/pgTable.cpp:774 pgadmin/schema/pgIndex.cpp:273
 #: pgadmin/schema/pgTable.cpp:1126 pgadmin/schema/pgIndex.cpp:540
-#: pgadmin/schema/pgTable.cpp:1173 pgadmin/schema/pgIndex.cpp:422
-#: pgadmin/schema/pgIndex.cpp:717 pgadmin/schema/pgTable.cpp:1353
+#: pgadmin/schema/pgTable.cpp:1173 pgadmin/schema/pgIndex.cpp:421
+#: pgadmin/schema/pgIndex.cpp:768 pgadmin/schema/pgTable.cpp:1353
 msgid "Index Tuples Fetched"
 msgstr ""
 
 #: pgadmin/schema/pgIndex.cpp:272 pgadmin/schema/pgIndex.cpp:539
-#: pgadmin/schema/pgIndex.cpp:421 pgadmin/schema/pgIndex.cpp:716
+#: pgadmin/schema/pgIndex.cpp:420 pgadmin/schema/pgIndex.cpp:767
 msgid "Index Tuples Read"
 msgstr ""
 
@@ -12088,7 +12096,7 @@ msgstr "आंकड़े"
 
 #: src/schema/pgIndex.cpp:367 src/schema/pgIndex.cpp:377
 #: pgadmin/schema/pgIndex.cpp:474 pgadmin/schema/pgIndex.cpp:513
-#: pgadmin/schema/pgIndex.cpp:520 pgadmin/schema/pgIndex.cpp:697
+#: pgadmin/schema/pgIndex.cpp:520 pgadmin/schema/pgIndex.cpp:748
 #: pgadmin/dlg/dlgMoveTablespace.cpp:52 pgadmin/dlg/dlgMoveTablespace.cpp:106
 #: pgadmin/dlg/dlgSearchObject.cpp:76 pgadmin/dlg/dlgSearchObject.cpp:111
 #: pgadmin/ui/dlgTable.xrc:314
@@ -12101,7 +12109,7 @@ msgstr ""
 msgid "Indexes Size"
 msgstr ""
 
-#: pgadmin/schema/pgIndex.cpp:677
+#: pgadmin/schema/pgIndex.cpp:728
 msgid "Indexes list report"
 msgstr ""
 
@@ -12278,7 +12286,7 @@ msgid "Internal - not externally settable"
 msgstr ""
 
 #: pgadmin/schema/pgIndex.cpp:256 pgadmin/schema/pgIndex.cpp:286
-#: pgadmin/schema/pgIndex.cpp:435
+#: pgadmin/schema/pgIndex.cpp:434
 msgid "Internal Pages"
 msgstr ""
 
@@ -12422,7 +12430,7 @@ msgid "Kind"
 msgstr ""
 
 #: pgadmin/ui/dlgIndex.xrc:17 pgadmin/ui/dlgIndex.xrc:18
-#: pgadmin/ui/dlgIndexConstraint.xrc:275 pgadmin/ui/dlgIndex.xrc:288
+#: pgadmin/ui/dlgIndexConstraint.xrc:251 pgadmin/ui/dlgIndex.xrc:361
 msgid "LAST"
 msgstr ""
 
@@ -12643,12 +12651,12 @@ msgid "Last vacuum"
 msgstr ""
 
 #: pgadmin/schema/pgIndex.cpp:261 pgadmin/schema/pgIndex.cpp:291
-#: pgadmin/schema/pgIndex.cpp:440
+#: pgadmin/schema/pgIndex.cpp:439
 msgid "Leaf Fragmentation"
 msgstr ""
 
 #: pgadmin/schema/pgIndex.cpp:257 pgadmin/schema/pgIndex.cpp:287
-#: pgadmin/schema/pgIndex.cpp:436
+#: pgadmin/schema/pgIndex.cpp:435
 msgid "Leaf Pages"
 msgstr ""
 
@@ -13464,7 +13472,7 @@ msgid "NULL string"
 msgstr ""
 
 #: pgadmin/ui/dlgIndex.xrc:15 pgadmin/ui/dlgIndex.xrc:16
-#: pgadmin/ui/dlgIndexConstraint.xrc:253 pgadmin/ui/dlgIndex.xrc:266
+#: pgadmin/ui/dlgIndexConstraint.xrc:226 pgadmin/ui/dlgIndex.xrc:336
 msgid "NULLs"
 msgstr ""
 
@@ -13472,8 +13480,8 @@ msgstr ""
 msgid "NULLs Order"
 msgstr ""
 
-#: pgadmin/dlg/dlgIndex.cpp:196 pgadmin/dlg/dlgIndex.cpp:204
-#: pgadmin/dlg/dlgIndexConstraint.cpp:57 pgadmin/dlg/dlgIndexConstraint.cpp:68
+#: pgadmin/dlg/dlgIndex.cpp:196 pgadmin/dlg/dlgIndex.cpp:197
+#: pgadmin/dlg/dlgIndexConstraint.cpp:56 pgadmin/dlg/dlgIndexConstraint.cpp:67
 msgid "NULLs order"
 msgstr ""
 
@@ -13629,8 +13637,8 @@ msgstr ""
 #: pgadmin/ui/dlgExtension.xrc:26 pgadmin/ui/dlgExtTable.xrc:26
 #: pgadmin/ui/dlgForeignDataWrapper.xrc:26 pgadmin/ui/dlgForeignKey.xrc:26
 #: pgadmin/ui/dlgForeignServer.xrc:26 pgadmin/ui/dlgForeignTable.xrc:26
-#: pgadmin/ui/dlgFunction.xrc:26 pgadmin/ui/dlgIndexConstraint.xrc:26
-#: pgadmin/ui/dlgIndex.xrc:26 pgadmin/ui/dlgJob.xrc:26
+#: pgadmin/ui/dlgFunction.xrc:26 pgadmin/ui/dlgIndexConstraint.xrc:23
+#: pgadmin/ui/dlgIndex.xrc:23 pgadmin/ui/dlgJob.xrc:26
 #: pgadmin/ui/dlgLanguage.xrc:26 pgadmin/ui/dlgManageMacros.xrc:33
 #: pgadmin/ui/dlgOperator.xrc:26 pgadmin/ui/dlgPackage.xrc:26
 #: pgadmin/ui/dlgPolicy.xrc:23 pgadmin/ui/dlgRule.xrc:26
@@ -13868,7 +13876,7 @@ msgstr ""
 
 #: src/schema/pgIndex.cpp:371 pgadmin/schema/pgIndex.cpp:467
 #: pgadmin/schema/pgIndex.cpp:506 pgadmin/schema/pgIndex.cpp:513
-#: pgadmin/schema/pgIndex.cpp:690
+#: pgadmin/schema/pgIndex.cpp:741
 msgid "New Index..."
 msgstr ""
 
@@ -14808,8 +14816,8 @@ msgstr ""
 msgid "Only schema"
 msgstr ""
 
-#: pgadmin/dlg/dlgIndex.cpp:197 pgadmin/dlg/dlgIndex.cpp:205
-#: pgadmin/dlg/dlgIndexConstraint.cpp:58 pgadmin/dlg/dlgIndexConstraint.cpp:69
+#: pgadmin/dlg/dlgIndex.cpp:197 pgadmin/dlg/dlgIndex.cpp:198
+#: pgadmin/dlg/dlgIndexConstraint.cpp:57 pgadmin/dlg/dlgIndexConstraint.cpp:68
 msgid "Op. class"
 msgstr ""
 
@@ -14965,8 +14973,8 @@ msgstr ""
 # standard
 #: src/schema/pgOperator.cpp:233 pgadmin/schema/pgOperator.cpp:277
 #: pgadmin/gqb/gqbGridRestTable.cpp:92 pgadmin/ui/frmOptions.xrc:70
-#: pgadmin/schema/pgOperator.cpp:368 pgadmin/dlg/dlgIndexConstraint.cpp:59
-#: pgadmin/dlg/dlgIndexConstraint.cpp:70 pgadmin/ui/dlgIndexConstraint.xrc:289
+#: pgadmin/schema/pgOperator.cpp:368 pgadmin/dlg/dlgIndexConstraint.cpp:58
+#: pgadmin/dlg/dlgIndexConstraint.cpp:69 pgadmin/ui/dlgIndexConstraint.xrc:265
 #: pgadmin/ui/frmOptions.xrc:744
 msgid "Operator"
 msgstr ""
@@ -15011,8 +15019,8 @@ msgstr ""
 msgid "Operator Family"
 msgstr ""
 
-#: pgadmin/ui/dlgIndex.xrc:14 pgadmin/ui/dlgIndexConstraint.xrc:218
-#: pgadmin/ui/dlgIndex.xrc:231
+#: pgadmin/ui/dlgIndex.xrc:14 pgadmin/ui/dlgIndexConstraint.xrc:193
+#: pgadmin/ui/dlgIndex.xrc:303
 msgid "Operator class"
 msgstr ""
 
@@ -15217,8 +15225,8 @@ msgid "Or"
 msgstr ""
 
 #: pgadmin/dlg/dlgIndex.cpp:169 pgadmin/gqb/gqbGridOrderTable.cpp:109
-#: pgadmin/dlg/dlgIndex.cpp:195 pgadmin/dlg/dlgIndex.cpp:203
-#: pgadmin/dlg/dlgIndexConstraint.cpp:56 pgadmin/dlg/dlgIndexConstraint.cpp:67
+#: pgadmin/dlg/dlgIndex.cpp:195 pgadmin/dlg/dlgIndex.cpp:196
+#: pgadmin/dlg/dlgIndexConstraint.cpp:55 pgadmin/dlg/dlgIndexConstraint.cpp:66
 msgid "Order"
 msgstr ""
 
@@ -15541,13 +15549,17 @@ msgstr ""
 msgid "Packages list report"
 msgstr ""
 
+#: pgadmin/schema/pgIndex.cpp:696
+msgid "Pages per range"
+msgstr ""
+
 #: pgadmin/debugger/dlgDirectDbg.cpp:1034
 #, c-format
 msgid "Param#%d"
 msgstr ""
 
 # standard
-#: standard input:171 input:208
+#: standard input:171 input:208 pgadmin/dlg/dlgIndex.cpp:200
 msgid "Parameter"
 msgstr ""
 
@@ -15556,6 +15568,14 @@ msgstr ""
 msgid ""
 "Parameter Exception - Some parameters are invalid:\n"
 "%s"
+msgstr ""
+
+#: pgadmin/ui/dlgIndex.xrc:207
+msgid "Parameter name"
+msgstr ""
+
+#: pgadmin/ui/dlgIndex.xrc:222
+msgid "Parameter value"
 msgstr ""
 
 #: pgadmin/debugger/ctlTabWindow.cpp:135 pgadmin/ui/dlgDirectDbg.xrc:2
@@ -15692,6 +15712,10 @@ msgstr ""
 
 #: pgadmin/schema/pgServer.cpp:2182
 msgid "Pausing replay of WAL"
+msgstr ""
+
+#: pgadmin/schema/pgIndex.cpp:694
+msgid "Pending list limit"
 msgstr ""
 
 #: pgadmin/frm/frmBackup.cpp:279
@@ -16002,7 +16026,7 @@ msgstr ""
 #: pgadmin/dlg/dlgIndex.cpp:198 pgadmin/dlg/dlgTable.cpp:1630
 #: pgadmin/dlg/dlgIndex.cpp:173 pgadmin/dlg/dlgIndex.cpp:225
 #: pgadmin/dlg/dlgTable.cpp:1665 pgadmin/dlg/dlgForeignKey.cpp:210
-#: pgadmin/dlg/dlgIndex.cpp:181 pgadmin/dlg/dlgIndex.cpp:237
+#: pgadmin/dlg/dlgIndex.cpp:171 pgadmin/dlg/dlgIndex.cpp:228
 #: pgadmin/dlg/dlgTable.cpp:1721
 msgid "Please specify columns."
 msgstr ""
@@ -16127,7 +16151,7 @@ msgstr ""
 #: pgadmin/dlg/dlgExtTable.cpp:116 pgadmin/dlg/dlgExtension.cpp:170
 #: pgadmin/dlg/dlgForeignDataWrapper.cpp:192
 #: pgadmin/dlg/dlgForeignServer.cpp:129 pgadmin/dlg/dlgForeignTable.cpp:249
-#: pgadmin/dlg/dlgFunction.cpp:584 pgadmin/dlg/dlgIndex.cpp:236
+#: pgadmin/dlg/dlgFunction.cpp:584 pgadmin/dlg/dlgIndex.cpp:227
 #: pgadmin/dlg/dlgLanguage.cpp:209 pgadmin/dlg/dlgOperator.cpp:209
 #: pgadmin/dlg/dlgPackage.cpp:122 pgadmin/dlg/dlgPolicy.cpp:84
 #: pgadmin/dlg/dlgResourceGroup.cpp:101 pgadmin/dlg/dlgRole.cpp:425
@@ -16739,8 +16763,8 @@ msgstr ""
 #: pgadmin/ui/dlgExtTable.xrc:16 pgadmin/ui/dlgForeignDataWrapper.xrc:16
 #: pgadmin/ui/dlgForeignKey.xrc:16 pgadmin/ui/dlgForeignServer.xrc:16
 #: pgadmin/ui/dlgForeignTable.xrc:16 pgadmin/ui/dlgFunction.xrc:16
-#: pgadmin/ui/dlgGroup.xrc:16 pgadmin/ui/dlgIndexConstraint.xrc:16
-#: pgadmin/ui/dlgIndex.xrc:16 pgadmin/ui/dlgJob.xrc:16
+#: pgadmin/ui/dlgGroup.xrc:16 pgadmin/ui/dlgIndexConstraint.xrc:63
+#: pgadmin/ui/dlgIndex.xrc:63 pgadmin/ui/dlgJob.xrc:16
 #: pgadmin/ui/dlgLanguage.xrc:16 pgadmin/ui/dlgOperator.xrc:16
 #: pgadmin/ui/dlgPackage.xrc:16 pgadmin/ui/dlgPolicy.xrc:65
 #: pgadmin/ui/dlgRepClusterUpgrade.xrc:16 pgadmin/ui/dlgRepCluster.xrc:16
@@ -17706,7 +17730,7 @@ msgstr ""
 msgid "Refreshing index constraint"
 msgstr ""
 
-#: pgadmin/schema/pgIndex.cpp:674
+#: pgadmin/schema/pgIndex.cpp:725
 msgid "Refreshing indexes"
 msgstr ""
 
@@ -18098,13 +18122,13 @@ msgstr ""
 #: pgadmin/ui/dlgForeignDataWrapper.xrc:204 pgadmin/ui/dlgForeignKey.xrc:246
 #: pgadmin/ui/dlgForeignServer.xrc:200 pgadmin/ui/dlgForeignTable.xrc:243
 #: pgadmin/ui/dlgForeignTable.xrc:333 pgadmin/ui/dlgFunction.xrc:386
-#: pgadmin/ui/dlgFunction.xrc:504 pgadmin/ui/dlgIndexConstraint.xrc:323
-#: pgadmin/ui/dlgIndex.xrc:321 pgadmin/ui/dlgJob.xrc:216
-#: pgadmin/ui/dlgJob.xrc:269 pgadmin/ui/dlgPolicy.xrc:105
-#: pgadmin/ui/dlgRole.xrc:353 pgadmin/ui/dlgSchedule.xrc:404
-#: pgadmin/ui/dlgTablespace.xrc:146 pgadmin/ui/dlgTable.xrc:250
-#: pgadmin/ui/dlgTable.xrc:383 pgadmin/ui/dlgTable.xrc:432
-#: pgadmin/ui/dlgTextSearchConfiguration.xrc:236
+#: pgadmin/ui/dlgFunction.xrc:504 pgadmin/ui/dlgIndexConstraint.xrc:301
+#: pgadmin/ui/dlgIndex.xrc:189 pgadmin/ui/dlgIndex.xrc:397
+#: pgadmin/ui/dlgJob.xrc:216 pgadmin/ui/dlgJob.xrc:269
+#: pgadmin/ui/dlgPolicy.xrc:105 pgadmin/ui/dlgRole.xrc:353
+#: pgadmin/ui/dlgSchedule.xrc:404 pgadmin/ui/dlgTablespace.xrc:146
+#: pgadmin/ui/dlgTable.xrc:250 pgadmin/ui/dlgTable.xrc:383
+#: pgadmin/ui/dlgTable.xrc:432 pgadmin/ui/dlgTextSearchConfiguration.xrc:236
 #: pgadmin/ui/dlgTextSearchDictionary.xrc:203 pgadmin/ui/dlgTrigger.xrc:320
 #: pgadmin/ui/dlgType.xrc:252 pgadmin/ui/dlgType.xrc:345
 #: pgadmin/ui/dlgUserMapping.xrc:133 pgadmin/ui/dlgUser.xrc:260
@@ -18924,7 +18948,7 @@ msgstr ""
 msgid "Retrieving details on index constraint"
 msgstr ""
 
-#: pgadmin/schema/pgIndex.cpp:671
+#: pgadmin/schema/pgIndex.cpp:722
 msgid "Retrieving details on indexes"
 msgstr ""
 
@@ -19318,7 +19342,7 @@ msgid "Rollback transaction?"
 msgstr ""
 
 #: pgadmin/schema/pgIndex.cpp:255 pgadmin/schema/pgIndex.cpp:285
-#: pgadmin/schema/pgIndex.cpp:434
+#: pgadmin/schema/pgIndex.cpp:433
 msgid "Root Block No"
 msgstr ""
 
@@ -20864,7 +20888,7 @@ msgstr ""
 #: pgadmin/schema/pgDatabase.cpp:211 pgadmin/schema/pgDatabase.cpp:946
 #: pgadmin/schema/pgIndex.cpp:542 pgadmin/schema/pgTable.cpp:1109
 #: pgadmin/schema/pgTablespace.cpp:248 pgadmin/schema/pgDatabase.cpp:337
-#: pgadmin/schema/pgDatabase.cpp:1197 pgadmin/schema/pgIndex.cpp:719
+#: pgadmin/schema/pgDatabase.cpp:1197 pgadmin/schema/pgIndex.cpp:770
 #: pgadmin/schema/pgTable.cpp:1280 pgadmin/schema/pgTablespace.cpp:383
 msgid "Size"
 msgstr ""
@@ -21666,6 +21690,10 @@ msgstr ""
 msgid "Storage"
 msgstr ""
 
+#: pgadmin/ui/dlgIndex.xrc:250
+msgid "Storage parametres"
+msgstr ""
+
 #: standard input:53 input:58 input:598 pgadmin/ui/dlgConnect.xrc:2
 #: pgadmin/ui/dlgServer.xrc:9 pgadmin/ui/dlgConnect.xrc:3
 #: pgadmin/ui/dlgConnect.xrc:30 pgadmin/ui/dlgServer.xrc:114
@@ -22263,8 +22291,8 @@ msgstr ""
 #: pgadmin/schema/pgRole.cpp:335 pgadmin/schema/pgTable.cpp:988
 #: pgadmin/schema/pgTablespace.cpp:382 pgadmin/schema/pgTablespace.cpp:437
 #: pgadmin/schema/pgUser.cpp:192 pgadmin/schema/pgView.cpp:577
-#: pgadmin/ui/dlgDatabase.xrc:136 pgadmin/ui/dlgIndexConstraint.xrc:80
-#: pgadmin/ui/dlgIndex.xrc:79 pgadmin/ui/dlgTable.xrc:116
+#: pgadmin/ui/dlgDatabase.xrc:136 pgadmin/ui/dlgIndexConstraint.xrc:75
+#: pgadmin/ui/dlgIndex.xrc:75 pgadmin/ui/dlgTable.xrc:116
 #: pgadmin/ui/dlgView.xrc:213 pgadmin/ui/frmBackup.xrc:226
 #: pgadmin/ui/frmRestore.xrc:190
 msgid "Tablespace"
@@ -23245,7 +23273,7 @@ msgid ""
 msgstr ""
 
 #: pgadmin/schema/pgIndex.cpp:253 pgadmin/schema/pgIndex.cpp:283
-#: pgadmin/schema/pgIndex.cpp:432
+#: pgadmin/schema/pgIndex.cpp:431
 msgid "Tree Level"
 msgstr ""
 
@@ -23744,7 +23772,7 @@ msgstr ""
 #: pgadmin/frm/frmReport.cpp:1345 pgadmin/dlg/dlgTable.cpp:1444
 #: pgadmin/frm/frmReport.cpp:1363 pgadmin/dlg/dlgTable.cpp:1479
 #: pgadmin/frm/frmReport.cpp:1358 pgadmin/schema/pgIndexConstraint.cpp:484
-#: pgadmin/dlg/dlgTable.cpp:1552 pgadmin/ui/dlgIndex.xrc:121
+#: pgadmin/dlg/dlgTable.cpp:1552 pgadmin/ui/dlgIndex.xrc:103
 msgid "Unique"
 msgstr "अपूर्व"
 
@@ -23972,8 +24000,8 @@ msgstr ""
 #: pgadmin/ui/dlgExtTable.xrc:81 pgadmin/ui/dlgForeignDataWrapper.xrc:85
 #: pgadmin/ui/dlgForeignKey.xrc:52 pgadmin/ui/dlgForeignServer.xrc:85
 #: pgadmin/ui/dlgForeignTable.xrc:96 pgadmin/ui/dlgFunction.xrc:93
-#: pgadmin/ui/dlgGroup.xrc:51 pgadmin/ui/dlgIndexConstraint.xrc:53
-#: pgadmin/ui/dlgIndex.xrc:52 pgadmin/ui/dlgLanguage.xrc:83
+#: pgadmin/ui/dlgGroup.xrc:51 pgadmin/ui/dlgIndexConstraint.xrc:49
+#: pgadmin/ui/dlgIndex.xrc:49 pgadmin/ui/dlgLanguage.xrc:83
 #: pgadmin/ui/dlgOperator.xrc:94 pgadmin/ui/dlgPackage.xrc:80
 #: pgadmin/ui/dlgRole.xrc:68 pgadmin/ui/dlgRule.xrc:66
 #: pgadmin/ui/dlgSchema.xrc:81 pgadmin/ui/dlgSequence.xrc:96
@@ -24471,9 +24499,9 @@ msgstr "पुष्ट करने वाला"
 #: pgadmin/dlg/dlgColumn.cpp:88 pgadmin/dlg/dlgDatabase.cpp:85
 #: pgadmin/dlg/dlgForeignDataWrapper.cpp:114
 #: pgadmin/dlg/dlgForeignServer.cpp:67 pgadmin/dlg/dlgForeignTable.cpp:114
-#: pgadmin/dlg/dlgFunction.cpp:161 pgadmin/dlg/dlgRole.cpp:106
-#: pgadmin/dlg/dlgUserMapping.cpp:86 pgadmin/include/schema/pgObject.h:363
-#: pgadmin/include/schema/pgObject.h:364
+#: pgadmin/dlg/dlgFunction.cpp:161 pgadmin/dlg/dlgIndex.cpp:200
+#: pgadmin/dlg/dlgRole.cpp:106 pgadmin/dlg/dlgUserMapping.cpp:86
+#: pgadmin/include/schema/pgObject.h:363 pgadmin/include/schema/pgObject.h:364
 #: pgadmin/ui/dlgForeignDataWrapper.xrc:183
 #: pgadmin/ui/dlgForeignServer.xrc:179 pgadmin/ui/dlgForeignTable.xrc:312
 #: pgadmin/ui/dlgMainConfig.xrc:35 pgadmin/ui/dlgTextSearchDictionary.xrc:182
@@ -24575,7 +24603,7 @@ msgstr ""
 #: pgadmin/schema/pgIndex.cpp:252 pgadmin/slony/slCluster.cpp:303
 #: pgadmin/ui/dlgRepClusterUpgrade.xrc:7 pgadmin/schema/pgIndex.cpp:282
 #: pgadmin/schema/pgExtension.cpp:126 pgadmin/schema/pgForeignServer.cpp:157
-#: pgadmin/schema/pgIndex.cpp:431 pgadmin/slony/slCluster.cpp:386
+#: pgadmin/schema/pgIndex.cpp:430 pgadmin/slony/slCluster.cpp:386
 #: pgadmin/ui/dlgExtension.xrc:109 pgadmin/ui/dlgForeignServer.xrc:126
 #: pgadmin/ui/dlgRepClusterUpgrade.xrc:83
 msgid "Version"
