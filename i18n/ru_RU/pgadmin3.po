@@ -22,8 +22,8 @@ msgstr ""
 "Project-Id-Version: pgAdmin III\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-10-31 09:31+0300\n"
-"PO-Revision-Date: 2016-10-23 18:48+0300\n"
-"Last-Translator: Dmitriy Olshevskiy <olshevskiy87@bk.ru>\n"
+"PO-Revision-Date: 2016-10-31 09:47+0300\n"
+"Last-Translator: Dmitry Voronin <carriingfate92@yandex.ru>\n"
 "Language-Team: pgAdmin Developers <pgadmin-hackers@postgresql.org>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.5.4\n"
 
 #: src/frm/frmQuery.cpp:1269 src/frm/frmQuery.cpp:1623
 #: pgadmin/frm/frmQuery.cpp:1866 pgadmin/frm/frmQuery.cpp:2307
@@ -4988,9 +4988,8 @@ msgid "Browser"
 msgstr "Браузер"
 
 #: pgadmin/schema/pgIndex.cpp:690
-#, fuzzy
 msgid "Buffering"
-msgstr "Буферы"
+msgstr "Буферизация"
 
 #: pgadmin/schema/pgDatabase.cpp:326 pgadmin/schema/pgDatabase.cpp:1216
 msgid "Bufferpin conflicts"
@@ -12172,9 +12171,8 @@ msgid "Family"
 msgstr "Семейство"
 
 #: pgadmin/schema/pgIndex.cpp:692
-#, fuzzy
 msgid "Fast update?"
-msgstr "На обновление"
+msgstr "Быстрое обновление?"
 
 #: pgadmin/frm/frmQuery.cpp:208 pgadmin/frm/frmQuery.cpp:252
 #: pgadmin/frm/frmQuery.cpp:319 pgadmin/frm/frmQuery.cpp:352
@@ -18200,7 +18198,7 @@ msgstr "Список пакетов"
 
 #: pgadmin/schema/pgIndex.cpp:696
 msgid "Pages per range"
-msgstr ""
+msgstr "Количество страниц на диапазон"
 
 #: pgadmin/debugger/dlgDirectDbg.cpp:1034
 #, c-format
@@ -18229,18 +18227,16 @@ msgstr ""
 # standard
 # standard
 #: pgadmin/ui/dlgIndex.xrc:207
-#, fuzzy
 msgid "Parameter name"
-msgstr "Аргумент"
+msgstr "Имя параметра"
 
 # standard input:15
 # standard
 # standard
 # standard
 #: pgadmin/ui/dlgIndex.xrc:222
-#, fuzzy
 msgid "Parameter value"
-msgstr "Аргумент"
+msgstr "Значение параметра"
 
 # standard input:15
 # standard
@@ -18403,7 +18399,7 @@ msgstr "Приостанавливается восстановление из W
 
 #: pgadmin/schema/pgIndex.cpp:694
 msgid "Pending list limit"
-msgstr ""
+msgstr "Величина списка ожидания"
 
 #: pgadmin/frm/frmBackup.cpp:279
 msgid "Plain"
@@ -25150,9 +25146,8 @@ msgid "Storage"
 msgstr "Хранилище"
 
 #: pgadmin/ui/dlgIndex.xrc:250
-#, fuzzy
 msgid "Storage parametres"
-msgstr "Установлено в параметрах клиента"
+msgstr "Параметры хранения"
 
 # standard input:3
 # standard
