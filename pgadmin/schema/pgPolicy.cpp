@@ -51,13 +51,6 @@ wxString pgPolicy::GetTranslatedMessage(int kindOfMessage) const
 		case PROPERTIES:
 			message = _("Policy properties");
 			break;
-		case DDLREPORT:
-			message = _("Check constraint DDL report");
-			message += wxT(" - ") + GetName();
-			break;
-		case DDL:
-			message = _("Check constraint DDL");
-			break;
 	}
 
 	return message;
