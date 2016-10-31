@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: pgAdmin III\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-10-31 14:46+0300\n"
-"PO-Revision-Date: 2016-10-31 09:47+0300\n"
+"PO-Revision-Date: 2016-10-31 15:04+0300\n"
 "Last-Translator: Dmitry Voronin <carriingfate92@yandex.ru>\n"
 "Language-Team: pgAdmin Developers <pgadmin-hackers@postgresql.org>\n"
 "Language: ru_RU\n"
@@ -2866,7 +2866,6 @@ msgstr "Принять текущие настройки и закрыть ди�
 # standard
 # standard
 #: pgadmin/schema/pgAccessMethod.cpp:204
-#, fuzzy
 msgid "Access Method"
 msgstr "Метод доступа"
 
@@ -2876,9 +2875,8 @@ msgstr "Метод доступа"
 #: pgadmin/frm/frmOptions.cpp:392 pgadmin/schema/pgAccessMethod.cpp:220
 #: pgadmin/schema/pgDatabase.cpp:145 pgadmin/schema/pgDatabase.cpp:622
 #: pgadmin/utils/sysSettings.cpp:96 pgadmin/utils/sysSettings.cpp:219
-#, fuzzy
 msgid "Access Methods"
-msgstr "Метод доступа"
+msgstr "Методы доступа"
 
 # standard
 # standard
@@ -2901,61 +2899,52 @@ msgstr "Метод доступа"
 # standard
 # standard
 #: pgadmin/schema/pgAccessMethod.cpp:66
-#, fuzzy
 msgid "Access method DDL"
-msgstr "Метод доступа"
+msgstr "DDL метода доступа"
 
 # standard
 # standard
 # standard
 #: pgadmin/schema/pgAccessMethod.cpp:62
-#, fuzzy
 msgid "Access method DDL report"
-msgstr "Метод доступа"
+msgstr "Определение метода доступа"
 
 #: pgadmin/schema/pgAccessMethod.cpp:73
-#, fuzzy
 msgid "Access method dependencies"
-msgstr "Зависимости схемы"
+msgstr "Зависимости метода доступа"
 
 #: pgadmin/schema/pgAccessMethod.cpp:69
-#, fuzzy
 msgid "Access method dependencies report"
-msgstr "Отчёт по зависимостям схемы"
+msgstr "Отчёт по зависимостям метода доступа"
 
 # standard
 # standard
 # standard
 #: pgadmin/schema/pgAccessMethod.cpp:80
-#, fuzzy
 msgid "Access method dependents"
-msgstr "Метод доступа"
+msgstr "Зависимости метода доступа"
 
 #: pgadmin/schema/pgAccessMethod.cpp:76
-#, fuzzy
 msgid "Access method dependents report"
-msgstr "Отчёт по зависимым от схемы"
+msgstr "Отчёт по зависимым от метода доступа"
 
 # standard
 # standard
 # standard
 #: pgadmin/schema/pgAccessMethod.cpp:59
-#, fuzzy
 msgid "Access method properties"
-msgstr "Метод доступа"
+msgstr "Свойства метода доступа"
 
 # src/ui/frmMain.cpp:130 src/ui/frmMain.cpp:184 standard input:2
 # standard
 # standard
 #: pgadmin/schema/pgAccessMethod.cpp:55
-#, fuzzy
 msgid "Access method properties report"
-msgstr "Отчёт по свойствам схемы"
+msgstr "Отчёт по свойствам метода доступа"
 
 #: pgadmin/schema/pgAccessMethod.cpp:190
-#, fuzzy
 msgid "Access methods list report"
-msgstr "Список схем"
+msgstr "Список методов доступа"
 
 # standard
 #: src/schema/pgRole.cpp:245 src/schema/pgUser.cpp:208 standard input:392
@@ -3868,18 +3857,18 @@ msgid "Are you sure you wish to drop Slony table \"%s\"?"
 msgstr "Вы уверены, что хотите удалить таблицу Slony \"%s\"?"
 
 #: pgadmin/schema/pgAccessMethod.cpp:41
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Are you sure you wish to drop access method \"%s\" including all objects "
 "that depend on it?"
 msgstr ""
-"Вы уверены, что хотите удалить приведение типов \"%s\" и все зависящие от "
-"него объекты?"
+"Вы уверены, что хотите удалить метод доступа \"%s\" и все зависящие от него "
+"объекты?"
 
 #: pgadmin/schema/pgAccessMethod.cpp:45
-#, fuzzy, c-format
+#, c-format
 msgid "Are you sure you wish to drop access method \"%s\"?"
-msgstr "Вы уверены, что хотите удалить приведение типов \"%s\"?"
+msgstr "Вы уверены, что хотите удалить метод доступа \"%s\"?"
 
 #: pgadmin/schema/pgAggregate.cpp:41
 #, c-format
@@ -7716,9 +7705,8 @@ msgid "Create a Primary Key."
 msgstr "Создать первичный ключ."
 
 #: pgadmin/schema/pgAccessMethod.cpp:204
-#, fuzzy
 msgid "Create a new Access Method."
-msgstr "Создать приведение типов."
+msgstr "Создать метод доступа."
 
 #: src/schema/pgAggregate.cpp:202 pgadmin/schema/pgAggregate.cpp:261
 #: pgadmin/schema/pgAggregate.cpp:289 pgadmin/schema/pgAggregate.cpp:400
@@ -9968,17 +9956,15 @@ msgid "Drop Slony table?"
 msgstr "Удалить таблицу Slony?"
 
 #: pgadmin/schema/pgAccessMethod.cpp:49
-#, fuzzy
 msgid "Drop access method cascaded?"
-msgstr "Удалить приведение типов каскадно?"
+msgstr "Удалить метод доступа каскадно?"
 
 # standard
 # standard
 # standard
 #: pgadmin/schema/pgAccessMethod.cpp:52
-#, fuzzy
 msgid "Drop access method?"
-msgstr "Метод доступа"
+msgstr "Удалить метод доступа?"
 
 #: pgadmin/schema/pgAggregate.cpp:49
 msgid "Drop aggregate cascaded?"
@@ -16176,9 +16162,8 @@ msgstr "Новый &объект"
 # standard
 # standard
 #: pgadmin/schema/pgAccessMethod.cpp:204
-#, fuzzy
 msgid "New Access Method..."
-msgstr "Метод доступа"
+msgstr "Новый метод доступа..."
 
 #: src/schema/pgAggregate.cpp:202
 msgid "New Aggregate"
@@ -20473,14 +20458,12 @@ msgid "Refreshing Slony tables"
 msgstr "Обновление таблиц Slony"
 
 #: pgadmin/schema/pgAccessMethod.cpp:37
-#, fuzzy
 msgid "Refreshing access method"
-msgstr "Обновление приведения типов"
+msgstr "Обновление метода доступа"
 
 #: pgadmin/schema/pgAccessMethod.cpp:187
-#, fuzzy
 msgid "Refreshing access methods"
-msgstr "Обновление приведений типов"
+msgstr "Обновление методов доступа"
 
 # src/ui/frmEditGrid.cpp:86 src/ui/frmMain.cpp:215 standard input:3
 # standard
@@ -21883,14 +21866,12 @@ msgid "Retrieving details on Slony tables"
 msgstr "Получение подробностей о таблицах Slony"
 
 #: pgadmin/schema/pgAccessMethod.cpp:33
-#, fuzzy
 msgid "Retrieving details on access method"
-msgstr "Получение подробностей о приведении типов"
+msgstr "Получение подробностей о методе доступа"
 
 #: pgadmin/schema/pgAccessMethod.cpp:184
-#, fuzzy
 msgid "Retrieving details on access methods"
-msgstr "Получение подробностей о приведениях типов"
+msgstr "Получение подробностей о методах доступа"
 
 #: pgadmin/schema/pgAggregate.cpp:33
 msgid "Retrieving details on aggregate"
