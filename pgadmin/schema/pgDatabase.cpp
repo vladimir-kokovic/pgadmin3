@@ -18,7 +18,7 @@
 #include "utils/pgfeatures.h"
 #include "frm/frmMain.h"
 #include "schema/edbSynonym.h"
-#include "schema/pgPolicy.h"
+#include "schema/pgAccessMethod.h"
 #include "schema/pgCast.h"
 #include "schema/pgExtension.h"
 #include "schema/pgForeignDataWrapper.h"
@@ -141,6 +141,9 @@ wxMenu *pgDatabase::GetNewMenu()
 
 	if (GetConnection() && GetCreatePrivilege())
 	{
+		if (BackendMinimumVersion(9, 6)
+		    && (settings->GetDisplayOption(_("Access Methods"))))
+			accessMethodFactory.AppendMenu(menu);
 		if (settings->GetDisplayOption(_("Casts")))
 			castFactory.AppendMenu(menu);
 		if (settings->GetDisplayOption(_("Extensions")) && GetConnection()->BackendMinimumVersion(9, 1))
@@ -615,6 +618,9 @@ void pgDatabase::ShowTreeDetail(ctlTree *browser, frmMain *form, ctlListView *pr
 		{
 			wxLogInfo(wxT("Adding child object to database %s"), GetIdentifier().c_str());
 
+			if (BackendMinimumVersion(9, 6)
+			    && (settings->GetDisplayOption(_("Access Methods"))))
+				browser->AppendCollection(this, accessMethodFactory);
 			if (settings->GetDisplayOption(_("Catalogs")))
 				browser->AppendCollection(this, catalogFactory);
 			if (settings->GetDisplayOption(_("Casts")))

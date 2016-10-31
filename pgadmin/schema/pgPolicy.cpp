@@ -19,7 +19,6 @@
 #include "utils/misc.h"
 #include "schema/pgPolicy.h"
 
-#include <iostream>
 
 pgPolicy::pgPolicy(pgSchema *newSchema, const wxString &newName)
 	: pgSchemaObject(newSchema, policyFactory, newName)
@@ -51,12 +50,9 @@ wxString pgPolicy::GetTranslatedMessage(int kindOfMessage) const
 		case PROPERTIES:
 			message = _("Policy properties");
 			break;
-		case DDLREPORT:
-			message = _("Check constraint DDL report");
-			message += wxT(" - ") + GetName();
-			break;
-		case DDL:
-			message = _("Check constraint DDL");
+		case DROPEXCLUDINGDEPS:
+			message = wxString::Format(_("Are you sure you wish to drop policy \"%s\"?"),
+			                           GetName().c_str());
 			break;
 	}
 
@@ -66,7 +62,7 @@ wxString pgPolicy::GetTranslatedMessage(int kindOfMessage) const
 
 bool pgPolicy::DropObject(wxFrame *frame, ctlTree *browser, bool cascaded)
 {
-	wxString sql = wxT("DROP POLICY ") + GetQuotedFullIdentifier() + wxT(" ON ") + GetQuotedSchemaPrefix(GetSchemaName()) + qtIdent(GetTableName());
+	wxString sql = wxT("DROP POLICY ") + GetName() + wxT(" ON ") + GetQuotedSchemaPrefix(GetSchemaName()) + qtIdent(GetTableName());
 	return GetDatabase()->ExecuteVoid(sql);
 }
 
@@ -102,7 +98,7 @@ void pgPolicy::ParseRoles(const wxString &s)
 {
 	wxString r = s.Mid(1, s.Length() - 2);
 	if (!r.IsEmpty())
-		FillArray(GetRolesArray(), r);
+		FillArray(roles, r);
 }
 
 

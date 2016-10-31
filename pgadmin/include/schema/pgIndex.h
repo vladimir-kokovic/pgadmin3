@@ -27,6 +27,7 @@ public:
 	wxString GetTranslatedMessage(int kindOfMessage) const;
 	void ShowTreeDetail(ctlTree *browser, frmMain *form = 0, ctlListView *properties = 0, ctlSQLBox *sqlPane = 0);
 	void ShowStatistics(frmMain *form, ctlListView *statistics);
+	void ParseReloptions(const wxString &s);
 	bool CanDropCascaded()
 	{
 		return GetSchema()->GetMetaType() != PGM_CATALOG;
@@ -173,15 +174,12 @@ public:
 	{
 		tablespaceOid = newVal;
 	}
-	wxString GetFillFactor()
+	wxArrayString& GetRelOptions()
 	{
-		return fillFactor;
+		return reloptions;
 	}
-	void iSetFillFactor(const wxString &s)
-	{
-		fillFactor = s;
-	}
-
+	wxString GetRelOptionsStr() const;
+	void AppendIndexReloptions(ctlListView *properties);
 	wxString GetProcName() const
 	{
 		return procName;
@@ -291,7 +289,7 @@ private:
 	bool isUnique, isPrimary, isExclude, isClustered, isValid;
 	bool deferrable, deferred, showExtendedStatistics;
 	OID relTableOid, tablespaceOid;
-	wxString fillFactor;
+	wxArrayString reloptions;
 };
 
 

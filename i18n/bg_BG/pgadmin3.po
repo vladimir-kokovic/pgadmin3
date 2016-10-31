@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pgadmin3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-23 17:44+0300\n"
+"POT-Creation-Date: 2016-10-31 14:46+0300\n"
 "PO-Revision-Date: 2007-10-03 02:42+0200\n"
 "Last-Translator: Milen A. Radev <milen@radev.net>\n"
 "Language-Team: The pgAdmin Development Team <pgadmin-hackers@postgresql."
@@ -93,7 +93,7 @@ msgstr " - %s на %s (%s:%d)"
 
 #: pgadmin/schema/pgDatabase.cpp:92 pgadmin/schema/pgServer.cpp:620
 #: pgadmin/schema/pgServer.cpp:627 pgadmin/schema/pgServer.cpp:634
-#: pgadmin/schema/pgDatabase.cpp:178 pgadmin/schema/pgServer.cpp:809
+#: pgadmin/schema/pgDatabase.cpp:181 pgadmin/schema/pgServer.cpp:809
 #: pgadmin/schema/pgServer.cpp:816 pgadmin/schema/pgServer.cpp:823
 #, fuzzy
 msgid " - Browser"
@@ -682,8 +682,8 @@ msgstr "&Доклад за дефект"
 #: pgadmin/ui/dlgForeignDataWrapper.xrc:257 pgadmin/ui/dlgForeignKey.xrc:329
 #: pgadmin/ui/dlgForeignServer.xrc:253 pgadmin/ui/dlgForeignTable.xrc:381
 #: pgadmin/ui/dlgFunction.xrc:596 pgadmin/ui/dlgGroup.xrc:167
-#: pgadmin/ui/dlgHbaConfig.xrc:146 pgadmin/ui/dlgIndexConstraint.xrc:362
-#: pgadmin/ui/dlgIndex.xrc:360 pgadmin/ui/dlgJob.xrc:309
+#: pgadmin/ui/dlgHbaConfig.xrc:146 pgadmin/ui/dlgIndexConstraint.xrc:343
+#: pgadmin/ui/dlgIndex.xrc:439 pgadmin/ui/dlgJob.xrc:309
 #: pgadmin/ui/dlgLanguage.xrc:198 pgadmin/ui/dlgMainConfig.xrc:129
 #: pgadmin/ui/dlgManageFavourites.xrc:73 pgadmin/ui/dlgManageMacros.xrc:123
 #: pgadmin/ui/dlgMoveTablespace.xrc:85 pgadmin/ui/dlgOperator.xrc:353
@@ -1053,7 +1053,7 @@ msgid "&Export..."
 msgstr "&Износ..."
 
 # standard
-#: pgadmin/schema/pgIndex.cpp:327 pgadmin/schema/pgIndex.cpp:476
+#: pgadmin/schema/pgIndex.cpp:327 pgadmin/schema/pgIndex.cpp:475
 #, fuzzy
 msgid "&Extended index statistics"
 msgstr "&Разширена статистика"
@@ -1405,7 +1405,7 @@ msgstr "&Без дневник"
 #: pgadmin/ui/dlgForeignKey.xrc:321 pgadmin/ui/dlgForeignServer.xrc:244
 #: pgadmin/ui/dlgForeignTable.xrc:373 pgadmin/ui/dlgFunction.xrc:588
 #: pgadmin/ui/dlgGroup.xrc:159 pgadmin/ui/dlgHbaConfig.xrc:138
-#: pgadmin/ui/dlgIndexConstraint.xrc:354 pgadmin/ui/dlgIndex.xrc:352
+#: pgadmin/ui/dlgIndexConstraint.xrc:335 pgadmin/ui/dlgIndex.xrc:431
 #: pgadmin/ui/dlgJob.xrc:301 pgadmin/ui/dlgLanguage.xrc:190
 #: pgadmin/ui/dlgMainConfig.xrc:121 pgadmin/ui/dlgManageFavourites.xrc:65
 #: pgadmin/ui/dlgManageMacros.xrc:115 pgadmin/ui/dlgMoveTablespace.xrc:77
@@ -1477,7 +1477,7 @@ msgstr "&Отваряне...\tCtrl-O"
 
 #: src/frm/frmOptions.cpp:326 src/frm/frmOptions.cpp:349
 #: pgadmin/frm/frmOptions.cpp:523 pgadmin/frm/frmOptions.cpp:553
-#: pgadmin/frm/frmOptions.cpp:730 pgadmin/frm/frmOptions.cpp:900
+#: pgadmin/frm/frmOptions.cpp:730 pgadmin/frm/frmOptions.cpp:901
 msgid "&Options..."
 msgstr "&Настройки..."
 
@@ -2467,8 +2467,8 @@ msgstr "<Двоични данни>"
 #: pgadmin/dlg/dlgIndex.cpp:381 pgadmin/dlg/dlgTable.cpp:345
 #: pgadmin/dlg/dlgDatabase.cpp:266 pgadmin/dlg/dlgIndex.cpp:439
 #: pgadmin/dlg/dlgIndexConstraint.cpp:102 pgadmin/dlg/dlgTable.cpp:367
-#: pgadmin/dlg/dlgDatabase.cpp:279 pgadmin/dlg/dlgIndex.cpp:454
-#: pgadmin/dlg/dlgIndexConstraint.cpp:279 pgadmin/dlg/dlgTable.cpp:435
+#: pgadmin/dlg/dlgDatabase.cpp:279 pgadmin/dlg/dlgIndex.cpp:567
+#: pgadmin/dlg/dlgIndexConstraint.cpp:273 pgadmin/dlg/dlgTable.cpp:435
 #: pgadmin/dlg/dlgView.cpp:367
 #, fuzzy
 msgid "<default tablespace>"
@@ -2622,7 +2622,7 @@ msgstr ""
 #: pgadmin/schema/pgTable.cpp:869 pgadmin/schema/pgTablespace.cpp:131
 #: pgadmin/schema/pgView.cpp:231 pgadmin/schema/edbPackage.cpp:196
 #: pgadmin/schema/gpExtTable.cpp:455 pgadmin/schema/pgAggregate.cpp:155
-#: pgadmin/schema/pgColumn.cpp:512 pgadmin/schema/pgDatabase.cpp:706
+#: pgadmin/schema/pgColumn.cpp:512 pgadmin/schema/pgDatabase.cpp:712
 #: pgadmin/schema/pgForeignDataWrapper.cpp:154
 #: pgadmin/schema/pgForeignServer.cpp:155 pgadmin/schema/pgFunction.cpp:424
 #: pgadmin/schema/pgLanguage.cpp:133 pgadmin/schema/pgSchema.cpp:426
@@ -2698,6 +2698,22 @@ msgstr "Приемане на текущите настройки и затва�
 
 # standard
 # standard
+#: pgadmin/schema/pgAccessMethod.cpp:204
+#, fuzzy
+msgid "Access Method"
+msgstr "Метод на достъп"
+
+# standard
+# standard
+#: pgadmin/frm/frmOptions.cpp:392 pgadmin/schema/pgAccessMethod.cpp:220
+#: pgadmin/schema/pgDatabase.cpp:145 pgadmin/schema/pgDatabase.cpp:622
+#: pgadmin/utils/sysSettings.cpp:96 pgadmin/utils/sysSettings.cpp:219
+#, fuzzy
+msgid "Access Methods"
+msgstr "Метод на достъп"
+
+# standard
+# standard
 #: src/schema/pgIndex.cpp:208 src/schema/pgIndexConstraint.cpp:105
 #: src/schema/pgOperatorClass.cpp:163 standard input:212
 #: src/schema/pgIndex.cpp:218 input:249 pgadmin/schema/pgIndex.cpp:225
@@ -2708,9 +2724,63 @@ msgstr "Приемане на текущите настройки и затва�
 #: pgadmin/schema/pgIndex.cpp:407 pgadmin/schema/pgIndexConstraint.cpp:193
 #: pgadmin/schema/pgOperatorClass.cpp:279
 #: pgadmin/schema/pgOperatorFamily.cpp:124
-#: pgadmin/ui/dlgIndexConstraint.xrc:110 pgadmin/ui/dlgIndex.xrc:94
+#: pgadmin/ui/dlgIndexConstraint.xrc:103 pgadmin/ui/dlgIndex.xrc:89
 msgid "Access method"
 msgstr "Метод на достъп"
+
+# standard
+# standard
+#: pgadmin/schema/pgAccessMethod.cpp:66
+#, fuzzy
+msgid "Access method DDL"
+msgstr "Метод на достъп"
+
+# standard
+# standard
+#: pgadmin/schema/pgAccessMethod.cpp:62
+#, fuzzy
+msgid "Access method DDL report"
+msgstr "Метод на достъп"
+
+#: pgadmin/schema/pgAccessMethod.cpp:73
+#, fuzzy
+msgid "Access method dependencies"
+msgstr " зависимости"
+
+#: pgadmin/schema/pgAccessMethod.cpp:69
+#, fuzzy
+msgid "Access method dependencies report"
+msgstr "&Отчет за зависимостите"
+
+# standard
+# standard
+#: pgadmin/schema/pgAccessMethod.cpp:80
+#, fuzzy
+msgid "Access method dependents"
+msgstr "Метод на достъп"
+
+#: pgadmin/schema/pgAccessMethod.cpp:76
+#, fuzzy
+msgid "Access method dependents report"
+msgstr "&Отчет за зависимите"
+
+# standard
+# standard
+#: pgadmin/schema/pgAccessMethod.cpp:59
+#, fuzzy
+msgid "Access method properties"
+msgstr "Метод на достъп"
+
+# standard
+#: pgadmin/schema/pgAccessMethod.cpp:55
+#, fuzzy
+msgid "Access method properties report"
+msgstr "&Отчет за свойствата"
+
+#: pgadmin/schema/pgAccessMethod.cpp:190
+#, fuzzy
+msgid "Access methods list report"
+msgstr "%s списъчен отчет"
 
 # standard
 #: src/schema/pgRole.cpp:245 src/schema/pgUser.cpp:208 standard input:392
@@ -2787,8 +2857,8 @@ msgstr "Активен"
 #: pgadmin/ui/dlgTable.xrc:16 pgadmin/ui/dlgTable.xrc:19
 #: pgadmin/ui/dlgTrigger.xrc:20 pgadmin/ui/dlgDomain.xrc:239
 #: pgadmin/ui/dlgForeignKey.xrc:239 pgadmin/ui/dlgForeignTable.xrc:250
-#: pgadmin/ui/dlgFunction.xrc:393 pgadmin/ui/dlgIndexConstraint.xrc:315
-#: pgadmin/ui/dlgIndex.xrc:313 pgadmin/ui/dlgJob.xrc:209
+#: pgadmin/ui/dlgFunction.xrc:393 pgadmin/ui/dlgIndexConstraint.xrc:291
+#: pgadmin/ui/dlgIndex.xrc:387 pgadmin/ui/dlgJob.xrc:209
 #: pgadmin/ui/dlgJob.xrc:262 pgadmin/ui/dlgSchedule.xrc:397
 #: pgadmin/ui/dlgTable.xrc:243 pgadmin/ui/dlgTable.xrc:376
 #: pgadmin/ui/dlgTable.xrc:425 pgadmin/ui/dlgTrigger.xrc:312
@@ -2971,8 +3041,9 @@ msgstr "Премахване на избраната колона за сорт�
 #: pgadmin/ctl/ctlSeclabelPanel.cpp:66 pgadmin/ui/dlgColumn.xrc:219
 #: pgadmin/ui/dlgDatabase.xrc:236 pgadmin/ui/dlgForeignDataWrapper.xrc:212
 #: pgadmin/ui/dlgForeignServer.xrc:208 pgadmin/ui/dlgForeignTable.xrc:341
-#: pgadmin/ui/dlgFunction.xrc:497 pgadmin/ui/dlgPolicy.xrc:98
-#: pgadmin/ui/dlgRole.xrc:345 pgadmin/ui/dlgTablespace.xrc:139
+#: pgadmin/ui/dlgFunction.xrc:497 pgadmin/ui/dlgIndex.xrc:181
+#: pgadmin/ui/dlgPolicy.xrc:98 pgadmin/ui/dlgRole.xrc:345
+#: pgadmin/ui/dlgTablespace.xrc:139
 #: pgadmin/ui/dlgTextSearchConfiguration.xrc:244
 #: pgadmin/ui/dlgTextSearchDictionary.xrc:211
 #: pgadmin/ui/dlgUserMapping.xrc:141 pgadmin/ui/dlgUser.xrc:252
@@ -3067,7 +3138,7 @@ msgstr "&Отчет за свойствата"
 #: pgadmin/schema/pgSchema.cpp:85 pgadmin/schema/pgSchema.cpp:198
 #: pgadmin/frm/frmOptions.cpp:403 pgadmin/schema/pgAggregate.cpp:410
 #: pgadmin/schema/pgSchema.cpp:207 pgadmin/schema/pgSchema.cpp:332
-#: pgadmin/utils/sysSettings.cpp:134 pgadmin/utils/sysSettings.cpp:226
+#: pgadmin/utils/sysSettings.cpp:139 pgadmin/utils/sysSettings.cpp:232
 #: pgadmin/dlg/dlgSearchObject.cpp:78 pgadmin/dlg/dlgSearchObject.cpp:113
 msgid "Aggregates"
 msgstr "Обобщения"
@@ -3126,7 +3197,7 @@ msgstr "Заделяне на нова връзка към базата от д�
 
 #: src/schema/pgDatabase.cpp:416 src/schema/pgDatabase.cpp:432
 #: pgadmin/schema/pgDatabase.cpp:445 pgadmin/schema/pgDatabase.cpp:458
-#: pgadmin/schema/pgDatabase.cpp:565 pgadmin/schema/pgDatabase.cpp:754
+#: pgadmin/schema/pgDatabase.cpp:565 pgadmin/schema/pgDatabase.cpp:760
 msgid "Allow connections?"
 msgstr "Разрешаване на връзките?"
 
@@ -3196,7 +3267,7 @@ msgid "An exception already exists for this time on any date!"
 msgstr "За това време на всяка дата вече съществува изключение!"
 
 #: pgadmin/frm/frmOptions.cpp:307 pgadmin/frm/frmOptions.cpp:322
-#: pgadmin/frm/frmOptions.cpp:451 pgadmin/frm/frmOptions.cpp:598
+#: pgadmin/frm/frmOptions.cpp:451 pgadmin/frm/frmOptions.cpp:599
 msgid ""
 "An invalid EnterpriseDB help path was specified.\n"
 "\n"
@@ -3208,7 +3279,7 @@ msgstr ""
 "празен."
 
 #: pgadmin/frm/frmOptions.cpp:330 pgadmin/frm/frmOptions.cpp:459
-#: pgadmin/frm/frmOptions.cpp:606
+#: pgadmin/frm/frmOptions.cpp:607
 #, fuzzy
 msgid ""
 "An invalid GreenplumDB help path was specified.\n"
@@ -3221,7 +3292,7 @@ msgstr ""
 "празен."
 
 #: pgadmin/frm/frmOptions.cpp:299 pgadmin/frm/frmOptions.cpp:314
-#: pgadmin/frm/frmOptions.cpp:443 pgadmin/frm/frmOptions.cpp:590
+#: pgadmin/frm/frmOptions.cpp:443 pgadmin/frm/frmOptions.cpp:591
 msgid ""
 "An invalid PostgreSQL help path was specified.\n"
 "\n"
@@ -3233,7 +3304,7 @@ msgstr ""
 "празен."
 
 #: pgadmin/frm/frmOptions.cpp:315 pgadmin/frm/frmOptions.cpp:338
-#: pgadmin/frm/frmOptions.cpp:467 pgadmin/frm/frmOptions.cpp:614
+#: pgadmin/frm/frmOptions.cpp:467 pgadmin/frm/frmOptions.cpp:615
 msgid ""
 "An invalid Slony help path was specified.\n"
 "\n"
@@ -3590,6 +3661,20 @@ msgstr ""
 #: pgadmin/slony/slTable.cpp:54
 #, fuzzy, c-format
 msgid "Are you sure you wish to drop Slony table \"%s\"?"
+msgstr "Сигурни ли сте, че желаете да премахнете %s %s?"
+
+#: pgadmin/schema/pgAccessMethod.cpp:41
+#, fuzzy, c-format
+msgid ""
+"Are you sure you wish to drop access method \"%s\" including all objects "
+"that depend on it?"
+msgstr ""
+"Сигурни ли сте, че желаете да премахнете %s %s, както и всички обекти, които "
+"зависят от него?"
+
+#: pgadmin/schema/pgAccessMethod.cpp:45
+#, fuzzy, c-format
+msgid "Are you sure you wish to drop access method \"%s\"?"
 msgstr "Сигурни ли сте, че желаете да премахнете %s %s?"
 
 #: pgadmin/schema/pgAggregate.cpp:41
@@ -4512,7 +4597,7 @@ msgid "Available Columns"
 msgstr "Налични колони"
 
 #: pgadmin/schema/pgIndex.cpp:260 pgadmin/schema/pgIndex.cpp:290
-#: pgadmin/schema/pgIndex.cpp:439
+#: pgadmin/schema/pgIndex.cpp:438
 #, fuzzy
 msgid "Average Leaf Density"
 msgstr "Средна ширина"
@@ -4584,7 +4669,7 @@ msgstr "Начална ревизия"
 #: src/schema/pgDatabase.cpp:574 src/schema/pgDatabase.cpp:594
 #: pgadmin/schema/pgDatabase.cpp:680 pgadmin/schema/pgDatabase.cpp:746
 #: pgadmin/schema/pgDatabase.cpp:197 pgadmin/schema/pgDatabase.cpp:944
-#: pgadmin/schema/pgDatabase.cpp:308 pgadmin/schema/pgDatabase.cpp:1195
+#: pgadmin/schema/pgDatabase.cpp:311 pgadmin/schema/pgDatabase.cpp:1201
 msgid "Backends"
 msgstr "Задни слоеве"
 
@@ -4731,12 +4816,12 @@ msgstr ""
 msgid "Block &Outdent\tShift-Tab"
 msgstr ""
 
-#: pgadmin/schema/pgDatabase.cpp:333
+#: pgadmin/schema/pgDatabase.cpp:336
 #, fuzzy
 msgid "Block read time"
 msgstr "Прочетени блокове"
 
-#: pgadmin/schema/pgDatabase.cpp:334
+#: pgadmin/schema/pgDatabase.cpp:337
 #, fuzzy
 msgid "Block write time"
 msgstr "Улучени блокове"
@@ -4754,16 +4839,16 @@ msgstr "Прочетени блокове"
 #: src/schema/pgDatabase.cpp:578 src/schema/pgDatabase.cpp:598
 #: pgadmin/schema/pgDatabase.cpp:686 pgadmin/schema/pgDatabase.cpp:752
 #: pgadmin/schema/pgDatabase.cpp:201 pgadmin/schema/pgDatabase.cpp:950
-#: pgadmin/schema/pgSequence.cpp:136 pgadmin/schema/pgDatabase.cpp:312
-#: pgadmin/schema/pgDatabase.cpp:1201 pgadmin/schema/pgSequence.cpp:225
+#: pgadmin/schema/pgSequence.cpp:136 pgadmin/schema/pgDatabase.cpp:315
+#: pgadmin/schema/pgDatabase.cpp:1207 pgadmin/schema/pgSequence.cpp:225
 msgid "Blocks Hit"
 msgstr "Улучени блокове"
 
 #: src/schema/pgDatabase.cpp:577 src/schema/pgDatabase.cpp:597
 #: pgadmin/schema/pgDatabase.cpp:685 pgadmin/schema/pgDatabase.cpp:751
 #: pgadmin/schema/pgDatabase.cpp:200 pgadmin/schema/pgDatabase.cpp:949
-#: pgadmin/schema/pgSequence.cpp:134 pgadmin/schema/pgDatabase.cpp:311
-#: pgadmin/schema/pgDatabase.cpp:1200 pgadmin/schema/pgSequence.cpp:223
+#: pgadmin/schema/pgSequence.cpp:134 pgadmin/schema/pgDatabase.cpp:314
+#: pgadmin/schema/pgDatabase.cpp:1206 pgadmin/schema/pgSequence.cpp:223
 msgid "Blocks Read"
 msgstr "Прочетени блокове"
 
@@ -4800,7 +4885,11 @@ msgstr "Търсене на файла-дневник."
 msgid "Browser"
 msgstr "Поставяне"
 
-#: pgadmin/schema/pgDatabase.cpp:326 pgadmin/schema/pgDatabase.cpp:1216
+#: pgadmin/schema/pgIndex.cpp:690
+msgid "Buffering"
+msgstr ""
+
+#: pgadmin/schema/pgDatabase.cpp:329 pgadmin/schema/pgDatabase.cpp:1222
 msgid "Bufferpin conflicts"
 msgstr ""
 
@@ -5076,7 +5165,7 @@ msgstr "Не може да се създаде контролна точка"
 msgid "Cannot disassociate from controlling TTY"
 msgstr "Не може да отдели от контролиращия TTY"
 
-#: pgadmin/schema/pgDatabase.cpp:1330 pgadmin/schema/pgServer.cpp:2123
+#: pgadmin/schema/pgDatabase.cpp:1336 pgadmin/schema/pgServer.cpp:2123
 #, fuzzy
 msgid "Cannot disconnect database"
 msgstr "Няма връзка с базата от данни."
@@ -5208,8 +5297,8 @@ msgstr "%s отчет за свойствата - %s"
 #: pgadmin/utils/sysSettings.cpp:174 pgadmin/frm/frmOptions.cpp:303
 #: pgadmin/schema/pgDatabase.cpp:62 pgadmin/schema/pgDatabase.cpp:478
 #: pgadmin/frm/frmOptions.cpp:393 pgadmin/schema/pgCast.cpp:268
-#: pgadmin/schema/pgDatabase.cpp:144 pgadmin/schema/pgDatabase.cpp:620
-#: pgadmin/utils/sysSettings.cpp:96 pgadmin/utils/sysSettings.cpp:215
+#: pgadmin/schema/pgDatabase.cpp:147 pgadmin/schema/pgDatabase.cpp:626
+#: pgadmin/utils/sysSettings.cpp:101 pgadmin/utils/sysSettings.cpp:221
 #: pgadmin/dlg/dlgSearchObject.cpp:86 pgadmin/dlg/dlgSearchObject.cpp:121
 msgid "Casts"
 msgstr "Преобразувания"
@@ -5322,9 +5411,9 @@ msgstr "&Отчет за свойствата"
 #: pgadmin/utils/sysSettings.cpp:79 pgadmin/utils/sysSettings.cpp:173
 #: pgadmin/gqb/gqbBrowser.cpp:75 pgadmin/frm/frmOptions.cpp:302
 #: pgadmin/schema/pgDatabase.cpp:476 pgadmin/schema/pgSchema.cpp:555
-#: pgadmin/frm/frmOptions.cpp:392 pgadmin/schema/pgDatabase.cpp:618
+#: pgadmin/frm/frmOptions.cpp:391 pgadmin/schema/pgDatabase.cpp:624
 #: pgadmin/schema/pgSchema.cpp:815 pgadmin/utils/sysSettings.cpp:92
-#: pgadmin/utils/sysSettings.cpp:214
+#: pgadmin/utils/sysSettings.cpp:220
 msgid "Catalogs"
 msgstr "Каталози"
 
@@ -5361,7 +5450,7 @@ msgid "Change Password"
 msgstr "Смяна на парола"
 
 #: pgadmin/dlg/dlgIndex.cpp:220 pgadmin/dlg/dlgIndex.cpp:247
-#: pgadmin/dlg/dlgIndex.cpp:259 pgadmin/dlg/dlgIndexConstraint.cpp:464
+#: pgadmin/dlg/dlgIndex.cpp:344 pgadmin/dlg/dlgIndexConstraint.cpp:455
 msgid "Change index type?"
 msgstr ""
 
@@ -5403,7 +5492,7 @@ msgid "Changes applied."
 msgstr "Промените са приложени."
 
 #: pgadmin/frm/frmOptions.cpp:472 pgadmin/frm/frmOptions.cpp:503
-#: pgadmin/frm/frmOptions.cpp:716 pgadmin/frm/frmOptions.cpp:886
+#: pgadmin/frm/frmOptions.cpp:716 pgadmin/frm/frmOptions.cpp:887
 msgid ""
 "Changes to the display options may not be visible until the browser tree is "
 "refreshed."
@@ -5423,7 +5512,7 @@ msgstr ""
 "Сигурни ли сте, че желаете да продължите?"
 
 #: pgadmin/dlg/dlgIndex.cpp:220 pgadmin/dlg/dlgIndex.cpp:247
-#: pgadmin/dlg/dlgIndex.cpp:259 pgadmin/dlg/dlgIndexConstraint.cpp:464
+#: pgadmin/dlg/dlgIndex.cpp:344 pgadmin/dlg/dlgIndexConstraint.cpp:455
 #, fuzzy
 msgid ""
 "Changing the index type will cause the column list to be cleared. Do you "
@@ -5435,7 +5524,7 @@ msgstr ""
 "Сигурни ли сте, че желаете да продължите?"
 
 #: pgadmin/schema/pgDatabase.cpp:446 pgadmin/ui/dlgDatabase.xrc:11
-#: pgadmin/schema/pgDatabase.cpp:531 pgadmin/schema/pgDatabase.cpp:721
+#: pgadmin/schema/pgDatabase.cpp:531 pgadmin/schema/pgDatabase.cpp:727
 #: pgadmin/ui/dlgDatabase.xrc:166
 #, fuzzy
 msgid "Character type"
@@ -5482,12 +5571,12 @@ msgstr "Настройки"
 msgid "Check all"
 msgstr "Всички"
 
-#: pgadmin/schema/pgCheck.cpp:76 pgadmin/schema/pgPolicy.cpp:59
+#: pgadmin/schema/pgCheck.cpp:76
 #, fuzzy
 msgid "Check constraint DDL"
 msgstr "Ново ограничение от тип проверка"
 
-#: pgadmin/schema/pgCheck.cpp:72 pgadmin/schema/pgPolicy.cpp:55
+#: pgadmin/schema/pgCheck.cpp:72
 #, fuzzy
 msgid "Check constraint DDL report"
 msgstr "Ново ограничение от тип проверка"
@@ -5529,7 +5618,7 @@ msgstr "&Отчет за списъка с обекти"
 
 # standard
 # standard
-#: pgadmin/schema/pgPolicy.cpp:135 pgadmin/ui/dlgPolicy.xrc:162
+#: pgadmin/schema/pgPolicy.cpp:127 pgadmin/ui/dlgPolicy.xrc:162
 #, fuzzy
 msgid "Check expression"
 msgstr "Настройки"
@@ -5543,7 +5632,7 @@ msgstr "Проверете за несъответсвие в апострофи
 msgid "Check online for updates"
 msgstr "Проверка за обновления"
 
-#: pgadmin/schema/pgPolicy.cpp:220
+#: pgadmin/schema/pgPolicy.cpp:212
 #, fuzzy
 msgid "Check policies list report"
 msgstr "&Отчет за списъка с обекти"
@@ -5764,7 +5853,7 @@ msgstr "Име на клъстър"
 
 # standard
 #: standard input:214 input:251 pgadmin/ui/dlgIndex.xrc:7
-#: pgadmin/ui/dlgIndex.xrc:135
+#: pgadmin/ui/dlgIndex.xrc:115
 msgid "Clustered"
 msgstr "Клъстериран"
 
@@ -5807,11 +5896,11 @@ msgstr "Премахване на таблица?"
 # standard
 #: pgadmin/schema/pgDatabase.cpp:445 pgadmin/ui/dlgDatabase.xrc:10
 #: pgadmin/schema/pgDatabase.cpp:530 pgadmin/schema/pgCollation.cpp:238
-#: pgadmin/schema/pgColumn.cpp:478 pgadmin/schema/pgDatabase.cpp:720
+#: pgadmin/schema/pgColumn.cpp:478 pgadmin/schema/pgDatabase.cpp:726
 #: pgadmin/schema/pgDomain.cpp:206 pgadmin/schema/pgType.cpp:336
-#: pgadmin/dlg/dlgIndex.cpp:206 pgadmin/dlg/dlgType.cpp:122
+#: pgadmin/dlg/dlgIndex.cpp:199 pgadmin/dlg/dlgType.cpp:122
 #: pgadmin/ui/dlgColumn.xrc:121 pgadmin/ui/dlgDatabase.xrc:151
-#: pgadmin/ui/dlgDomain.xrc:191 pgadmin/ui/dlgIndex.xrc:216
+#: pgadmin/ui/dlgDomain.xrc:191 pgadmin/ui/dlgIndex.xrc:288
 #: pgadmin/ui/dlgType.xrc:231 pgadmin/ui/dlgType.xrc:736
 #, fuzzy
 msgid "Collation"
@@ -5891,7 +5980,7 @@ msgstr "Колона"
 #: pgadmin/ui/dlgIndex.xrc:13 pgadmin/schema/pgColumn.cpp:528
 #: pgadmin/dlg/dlgTable.cpp:185 pgadmin/ui/dlgTrigger.xrc:19
 #: pgadmin/schema/pgColumn.cpp:779 pgadmin/dlg/dlgTable.cpp:204
-#: pgadmin/ui/dlgIndexConstraint.xrc:203 pgadmin/ui/dlgIndex.xrc:201
+#: pgadmin/ui/dlgIndexConstraint.xrc:179 pgadmin/ui/dlgIndex.xrc:274
 #: pgadmin/ui/dlgTrigger.xrc:286
 msgid "Column"
 msgstr "Колона"
@@ -5944,8 +6033,8 @@ msgstr "&Отчет за зависимите"
 #: pgadmin/dlg/dlgTable.cpp:173 pgadmin/dlg/dlgEditGridOptions.cpp:88
 #: pgadmin/dlg/dlgIndex.cpp:194 pgadmin/dlg/dlgTable.cpp:175
 #: pgadmin/dlg/dlgTrigger.cpp:81 pgadmin/dlg/dlgEditGridOptions.cpp:95
-#: pgadmin/dlg/dlgIndex.cpp:202 pgadmin/dlg/dlgIndexConstraint.cpp:55
-#: pgadmin/dlg/dlgIndexConstraint.cpp:66 pgadmin/dlg/dlgTable.cpp:189
+#: pgadmin/dlg/dlgIndex.cpp:195 pgadmin/dlg/dlgIndexConstraint.cpp:54
+#: pgadmin/dlg/dlgIndexConstraint.cpp:65 pgadmin/dlg/dlgTable.cpp:189
 #: pgadmin/dlg/dlgTrigger.cpp:89
 msgid "Column name"
 msgstr "Име на колона"
@@ -6032,7 +6121,7 @@ msgstr " зависими"
 #: pgadmin/schema/pgIndexConstraint.cpp:183 pgadmin/schema/pgTrigger.cpp:358
 #: pgadmin/dlg/dlgSearchObject.cpp:72 pgadmin/dlg/dlgSearchObject.cpp:107
 #: pgadmin/ui/dlgForeignKey.xrc:163 pgadmin/ui/dlgForeignTable.xrc:139
-#: pgadmin/ui/dlgIndexConstraint.xrc:181 pgadmin/ui/dlgIndex.xrc:179
+#: pgadmin/ui/dlgIndexConstraint.xrc:312 pgadmin/ui/dlgIndex.xrc:408
 #: pgadmin/ui/dlgTable.xrc:395 pgadmin/ui/dlgTrigger.xrc:264
 #: pgadmin/ui/frmImport.xrc:80
 msgid "Columns"
@@ -6053,7 +6142,7 @@ msgstr "%s списъчен отчет"
 #: src/slony/slNode.cpp:200 src/slony/slNode.cpp:326
 #: pgadmin/slony/slNode.cpp:193 pgadmin/slony/slNode.cpp:317
 #: pgadmin/slony/slNode.cpp:194 pgadmin/slony/slNode.cpp:318
-#: pgadmin/slony/slNode.cpp:321 pgadmin/schema/pgPolicy.cpp:133
+#: pgadmin/slony/slNode.cpp:321 pgadmin/schema/pgPolicy.cpp:125
 #: pgadmin/slony/slNode.cpp:255 pgadmin/slony/slNode.cpp:421
 #: pgadmin/ui/dlgPolicy.xrc:131
 msgid "Command"
@@ -6164,18 +6253,18 @@ msgstr "Команда"
 #: pgadmin/frm/frmReport.cpp:1346 pgadmin/agent/pgaJob.cpp:140
 #: pgadmin/agent/pgaSchedule.cpp:111 pgadmin/agent/pgaStep.cpp:114
 #: pgadmin/schema/edbPackage.cpp:199 pgadmin/schema/gpExtTable.cpp:457
-#: pgadmin/schema/gpResQueue.cpp:190 pgadmin/schema/pgAggregate.cpp:174
-#: pgadmin/schema/pgCast.cpp:138 pgadmin/schema/pgCatalogObject.cpp:94
-#: pgadmin/schema/pgCheck.cpp:172 pgadmin/schema/pgCollation.cpp:139
-#: pgadmin/schema/pgCollection.cpp:73 pgadmin/schema/pgColumn.cpp:515
-#: pgadmin/schema/pgConversion.cpp:135 pgadmin/schema/pgDatabase.cpp:767
-#: pgadmin/schema/pgDomain.cpp:210 pgadmin/schema/pgEventTrigger.cpp:149
-#: pgadmin/schema/pgExtension.cpp:127 pgadmin/schema/pgForeignKey.cpp:254
-#: pgadmin/schema/pgForeignTable.cpp:187 pgadmin/schema/pgFunction.cpp:426
-#: pgadmin/schema/pgIndex.cpp:412 pgadmin/schema/pgIndexConstraint.cpp:198
-#: pgadmin/schema/pgLanguage.cpp:141 pgadmin/schema/pgOperator.cpp:207
-#: pgadmin/schema/pgOperatorClass.cpp:292
-#: pgadmin/schema/pgOperatorFamily.cpp:126 pgadmin/schema/pgPolicy.cpp:136
+#: pgadmin/schema/gpResQueue.cpp:190 pgadmin/schema/pgAccessMethod.cpp:121
+#: pgadmin/schema/pgAggregate.cpp:174 pgadmin/schema/pgCast.cpp:138
+#: pgadmin/schema/pgCatalogObject.cpp:94 pgadmin/schema/pgCheck.cpp:172
+#: pgadmin/schema/pgCollation.cpp:139 pgadmin/schema/pgCollection.cpp:73
+#: pgadmin/schema/pgColumn.cpp:515 pgadmin/schema/pgConversion.cpp:135
+#: pgadmin/schema/pgDatabase.cpp:773 pgadmin/schema/pgDomain.cpp:210
+#: pgadmin/schema/pgEventTrigger.cpp:149 pgadmin/schema/pgExtension.cpp:127
+#: pgadmin/schema/pgForeignKey.cpp:254 pgadmin/schema/pgForeignTable.cpp:187
+#: pgadmin/schema/pgFunction.cpp:426 pgadmin/schema/pgIndex.cpp:411
+#: pgadmin/schema/pgIndexConstraint.cpp:198 pgadmin/schema/pgLanguage.cpp:141
+#: pgadmin/schema/pgOperator.cpp:207 pgadmin/schema/pgOperatorClass.cpp:292
+#: pgadmin/schema/pgOperatorFamily.cpp:126 pgadmin/schema/pgPolicy.cpp:128
 #: pgadmin/schema/pgRole.cpp:476 pgadmin/schema/pgRule.cpp:184
 #: pgadmin/schema/pgSchema.cpp:439 pgadmin/schema/pgSequence.cpp:193
 #: pgadmin/schema/pgTable.cpp:1098 pgadmin/schema/pgTablespace.cpp:203
@@ -6195,7 +6284,7 @@ msgstr "Команда"
 #: pgadmin/ui/dlgExtTable.xrc:67 pgadmin/ui/dlgForeignDataWrapper.xrc:70
 #: pgadmin/ui/dlgForeignKey.xrc:38 pgadmin/ui/dlgForeignServer.xrc:70
 #: pgadmin/ui/dlgForeignTable.xrc:82 pgadmin/ui/dlgFunction.xrc:79
-#: pgadmin/ui/dlgIndexConstraint.xrc:39 pgadmin/ui/dlgIndex.xrc:38
+#: pgadmin/ui/dlgIndexConstraint.xrc:35 pgadmin/ui/dlgIndex.xrc:35
 #: pgadmin/ui/dlgJob.xrc:160 pgadmin/ui/dlgLanguage.xrc:69
 #: pgadmin/ui/dlgMainConfig.xrc:72 pgadmin/ui/dlgOperator.xrc:80
 #: pgadmin/ui/dlgPackage.xrc:66 pgadmin/ui/dlgPolicy.xrc:51
@@ -6298,7 +6387,7 @@ msgstr "Съставен"
 msgid "Compress Ratio"
 msgstr "Корелация"
 
-#: standard input:252 pgadmin/ui/dlgIndex.xrc:8 pgadmin/ui/dlgIndex.xrc:149
+#: standard input:252 pgadmin/ui/dlgIndex.xrc:8 pgadmin/ui/dlgIndex.xrc:127
 msgid "Concurrent build?"
 msgstr "Паралелна компилация?"
 
@@ -6461,7 +6550,7 @@ msgstr "Свързан с трасировчика"
 #: src/schema/pgServer.cpp:894 pgadmin/schema/pgDatabase.cpp:446
 #: pgadmin/schema/pgServer.cpp:903 pgadmin/schema/pgDatabase.cpp:459
 #: pgadmin/schema/pgServer.cpp:954 pgadmin/schema/pgDatabase.cpp:566
-#: pgadmin/schema/pgServer.cpp:975 pgadmin/schema/pgDatabase.cpp:755
+#: pgadmin/schema/pgServer.cpp:975 pgadmin/schema/pgDatabase.cpp:761
 #: pgadmin/schema/pgServer.cpp:1253
 msgid "Connected?"
 msgstr "Свързан?"
@@ -6568,7 +6657,7 @@ msgstr "Връзката е прекъсната"
 
 # standard
 #: pgadmin/schema/pgDatabase.cpp:464 pgadmin/schema/pgDatabase.cpp:571
-#: pgadmin/schema/pgDatabase.cpp:760
+#: pgadmin/schema/pgDatabase.cpp:766
 #, fuzzy
 msgid "Connection limit"
 msgstr "Свързване с "
@@ -6641,7 +6730,7 @@ msgstr "&Свързване"
 #: pgadmin/ui/dlgIndex.xrc:9 pgadmin/schema/pgIndex.cpp:259
 #: pgadmin/schema/pgConstraints.cpp:109 pgadmin/schema/pgIndex.cpp:408
 #: pgadmin/schema/pgIndexConstraint.cpp:194 pgadmin/dlg/dlgForeignTable.cpp:76
-#: pgadmin/ui/dlgIndexConstraint.xrc:165 pgadmin/ui/dlgIndex.xrc:163
+#: pgadmin/ui/dlgIndexConstraint.xrc:141 pgadmin/ui/dlgIndex.xrc:139
 msgid "Constraint"
 msgstr "Ограничение"
 
@@ -6789,8 +6878,8 @@ msgstr "%s отчет за свойствата - %s"
 #: pgadmin/frm/frmOptions.cpp:309 pgadmin/schema/pgSchema.cpp:87
 #: pgadmin/schema/pgSchema.cpp:200 pgadmin/frm/frmOptions.cpp:405
 #: pgadmin/schema/pgConversion.cpp:245 pgadmin/schema/pgSchema.cpp:211
-#: pgadmin/schema/pgSchema.cpp:336 pgadmin/utils/sysSettings.cpp:139
-#: pgadmin/utils/sysSettings.cpp:227 pgadmin/dlg/dlgSearchObject.cpp:85
+#: pgadmin/schema/pgSchema.cpp:336 pgadmin/utils/sysSettings.cpp:144
+#: pgadmin/utils/sysSettings.cpp:233 pgadmin/dlg/dlgSearchObject.cpp:85
 #: pgadmin/dlg/dlgSearchObject.cpp:120
 msgid "Conversions"
 msgstr "Превръщания"
@@ -7177,6 +7266,11 @@ msgstr "Създаване на БД"
 msgid "Create a Primary Key."
 msgstr "Създаване на първичен ключ."
 
+#: pgadmin/schema/pgAccessMethod.cpp:204
+#, fuzzy
+msgid "Create a new Access Method."
+msgstr "Създаване на новo преобразуване."
+
 #: src/schema/pgAggregate.cpp:202 pgadmin/schema/pgAggregate.cpp:261
 #: pgadmin/schema/pgAggregate.cpp:289 pgadmin/schema/pgAggregate.cpp:400
 msgid "Create a new Aggregate."
@@ -7220,7 +7314,7 @@ msgstr "Създаване на ново превръщане."
 
 #: src/schema/pgDatabase.cpp:628 src/schema/pgDatabase.cpp:648
 #: pgadmin/schema/pgDatabase.cpp:752 pgadmin/schema/pgDatabase.cpp:818
-#: pgadmin/schema/pgDatabase.cpp:1025 pgadmin/schema/pgDatabase.cpp:1294
+#: pgadmin/schema/pgDatabase.cpp:1025 pgadmin/schema/pgDatabase.cpp:1300
 msgid "Create a new Database."
 msgstr "Създаване на нова база от данни."
 
@@ -7314,7 +7408,7 @@ msgstr "Създаване на нова група."
 
 #: src/schema/pgIndex.cpp:361 src/schema/pgIndex.cpp:371
 #: pgadmin/schema/pgIndex.cpp:467 pgadmin/schema/pgIndex.cpp:506
-#: pgadmin/schema/pgIndex.cpp:513 pgadmin/schema/pgIndex.cpp:690
+#: pgadmin/schema/pgIndex.cpp:513 pgadmin/schema/pgIndex.cpp:741
 msgid "Create a new Index."
 msgstr "Създаване на нов индекс."
 
@@ -7376,7 +7470,7 @@ msgstr "Създаване на нов път."
 msgid "Create a new Path."
 msgstr "Създаване на нов път."
 
-#: pgadmin/schema/pgPolicy.cpp:233
+#: pgadmin/schema/pgPolicy.cpp:225
 #, fuzzy
 msgid "Create a new Policy."
 msgstr "Създаване на нова задача."
@@ -7843,7 +7937,7 @@ msgid "DELETE script"
 msgstr "Скрипт за SELECT"
 
 #: pgadmin/ui/dlgIndex.xrc:14 pgadmin/ui/dlgIndex.xrc:15
-#: pgadmin/ui/dlgIndexConstraint.xrc:233 pgadmin/ui/dlgIndex.xrc:246
+#: pgadmin/ui/dlgIndexConstraint.xrc:207 pgadmin/ui/dlgIndex.xrc:317
 msgid "DESC"
 msgstr ""
 
@@ -8031,8 +8125,8 @@ msgstr "Данните са записани във файл."
 #: pgadmin/schema/pgServer.cpp:1018 pgadmin/schema/pgUser.cpp:90
 #: pgadmin/schema/pgUser.cpp:122 pgadmin/frm/frmBackup.cpp:155
 #: pgadmin/frm/frmStatus.cpp:676 pgadmin/frm/frmStatus.cpp:786
-#: pgadmin/agent/pgaStep.cpp:108 pgadmin/schema/pgDatabase.cpp:1194
-#: pgadmin/schema/pgDatabase.cpp:1294 pgadmin/schema/pgRole.cpp:306
+#: pgadmin/agent/pgaStep.cpp:108 pgadmin/schema/pgDatabase.cpp:1200
+#: pgadmin/schema/pgDatabase.cpp:1300 pgadmin/schema/pgRole.cpp:306
 #: pgadmin/schema/pgRole.cpp:332 pgadmin/schema/pgServer.cpp:1365
 #: pgadmin/schema/pgTablespace.cpp:105 pgadmin/schema/pgTablespace.cpp:124
 #: pgadmin/schema/pgUser.cpp:157 pgadmin/schema/pgUser.cpp:189
@@ -8155,25 +8249,25 @@ msgstr "%s статистически отчет - %s"
 #: pgadmin/utils/sysSettings.cpp:67 pgadmin/utils/sysSettings.cpp:167
 #: pgadmin/frm/frmOptions.cpp:296 pgadmin/schema/pgDatabase.cpp:1044
 #: pgadmin/schema/pgServer.cpp:861 pgadmin/frm/frmOptions.cpp:384
-#: pgadmin/schema/pgDatabase.cpp:1313 pgadmin/schema/pgServer.cpp:1100
-#: pgadmin/utils/sysSettings.cpp:78 pgadmin/utils/sysSettings.cpp:206
+#: pgadmin/schema/pgDatabase.cpp:1319 pgadmin/schema/pgServer.cpp:1100
+#: pgadmin/utils/sysSettings.cpp:78 pgadmin/utils/sysSettings.cpp:211
 #: pgadmin/dlg/dlgSearchObject.cpp:860
 msgid "Databases"
 msgstr "Бази от данни"
 
-#: pgadmin/schema/pgDatabase.cpp:1153
+#: pgadmin/schema/pgDatabase.cpp:1159
 #, fuzzy
 msgid "Databases list report"
 msgstr "%s списъчен отчет"
 
 # standard
 # standard
-#: pgadmin/schema/pgDatabase.cpp:1150
+#: pgadmin/schema/pgDatabase.cpp:1156
 #, fuzzy
 msgid "Databases statistics"
 msgstr "Състояние на базата от данни"
 
-#: pgadmin/schema/pgDatabase.cpp:1147
+#: pgadmin/schema/pgDatabase.cpp:1153
 #, fuzzy
 msgid "Databases statistics report"
 msgstr "%s статистически отчет - %s"
@@ -8246,11 +8340,11 @@ msgstr "Брой мъртви n-торки"
 msgid "Dead tuples"
 msgstr "Брой мъртви n-торки"
 
-#: pgadmin/schema/pgDatabase.cpp:327 pgadmin/schema/pgDatabase.cpp:1217
+#: pgadmin/schema/pgDatabase.cpp:330 pgadmin/schema/pgDatabase.cpp:1223
 msgid "Deadlock conflicts"
 msgstr ""
 
-#: pgadmin/schema/pgDatabase.cpp:332
+#: pgadmin/schema/pgDatabase.cpp:335
 #, fuzzy
 msgid "Deadlocks"
 msgstr "Брой мъртви n-торки"
@@ -8392,7 +8486,7 @@ msgstr "Стойност по подразбиране"
 # standard
 # standard
 #: pgadmin/schema/pgDatabase.cpp:538 pgadmin/schema/pgSchema.cpp:280
-#: pgadmin/schema/pgDatabase.cpp:730 pgadmin/schema/pgSchema.cpp:431
+#: pgadmin/schema/pgDatabase.cpp:736 pgadmin/schema/pgSchema.cpp:431
 #, fuzzy
 msgid "Default function ACL"
 msgstr "Функция на оператор"
@@ -8407,13 +8501,13 @@ msgstr "Стойност по подразбиране"
 # standard
 #: src/schema/pgDatabase.cpp:408 src/schema/pgDatabase.cpp:424
 #: pgadmin/schema/pgDatabase.cpp:437 pgadmin/schema/pgDatabase.cpp:450
-#: pgadmin/schema/pgDatabase.cpp:534 pgadmin/schema/pgDatabase.cpp:724
+#: pgadmin/schema/pgDatabase.cpp:534 pgadmin/schema/pgDatabase.cpp:730
 msgid "Default schema"
 msgstr "Схема по подразбиране"
 
 # standard
 #: pgadmin/schema/pgDatabase.cpp:537 pgadmin/schema/pgSchema.cpp:279
-#: pgadmin/schema/pgDatabase.cpp:729 pgadmin/schema/pgSchema.cpp:430
+#: pgadmin/schema/pgDatabase.cpp:735 pgadmin/schema/pgSchema.cpp:430
 #, fuzzy
 msgid "Default sequence ACL"
 msgstr "Схема по подразбиране"
@@ -8421,7 +8515,7 @@ msgstr "Схема по подразбиране"
 # standard
 # standard
 #: pgadmin/schema/pgDatabase.cpp:536 pgadmin/schema/pgSchema.cpp:278
-#: pgadmin/schema/pgDatabase.cpp:728 pgadmin/schema/pgSchema.cpp:429
+#: pgadmin/schema/pgDatabase.cpp:734 pgadmin/schema/pgSchema.cpp:429
 #, fuzzy
 msgid "Default table ACL"
 msgstr "Таблично пространство по подразбиране"
@@ -8431,13 +8525,13 @@ msgstr "Таблично пространство по подразбиране"
 #: pgadmin/dlg/dlgIndex.cpp:295 pgadmin/dlg/dlgIndexConstraint.cpp:66
 #: pgadmin/dlg/dlgTable.cpp:309 pgadmin/schema/pgDatabase.cpp:432
 #: pgadmin/schema/pgDatabase.cpp:439 pgadmin/schema/pgDatabase.cpp:524
-#: pgadmin/schema/pgDatabase.cpp:714
+#: pgadmin/schema/pgDatabase.cpp:720
 msgid "Default tablespace"
 msgstr "Таблично пространство по подразбиране"
 
 # standard
 # standard
-#: pgadmin/schema/pgDatabase.cpp:733 pgadmin/schema/pgSchema.cpp:434
+#: pgadmin/schema/pgDatabase.cpp:739 pgadmin/schema/pgSchema.cpp:434
 #, fuzzy
 msgid "Default type ACL"
 msgstr "Таблично пространство по подразбиране"
@@ -8467,7 +8561,7 @@ msgstr "По подразбиране?"
 # standard
 #: standard input:30 input:127 input:227 input:35 input:164 input:265
 #: pgadmin/ui/dlgForeignKey.xrc:4 pgadmin/ui/dlgIndexConstraint.xrc:4
-#: pgadmin/ui/dlgForeignKey.xrc:78 pgadmin/ui/dlgIndexConstraint.xrc:137
+#: pgadmin/ui/dlgForeignKey.xrc:78 pgadmin/ui/dlgIndexConstraint.xrc:117
 #: pgadmin/ui/dlgTrigger.xrc:124
 msgid "Deferrable"
 msgstr "Отлагаемо"
@@ -8481,12 +8575,12 @@ msgstr "Отлагаемо?"
 # standard
 #: standard input:31 input:128 input:228 input:36 input:165 input:266
 #: pgadmin/ui/dlgForeignKey.xrc:5 pgadmin/ui/dlgIndexConstraint.xrc:5
-#: pgadmin/ui/dlgForeignKey.xrc:92 pgadmin/ui/dlgIndexConstraint.xrc:151
+#: pgadmin/ui/dlgForeignKey.xrc:92 pgadmin/ui/dlgIndexConstraint.xrc:129
 #: pgadmin/ui/dlgTrigger.xrc:138
 msgid "Deferred"
 msgstr "Отложено"
 
-#: pgadmin/schema/pgPolicy.cpp:130 pgadmin/ui/dlgPolicy.xrc:35
+#: pgadmin/schema/pgPolicy.cpp:122 pgadmin/ui/dlgPolicy.xrc:35
 msgid "Defined for"
 msgstr ""
 
@@ -8521,7 +8615,7 @@ msgstr ""
 #: pgadmin/ui/dlgExtTable.xrc:98 pgadmin/ui/dlgForeignDataWrapper.xrc:103
 #: pgadmin/ui/dlgForeignKey.xrc:69 pgadmin/ui/dlgForeignServer.xrc:103
 #: pgadmin/ui/dlgForeignTable.xrc:113 pgadmin/ui/dlgFunction.xrc:110
-#: pgadmin/ui/dlgIndexConstraint.xrc:70 pgadmin/ui/dlgIndex.xrc:69
+#: pgadmin/ui/dlgIndexConstraint.xrc:155 pgadmin/ui/dlgIndex.xrc:154
 #: pgadmin/ui/dlgLanguage.xrc:100 pgadmin/ui/dlgOperator.xrc:111
 #: pgadmin/ui/dlgPolicy.xrc:178 pgadmin/ui/dlgRole.xrc:85
 #: pgadmin/ui/dlgRule.xrc:83 pgadmin/ui/dlgSequence.xrc:115
@@ -8618,7 +8712,7 @@ msgid "Delete/Drop the selected object."
 msgstr "Изтриване/премахване на избрания обект."
 
 #: pgadmin/schema/pgIndex.cpp:259 pgadmin/schema/pgIndex.cpp:289
-#: pgadmin/schema/pgIndex.cpp:438
+#: pgadmin/schema/pgIndex.cpp:437
 msgid "Deleted Pages"
 msgstr "Изтрити страници"
 
@@ -8831,7 +8925,7 @@ msgstr "Изключване на спусъците"
 msgid "Disconnec&t"
 msgstr "&Прекъсване на връзката"
 
-#: pgadmin/schema/pgDatabase.cpp:1318
+#: pgadmin/schema/pgDatabase.cpp:1324
 #, fuzzy
 msgid "Disconnec&t database"
 msgstr "Няма връзка с базата от данни."
@@ -8841,7 +8935,7 @@ msgstr "Няма връзка с базата от данни."
 msgid "Disconnec&t server"
 msgstr "&Прекъсване на връзката"
 
-#: pgadmin/schema/pgDatabase.cpp:1318
+#: pgadmin/schema/pgDatabase.cpp:1324
 #, fuzzy
 msgid "Disconnect from the selected database."
 msgstr "Прекъсване на връзката с избрания сървър."
@@ -8947,7 +9041,7 @@ msgid "Display only those rows that have this value in this column."
 msgstr ""
 
 #: pgadmin/frm/frmOptions.cpp:472 pgadmin/frm/frmOptions.cpp:503
-#: pgadmin/frm/frmOptions.cpp:716 pgadmin/frm/frmOptions.cpp:886
+#: pgadmin/frm/frmOptions.cpp:716 pgadmin/frm/frmOptions.cpp:887
 msgid "Display options"
 msgstr "Настройки на показването"
 
@@ -9094,8 +9188,8 @@ msgstr "&Отчет за свойствата"
 #: pgadmin/frm/frmOptions.cpp:310 pgadmin/schema/pgSchema.cpp:89
 #: pgadmin/schema/pgSchema.cpp:202 pgadmin/frm/frmOptions.cpp:406
 #: pgadmin/schema/pgDomain.cpp:392 pgadmin/schema/pgSchema.cpp:213
-#: pgadmin/schema/pgSchema.cpp:338 pgadmin/utils/sysSettings.cpp:144
-#: pgadmin/utils/sysSettings.cpp:228 pgadmin/dlg/dlgSearchObject.cpp:83
+#: pgadmin/schema/pgSchema.cpp:338 pgadmin/utils/sysSettings.cpp:149
+#: pgadmin/utils/sysSettings.cpp:234 pgadmin/dlg/dlgSearchObject.cpp:83
 #: pgadmin/dlg/dlgSearchObject.cpp:119
 msgid "Domains"
 msgstr "Обхвати"
@@ -9325,6 +9419,18 @@ msgstr "Премахване на %s каскадно"
 #, fuzzy
 msgid "Drop Slony table?"
 msgstr "Премахване на таблица?"
+
+#: pgadmin/schema/pgAccessMethod.cpp:49
+#, fuzzy
+msgid "Drop access method cascaded?"
+msgstr "Премахване на %s каскадно"
+
+# standard
+# standard
+#: pgadmin/schema/pgAccessMethod.cpp:52
+#, fuzzy
+msgid "Drop access method?"
+msgstr "Метод на достъп"
 
 #: pgadmin/schema/pgAggregate.cpp:49
 #, fuzzy
@@ -9671,7 +9777,7 @@ msgstr "Премахване на %s каскадно"
 msgid "Drop package?"
 msgstr "Премахване каскадно"
 
-#: pgadmin/schema/pgPolicy.cpp:49
+#: pgadmin/schema/pgPolicy.cpp:48
 #, fuzzy
 msgid "Drop policy?"
 msgstr "Процедура"
@@ -9887,7 +9993,7 @@ msgstr "Премахване на %s?"
 
 #: src/schema/pgDatabase.cpp:317 src/schema/pgDatabase.cpp:320
 #: pgadmin/schema/pgDatabase.cpp:326 pgadmin/schema/pgDatabase.cpp:322
-#: pgadmin/schema/pgDatabase.cpp:374 pgadmin/schema/pgDatabase.cpp:506
+#: pgadmin/schema/pgDatabase.cpp:374 pgadmin/schema/pgDatabase.cpp:509
 msgid "Dropping database not allowed"
 msgstr "Не е разрешено премахването на базата от данни"
 
@@ -10063,7 +10169,7 @@ msgid "Embed pgAdmin's default stylesheet into the report."
 msgstr "Вграждане в отчета на таблицата със стилове по подразбиране на pgAdmin"
 
 #: pgadmin/schema/pgIndex.cpp:258 pgadmin/schema/pgIndex.cpp:288
-#: pgadmin/schema/pgIndex.cpp:437
+#: pgadmin/schema/pgIndex.cpp:436
 msgid "Empty Pages"
 msgstr "Празни страници"
 
@@ -10191,7 +10297,7 @@ msgstr "Препоръчва се включването на автовакуу
 #: pgadmin/schema/pgDatabase.cpp:434 pgadmin/ui/dlgDatabase.xrc:5
 #: pgadmin/ui/frmExport.xrc:13 pgadmin/schema/pgDatabase.cpp:441
 #: pgadmin/schema/pgDatabase.cpp:526 pgadmin/ui/frmBackup.xrc:10
-#: pgadmin/schema/pgDatabase.cpp:716 pgadmin/ui/dlgDatabase.xrc:93
+#: pgadmin/schema/pgDatabase.cpp:722 pgadmin/ui/dlgDatabase.xrc:93
 #: pgadmin/ui/frmBackup.xrc:84 pgadmin/ui/frmExport.xrc:62
 #: pgadmin/ui/frmImport.xrc:63
 msgid "Encoding"
@@ -10372,11 +10478,11 @@ msgstr "Изброяване"
 #: pgadmin/frm/frmOptions.cpp:425 pgadmin/frm/frmOptions.cpp:435
 #: pgadmin/frm/frmOptions.cpp:443 pgadmin/frm/frmOptions.cpp:451
 #: pgadmin/frm/frmOptions.cpp:459 pgadmin/frm/frmOptions.cpp:467
-#: pgadmin/frm/frmQuery.cpp:2389 pgadmin/frm/frmOptions.cpp:551
-#: pgadmin/frm/frmOptions.cpp:561 pgadmin/frm/frmOptions.cpp:571
-#: pgadmin/frm/frmOptions.cpp:581 pgadmin/frm/frmOptions.cpp:590
-#: pgadmin/frm/frmOptions.cpp:598 pgadmin/frm/frmOptions.cpp:606
-#: pgadmin/frm/frmOptions.cpp:614 pgadmin/frm/frmQuery.cpp:2837
+#: pgadmin/frm/frmQuery.cpp:2389 pgadmin/frm/frmOptions.cpp:552
+#: pgadmin/frm/frmOptions.cpp:562 pgadmin/frm/frmOptions.cpp:572
+#: pgadmin/frm/frmOptions.cpp:582 pgadmin/frm/frmOptions.cpp:591
+#: pgadmin/frm/frmOptions.cpp:599 pgadmin/frm/frmOptions.cpp:607
+#: pgadmin/frm/frmOptions.cpp:615 pgadmin/frm/frmQuery.cpp:2837
 msgid "Error"
 msgstr "Грешка"
 
@@ -10495,9 +10601,9 @@ msgstr "Номер на събитие"
 msgid "Event Trigger"
 msgstr "Нов спусък"
 
-#: pgadmin/frm/frmOptions.cpp:394 pgadmin/schema/pgDatabase.cpp:622
-#: pgadmin/schema/pgEventTrigger.cpp:315 pgadmin/utils/sysSettings.cpp:190
-#: pgadmin/utils/sysSettings.cpp:221
+#: pgadmin/frm/frmOptions.cpp:394 pgadmin/schema/pgDatabase.cpp:628
+#: pgadmin/schema/pgEventTrigger.cpp:315 pgadmin/utils/sysSettings.cpp:195
+#: pgadmin/utils/sysSettings.cpp:227
 #, fuzzy
 msgid "Event Triggers"
 msgstr "Спусъци"
@@ -10939,9 +11045,9 @@ msgstr " свойства"
 msgid "Extension properties report"
 msgstr "%s отчет за свойствата - %s"
 
-#: pgadmin/frm/frmOptions.cpp:395 pgadmin/schema/pgDatabase.cpp:146
-#: pgadmin/schema/pgDatabase.cpp:624 pgadmin/schema/pgExtension.cpp:234
-#: pgadmin/utils/sysSettings.cpp:126 pgadmin/utils/sysSettings.cpp:222
+#: pgadmin/frm/frmOptions.cpp:395 pgadmin/schema/pgDatabase.cpp:149
+#: pgadmin/schema/pgDatabase.cpp:630 pgadmin/schema/pgExtension.cpp:234
+#: pgadmin/utils/sysSettings.cpp:131 pgadmin/utils/sysSettings.cpp:228
 #: pgadmin/dlg/dlgSearchObject.cpp:100 pgadmin/dlg/dlgSearchObject.cpp:144
 #, fuzzy
 msgid "Extensions"
@@ -10979,8 +11085,8 @@ msgstr "Външен"
 #: pgadmin/frm/frmOptions.cpp:320 pgadmin/schema/pgSchema.cpp:135
 #: pgadmin/schema/pgSchema.cpp:251 pgadmin/frm/frmOptions.cpp:407
 #: pgadmin/schema/gpExtTable.cpp:575 pgadmin/schema/pgSchema.cpp:264
-#: pgadmin/schema/pgSchema.cpp:389 pgadmin/utils/sysSettings.cpp:188
-#: pgadmin/utils/sysSettings.cpp:244
+#: pgadmin/schema/pgSchema.cpp:389 pgadmin/utils/sysSettings.cpp:193
+#: pgadmin/utils/sysSettings.cpp:250
 #, fuzzy
 msgid "External Tables"
 msgstr "Външен"
@@ -11059,7 +11165,7 @@ msgid "FATAL"
 msgstr "FATAL"
 
 #: pgadmin/ui/dlgIndex.xrc:16 pgadmin/ui/dlgIndex.xrc:17
-#: pgadmin/ui/dlgIndexConstraint.xrc:266 pgadmin/ui/dlgIndex.xrc:279
+#: pgadmin/ui/dlgIndexConstraint.xrc:240 pgadmin/ui/dlgIndex.xrc:350
 msgid "FIRST"
 msgstr ""
 
@@ -11122,7 +11228,7 @@ msgstr "Настройки на сървър"
 #: pgadmin/schema/pgSchema.cpp:204 pgadmin/frm/frmOptions.cpp:409
 #: pgadmin/schema/pgSchema.cpp:233 pgadmin/schema/pgSchema.cpp:342
 #: pgadmin/schema/pgTextSearchConfiguration.cpp:277
-#: pgadmin/utils/sysSettings.cpp:173 pgadmin/utils/sysSettings.cpp:238
+#: pgadmin/utils/sysSettings.cpp:178 pgadmin/utils/sysSettings.cpp:244
 #: pgadmin/dlg/dlgSearchObject.cpp:89 pgadmin/dlg/dlgSearchObject.cpp:124
 #, fuzzy
 msgid "FTS Configurations"
@@ -11136,7 +11242,7 @@ msgstr "Настройки на сървър"
 #: pgadmin/schema/pgSchema.cpp:209 pgadmin/frm/frmOptions.cpp:410
 #: pgadmin/schema/pgSchema.cpp:238 pgadmin/schema/pgSchema.cpp:347
 #: pgadmin/schema/pgTextSearchDictionary.cpp:241
-#: pgadmin/utils/sysSettings.cpp:175 pgadmin/utils/sysSettings.cpp:239
+#: pgadmin/utils/sysSettings.cpp:180 pgadmin/utils/sysSettings.cpp:245
 #: pgadmin/dlg/dlgSearchObject.cpp:90 pgadmin/dlg/dlgSearchObject.cpp:125
 msgid "FTS Dictionaries"
 msgstr ""
@@ -11158,8 +11264,8 @@ msgstr ""
 #: pgadmin/frm/frmOptions.cpp:323 pgadmin/schema/pgSchema.cpp:119
 #: pgadmin/schema/pgSchema.cpp:214 pgadmin/frm/frmOptions.cpp:411
 #: pgadmin/schema/pgSchema.cpp:243 pgadmin/schema/pgSchema.cpp:352
-#: pgadmin/schema/pgTextSearchParser.cpp:253 pgadmin/utils/sysSettings.cpp:177
-#: pgadmin/utils/sysSettings.cpp:240 pgadmin/dlg/dlgSearchObject.cpp:91
+#: pgadmin/schema/pgTextSearchParser.cpp:253 pgadmin/utils/sysSettings.cpp:182
+#: pgadmin/utils/sysSettings.cpp:246 pgadmin/dlg/dlgSearchObject.cpp:91
 #: pgadmin/dlg/dlgSearchObject.cpp:126
 msgid "FTS Parsers"
 msgstr ""
@@ -11181,7 +11287,7 @@ msgstr "Шаблон"
 #: pgadmin/schema/pgSchema.cpp:219 pgadmin/frm/frmOptions.cpp:412
 #: pgadmin/schema/pgSchema.cpp:248 pgadmin/schema/pgSchema.cpp:357
 #: pgadmin/schema/pgTextSearchTemplate.cpp:242
-#: pgadmin/utils/sysSettings.cpp:179 pgadmin/utils/sysSettings.cpp:241
+#: pgadmin/utils/sysSettings.cpp:184 pgadmin/utils/sysSettings.cpp:247
 #: pgadmin/dlg/dlgSearchObject.cpp:92 pgadmin/dlg/dlgSearchObject.cpp:127
 #, fuzzy
 msgid "FTS Templates"
@@ -11646,6 +11752,11 @@ msgstr "Премества набор в друг възел"
 msgid "Family"
 msgstr "Фамилия"
 
+#: pgadmin/schema/pgIndex.cpp:692
+#, fuzzy
+msgid "Fast update?"
+msgstr "При обновяване"
+
 #: pgadmin/frm/frmQuery.cpp:208 pgadmin/frm/frmQuery.cpp:252
 #: pgadmin/frm/frmQuery.cpp:319 pgadmin/frm/frmQuery.cpp:352
 #: pgadmin/frm/frmQuery.cpp:1524
@@ -11709,9 +11820,8 @@ msgstr "Коефициент на запълване"
 #: pgadmin/schema/pgIndex.cpp:229 pgadmin/schema/pgTable.cpp:569
 #: pgadmin/schema/pgIndex.cpp:262 pgadmin/schema/pgTable.cpp:833
 #: pgadmin/schema/pgTable.cpp:880 pgadmin/ui/dlgIndex.xrc:5
-#: pgadmin/schema/pgIndex.cpp:411 pgadmin/schema/pgIndexConstraint.cpp:197
-#: pgadmin/schema/pgTable.cpp:1000 pgadmin/schema/pgView.cpp:527
-#: pgadmin/ui/dlgIndexConstraint.xrc:125 pgadmin/ui/dlgIndex.xrc:109
+#: pgadmin/schema/pgIndex.cpp:688 pgadmin/schema/pgTable.cpp:1000
+#: pgadmin/schema/pgView.cpp:527
 msgid "Fill factor"
 msgstr "Коефициент на запълване"
 
@@ -11871,10 +11981,10 @@ msgstr ""
 msgid "Foreign Data Wrapper"
 msgstr "Външен ключ"
 
-#: pgadmin/frm/frmOptions.cpp:396 pgadmin/schema/pgDatabase.cpp:148
-#: pgadmin/schema/pgDatabase.cpp:626
+#: pgadmin/frm/frmOptions.cpp:396 pgadmin/schema/pgDatabase.cpp:151
+#: pgadmin/schema/pgDatabase.cpp:632
 #: pgadmin/schema/pgForeignDataWrapper.cpp:408
-#: pgadmin/utils/sysSettings.cpp:101 pgadmin/utils/sysSettings.cpp:216
+#: pgadmin/utils/sysSettings.cpp:106 pgadmin/utils/sysSettings.cpp:222
 #: pgadmin/dlg/dlgSearchObject.cpp:93 pgadmin/dlg/dlgSearchObject.cpp:130
 #, fuzzy
 msgid "Foreign Data Wrappers"
@@ -11899,8 +12009,8 @@ msgid "Foreign Server"
 msgstr "Външен ключ"
 
 #: pgadmin/frm/frmOptions.cpp:397 pgadmin/schema/pgForeignDataWrapper.cpp:143
-#: pgadmin/schema/pgForeignServer.cpp:351 pgadmin/utils/sysSettings.cpp:106
-#: pgadmin/utils/sysSettings.cpp:217 pgadmin/dlg/dlgSearchObject.cpp:94
+#: pgadmin/schema/pgForeignServer.cpp:351 pgadmin/utils/sysSettings.cpp:111
+#: pgadmin/utils/sysSettings.cpp:223 pgadmin/dlg/dlgSearchObject.cpp:94
 #: pgadmin/dlg/dlgSearchObject.cpp:131
 #, fuzzy
 msgid "Foreign Servers"
@@ -11913,7 +12023,7 @@ msgstr "Външен ключ"
 
 #: pgadmin/frm/frmOptions.cpp:408 pgadmin/schema/pgForeignTable.cpp:415
 #: pgadmin/schema/pgSchema.cpp:253 pgadmin/schema/pgSchema.cpp:340
-#: pgadmin/utils/sysSettings.cpp:116 pgadmin/utils/sysSettings.cpp:219
+#: pgadmin/utils/sysSettings.cpp:121 pgadmin/utils/sysSettings.cpp:225
 #: pgadmin/dlg/dlgSearchObject.cpp:95 pgadmin/dlg/dlgSearchObject.cpp:136
 #, fuzzy
 msgid "Foreign Tables"
@@ -12306,8 +12416,8 @@ msgstr "&Отчет за свойствата"
 #: pgadmin/schema/pgSchema.cpp:91 pgadmin/schema/pgSchema.cpp:224
 #: pgadmin/frm/frmOptions.cpp:413 pgadmin/schema/edbPackageFunction.cpp:544
 #: pgadmin/schema/pgFunction.cpp:1127 pgadmin/schema/pgSchema.cpp:215
-#: pgadmin/schema/pgSchema.cpp:362 pgadmin/utils/sysSettings.cpp:146
-#: pgadmin/utils/sysSettings.cpp:229 pgadmin/dlg/dlgSearchObject.cpp:77
+#: pgadmin/schema/pgSchema.cpp:362 pgadmin/utils/sysSettings.cpp:151
+#: pgadmin/utils/sysSettings.cpp:235 pgadmin/dlg/dlgSearchObject.cpp:77
 #: pgadmin/dlg/dlgSearchObject.cpp:112
 msgid "Functions"
 msgstr "Функции"
@@ -12456,7 +12566,7 @@ msgid "Geometric types"
 msgstr "Връщан тип"
 
 #: pgadmin/schema/pgIndex.cpp:287 pgadmin/schema/pgIndex.cpp:327
-#: pgadmin/schema/pgIndex.cpp:476
+#: pgadmin/schema/pgIndex.cpp:475
 msgid "Get extended statistics via pgstatindex for the selected object."
 msgstr ""
 "Получаване на разширени статистически данни за избрания обект чрез "
@@ -12698,7 +12808,7 @@ msgstr "%s списъчен отчет"
 #: pgadmin/frm/frmOptions.cpp:387 pgadmin/schema/pgServer.cpp:185
 #: pgadmin/schema/pgServer.cpp:197 pgadmin/schema/pgServer.cpp:1125
 #: pgadmin/schema/pgServer.cpp:1137 pgadmin/utils/sysSettings.cpp:84
-#: pgadmin/utils/sysSettings.cpp:209
+#: pgadmin/utils/sysSettings.cpp:214
 #, fuzzy
 msgid "Groups/group Roles"
 msgstr "Групи/групови роли"
@@ -12762,7 +12872,8 @@ msgstr "Сървър-посредник"
 #: src/schema/pgLanguage.cpp:67 standard input:264
 #: src/schema/pgLanguage.cpp:74 input:302 pgadmin/schema/pgLanguage.cpp:68
 #: pgadmin/ui/dlgLanguage.xrc:5 pgadmin/schema/pgLanguage.cpp:70
-#: pgadmin/ui/dlgLanguage.xrc:6 pgadmin/schema/pgForeignDataWrapper.cpp:155
+#: pgadmin/ui/dlgLanguage.xrc:6 pgadmin/schema/pgAccessMethod.cpp:119
+#: pgadmin/schema/pgForeignDataWrapper.cpp:155
 #: pgadmin/ui/dlgForeignDataWrapper.xrc:112
 msgid "Handler"
 msgstr "Манипулатор"
@@ -12890,7 +13001,7 @@ msgstr "Прочетени блокове от динамичната памет
 #: pgadmin/ui/dlgForeignKey.xrc:311 pgadmin/ui/dlgForeignServer.xrc:236
 #: pgadmin/ui/dlgForeignTable.xrc:363 pgadmin/ui/dlgFunction.xrc:578
 #: pgadmin/ui/dlgGroup.xrc:149 pgadmin/ui/dlgHbaConfig.xrc:128
-#: pgadmin/ui/dlgIndexConstraint.xrc:344 pgadmin/ui/dlgIndex.xrc:342
+#: pgadmin/ui/dlgIndexConstraint.xrc:324 pgadmin/ui/dlgIndex.xrc:420
 #: pgadmin/ui/dlgJob.xrc:291 pgadmin/ui/dlgLanguage.xrc:180
 #: pgadmin/ui/dlgMainConfig.xrc:111 pgadmin/ui/dlgManageMacros.xrc:105
 #: pgadmin/ui/dlgOperator.xrc:335 pgadmin/ui/dlgPackage.xrc:145
@@ -13295,7 +13406,7 @@ msgstr "Трасиране на избрания обект"
 #: src/schema/pgIndex.cpp:361 standard input:380 src/schema/pgIndex.cpp:371
 #: input:435 pgadmin/schema/pgIndex.cpp:467 pgadmin/ui/dlgRepTable.xrc:4
 #: pgadmin/schema/pgIndex.cpp:506 pgadmin/schema/pgIndex.cpp:513
-#: pgadmin/schema/pgIndex.cpp:690 pgadmin/ui/dlgIndexConstraint.xrc:95
+#: pgadmin/schema/pgIndex.cpp:741 pgadmin/ui/dlgIndexConstraint.xrc:89
 #: pgadmin/ui/dlgRepTable.xrc:54
 msgid "Index"
 msgstr "Индекс"
@@ -13303,14 +13414,14 @@ msgstr "Индекс"
 #: src/schema/pgTable.cpp:609 src/schema/pgTable.cpp:712
 #: pgadmin/schema/pgTable.cpp:781 pgadmin/schema/pgIndex.cpp:275
 #: pgadmin/schema/pgTable.cpp:1142 pgadmin/schema/pgTable.cpp:1189
-#: pgadmin/schema/pgIndex.cpp:424 pgadmin/schema/pgTable.cpp:1369
+#: pgadmin/schema/pgIndex.cpp:423 pgadmin/schema/pgTable.cpp:1369
 msgid "Index Blocks Hit"
 msgstr "Улучени индексни блокове"
 
 #: src/schema/pgTable.cpp:608 src/schema/pgTable.cpp:711
 #: pgadmin/schema/pgTable.cpp:780 pgadmin/schema/pgIndex.cpp:274
 #: pgadmin/schema/pgTable.cpp:1141 pgadmin/schema/pgTable.cpp:1188
-#: pgadmin/schema/pgIndex.cpp:423 pgadmin/schema/pgTable.cpp:1368
+#: pgadmin/schema/pgIndex.cpp:422 pgadmin/schema/pgTable.cpp:1368
 msgid "Index Blocks Read"
 msgstr "Прочетени индексни блокове"
 
@@ -13325,7 +13436,7 @@ msgid "Index DDL report"
 msgstr "&Отчет за DDL"
 
 #: src/slony/slTable.cpp:95 pgadmin/slony/slTable.cpp:86
-#: pgadmin/schema/pgIndex.cpp:537 pgadmin/schema/pgIndex.cpp:714
+#: pgadmin/schema/pgIndex.cpp:537 pgadmin/schema/pgIndex.cpp:765
 #: pgadmin/slony/slTable.cpp:160
 msgid "Index Name"
 msgstr "Име на индекс"
@@ -13338,28 +13449,28 @@ msgstr "Обектен идентификатор на индекс"
 #: src/schema/pgTable.cpp:601 src/schema/pgTable.cpp:704
 #: pgadmin/schema/pgTable.cpp:773 pgadmin/schema/pgIndex.cpp:271
 #: pgadmin/schema/pgTable.cpp:1125 pgadmin/schema/pgIndex.cpp:538
-#: pgadmin/schema/pgTable.cpp:1172 pgadmin/schema/pgIndex.cpp:420
-#: pgadmin/schema/pgIndex.cpp:715 pgadmin/schema/pgTable.cpp:1352
+#: pgadmin/schema/pgTable.cpp:1172 pgadmin/schema/pgIndex.cpp:419
+#: pgadmin/schema/pgIndex.cpp:766 pgadmin/schema/pgTable.cpp:1352
 msgid "Index Scans"
 msgstr "Индексирано преглеждане"
 
 #: src/schema/pgIndex.cpp:220 src/schema/pgIndex.cpp:230
 #: pgadmin/schema/pgIndex.cpp:240 pgadmin/schema/pgIndex.cpp:254
 #: pgadmin/schema/pgIndex.cpp:278 pgadmin/schema/pgIndex.cpp:284
-#: pgadmin/schema/pgIndex.cpp:427 pgadmin/schema/pgIndex.cpp:433
+#: pgadmin/schema/pgIndex.cpp:426 pgadmin/schema/pgIndex.cpp:432
 msgid "Index Size"
 msgstr "Размер на индекс"
 
 #: src/schema/pgTable.cpp:602 src/schema/pgTable.cpp:705
 #: pgadmin/schema/pgTable.cpp:774 pgadmin/schema/pgIndex.cpp:273
 #: pgadmin/schema/pgTable.cpp:1126 pgadmin/schema/pgIndex.cpp:540
-#: pgadmin/schema/pgTable.cpp:1173 pgadmin/schema/pgIndex.cpp:422
-#: pgadmin/schema/pgIndex.cpp:717 pgadmin/schema/pgTable.cpp:1353
+#: pgadmin/schema/pgTable.cpp:1173 pgadmin/schema/pgIndex.cpp:421
+#: pgadmin/schema/pgIndex.cpp:768 pgadmin/schema/pgTable.cpp:1353
 msgid "Index Tuples Fetched"
 msgstr "Взети индексни n-торки"
 
 #: pgadmin/schema/pgIndex.cpp:272 pgadmin/schema/pgIndex.cpp:539
-#: pgadmin/schema/pgIndex.cpp:421 pgadmin/schema/pgIndex.cpp:716
+#: pgadmin/schema/pgIndex.cpp:420 pgadmin/schema/pgIndex.cpp:767
 #, fuzzy
 msgid "Index Tuples Read"
 msgstr "Взети индексни n-торки"
@@ -13465,7 +13576,7 @@ msgstr "&Статистически отчет"
 
 #: src/schema/pgIndex.cpp:367 src/schema/pgIndex.cpp:377
 #: pgadmin/schema/pgIndex.cpp:474 pgadmin/schema/pgIndex.cpp:513
-#: pgadmin/schema/pgIndex.cpp:520 pgadmin/schema/pgIndex.cpp:697
+#: pgadmin/schema/pgIndex.cpp:520 pgadmin/schema/pgIndex.cpp:748
 #: pgadmin/dlg/dlgMoveTablespace.cpp:52 pgadmin/dlg/dlgMoveTablespace.cpp:106
 #: pgadmin/dlg/dlgSearchObject.cpp:76 pgadmin/dlg/dlgSearchObject.cpp:111
 #: pgadmin/ui/dlgTable.xrc:314
@@ -13478,7 +13589,7 @@ msgstr "Индекси"
 msgid "Indexes Size"
 msgstr "Размер на индекса"
 
-#: pgadmin/schema/pgIndex.cpp:677
+#: pgadmin/schema/pgIndex.cpp:728
 #, fuzzy
 msgid "Indexes list report"
 msgstr "%s списъчен отчет"
@@ -13677,7 +13788,7 @@ msgstr "Вътрешно - не може да задава отвън"
 # standard
 # standard
 #: pgadmin/schema/pgIndex.cpp:256 pgadmin/schema/pgIndex.cpp:286
-#: pgadmin/schema/pgIndex.cpp:435
+#: pgadmin/schema/pgIndex.cpp:434
 msgid "Internal Pages"
 msgstr "Вътрешни страници"
 
@@ -13837,7 +13948,7 @@ msgid "Kind"
 msgstr "Вид"
 
 #: pgadmin/ui/dlgIndex.xrc:17 pgadmin/ui/dlgIndex.xrc:18
-#: pgadmin/ui/dlgIndexConstraint.xrc:275 pgadmin/ui/dlgIndex.xrc:288
+#: pgadmin/ui/dlgIndexConstraint.xrc:251 pgadmin/ui/dlgIndex.xrc:361
 msgid "LAST"
 msgstr ""
 
@@ -13947,9 +14058,9 @@ msgstr "&Отчет за свойствата"
 #: pgadmin/schema/pgLanguage.cpp:154 pgadmin/utils/sysSettings.cpp:86
 #: pgadmin/utils/sysSettings.cpp:175 pgadmin/frm/frmOptions.cpp:304
 #: pgadmin/schema/pgDatabase.cpp:64 pgadmin/schema/pgDatabase.cpp:480
-#: pgadmin/frm/frmOptions.cpp:399 pgadmin/schema/pgDatabase.cpp:150
-#: pgadmin/schema/pgDatabase.cpp:628 pgadmin/schema/pgLanguage.cpp:280
-#: pgadmin/utils/sysSettings.cpp:121 pgadmin/utils/sysSettings.cpp:220
+#: pgadmin/frm/frmOptions.cpp:399 pgadmin/schema/pgDatabase.cpp:153
+#: pgadmin/schema/pgDatabase.cpp:634 pgadmin/schema/pgLanguage.cpp:280
+#: pgadmin/utils/sysSettings.cpp:126 pgadmin/utils/sysSettings.cpp:226
 #: pgadmin/dlg/dlgSearchObject.cpp:84 pgadmin/dlg/dlgSearchObject.cpp:118
 msgid "Languages"
 msgstr "Езици"
@@ -14064,7 +14175,7 @@ msgstr "Последен резултат"
 msgid "Last run"
 msgstr "Последно стартиране"
 
-#: pgadmin/schema/pgDatabase.cpp:322 pgadmin/schema/pgDatabase.cpp:1212
+#: pgadmin/schema/pgDatabase.cpp:325 pgadmin/schema/pgDatabase.cpp:1218
 #, fuzzy
 msgid "Last statistics reset"
 msgstr "%s статистически отчет - %s"
@@ -14086,13 +14197,13 @@ msgstr "Потребителско автовакуумиране"
 # standard
 # standard
 #: pgadmin/schema/pgIndex.cpp:261 pgadmin/schema/pgIndex.cpp:291
-#: pgadmin/schema/pgIndex.cpp:440
+#: pgadmin/schema/pgIndex.cpp:439
 #, fuzzy
 msgid "Leaf Fragmentation"
 msgstr "Реализация"
 
 #: pgadmin/schema/pgIndex.cpp:257 pgadmin/schema/pgIndex.cpp:287
-#: pgadmin/schema/pgIndex.cpp:436
+#: pgadmin/schema/pgIndex.cpp:435
 msgid "Leaf Pages"
 msgstr "Листови страници"
 
@@ -14322,7 +14433,7 @@ msgstr "Заключване на файлове"
 msgid "Lock a replication set against updates."
 msgstr "Залючва репликационен набор за обновления."
 
-#: pgadmin/schema/pgDatabase.cpp:324 pgadmin/schema/pgDatabase.cpp:1214
+#: pgadmin/schema/pgDatabase.cpp:327 pgadmin/schema/pgDatabase.cpp:1220
 msgid "Lock conflicts"
 msgstr ""
 
@@ -14559,7 +14670,7 @@ msgstr "База данни за поддръжка"
 # standard
 #: src/schema/pgDatabase.cpp:316 src/schema/pgDatabase.cpp:319
 #: pgadmin/schema/pgDatabase.cpp:325 pgadmin/schema/pgDatabase.cpp:321
-#: pgadmin/schema/pgDatabase.cpp:373 pgadmin/schema/pgDatabase.cpp:505
+#: pgadmin/schema/pgDatabase.cpp:373 pgadmin/schema/pgDatabase.cpp:508
 msgid "Maintenance database can't be dropped."
 msgstr "Базата от данни за поддръжка не може да се премахне."
 
@@ -15028,7 +15139,7 @@ msgstr "FULL"
 # standard
 # standard
 #: pgadmin/ui/dlgIndex.xrc:15 pgadmin/ui/dlgIndex.xrc:16
-#: pgadmin/ui/dlgIndexConstraint.xrc:253 pgadmin/ui/dlgIndex.xrc:266
+#: pgadmin/ui/dlgIndexConstraint.xrc:226 pgadmin/ui/dlgIndex.xrc:336
 #, fuzzy
 msgid "NULLs"
 msgstr "FULL"
@@ -15039,8 +15150,8 @@ msgstr ""
 
 # standard
 # standard
-#: pgadmin/dlg/dlgIndex.cpp:196 pgadmin/dlg/dlgIndex.cpp:204
-#: pgadmin/dlg/dlgIndexConstraint.cpp:57 pgadmin/dlg/dlgIndexConstraint.cpp:68
+#: pgadmin/dlg/dlgIndex.cpp:196 pgadmin/dlg/dlgIndex.cpp:197
+#: pgadmin/dlg/dlgIndexConstraint.cpp:56 pgadmin/dlg/dlgIndexConstraint.cpp:67
 #, fuzzy
 msgid "NULLs order"
 msgstr "FULL"
@@ -15161,12 +15272,12 @@ msgstr "FULL"
 #: pgadmin/schema/edbPrivateSynonym.cpp:89
 #: pgadmin/schema/edbResourceGroup.cpp:118 pgadmin/schema/edbSynonym.cpp:117
 #: pgadmin/schema/gpExtTable.cpp:452 pgadmin/schema/gpResQueue.cpp:173
-#: pgadmin/schema/pgAggregate.cpp:152 pgadmin/schema/pgCast.cpp:127
-#: pgadmin/schema/pgCatalogObject.cpp:91 pgadmin/schema/pgCheck.cpp:162
-#: pgadmin/schema/pgCollation.cpp:134 pgadmin/schema/pgColumn.cpp:473
-#: pgadmin/schema/pgConversion.cpp:126 pgadmin/schema/pgDatabase.cpp:703
-#: pgadmin/schema/pgDomain.cpp:199 pgadmin/schema/pgEventTrigger.cpp:143
-#: pgadmin/schema/pgExtension.cpp:121
+#: pgadmin/schema/pgAccessMethod.cpp:117 pgadmin/schema/pgAggregate.cpp:152
+#: pgadmin/schema/pgCast.cpp:127 pgadmin/schema/pgCatalogObject.cpp:91
+#: pgadmin/schema/pgCheck.cpp:162 pgadmin/schema/pgCollation.cpp:134
+#: pgadmin/schema/pgColumn.cpp:473 pgadmin/schema/pgConversion.cpp:126
+#: pgadmin/schema/pgDatabase.cpp:709 pgadmin/schema/pgDomain.cpp:199
+#: pgadmin/schema/pgEventTrigger.cpp:143 pgadmin/schema/pgExtension.cpp:121
 #: pgadmin/schema/pgForeignDataWrapper.cpp:151
 #: pgadmin/schema/pgForeignKey.cpp:237 pgadmin/schema/pgForeignServer.cpp:152
 #: pgadmin/schema/pgForeignTable.cpp:181 pgadmin/schema/pgFunction.cpp:384
@@ -15174,7 +15285,7 @@ msgstr "FULL"
 #: pgadmin/schema/pgIndexConstraint.cpp:177 pgadmin/schema/pgLanguage.cpp:129
 #: pgadmin/schema/pgObject.cpp:245 pgadmin/schema/pgOperator.cpp:181
 #: pgadmin/schema/pgOperatorClass.cpp:274
-#: pgadmin/schema/pgOperatorFamily.cpp:121 pgadmin/schema/pgPolicy.cpp:129
+#: pgadmin/schema/pgOperatorFamily.cpp:121 pgadmin/schema/pgPolicy.cpp:121
 #: pgadmin/schema/pgRole.cpp:307 pgadmin/schema/pgRole.cpp:456
 #: pgadmin/schema/pgRule.cpp:175 pgadmin/schema/pgSchema.cpp:423
 #: pgadmin/schema/pgSequence.cpp:180 pgadmin/schema/pgTable.cpp:978
@@ -15198,8 +15309,8 @@ msgstr "FULL"
 #: pgadmin/ui/dlgExtension.xrc:26 pgadmin/ui/dlgExtTable.xrc:26
 #: pgadmin/ui/dlgForeignDataWrapper.xrc:26 pgadmin/ui/dlgForeignKey.xrc:26
 #: pgadmin/ui/dlgForeignServer.xrc:26 pgadmin/ui/dlgForeignTable.xrc:26
-#: pgadmin/ui/dlgFunction.xrc:26 pgadmin/ui/dlgIndexConstraint.xrc:26
-#: pgadmin/ui/dlgIndex.xrc:26 pgadmin/ui/dlgJob.xrc:26
+#: pgadmin/ui/dlgFunction.xrc:26 pgadmin/ui/dlgIndexConstraint.xrc:23
+#: pgadmin/ui/dlgIndex.xrc:23 pgadmin/ui/dlgJob.xrc:26
 #: pgadmin/ui/dlgLanguage.xrc:26 pgadmin/ui/dlgManageMacros.xrc:33
 #: pgadmin/ui/dlgOperator.xrc:26 pgadmin/ui/dlgPackage.xrc:26
 #: pgadmin/ui/dlgPolicy.xrc:23 pgadmin/ui/dlgRule.xrc:26
@@ -15251,6 +15362,13 @@ msgstr "Нов"
 #: pgadmin/frm/frmMain.cpp:366
 msgid "New &Object"
 msgstr "Нов &обект"
+
+# standard
+# standard
+#: pgadmin/schema/pgAccessMethod.cpp:204
+#, fuzzy
+msgid "New Access Method..."
+msgstr "Метод на достъп"
 
 #: src/schema/pgAggregate.cpp:202
 msgid "New Aggregate"
@@ -15326,7 +15444,7 @@ msgstr "Нова база от данни"
 
 #: src/schema/pgDatabase.cpp:648 pgadmin/schema/pgDatabase.cpp:752
 #: pgadmin/schema/pgDatabase.cpp:818 pgadmin/schema/pgDatabase.cpp:1025
-#: pgadmin/schema/pgDatabase.cpp:1294
+#: pgadmin/schema/pgDatabase.cpp:1300
 msgid "New Database..."
 msgstr "Нова база от данни..."
 
@@ -15459,7 +15577,7 @@ msgstr "Нов индекс"
 
 #: src/schema/pgIndex.cpp:371 pgadmin/schema/pgIndex.cpp:467
 #: pgadmin/schema/pgIndex.cpp:506 pgadmin/schema/pgIndex.cpp:513
-#: pgadmin/schema/pgIndex.cpp:690
+#: pgadmin/schema/pgIndex.cpp:741
 msgid "New Index..."
 msgstr "Нов индекс..."
 
@@ -15550,7 +15668,7 @@ msgstr "Нова парола"
 msgid "New Path"
 msgstr "Нов път"
 
-#: pgadmin/schema/pgPolicy.cpp:233
+#: pgadmin/schema/pgPolicy.cpp:225
 #, fuzzy
 msgid "New Policy..."
 msgstr "Нов публичен синоним."
@@ -15993,7 +16111,7 @@ msgstr "Възли"
 #: standard input:877 pgadmin/frm/frmOptions.cpp:537
 #: pgadmin/ui/frmOptions.xrc:35 pgadmin/frm/frmOptions.cpp:567
 #: pgadmin/ui/frmOptions.xrc:40 pgadmin/frm/frmOptions.cpp:744
-#: pgadmin/ui/frmOptions.xrc:38 pgadmin/frm/frmOptions.cpp:914
+#: pgadmin/ui/frmOptions.xrc:38 pgadmin/frm/frmOptions.cpp:915
 #: pgadmin/ui/frmOptions.xrc:382 pgadmin/ui/frmOptions.xrc:829
 msgid "None"
 msgstr "Нищо"
@@ -16213,19 +16331,19 @@ msgstr "Тип на източника"
 #: pgadmin/schema/pgView.cpp:229 pgadmin/schema/edbPackage.cpp:192
 #: pgadmin/schema/edbPackageFunction.cpp:204
 #: pgadmin/schema/edbPackageVariable.cpp:91 pgadmin/schema/gpExtTable.cpp:453
-#: pgadmin/schema/gpResQueue.cpp:174 pgadmin/schema/pgAggregate.cpp:153
-#: pgadmin/schema/pgCast.cpp:128 pgadmin/schema/pgCatalogObject.cpp:92
-#: pgadmin/schema/pgCheck.cpp:163 pgadmin/schema/pgCollation.cpp:135
-#: pgadmin/schema/pgConversion.cpp:127 pgadmin/schema/pgDatabase.cpp:704
-#: pgadmin/schema/pgDomain.cpp:200 pgadmin/schema/pgEventTrigger.cpp:144
-#: pgadmin/schema/pgExtension.cpp:122
+#: pgadmin/schema/gpResQueue.cpp:174 pgadmin/schema/pgAccessMethod.cpp:118
+#: pgadmin/schema/pgAggregate.cpp:153 pgadmin/schema/pgCast.cpp:128
+#: pgadmin/schema/pgCatalogObject.cpp:92 pgadmin/schema/pgCheck.cpp:163
+#: pgadmin/schema/pgCollation.cpp:135 pgadmin/schema/pgConversion.cpp:127
+#: pgadmin/schema/pgDatabase.cpp:710 pgadmin/schema/pgDomain.cpp:200
+#: pgadmin/schema/pgEventTrigger.cpp:144 pgadmin/schema/pgExtension.cpp:122
 #: pgadmin/schema/pgForeignDataWrapper.cpp:152
 #: pgadmin/schema/pgForeignKey.cpp:238 pgadmin/schema/pgForeignServer.cpp:153
 #: pgadmin/schema/pgForeignTable.cpp:182 pgadmin/schema/pgFunction.cpp:385
 #: pgadmin/schema/pgIndex.cpp:394 pgadmin/schema/pgIndexConstraint.cpp:178
 #: pgadmin/schema/pgLanguage.cpp:130 pgadmin/schema/pgOperator.cpp:182
 #: pgadmin/schema/pgOperatorClass.cpp:275
-#: pgadmin/schema/pgOperatorFamily.cpp:122 pgadmin/schema/pgPolicy.cpp:131
+#: pgadmin/schema/pgOperatorFamily.cpp:122 pgadmin/schema/pgPolicy.cpp:123
 #: pgadmin/schema/pgRole.cpp:457 pgadmin/schema/pgRule.cpp:176
 #: pgadmin/schema/pgSchema.cpp:424 pgadmin/schema/pgSequence.cpp:181
 #: pgadmin/schema/pgTable.cpp:985 pgadmin/schema/pgTablespace.cpp:193
@@ -16359,7 +16477,7 @@ msgstr "Тип отляво"
 
 #: src/schema/pgDatabase.cpp:420 src/schema/pgDatabase.cpp:436
 #: pgadmin/schema/pgDatabase.cpp:449 pgadmin/schema/pgDatabase.cpp:468
-#: pgadmin/schema/pgDatabase.cpp:575 pgadmin/schema/pgDatabase.cpp:764
+#: pgadmin/schema/pgDatabase.cpp:575 pgadmin/schema/pgDatabase.cpp:770
 msgid "Old style FKs"
 msgstr "Старостилни външни ключове"
 
@@ -16456,8 +16574,8 @@ msgid "Only schema"
 msgstr "Само схемата"
 
 # standard
-#: pgadmin/dlg/dlgIndex.cpp:197 pgadmin/dlg/dlgIndex.cpp:205
-#: pgadmin/dlg/dlgIndexConstraint.cpp:58 pgadmin/dlg/dlgIndexConstraint.cpp:69
+#: pgadmin/dlg/dlgIndex.cpp:197 pgadmin/dlg/dlgIndex.cpp:198
+#: pgadmin/dlg/dlgIndexConstraint.cpp:57 pgadmin/dlg/dlgIndexConstraint.cpp:68
 #, fuzzy
 msgid "Op. class"
 msgstr "Вид задача"
@@ -16621,8 +16739,8 @@ msgstr "Стартиране на инструмента за заявки съ�
 # standard
 #: src/schema/pgOperator.cpp:233 pgadmin/schema/pgOperator.cpp:277
 #: pgadmin/gqb/gqbGridRestTable.cpp:92 pgadmin/ui/frmOptions.xrc:70
-#: pgadmin/schema/pgOperator.cpp:368 pgadmin/dlg/dlgIndexConstraint.cpp:59
-#: pgadmin/dlg/dlgIndexConstraint.cpp:70 pgadmin/ui/dlgIndexConstraint.xrc:289
+#: pgadmin/schema/pgOperator.cpp:368 pgadmin/dlg/dlgIndexConstraint.cpp:58
+#: pgadmin/dlg/dlgIndexConstraint.cpp:69 pgadmin/ui/dlgIndexConstraint.xrc:265
 #: pgadmin/ui/frmOptions.xrc:744
 msgid "Operator"
 msgstr "Оператор"
@@ -16639,7 +16757,7 @@ msgstr "Операторен клас"
 #: pgadmin/utils/sysSettings.cpp:187 pgadmin/frm/frmOptions.cpp:316
 #: pgadmin/schema/pgSchema.cpp:229 pgadmin/frm/frmOptions.cpp:415
 #: pgadmin/schema/pgOperatorClass.cpp:426 pgadmin/schema/pgSchema.cpp:367
-#: pgadmin/utils/sysSettings.cpp:159 pgadmin/utils/sysSettings.cpp:234
+#: pgadmin/utils/sysSettings.cpp:164 pgadmin/utils/sysSettings.cpp:240
 #: pgadmin/dlg/dlgSearchObject.cpp:98 pgadmin/dlg/dlgSearchObject.cpp:139
 msgid "Operator Classes"
 msgstr "Операторни класове"
@@ -16661,7 +16779,7 @@ msgstr "&Отчет за DDL"
 #: pgadmin/utils/sysSettings.cpp:188 pgadmin/frm/frmOptions.cpp:317
 #: pgadmin/schema/pgSchema.cpp:232 pgadmin/frm/frmOptions.cpp:416
 #: pgadmin/schema/pgOperatorFamily.cpp:237 pgadmin/schema/pgSchema.cpp:370
-#: pgadmin/utils/sysSettings.cpp:164 pgadmin/utils/sysSettings.cpp:235
+#: pgadmin/utils/sysSettings.cpp:169 pgadmin/utils/sysSettings.cpp:241
 #: pgadmin/dlg/dlgSearchObject.cpp:99 pgadmin/dlg/dlgSearchObject.cpp:140
 msgid "Operator Families"
 msgstr "Операторни фамилии"
@@ -16673,8 +16791,8 @@ msgstr "Операторни фамилии"
 msgid "Operator Family"
 msgstr "Операторна фамилия"
 
-#: pgadmin/ui/dlgIndex.xrc:14 pgadmin/ui/dlgIndexConstraint.xrc:218
-#: pgadmin/ui/dlgIndex.xrc:231
+#: pgadmin/ui/dlgIndex.xrc:14 pgadmin/ui/dlgIndexConstraint.xrc:193
+#: pgadmin/ui/dlgIndex.xrc:303
 #, fuzzy
 msgid "Operator class"
 msgstr "Операторни класове"
@@ -16835,7 +16953,7 @@ msgstr "&Отчет за свойствата"
 #: pgadmin/frm/frmOptions.cpp:315 pgadmin/schema/pgSchema.cpp:103
 #: pgadmin/schema/pgSchema.cpp:227 pgadmin/frm/frmOptions.cpp:414
 #: pgadmin/schema/pgOperator.cpp:379 pgadmin/schema/pgSchema.cpp:365
-#: pgadmin/utils/sysSettings.cpp:154 pgadmin/utils/sysSettings.cpp:233
+#: pgadmin/utils/sysSettings.cpp:159 pgadmin/utils/sysSettings.cpp:239
 #: pgadmin/dlg/dlgSearchObject.cpp:97 pgadmin/dlg/dlgSearchObject.cpp:138
 msgid "Operators"
 msgstr "Оператори"
@@ -16887,7 +17005,7 @@ msgstr "Опция"
 #: pgadmin/schema/pgTextSearchDictionary.cpp:74
 #: pgadmin/ui/dlgFindReplace.xrc:22 pgadmin/ui/dlgFunction.xrc:10
 #: pgadmin/ui/dlgSequence.xrc:9 pgadmin/ui/dlgTextSearchDictionary.xrc:8
-#: pgadmin/frm/frmEditGrid.cpp:131 pgadmin/frm/frmOptions.cpp:434
+#: pgadmin/frm/frmEditGrid.cpp:131 pgadmin/frm/frmOptions.cpp:435
 #: pgadmin/schema/pgForeignDataWrapper.cpp:157
 #: pgadmin/schema/pgForeignServer.cpp:158
 #: pgadmin/schema/pgForeignTable.cpp:186
@@ -16912,8 +17030,8 @@ msgid "Or"
 msgstr "Или"
 
 #: pgadmin/dlg/dlgIndex.cpp:169 pgadmin/gqb/gqbGridOrderTable.cpp:109
-#: pgadmin/dlg/dlgIndex.cpp:195 pgadmin/dlg/dlgIndex.cpp:203
-#: pgadmin/dlg/dlgIndexConstraint.cpp:56 pgadmin/dlg/dlgIndexConstraint.cpp:67
+#: pgadmin/dlg/dlgIndex.cpp:195 pgadmin/dlg/dlgIndex.cpp:196
+#: pgadmin/dlg/dlgIndexConstraint.cpp:55 pgadmin/dlg/dlgIndexConstraint.cpp:66
 #, fuzzy
 msgid "Order"
 msgstr "Доставчик"
@@ -17095,7 +17213,7 @@ msgstr "Презапис на файл?"
 #: pgadmin/schema/edbSynonym.cpp:118 pgadmin/schema/gpExtTable.cpp:454
 #: pgadmin/schema/pgAggregate.cpp:154 pgadmin/schema/pgCatalogObject.cpp:93
 #: pgadmin/schema/pgCollation.cpp:136 pgadmin/schema/pgCollection.cpp:73
-#: pgadmin/schema/pgConversion.cpp:128 pgadmin/schema/pgDatabase.cpp:705
+#: pgadmin/schema/pgConversion.cpp:128 pgadmin/schema/pgDatabase.cpp:711
 #: pgadmin/schema/pgDomain.cpp:201 pgadmin/schema/pgExtension.cpp:123
 #: pgadmin/schema/pgForeignDataWrapper.cpp:153
 #: pgadmin/schema/pgForeignServer.cpp:154
@@ -17263,7 +17381,7 @@ msgstr "%s списъчен отчет"
 #: pgadmin/schema/pgSchema.cpp:93 pgadmin/schema/pgSchema.cpp:238
 #: pgadmin/frm/frmOptions.cpp:417 pgadmin/schema/edbPackage.cpp:355
 #: pgadmin/schema/pgSchema.cpp:217 pgadmin/schema/pgSchema.cpp:376
-#: pgadmin/utils/sysSettings.cpp:150 pgadmin/utils/sysSettings.cpp:231
+#: pgadmin/utils/sysSettings.cpp:155 pgadmin/utils/sysSettings.cpp:237
 msgid "Packages"
 msgstr "Пакети"
 
@@ -17272,6 +17390,10 @@ msgstr "Пакети"
 msgid "Packages list report"
 msgstr "%s списъчен отчет"
 
+#: pgadmin/schema/pgIndex.cpp:696
+msgid "Pages per range"
+msgstr ""
+
 #: pgadmin/debugger/dlgDirectDbg.cpp:1034
 #, c-format
 msgid "Param#%d"
@@ -17279,7 +17401,7 @@ msgstr ""
 
 # standard
 # standard
-#: standard input:171 input:208
+#: standard input:171 input:208 pgadmin/dlg/dlgIndex.cpp:200
 msgid "Parameter"
 msgstr "Параметър"
 
@@ -17289,6 +17411,20 @@ msgid ""
 "Parameter Exception - Some parameters are invalid:\n"
 "%s"
 msgstr ""
+
+# standard
+# standard
+#: pgadmin/ui/dlgIndex.xrc:207
+#, fuzzy
+msgid "Parameter name"
+msgstr "Параметър"
+
+# standard
+# standard
+#: pgadmin/ui/dlgIndex.xrc:222
+#, fuzzy
+msgid "Parameter value"
+msgstr "Параметър"
 
 # standard
 # standard
@@ -17409,7 +17545,7 @@ msgstr "Поставяне на избрания текст от системн�
 #: src/schema/pgDatabase.cpp:418 input:82 pgadmin/schema/pgDatabase.cpp:428
 #: pgadmin/slony/slPath.cpp:141 pgadmin/ui/dlgDatabase.xrc:7
 #: pgadmin/schema/pgDatabase.cpp:433 pgadmin/schema/pgDatabase.cpp:518
-#: pgadmin/schema/pgDatabase.cpp:708 pgadmin/slony/slPath.cpp:223
+#: pgadmin/schema/pgDatabase.cpp:714 pgadmin/slony/slPath.cpp:223
 #: pgadmin/dlg/dlgSearchObject.cpp:63 pgadmin/ui/dlgDatabase.xrc:123
 msgid "Path"
 msgstr "Път"
@@ -17437,6 +17573,10 @@ msgstr "Надвишена е дължината на ред"
 
 #: pgadmin/schema/pgServer.cpp:2182
 msgid "Pausing replay of WAL"
+msgstr ""
+
+#: pgadmin/schema/pgIndex.cpp:694
+msgid "Pending list limit"
 msgstr ""
 
 #: pgadmin/frm/frmBackup.cpp:279
@@ -17768,7 +17908,7 @@ msgstr "Моля, въведете код за изпълнение."
 #: pgadmin/dlg/dlgIndex.cpp:198 pgadmin/dlg/dlgTable.cpp:1630
 #: pgadmin/dlg/dlgIndex.cpp:173 pgadmin/dlg/dlgIndex.cpp:225
 #: pgadmin/dlg/dlgTable.cpp:1665 pgadmin/dlg/dlgForeignKey.cpp:210
-#: pgadmin/dlg/dlgIndex.cpp:181 pgadmin/dlg/dlgIndex.cpp:237
+#: pgadmin/dlg/dlgIndex.cpp:171 pgadmin/dlg/dlgIndex.cpp:228
 #: pgadmin/dlg/dlgTable.cpp:1721
 msgid "Please specify columns."
 msgstr "Моля, определете колоните."
@@ -17896,7 +18036,7 @@ msgstr "Моля, въведете местоположение."
 #: pgadmin/dlg/dlgExtTable.cpp:116 pgadmin/dlg/dlgExtension.cpp:170
 #: pgadmin/dlg/dlgForeignDataWrapper.cpp:192
 #: pgadmin/dlg/dlgForeignServer.cpp:129 pgadmin/dlg/dlgForeignTable.cpp:249
-#: pgadmin/dlg/dlgFunction.cpp:584 pgadmin/dlg/dlgIndex.cpp:236
+#: pgadmin/dlg/dlgFunction.cpp:584 pgadmin/dlg/dlgIndex.cpp:227
 #: pgadmin/dlg/dlgLanguage.cpp:209 pgadmin/dlg/dlgOperator.cpp:209
 #: pgadmin/dlg/dlgPackage.cpp:122 pgadmin/dlg/dlgPolicy.cpp:84
 #: pgadmin/dlg/dlgResourceGroup.cpp:101 pgadmin/dlg/dlgRole.cpp:425
@@ -18030,18 +18170,18 @@ msgstr "Моля, задайте валидна цислова точност (0
 msgid "Plugins"
 msgstr ""
 
-#: pgadmin/frm/frmOptions.cpp:391 pgadmin/schema/pgPolicy.cpp:245
-#: pgadmin/utils/sysSettings.cpp:94 pgadmin/utils/sysSettings.cpp:213
+#: pgadmin/frm/frmOptions.cpp:421 pgadmin/schema/pgPolicy.cpp:237
+#: pgadmin/utils/sysSettings.cpp:94 pgadmin/utils/sysSettings.cpp:218
 msgid "Policies"
 msgstr ""
 
-#: pgadmin/schema/pgPolicy.cpp:233
+#: pgadmin/schema/pgPolicy.cpp:225
 msgid "Policy"
 msgstr ""
 
 # standard
 # standard
-#: pgadmin/schema/pgPolicy.cpp:52
+#: pgadmin/schema/pgPolicy.cpp:51
 #, fuzzy
 msgid "Policy properties"
 msgstr " свойства"
@@ -18499,8 +18639,8 @@ msgstr "&Отчет за свойствата"
 #: pgadmin/schema/pgSchema.cpp:98 pgadmin/schema/pgSchema.cpp:241
 #: pgadmin/frm/frmOptions.cpp:418 pgadmin/schema/edbPackageFunction.cpp:560
 #: pgadmin/schema/pgFunction.cpp:1150 pgadmin/schema/pgSchema.cpp:222
-#: pgadmin/schema/pgSchema.cpp:379 pgadmin/utils/sysSettings.cpp:152
-#: pgadmin/utils/sysSettings.cpp:232
+#: pgadmin/schema/pgSchema.cpp:379 pgadmin/utils/sysSettings.cpp:157
+#: pgadmin/utils/sysSettings.cpp:238
 msgid "Procedures"
 msgstr "Процедури"
 
@@ -18577,8 +18717,8 @@ msgstr "Обработка на данни от XML чрез указаната 
 #: pgadmin/ui/dlgExtTable.xrc:16 pgadmin/ui/dlgForeignDataWrapper.xrc:16
 #: pgadmin/ui/dlgForeignKey.xrc:16 pgadmin/ui/dlgForeignServer.xrc:16
 #: pgadmin/ui/dlgForeignTable.xrc:16 pgadmin/ui/dlgFunction.xrc:16
-#: pgadmin/ui/dlgGroup.xrc:16 pgadmin/ui/dlgIndexConstraint.xrc:16
-#: pgadmin/ui/dlgIndex.xrc:16 pgadmin/ui/dlgJob.xrc:16
+#: pgadmin/ui/dlgGroup.xrc:16 pgadmin/ui/dlgIndexConstraint.xrc:63
+#: pgadmin/ui/dlgIndex.xrc:63 pgadmin/ui/dlgJob.xrc:16
 #: pgadmin/ui/dlgLanguage.xrc:16 pgadmin/ui/dlgOperator.xrc:16
 #: pgadmin/ui/dlgPackage.xrc:16 pgadmin/ui/dlgPolicy.xrc:65
 #: pgadmin/ui/dlgRepClusterUpgrade.xrc:16 pgadmin/ui/dlgRepCluster.xrc:16
@@ -19392,6 +19532,16 @@ msgstr "Опресняване на %s"
 msgid "Refreshing Slony tables"
 msgstr "Опресняване на %s"
 
+#: pgadmin/schema/pgAccessMethod.cpp:37
+#, fuzzy
+msgid "Refreshing access method"
+msgstr "Опресняване на %s"
+
+#: pgadmin/schema/pgAccessMethod.cpp:187
+#, fuzzy
+msgid "Refreshing access methods"
+msgstr "Опресняване на %s"
+
 # standard
 # standard
 #: pgadmin/schema/pgAggregate.cpp:37
@@ -19504,7 +19654,7 @@ msgstr "Обновяване на данните. Моля, изчакайте!"
 msgid "Refreshing database"
 msgstr "Опресняване на %s"
 
-#: pgadmin/schema/pgDatabase.cpp:1144
+#: pgadmin/schema/pgDatabase.cpp:1150
 #, fuzzy
 msgid "Refreshing databases"
 msgstr "Обновяване на данните. Моля, изчакайте!"
@@ -19637,7 +19787,7 @@ msgstr "Опресняване на %s"
 msgid "Refreshing index constraint"
 msgstr "Обновяване на данните. Моля, изчакайте!"
 
-#: pgadmin/schema/pgIndex.cpp:674
+#: pgadmin/schema/pgIndex.cpp:725
 #, fuzzy
 msgid "Refreshing indexes"
 msgstr "Опресняване на %s"
@@ -19768,12 +19918,12 @@ msgstr "Опресняване на %s"
 msgid "Refreshing pgAgent steps"
 msgstr "Опресняване на %s"
 
-#: pgadmin/schema/pgPolicy.cpp:217
+#: pgadmin/schema/pgPolicy.cpp:209
 #, fuzzy
 msgid "Refreshing policies"
 msgstr "Опресняване на %s"
 
-#: pgadmin/schema/pgPolicy.cpp:45
+#: pgadmin/schema/pgPolicy.cpp:44
 #, fuzzy
 msgid "Refreshing policy"
 msgstr "Опресняване на %s"
@@ -20089,13 +20239,13 @@ msgstr "Премахване"
 #: pgadmin/ui/dlgForeignDataWrapper.xrc:204 pgadmin/ui/dlgForeignKey.xrc:246
 #: pgadmin/ui/dlgForeignServer.xrc:200 pgadmin/ui/dlgForeignTable.xrc:243
 #: pgadmin/ui/dlgForeignTable.xrc:333 pgadmin/ui/dlgFunction.xrc:386
-#: pgadmin/ui/dlgFunction.xrc:504 pgadmin/ui/dlgIndexConstraint.xrc:323
-#: pgadmin/ui/dlgIndex.xrc:321 pgadmin/ui/dlgJob.xrc:216
-#: pgadmin/ui/dlgJob.xrc:269 pgadmin/ui/dlgPolicy.xrc:105
-#: pgadmin/ui/dlgRole.xrc:353 pgadmin/ui/dlgSchedule.xrc:404
-#: pgadmin/ui/dlgTablespace.xrc:146 pgadmin/ui/dlgTable.xrc:250
-#: pgadmin/ui/dlgTable.xrc:383 pgadmin/ui/dlgTable.xrc:432
-#: pgadmin/ui/dlgTextSearchConfiguration.xrc:236
+#: pgadmin/ui/dlgFunction.xrc:504 pgadmin/ui/dlgIndexConstraint.xrc:301
+#: pgadmin/ui/dlgIndex.xrc:189 pgadmin/ui/dlgIndex.xrc:397
+#: pgadmin/ui/dlgJob.xrc:216 pgadmin/ui/dlgJob.xrc:269
+#: pgadmin/ui/dlgPolicy.xrc:105 pgadmin/ui/dlgRole.xrc:353
+#: pgadmin/ui/dlgSchedule.xrc:404 pgadmin/ui/dlgTablespace.xrc:146
+#: pgadmin/ui/dlgTable.xrc:250 pgadmin/ui/dlgTable.xrc:383
+#: pgadmin/ui/dlgTable.xrc:432 pgadmin/ui/dlgTextSearchConfiguration.xrc:236
 #: pgadmin/ui/dlgTextSearchDictionary.xrc:203 pgadmin/ui/dlgTrigger.xrc:320
 #: pgadmin/ui/dlgType.xrc:252 pgadmin/ui/dlgType.xrc:345
 #: pgadmin/ui/dlgUserMapping.xrc:133 pgadmin/ui/dlgUser.xrc:260
@@ -20359,7 +20509,7 @@ msgstr "Възстановяване на обкръжението?"
 
 #: pgadmin/frm/frmOptions.cpp:390 pgadmin/schema/edbResourceGroup.cpp:179
 #: pgadmin/schema/pgServer.cpp:205 pgadmin/schema/pgServer.cpp:1146
-#: pgadmin/utils/sysSettings.cpp:90 pgadmin/utils/sysSettings.cpp:212
+#: pgadmin/utils/sysSettings.cpp:90 pgadmin/utils/sysSettings.cpp:217
 #, fuzzy
 msgid "Resource Groups"
 msgstr "Сървъри"
@@ -20378,7 +20528,7 @@ msgstr "Възстановяване на обкръжението?"
 #: pgadmin/schema/pgServer.cpp:892 pgadmin/frm/frmOptions.cpp:389
 #: pgadmin/schema/gpResQueue.cpp:295 pgadmin/schema/pgServer.cpp:191
 #: pgadmin/schema/pgServer.cpp:1131 pgadmin/utils/sysSettings.cpp:88
-#: pgadmin/utils/sysSettings.cpp:211
+#: pgadmin/utils/sysSettings.cpp:216
 msgid "Resource Queues"
 msgstr ""
 
@@ -20821,6 +20971,16 @@ msgstr "Извличане на подробности за %s"
 msgid "Retrieving details on Slony tables"
 msgstr "Извличане на подробности за %s"
 
+#: pgadmin/schema/pgAccessMethod.cpp:33
+#, fuzzy
+msgid "Retrieving details on access method"
+msgstr "Извличане на подробности за %s"
+
+#: pgadmin/schema/pgAccessMethod.cpp:184
+#, fuzzy
+msgid "Retrieving details on access methods"
+msgstr "Извличане на подробности за %s"
+
 #: pgadmin/schema/pgAggregate.cpp:33
 #, fuzzy
 msgid "Retrieving details on aggregate"
@@ -20911,7 +21071,7 @@ msgstr "Извличане на подробности за %s"
 msgid "Retrieving details on database"
 msgstr " Извличане на използването на табличното пространство"
 
-#: pgadmin/schema/pgDatabase.cpp:1141
+#: pgadmin/schema/pgDatabase.cpp:1147
 #, fuzzy
 msgid "Retrieving details on databases"
 msgstr " Извличане на използването на табличното пространство"
@@ -21042,7 +21202,7 @@ msgstr "Извличане на подробности за %s"
 msgid "Retrieving details on index constraint"
 msgstr "Извличане на подробности за %s"
 
-#: pgadmin/schema/pgIndex.cpp:671
+#: pgadmin/schema/pgIndex.cpp:722
 #, fuzzy
 msgid "Retrieving details on indexes"
 msgstr "Извличане на подробности за %s"
@@ -21157,12 +21317,12 @@ msgstr "Извличане на подробности за %s"
 msgid "Retrieving details on pgAgent steps"
 msgstr "Извличане на подробности за %s"
 
-#: pgadmin/schema/pgPolicy.cpp:214
+#: pgadmin/schema/pgPolicy.cpp:206
 #, fuzzy
 msgid "Retrieving details on policies"
 msgstr "Извличане на подробности за %s"
 
-#: pgadmin/schema/pgPolicy.cpp:41
+#: pgadmin/schema/pgPolicy.cpp:40
 #, fuzzy
 msgid "Retrieving details on policy"
 msgstr "Извличане на подробности за %s"
@@ -21462,7 +21622,7 @@ msgstr "Потребител/Група"
 msgid "Rolename"
 msgstr "Име на роля"
 
-#: pgadmin/schema/pgPolicy.cpp:132 pgadmin/ui/dlgPolicy.xrc:118
+#: pgadmin/schema/pgPolicy.cpp:124 pgadmin/ui/dlgPolicy.xrc:118
 #, fuzzy
 msgid "Roles"
 msgstr "Роля"
@@ -21511,7 +21671,7 @@ msgid "Rollback transaction?"
 msgstr "Отмяна на транзакцията?"
 
 #: pgadmin/schema/pgIndex.cpp:255 pgadmin/schema/pgIndex.cpp:285
-#: pgadmin/schema/pgIndex.cpp:434
+#: pgadmin/schema/pgIndex.cpp:433
 #, fuzzy
 msgid "Root Block No"
 msgstr "(0 за неограничен брой)"
@@ -22259,7 +22419,7 @@ msgstr "&Отчет за свойствата"
 #: src/schema/pgDatabase.cpp:438 input:83 pgadmin/schema/pgDatabase.cpp:451
 #: pgadmin/ui/dlgDatabase.xrc:8 pgadmin/schema/pgDatabase.cpp:470
 #: pgadmin/ui/dlgDatabase.xrc:9 pgadmin/schema/pgDatabase.cpp:577
-#: pgadmin/schema/pgDatabase.cpp:766 pgadmin/ui/dlgDatabase.xrc:196
+#: pgadmin/schema/pgDatabase.cpp:772 pgadmin/ui/dlgDatabase.xrc:196
 msgid "Schema restriction"
 msgstr "Ограничение на схемата"
 
@@ -22272,9 +22432,9 @@ msgstr "Ограничение на схемата"
 #: pgadmin/utils/sysSettings.cpp:177 pgadmin/gqb/gqbBrowser.cpp:76
 #: pgadmin/frm/frmOptions.cpp:306 pgadmin/schema/pgDatabase.cpp:69
 #: pgadmin/schema/pgDatabase.cpp:485 pgadmin/schema/pgSchema.cpp:552
-#: pgadmin/frm/frmOptions.cpp:400 pgadmin/schema/pgDatabase.cpp:155
-#: pgadmin/schema/pgDatabase.cpp:633 pgadmin/schema/pgSchema.cpp:812
-#: pgadmin/utils/sysSettings.cpp:130 pgadmin/utils/sysSettings.cpp:224
+#: pgadmin/frm/frmOptions.cpp:400 pgadmin/schema/pgDatabase.cpp:158
+#: pgadmin/schema/pgDatabase.cpp:639 pgadmin/schema/pgSchema.cpp:812
+#: pgadmin/utils/sysSettings.cpp:135 pgadmin/utils/sysSettings.cpp:230
 #: pgadmin/dlg/dlgSearchObject.cpp:70 pgadmin/dlg/dlgSearchObject.cpp:105
 msgid "Schemas"
 msgstr "Схеми"
@@ -22750,7 +22910,7 @@ msgstr "&Статистически отчет"
 #: pgadmin/schema/pgSchema.cpp:105 pgadmin/schema/pgSchema.cpp:247
 #: pgadmin/frm/frmOptions.cpp:419 pgadmin/schema/pgSchema.cpp:229
 #: pgadmin/schema/pgSchema.cpp:385 pgadmin/schema/pgSequence.cpp:348
-#: pgadmin/utils/sysSettings.cpp:169 pgadmin/utils/sysSettings.cpp:236
+#: pgadmin/utils/sysSettings.cpp:174 pgadmin/utils/sysSettings.cpp:242
 #: pgadmin/slony/slSequence.cpp:230 pgadmin/dlg/dlgSearchObject.cpp:81
 #: pgadmin/dlg/dlgSearchObject.cpp:116
 msgid "Sequences"
@@ -23061,7 +23221,7 @@ msgstr "Показване на свойствата при двойно шра�
 
 #: src/frm/frmOptions.cpp:326 src/frm/frmOptions.cpp:349
 #: pgadmin/frm/frmOptions.cpp:523 pgadmin/frm/frmOptions.cpp:553
-#: pgadmin/frm/frmOptions.cpp:730 pgadmin/frm/frmOptions.cpp:900
+#: pgadmin/frm/frmOptions.cpp:730 pgadmin/frm/frmOptions.cpp:901
 msgid "Show options dialog."
 msgstr "Показване на диалоговия прозорец с настройки."
 
@@ -23215,13 +23375,13 @@ msgstr "Завършване на транзакцията?"
 #: pgadmin/schema/pgDatabase.cpp:748 pgadmin/schema/pgTable.cpp:1062
 #: pgadmin/schema/pgDatabase.cpp:211 pgadmin/schema/pgDatabase.cpp:946
 #: pgadmin/schema/pgIndex.cpp:542 pgadmin/schema/pgTable.cpp:1109
-#: pgadmin/schema/pgTablespace.cpp:248 pgadmin/schema/pgDatabase.cpp:337
-#: pgadmin/schema/pgDatabase.cpp:1197 pgadmin/schema/pgIndex.cpp:719
+#: pgadmin/schema/pgTablespace.cpp:248 pgadmin/schema/pgDatabase.cpp:340
+#: pgadmin/schema/pgDatabase.cpp:1203 pgadmin/schema/pgIndex.cpp:770
 #: pgadmin/schema/pgTable.cpp:1280 pgadmin/schema/pgTablespace.cpp:383
 msgid "Size"
 msgstr "Размер"
 
-#: pgadmin/schema/pgDatabase.cpp:331
+#: pgadmin/schema/pgDatabase.cpp:334
 #, fuzzy
 msgid "Size of temporary files"
 msgstr "Грешка при премахване на временен файл: %s"
@@ -23237,7 +23397,7 @@ msgid "Slon process running on node; stop it before upgrading."
 msgstr "Процес тип Slon работи на възела: спрете го преди надграждането."
 
 #: pgadmin/schema/pgDatabase.cpp:69 pgadmin/schema/pgDatabase.cpp:71
-#: pgadmin/schema/pgDatabase.cpp:157
+#: pgadmin/schema/pgDatabase.cpp:160
 msgid "Slony"
 msgstr "Slony"
 
@@ -23642,8 +23802,8 @@ msgstr "Kлъстър тип \"Slony-I\""
 #: pgadmin/frm/frmOptions.cpp:182 pgadmin/schema/pgDatabase.cpp:407
 #: pgadmin/utils/sysSettings.cpp:95 pgadmin/utils/sysSettings.cpp:178
 #: pgadmin/frm/frmOptions.cpp:307 pgadmin/schema/pgDatabase.cpp:487
-#: pgadmin/frm/frmOptions.cpp:402 pgadmin/schema/pgDatabase.cpp:635
-#: pgadmin/utils/sysSettings.cpp:132 pgadmin/utils/sysSettings.cpp:225
+#: pgadmin/frm/frmOptions.cpp:402 pgadmin/schema/pgDatabase.cpp:641
+#: pgadmin/utils/sysSettings.cpp:137 pgadmin/utils/sysSettings.cpp:231
 #, fuzzy
 msgid "Slony-I Clusters"
 msgstr "Kлъстър тип \"Slony-I\""
@@ -23674,7 +23834,7 @@ msgstr "Път на Slony-I"
 msgid "Slow Process Colour"
 msgstr "Нова колона"
 
-#: pgadmin/schema/pgDatabase.cpp:325 pgadmin/schema/pgDatabase.cpp:1215
+#: pgadmin/schema/pgDatabase.cpp:328 pgadmin/schema/pgDatabase.cpp:1221
 msgid "Snapshot conflicts"
 msgstr ""
 
@@ -23942,7 +24102,7 @@ msgstr "Елемент"
 #: pgadmin/schema/pgTablespace.cpp:135 pgadmin/slony/slNode.cpp:120
 #: pgadmin/schema/pgObject.cpp:1051 pgadmin/slony/slNode.cpp:121
 #: pgadmin/schema/pgDatabase.cpp:217 pgadmin/schema/pgObject.cpp:1058
-#: pgadmin/schema/pgTablespace.cpp:146 pgadmin/schema/pgDatabase.cpp:346
+#: pgadmin/schema/pgTablespace.cpp:146 pgadmin/schema/pgDatabase.cpp:349
 #: pgadmin/schema/pgObject.cpp:1364 pgadmin/schema/pgSequence.cpp:216
 #: pgadmin/schema/pgTablespace.cpp:229 pgadmin/slony/slNode.cpp:182
 msgid "Statistic"
@@ -24091,6 +24251,11 @@ msgstr "Спиране на услугата"
 #: pgadmin/ui/dlgType.xrc:642
 msgid "Storage"
 msgstr "Хранилище"
+
+#: pgadmin/ui/dlgIndex.xrc:250
+#, fuzzy
+msgid "Storage parametres"
+msgstr "Установено в клиентски параметри"
 
 # standard
 # standard
@@ -24316,9 +24481,9 @@ msgstr "&Отчет за свойствата"
 #: pgadmin/schema/pgSchema.cpp:140 pgadmin/schema/pgSchema.cpp:262
 #: pgadmin/utils/sysSettings.cpp:91 pgadmin/utils/sysSettings.cpp:176
 #: pgadmin/frm/frmOptions.cpp:401 pgadmin/schema/edbPrivateSynonym.cpp:226
-#: pgadmin/schema/pgDatabase.cpp:152 pgadmin/schema/pgDatabase.cpp:630
+#: pgadmin/schema/pgDatabase.cpp:155 pgadmin/schema/pgDatabase.cpp:636
 #: pgadmin/schema/pgSchema.cpp:269 pgadmin/schema/pgSchema.cpp:400
-#: pgadmin/utils/sysSettings.cpp:128 pgadmin/utils/sysSettings.cpp:223
+#: pgadmin/utils/sysSettings.cpp:133 pgadmin/utils/sysSettings.cpp:229
 #, fuzzy
 msgid "Synonyms"
 msgstr "Синоним"
@@ -24365,7 +24530,7 @@ msgstr "Системно преобразуване?"
 
 #: src/schema/pgDatabase.cpp:418 src/schema/pgDatabase.cpp:434
 #: pgadmin/schema/pgDatabase.cpp:447 pgadmin/schema/pgDatabase.cpp:466
-#: pgadmin/schema/pgDatabase.cpp:573 pgadmin/schema/pgDatabase.cpp:762
+#: pgadmin/schema/pgDatabase.cpp:573 pgadmin/schema/pgDatabase.cpp:768
 msgid "System database?"
 msgstr "Системна база от данни?"
 
@@ -24518,7 +24683,7 @@ msgstr "Начална ревизия"
 #: pgadmin/frm/frmOptions.cpp:124 pgadmin/frm/frmOptions.cpp:388
 #: pgadmin/ui/frmOptions.xrc:50 pgadmin/frm/frmOptions.cpp:223
 #: pgadmin/frm/frmOptions.cpp:519 pgadmin/ui/frmOptions.xrc:48
-#: pgadmin/frm/frmOptions.cpp:301 pgadmin/frm/frmOptions.cpp:668
+#: pgadmin/frm/frmOptions.cpp:301 pgadmin/frm/frmOptions.cpp:669
 #: pgadmin/ui/frmOptions.xrc:869
 msgid "Tab"
 msgstr "Табулатор"
@@ -24702,7 +24867,7 @@ msgstr "&Статистически отчет"
 #: pgadmin/schema/pgSchema.cpp:249 pgadmin/schema/pgTable.cpp:1518
 #: pgadmin/frm/frmOptions.cpp:420 pgadmin/schema/pgSchema.cpp:231
 #: pgadmin/schema/pgSchema.cpp:387 pgadmin/schema/pgTable.cpp:1738
-#: pgadmin/utils/sysSettings.cpp:171 pgadmin/utils/sysSettings.cpp:237
+#: pgadmin/utils/sysSettings.cpp:176 pgadmin/utils/sysSettings.cpp:243
 #: pgadmin/slony/slTable.cpp:277 pgadmin/dlg/dlgMoveTablespace.cpp:51
 #: pgadmin/dlg/dlgMoveTablespace.cpp:104 pgadmin/dlg/dlgSearchObject.cpp:71
 #: pgadmin/dlg/dlgSearchObject.cpp:106
@@ -24752,13 +24917,13 @@ msgstr "Таблици/Изгледи"
 #: pgadmin/schema/pgRole.cpp:179 pgadmin/schema/pgTable.cpp:868
 #: pgadmin/schema/pgTablespace.cpp:247 pgadmin/schema/pgTablespace.cpp:276
 #: pgadmin/schema/pgUser.cpp:125 pgadmin/ui/frmBackup.xrc:19
-#: pgadmin/ui/frmRestore.xrc:13 pgadmin/schema/pgDatabase.cpp:713
+#: pgadmin/ui/frmRestore.xrc:13 pgadmin/schema/pgDatabase.cpp:719
 #: pgadmin/schema/pgIndex.cpp:396 pgadmin/schema/pgIndexConstraint.cpp:181
 #: pgadmin/schema/pgRole.cpp:335 pgadmin/schema/pgTable.cpp:988
 #: pgadmin/schema/pgTablespace.cpp:382 pgadmin/schema/pgTablespace.cpp:437
 #: pgadmin/schema/pgUser.cpp:192 pgadmin/schema/pgView.cpp:577
-#: pgadmin/ui/dlgDatabase.xrc:136 pgadmin/ui/dlgIndexConstraint.xrc:80
-#: pgadmin/ui/dlgIndex.xrc:79 pgadmin/ui/dlgTable.xrc:116
+#: pgadmin/ui/dlgDatabase.xrc:136 pgadmin/ui/dlgIndexConstraint.xrc:75
+#: pgadmin/ui/dlgIndex.xrc:75 pgadmin/ui/dlgTable.xrc:116
 #: pgadmin/ui/dlgView.xrc:213 pgadmin/ui/frmBackup.xrc:226
 #: pgadmin/ui/frmRestore.xrc:190
 msgid "Tablespace"
@@ -24782,7 +24947,7 @@ msgid "Tablespace Size"
 msgstr "Размер на табличното пространство"
 
 # standard
-#: pgadmin/schema/pgDatabase.cpp:323 pgadmin/schema/pgDatabase.cpp:1213
+#: pgadmin/schema/pgDatabase.cpp:326 pgadmin/schema/pgDatabase.cpp:1219
 #, fuzzy
 msgid "Tablespace conflicts"
 msgstr "Таблични пространства"
@@ -24840,7 +25005,7 @@ msgstr "%s статистически отчет - %s"
 #: pgadmin/schema/pgTablespace.cpp:288 pgadmin/frm/frmOptions.cpp:385
 #: pgadmin/schema/pgServer.cpp:181 pgadmin/schema/pgServer.cpp:1103
 #: pgadmin/schema/pgTablespace.cpp:449 pgadmin/utils/sysSettings.cpp:80
-#: pgadmin/utils/sysSettings.cpp:207
+#: pgadmin/utils/sysSettings.cpp:212
 msgid "Tablespaces"
 msgstr "Таблични пространства"
 
@@ -24925,7 +25090,7 @@ msgstr "Изходен тип"
 msgid "Template"
 msgstr "Шаблон"
 
-#: pgadmin/schema/pgDatabase.cpp:330
+#: pgadmin/schema/pgDatabase.cpp:333
 msgid "Temporary files"
 msgstr ""
 
@@ -24978,7 +25143,7 @@ msgstr ""
 "Псевдотипът \"ANY\" не може да се използва в обобщения с много параметри."
 
 #: pgadmin/frm/frmOptions.cpp:290 pgadmin/frm/frmOptions.cpp:294
-#: pgadmin/frm/frmOptions.cpp:425 pgadmin/frm/frmOptions.cpp:561
+#: pgadmin/frm/frmOptions.cpp:425 pgadmin/frm/frmOptions.cpp:562
 msgid ""
 "The EnterpriseDB bin path specified is not valid or does not contain an "
 "EnterpriseDB pg_dump executable.\n"
@@ -24991,7 +25156,7 @@ msgstr ""
 "Моля, изберете друга директория или оставете полето празно."
 
 #: pgadmin/frm/frmOptions.cpp:305 pgadmin/frm/frmOptions.cpp:435
-#: pgadmin/frm/frmOptions.cpp:571
+#: pgadmin/frm/frmOptions.cpp:572
 #, fuzzy
 msgid ""
 "The Greenplum bin path specified is not valid or does not contain a "
@@ -25005,7 +25170,7 @@ msgstr ""
 "Моля, изберете друга директория или оставете полето празно."
 
 #: pgadmin/frm/frmOptions.cpp:279 pgadmin/frm/frmOptions.cpp:283
-#: pgadmin/frm/frmOptions.cpp:415 pgadmin/frm/frmOptions.cpp:551
+#: pgadmin/frm/frmOptions.cpp:415 pgadmin/frm/frmOptions.cpp:552
 msgid ""
 "The PostgreSQL bin path specified is not valid or does not contain a "
 "PostgreSQL pg_dump executable.\n"
@@ -25071,7 +25236,7 @@ msgid "The client at %s:%d disconnected!"
 msgstr ""
 
 #: pgadmin/dlg/dlgServer.cpp:165 pgadmin/frm/frmOptions.cpp:762
-#: pgadmin/frm/frmOptions.cpp:932
+#: pgadmin/frm/frmOptions.cpp:933
 msgid "The colour specified is not valid."
 msgstr ""
 
@@ -25093,7 +25258,7 @@ msgid ""
 "transaction by executing COMMIT, or ROLLBACK statement."
 msgstr ""
 
-#: pgadmin/frm/frmOptions.cpp:581
+#: pgadmin/frm/frmOptions.cpp:582
 msgid "The decimal mark and thousands separator must not be equal."
 msgstr ""
 
@@ -25448,7 +25613,7 @@ msgid ""
 "dropped. Please close the properties dialogues and try again."
 msgstr ""
 
-#: pgadmin/frm/frmMain.cpp:556 pgadmin/schema/pgDatabase.cpp:1329
+#: pgadmin/frm/frmMain.cpp:556 pgadmin/schema/pgDatabase.cpp:1335
 msgid ""
 "There are properties dialogues open for one or more objects that would be "
 "refreshed. Please close the properties dialogues and try again."
@@ -25869,7 +26034,7 @@ msgstr ""
 
 # standard
 #: pgadmin/schema/pgIndex.cpp:253 pgadmin/schema/pgIndex.cpp:283
-#: pgadmin/schema/pgIndex.cpp:432
+#: pgadmin/schema/pgIndex.cpp:431
 msgid "Tree Level"
 msgstr "Ниво на дървото"
 
@@ -25904,10 +26069,10 @@ msgstr "Спусъчна функция"
 #: pgadmin/schema/pgSchema.cpp:248 pgadmin/utils/sysSettings.cpp:111
 #: pgadmin/utils/sysSettings.cpp:183 pgadmin/frm/frmOptions.cpp:312
 #: pgadmin/schema/pgFunction.cpp:818 pgadmin/schema/pgSchema.cpp:129
-#: pgadmin/schema/pgSchema.cpp:256 pgadmin/frm/frmOptions.cpp:421
+#: pgadmin/schema/pgSchema.cpp:256 pgadmin/frm/frmOptions.cpp:422
 #: pgadmin/schema/pgFunction.cpp:1139 pgadmin/schema/pgSchema.cpp:258
-#: pgadmin/schema/pgSchema.cpp:394 pgadmin/utils/sysSettings.cpp:148
-#: pgadmin/utils/sysSettings.cpp:230 pgadmin/dlg/dlgSearchObject.cpp:79
+#: pgadmin/schema/pgSchema.cpp:394 pgadmin/utils/sysSettings.cpp:153
+#: pgadmin/utils/sysSettings.cpp:236 pgadmin/dlg/dlgSearchObject.cpp:79
 #: pgadmin/dlg/dlgSearchObject.cpp:114
 msgid "Trigger Functions"
 msgstr "Спусъчни функции"
@@ -26143,14 +26308,14 @@ msgstr "Процент n-торки"
 #: pgadmin/schema/pgDatabase.cpp:693 pgadmin/schema/pgTable.cpp:777
 #: pgadmin/schema/pgDatabase.cpp:759 pgadmin/schema/pgTable.cpp:1129
 #: pgadmin/schema/pgDatabase.cpp:208 pgadmin/schema/pgDatabase.cpp:957
-#: pgadmin/schema/pgTable.cpp:1176 pgadmin/schema/pgDatabase.cpp:319
-#: pgadmin/schema/pgDatabase.cpp:1208 pgadmin/schema/pgTable.cpp:1356
+#: pgadmin/schema/pgTable.cpp:1176 pgadmin/schema/pgDatabase.cpp:322
+#: pgadmin/schema/pgDatabase.cpp:1214 pgadmin/schema/pgTable.cpp:1356
 msgid "Tuples Deleted"
 msgstr "Изтрити n-торки"
 
 #: pgadmin/schema/pgDatabase.cpp:690 pgadmin/schema/pgDatabase.cpp:756
 #: pgadmin/schema/pgDatabase.cpp:205 pgadmin/schema/pgDatabase.cpp:954
-#: pgadmin/schema/pgDatabase.cpp:316 pgadmin/schema/pgDatabase.cpp:1205
+#: pgadmin/schema/pgDatabase.cpp:319 pgadmin/schema/pgDatabase.cpp:1211
 msgid "Tuples Fetched"
 msgstr "Взети н-торки"
 
@@ -26171,15 +26336,15 @@ msgstr "Обновени n-торки"
 #: pgadmin/schema/pgDatabase.cpp:691 pgadmin/schema/pgTable.cpp:775
 #: pgadmin/schema/pgDatabase.cpp:757 pgadmin/schema/pgTable.cpp:1127
 #: pgadmin/schema/pgDatabase.cpp:206 pgadmin/schema/pgDatabase.cpp:955
-#: pgadmin/schema/pgTable.cpp:1174 pgadmin/schema/pgDatabase.cpp:317
-#: pgadmin/schema/pgDatabase.cpp:1206 pgadmin/schema/pgTable.cpp:1354
+#: pgadmin/schema/pgTable.cpp:1174 pgadmin/schema/pgDatabase.cpp:320
+#: pgadmin/schema/pgDatabase.cpp:1212 pgadmin/schema/pgTable.cpp:1354
 msgid "Tuples Inserted"
 msgstr "Вмъкнати n-торки"
 
 # standard
 #: pgadmin/schema/pgDatabase.cpp:689 pgadmin/schema/pgDatabase.cpp:755
 #: pgadmin/schema/pgDatabase.cpp:204 pgadmin/schema/pgDatabase.cpp:953
-#: pgadmin/schema/pgDatabase.cpp:315 pgadmin/schema/pgDatabase.cpp:1204
+#: pgadmin/schema/pgDatabase.cpp:318 pgadmin/schema/pgDatabase.cpp:1210
 msgid "Tuples Returned"
 msgstr "Върнати n-торки"
 
@@ -26188,8 +26353,8 @@ msgstr "Върнати n-торки"
 #: pgadmin/schema/pgDatabase.cpp:692 pgadmin/schema/pgTable.cpp:776
 #: pgadmin/schema/pgDatabase.cpp:758 pgadmin/schema/pgTable.cpp:1128
 #: pgadmin/schema/pgDatabase.cpp:207 pgadmin/schema/pgDatabase.cpp:956
-#: pgadmin/schema/pgTable.cpp:1175 pgadmin/schema/pgDatabase.cpp:318
-#: pgadmin/schema/pgDatabase.cpp:1207 pgadmin/schema/pgTable.cpp:1355
+#: pgadmin/schema/pgTable.cpp:1175 pgadmin/schema/pgDatabase.cpp:321
+#: pgadmin/schema/pgDatabase.cpp:1213 pgadmin/schema/pgTable.cpp:1355
 msgid "Tuples Updated"
 msgstr "Обновени n-торки"
 
@@ -26240,6 +26405,7 @@ msgstr "Обновени n-торки"
 #: pgadmin/schema/pgServer.cpp:1067 pgadmin/schema/pgUser.cpp:89
 #: pgadmin/dlg/dlgFunction.cpp:184 pgadmin/frm/frmReport.cpp:1346
 #: pgadmin/debugger/ctlVarWindow.cpp:42 pgadmin/debugger/dlgDirectDbg.cpp:141
+#: pgadmin/schema/pgAccessMethod.cpp:120
 #: pgadmin/schema/pgForeignServer.cpp:156 pgadmin/schema/pgObject.cpp:244
 #: pgadmin/schema/pgRole.cpp:305 pgadmin/schema/pgTablespace.cpp:104
 #: pgadmin/schema/pgType.cpp:561 pgadmin/schema/pgUser.cpp:156
@@ -26307,10 +26473,10 @@ msgstr "&Отчет за свойствата"
 #: pgadmin/schema/pgSchema.cpp:250 pgadmin/schema/pgType.cpp:330
 #: pgadmin/utils/sysSettings.cpp:144 pgadmin/utils/sysSettings.cpp:195
 #: pgadmin/frm/frmOptions.cpp:325 pgadmin/schema/pgSchema.cpp:131
-#: pgadmin/schema/pgSchema.cpp:258 pgadmin/frm/frmOptions.cpp:422
+#: pgadmin/schema/pgSchema.cpp:258 pgadmin/frm/frmOptions.cpp:423
 #: pgadmin/schema/pgSchema.cpp:260 pgadmin/schema/pgSchema.cpp:396
-#: pgadmin/schema/pgType.cpp:572 pgadmin/utils/sysSettings.cpp:181
-#: pgadmin/utils/sysSettings.cpp:242 pgadmin/dlg/dlgSearchObject.cpp:82
+#: pgadmin/schema/pgType.cpp:572 pgadmin/utils/sysSettings.cpp:186
+#: pgadmin/utils/sysSettings.cpp:248 pgadmin/dlg/dlgSearchObject.cpp:82
 #: pgadmin/dlg/dlgSearchObject.cpp:117
 msgid "Types"
 msgstr "Типове"
@@ -26444,7 +26610,7 @@ msgstr "Unicode UTF-8"
 #: pgadmin/frm/frmReport.cpp:1345 pgadmin/dlg/dlgTable.cpp:1444
 #: pgadmin/frm/frmReport.cpp:1363 pgadmin/dlg/dlgTable.cpp:1479
 #: pgadmin/frm/frmReport.cpp:1358 pgadmin/schema/pgIndexConstraint.cpp:484
-#: pgadmin/dlg/dlgTable.cpp:1552 pgadmin/ui/dlgIndex.xrc:121
+#: pgadmin/dlg/dlgTable.cpp:1552 pgadmin/ui/dlgIndex.xrc:103
 msgid "Unique"
 msgstr "Уникален"
 
@@ -26685,8 +26851,8 @@ msgstr ""
 #: pgadmin/ui/dlgExtTable.xrc:81 pgadmin/ui/dlgForeignDataWrapper.xrc:85
 #: pgadmin/ui/dlgForeignKey.xrc:52 pgadmin/ui/dlgForeignServer.xrc:85
 #: pgadmin/ui/dlgForeignTable.xrc:96 pgadmin/ui/dlgFunction.xrc:93
-#: pgadmin/ui/dlgGroup.xrc:51 pgadmin/ui/dlgIndexConstraint.xrc:53
-#: pgadmin/ui/dlgIndex.xrc:52 pgadmin/ui/dlgLanguage.xrc:83
+#: pgadmin/ui/dlgGroup.xrc:51 pgadmin/ui/dlgIndexConstraint.xrc:49
+#: pgadmin/ui/dlgIndex.xrc:49 pgadmin/ui/dlgLanguage.xrc:83
 #: pgadmin/ui/dlgOperator.xrc:94 pgadmin/ui/dlgPackage.xrc:80
 #: pgadmin/ui/dlgRole.xrc:68 pgadmin/ui/dlgRule.xrc:66
 #: pgadmin/ui/dlgSchema.xrc:81 pgadmin/ui/dlgSequence.xrc:96
@@ -26825,8 +26991,8 @@ msgstr "Език"
 # standard
 # standard
 #: pgadmin/frm/frmOptions.cpp:398 pgadmin/schema/pgForeignServer.cpp:144
-#: pgadmin/schema/pgUserMapping.cpp:269 pgadmin/utils/sysSettings.cpp:111
-#: pgadmin/utils/sysSettings.cpp:218 pgadmin/dlg/dlgSearchObject.cpp:96
+#: pgadmin/schema/pgUserMapping.cpp:269 pgadmin/utils/sysSettings.cpp:116
+#: pgadmin/utils/sysSettings.cpp:224 pgadmin/dlg/dlgSearchObject.cpp:96
 #: pgadmin/dlg/dlgSearchObject.cpp:132
 #, fuzzy
 msgid "User Mappings"
@@ -27005,7 +27171,7 @@ msgstr "%s списъчен отчет"
 #: pgadmin/frm/frmOptions.cpp:388 pgadmin/schema/pgServer.cpp:187
 #: pgadmin/schema/pgServer.cpp:199 pgadmin/schema/pgServer.cpp:1127
 #: pgadmin/schema/pgServer.cpp:1139 pgadmin/utils/sysSettings.cpp:86
-#: pgadmin/utils/sysSettings.cpp:210
+#: pgadmin/utils/sysSettings.cpp:215
 #, fuzzy
 msgid "Users/login Roles"
 msgstr "Потребители/роли за влизане"
@@ -27030,7 +27196,7 @@ msgstr ""
 msgid "Using embedded XRC data."
 msgstr "Използване на вградени данни тип XRC."
 
-#: pgadmin/schema/pgPolicy.cpp:134 pgadmin/ui/dlgPolicy.xrc:145
+#: pgadmin/schema/pgPolicy.cpp:126 pgadmin/ui/dlgPolicy.xrc:145
 #, fuzzy
 msgid "Using expression"
 msgstr "Израз"
@@ -27228,15 +27394,15 @@ msgstr "Функция на оператор"
 #: pgadmin/dlg/dlgFunction.cpp:140 pgadmin/dlg/dlgTablespace.cpp:56
 #: pgadmin/include/schema/pgObject.h:153 pgadmin/include/schema/pgObject.h:154
 #: pgadmin/frm/frmMainConfig.cpp:182 pgadmin/debugger/ctlVarWindow.cpp:43
-#: pgadmin/debugger/dlgDirectDbg.cpp:144 pgadmin/schema/pgDatabase.cpp:346
+#: pgadmin/debugger/dlgDirectDbg.cpp:144 pgadmin/schema/pgDatabase.cpp:349
 #: pgadmin/schema/pgObject.cpp:1364 pgadmin/schema/pgSequence.cpp:216
 #: pgadmin/schema/pgTablespace.cpp:229 pgadmin/slony/slNode.cpp:182
 #: pgadmin/dlg/dlgColumn.cpp:88 pgadmin/dlg/dlgDatabase.cpp:85
 #: pgadmin/dlg/dlgForeignDataWrapper.cpp:114
 #: pgadmin/dlg/dlgForeignServer.cpp:67 pgadmin/dlg/dlgForeignTable.cpp:114
-#: pgadmin/dlg/dlgFunction.cpp:161 pgadmin/dlg/dlgRole.cpp:106
-#: pgadmin/dlg/dlgUserMapping.cpp:86 pgadmin/include/schema/pgObject.h:363
-#: pgadmin/include/schema/pgObject.h:364
+#: pgadmin/dlg/dlgFunction.cpp:161 pgadmin/dlg/dlgIndex.cpp:200
+#: pgadmin/dlg/dlgRole.cpp:106 pgadmin/dlg/dlgUserMapping.cpp:86
+#: pgadmin/include/schema/pgObject.h:363 pgadmin/include/schema/pgObject.h:364
 #: pgadmin/ui/dlgForeignDataWrapper.xrc:183
 #: pgadmin/ui/dlgForeignServer.xrc:179 pgadmin/ui/dlgForeignTable.xrc:312
 #: pgadmin/ui/dlgMainConfig.xrc:35 pgadmin/ui/dlgTextSearchDictionary.xrc:182
@@ -27344,7 +27510,7 @@ msgstr "Разширени съобщения"
 #: pgadmin/schema/pgIndex.cpp:252 pgadmin/slony/slCluster.cpp:303
 #: pgadmin/ui/dlgRepClusterUpgrade.xrc:7 pgadmin/schema/pgIndex.cpp:282
 #: pgadmin/schema/pgExtension.cpp:126 pgadmin/schema/pgForeignServer.cpp:157
-#: pgadmin/schema/pgIndex.cpp:431 pgadmin/slony/slCluster.cpp:386
+#: pgadmin/schema/pgIndex.cpp:430 pgadmin/slony/slCluster.cpp:386
 #: pgadmin/ui/dlgExtension.xrc:109 pgadmin/ui/dlgForeignServer.xrc:126
 #: pgadmin/ui/dlgRepClusterUpgrade.xrc:83
 msgid "Version"
@@ -27538,9 +27704,9 @@ msgstr "Показване на данните в избраният обект.
 #: pgadmin/utils/sysSettings.cpp:149 pgadmin/utils/sysSettings.cpp:196
 #: pgadmin/frm/frmOptions.cpp:326 pgadmin/schema/pgSchema.cpp:133
 #: pgadmin/schema/pgSchema.cpp:260 pgadmin/schema/pgView.cpp:351
-#: pgadmin/frm/frmOptions.cpp:423 pgadmin/schema/pgSchema.cpp:262
+#: pgadmin/frm/frmOptions.cpp:424 pgadmin/schema/pgSchema.cpp:262
 #: pgadmin/schema/pgSchema.cpp:398 pgadmin/schema/pgView.cpp:912
-#: pgadmin/utils/sysSettings.cpp:186 pgadmin/utils/sysSettings.cpp:243
+#: pgadmin/utils/sysSettings.cpp:191 pgadmin/utils/sysSettings.cpp:249
 #: pgadmin/dlg/dlgSearchObject.cpp:74 pgadmin/dlg/dlgSearchObject.cpp:109
 msgid "Views"
 msgstr "Изгледи"
@@ -27801,14 +27967,14 @@ msgstr "Файлове тип XML (*.xml)|*.xml|Всички файлове (*.*
 #: src/schema/pgDatabase.cpp:575 src/schema/pgDatabase.cpp:595
 #: pgadmin/schema/pgDatabase.cpp:683 pgadmin/schema/pgDatabase.cpp:749
 #: pgadmin/schema/pgDatabase.cpp:198 pgadmin/schema/pgDatabase.cpp:947
-#: pgadmin/schema/pgDatabase.cpp:309 pgadmin/schema/pgDatabase.cpp:1198
+#: pgadmin/schema/pgDatabase.cpp:312 pgadmin/schema/pgDatabase.cpp:1204
 msgid "Xact Committed"
 msgstr "Извършени транзакции"
 
 #: src/schema/pgDatabase.cpp:576 src/schema/pgDatabase.cpp:596
 #: pgadmin/schema/pgDatabase.cpp:684 pgadmin/schema/pgDatabase.cpp:750
 #: pgadmin/schema/pgDatabase.cpp:199 pgadmin/schema/pgDatabase.cpp:948
-#: pgadmin/schema/pgDatabase.cpp:310 pgadmin/schema/pgDatabase.cpp:1199
+#: pgadmin/schema/pgDatabase.cpp:313 pgadmin/schema/pgDatabase.cpp:1205
 msgid "Xact Rolled Back"
 msgstr "Отменени транзакции"
 
@@ -28293,7 +28459,7 @@ msgstr "Задача на pgAgent"
 #: pgadmin/utils/sysSettings.cpp:71 pgadmin/utils/sysSettings.cpp:169
 #: pgadmin/frm/frmOptions.cpp:298 pgadmin/schema/pgServer.cpp:869
 #: pgadmin/frm/frmOptions.cpp:386 pgadmin/schema/pgServer.cpp:1108
-#: pgadmin/utils/sysSettings.cpp:82 pgadmin/utils/sysSettings.cpp:208
+#: pgadmin/utils/sysSettings.cpp:82 pgadmin/utils/sysSettings.cpp:213
 #, fuzzy
 msgid "pgAgent Jobs"
 msgstr "Задача на pgAgent"

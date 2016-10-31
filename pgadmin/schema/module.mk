@@ -15,6 +15,7 @@ pgadmin3_SOURCES += \
         schema/edbPackageVariable.cpp \
         schema/edbSynonym.cpp \
         schema/edbPrivateSynonym.cpp \
+        schema/pgAccessMethod.cpp \
         schema/pgAggregate.cpp \
         schema/pgCast.cpp \
         schema/pgCatalogObject.cpp \

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pgadmin3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-23 17:44+0300\n"
+"POT-Creation-Date: 2016-10-31 14:46+0300\n"
 "PO-Revision-Date: 2015-10-23 23:19+0200\n"
 "Last-Translator: Slawomir Sudnik <slaweks@inbox.com>\n"
 "Language-Team: begina.felicysym@wp.eu\n"
@@ -91,7 +91,7 @@ msgstr " - %s na %s (%s:%d)"
 
 #: pgadmin/schema/pgDatabase.cpp:92 pgadmin/schema/pgServer.cpp:620
 #: pgadmin/schema/pgServer.cpp:627 pgadmin/schema/pgServer.cpp:634
-#: pgadmin/schema/pgDatabase.cpp:178 pgadmin/schema/pgServer.cpp:809
+#: pgadmin/schema/pgDatabase.cpp:181 pgadmin/schema/pgServer.cpp:809
 #: pgadmin/schema/pgServer.cpp:816 pgadmin/schema/pgServer.cpp:823
 msgid " - Browser"
 msgstr " - Przeglądarka"
@@ -679,8 +679,8 @@ msgstr "Raportuj &błędy"
 #: pgadmin/ui/dlgForeignDataWrapper.xrc:257 pgadmin/ui/dlgForeignKey.xrc:329
 #: pgadmin/ui/dlgForeignServer.xrc:253 pgadmin/ui/dlgForeignTable.xrc:381
 #: pgadmin/ui/dlgFunction.xrc:596 pgadmin/ui/dlgGroup.xrc:167
-#: pgadmin/ui/dlgHbaConfig.xrc:146 pgadmin/ui/dlgIndexConstraint.xrc:362
-#: pgadmin/ui/dlgIndex.xrc:360 pgadmin/ui/dlgJob.xrc:309
+#: pgadmin/ui/dlgHbaConfig.xrc:146 pgadmin/ui/dlgIndexConstraint.xrc:343
+#: pgadmin/ui/dlgIndex.xrc:439 pgadmin/ui/dlgJob.xrc:309
 #: pgadmin/ui/dlgLanguage.xrc:198 pgadmin/ui/dlgMainConfig.xrc:129
 #: pgadmin/ui/dlgManageFavourites.xrc:73 pgadmin/ui/dlgManageMacros.xrc:123
 #: pgadmin/ui/dlgMoveTablespace.xrc:85 pgadmin/ui/dlgOperator.xrc:353
@@ -1035,7 +1035,7 @@ msgid "&Export..."
 msgstr "&Eksport..."
 
 # standard
-#: pgadmin/schema/pgIndex.cpp:327 pgadmin/schema/pgIndex.cpp:476
+#: pgadmin/schema/pgIndex.cpp:327 pgadmin/schema/pgIndex.cpp:475
 msgid "&Extended index statistics"
 msgstr "&Rozszerzone statystyki indeksu"
 
@@ -1381,7 +1381,7 @@ msgstr "&Bez logów"
 #: pgadmin/ui/dlgForeignKey.xrc:321 pgadmin/ui/dlgForeignServer.xrc:244
 #: pgadmin/ui/dlgForeignTable.xrc:373 pgadmin/ui/dlgFunction.xrc:588
 #: pgadmin/ui/dlgGroup.xrc:159 pgadmin/ui/dlgHbaConfig.xrc:138
-#: pgadmin/ui/dlgIndexConstraint.xrc:354 pgadmin/ui/dlgIndex.xrc:352
+#: pgadmin/ui/dlgIndexConstraint.xrc:335 pgadmin/ui/dlgIndex.xrc:431
 #: pgadmin/ui/dlgJob.xrc:301 pgadmin/ui/dlgLanguage.xrc:190
 #: pgadmin/ui/dlgMainConfig.xrc:121 pgadmin/ui/dlgManageFavourites.xrc:65
 #: pgadmin/ui/dlgManageMacros.xrc:115 pgadmin/ui/dlgMoveTablespace.xrc:77
@@ -1451,7 +1451,7 @@ msgstr "&Otwórz...\tCtrl-O"
 
 #: src/frm/frmOptions.cpp:326 src/frm/frmOptions.cpp:349
 #: pgadmin/frm/frmOptions.cpp:523 pgadmin/frm/frmOptions.cpp:553
-#: pgadmin/frm/frmOptions.cpp:730 pgadmin/frm/frmOptions.cpp:900
+#: pgadmin/frm/frmOptions.cpp:730 pgadmin/frm/frmOptions.cpp:901
 msgid "&Options..."
 msgstr "&Opcje..."
 
@@ -2444,8 +2444,8 @@ msgstr "<dane binarne>"
 #: pgadmin/dlg/dlgIndex.cpp:381 pgadmin/dlg/dlgTable.cpp:345
 #: pgadmin/dlg/dlgDatabase.cpp:266 pgadmin/dlg/dlgIndex.cpp:439
 #: pgadmin/dlg/dlgIndexConstraint.cpp:102 pgadmin/dlg/dlgTable.cpp:367
-#: pgadmin/dlg/dlgDatabase.cpp:279 pgadmin/dlg/dlgIndex.cpp:454
-#: pgadmin/dlg/dlgIndexConstraint.cpp:279 pgadmin/dlg/dlgTable.cpp:435
+#: pgadmin/dlg/dlgDatabase.cpp:279 pgadmin/dlg/dlgIndex.cpp:567
+#: pgadmin/dlg/dlgIndexConstraint.cpp:273 pgadmin/dlg/dlgTable.cpp:435
 #: pgadmin/dlg/dlgView.cpp:367
 msgid "<default tablespace>"
 msgstr "<domyślna tablespace>"
@@ -2602,7 +2602,7 @@ msgstr ""
 #: pgadmin/schema/pgTable.cpp:869 pgadmin/schema/pgTablespace.cpp:131
 #: pgadmin/schema/pgView.cpp:231 pgadmin/schema/edbPackage.cpp:196
 #: pgadmin/schema/gpExtTable.cpp:455 pgadmin/schema/pgAggregate.cpp:155
-#: pgadmin/schema/pgColumn.cpp:512 pgadmin/schema/pgDatabase.cpp:706
+#: pgadmin/schema/pgColumn.cpp:512 pgadmin/schema/pgDatabase.cpp:712
 #: pgadmin/schema/pgForeignDataWrapper.cpp:154
 #: pgadmin/schema/pgForeignServer.cpp:155 pgadmin/schema/pgFunction.cpp:424
 #: pgadmin/schema/pgLanguage.cpp:133 pgadmin/schema/pgSchema.cpp:426
@@ -2689,6 +2689,22 @@ msgstr "Zatwierdź bieżące ustawienia i zamknij okno dialogowe."
 
 # src/schema/pgOperatorClass.cpp:163 standard input:210
 # standard
+#: pgadmin/schema/pgAccessMethod.cpp:204
+#, fuzzy
+msgid "Access Method"
+msgstr "Metoda dostępu"
+
+# src/schema/pgOperatorClass.cpp:163 standard input:210
+# standard
+#: pgadmin/frm/frmOptions.cpp:392 pgadmin/schema/pgAccessMethod.cpp:220
+#: pgadmin/schema/pgDatabase.cpp:145 pgadmin/schema/pgDatabase.cpp:622
+#: pgadmin/utils/sysSettings.cpp:96 pgadmin/utils/sysSettings.cpp:219
+#, fuzzy
+msgid "Access Methods"
+msgstr "Metoda dostępu"
+
+# src/schema/pgOperatorClass.cpp:163 standard input:210
+# standard
 #: src/schema/pgIndex.cpp:208 src/schema/pgIndexConstraint.cpp:105
 #: src/schema/pgOperatorClass.cpp:163 standard input:212
 #: src/schema/pgIndex.cpp:218 input:249 pgadmin/schema/pgIndex.cpp:225
@@ -2699,9 +2715,63 @@ msgstr "Zatwierdź bieżące ustawienia i zamknij okno dialogowe."
 #: pgadmin/schema/pgIndex.cpp:407 pgadmin/schema/pgIndexConstraint.cpp:193
 #: pgadmin/schema/pgOperatorClass.cpp:279
 #: pgadmin/schema/pgOperatorFamily.cpp:124
-#: pgadmin/ui/dlgIndexConstraint.xrc:110 pgadmin/ui/dlgIndex.xrc:94
+#: pgadmin/ui/dlgIndexConstraint.xrc:103 pgadmin/ui/dlgIndex.xrc:89
 msgid "Access method"
 msgstr "Metoda dostępu"
+
+# src/schema/pgOperatorClass.cpp:163 standard input:210
+# standard
+#: pgadmin/schema/pgAccessMethod.cpp:66
+#, fuzzy
+msgid "Access method DDL"
+msgstr "Metoda dostępu"
+
+# src/schema/pgOperatorClass.cpp:163 standard input:210
+# standard
+#: pgadmin/schema/pgAccessMethod.cpp:62
+#, fuzzy
+msgid "Access method DDL report"
+msgstr "Metoda dostępu"
+
+#: pgadmin/schema/pgAccessMethod.cpp:73
+#, fuzzy
+msgid "Access method dependencies"
+msgstr "Powiązania schematu"
+
+#: pgadmin/schema/pgAccessMethod.cpp:69
+#, fuzzy
+msgid "Access method dependencies report"
+msgstr "Raport powiązań schematu"
+
+# src/schema/pgOperatorClass.cpp:163 standard input:210
+# standard
+#: pgadmin/schema/pgAccessMethod.cpp:80
+#, fuzzy
+msgid "Access method dependents"
+msgstr "Metoda dostępu"
+
+#: pgadmin/schema/pgAccessMethod.cpp:76
+#, fuzzy
+msgid "Access method dependents report"
+msgstr "Raport zależnych od schematu"
+
+# src/schema/pgOperatorClass.cpp:163 standard input:210
+# standard
+#: pgadmin/schema/pgAccessMethod.cpp:59
+#, fuzzy
+msgid "Access method properties"
+msgstr "Metoda dostępu"
+
+# standard
+#: pgadmin/schema/pgAccessMethod.cpp:55
+#, fuzzy
+msgid "Access method properties report"
+msgstr "Raport właściwości schematu"
+
+#: pgadmin/schema/pgAccessMethod.cpp:190
+#, fuzzy
+msgid "Access methods list report"
+msgstr "Wykaz schematów"
 
 # src/schema/pgRole.cpp:245 src/schema/pgUser.cpp:208 standard input:390
 # standard input:665
@@ -2784,8 +2854,8 @@ msgstr "Aktywność"
 #: pgadmin/ui/dlgTable.xrc:16 pgadmin/ui/dlgTable.xrc:19
 #: pgadmin/ui/dlgTrigger.xrc:20 pgadmin/ui/dlgDomain.xrc:239
 #: pgadmin/ui/dlgForeignKey.xrc:239 pgadmin/ui/dlgForeignTable.xrc:250
-#: pgadmin/ui/dlgFunction.xrc:393 pgadmin/ui/dlgIndexConstraint.xrc:315
-#: pgadmin/ui/dlgIndex.xrc:313 pgadmin/ui/dlgJob.xrc:209
+#: pgadmin/ui/dlgFunction.xrc:393 pgadmin/ui/dlgIndexConstraint.xrc:291
+#: pgadmin/ui/dlgIndex.xrc:387 pgadmin/ui/dlgJob.xrc:209
 #: pgadmin/ui/dlgJob.xrc:262 pgadmin/ui/dlgSchedule.xrc:397
 #: pgadmin/ui/dlgTable.xrc:243 pgadmin/ui/dlgTable.xrc:376
 #: pgadmin/ui/dlgTable.xrc:425 pgadmin/ui/dlgTrigger.xrc:312
@@ -2960,8 +3030,9 @@ msgstr "Dodanie wybranej kolumny"
 #: pgadmin/ctl/ctlSeclabelPanel.cpp:66 pgadmin/ui/dlgColumn.xrc:219
 #: pgadmin/ui/dlgDatabase.xrc:236 pgadmin/ui/dlgForeignDataWrapper.xrc:212
 #: pgadmin/ui/dlgForeignServer.xrc:208 pgadmin/ui/dlgForeignTable.xrc:341
-#: pgadmin/ui/dlgFunction.xrc:497 pgadmin/ui/dlgPolicy.xrc:98
-#: pgadmin/ui/dlgRole.xrc:345 pgadmin/ui/dlgTablespace.xrc:139
+#: pgadmin/ui/dlgFunction.xrc:497 pgadmin/ui/dlgIndex.xrc:181
+#: pgadmin/ui/dlgPolicy.xrc:98 pgadmin/ui/dlgRole.xrc:345
+#: pgadmin/ui/dlgTablespace.xrc:139
 #: pgadmin/ui/dlgTextSearchConfiguration.xrc:244
 #: pgadmin/ui/dlgTextSearchDictionary.xrc:211
 #: pgadmin/ui/dlgUserMapping.xrc:141 pgadmin/ui/dlgUser.xrc:252
@@ -3055,7 +3126,7 @@ msgstr "Raport właściwości agregata"
 #: pgadmin/schema/pgSchema.cpp:85 pgadmin/schema/pgSchema.cpp:198
 #: pgadmin/frm/frmOptions.cpp:403 pgadmin/schema/pgAggregate.cpp:410
 #: pgadmin/schema/pgSchema.cpp:207 pgadmin/schema/pgSchema.cpp:332
-#: pgadmin/utils/sysSettings.cpp:134 pgadmin/utils/sysSettings.cpp:226
+#: pgadmin/utils/sysSettings.cpp:139 pgadmin/utils/sysSettings.cpp:232
 #: pgadmin/dlg/dlgSearchObject.cpp:78 pgadmin/dlg/dlgSearchObject.cpp:113
 msgid "Aggregates"
 msgstr "Agregaty"
@@ -3111,7 +3182,7 @@ msgstr "Alokacja nowego połączenia do bazy danych %s"
 
 #: src/schema/pgDatabase.cpp:416 src/schema/pgDatabase.cpp:432
 #: pgadmin/schema/pgDatabase.cpp:445 pgadmin/schema/pgDatabase.cpp:458
-#: pgadmin/schema/pgDatabase.cpp:565 pgadmin/schema/pgDatabase.cpp:754
+#: pgadmin/schema/pgDatabase.cpp:565 pgadmin/schema/pgDatabase.cpp:760
 msgid "Allow connections?"
 msgstr "Zgoda na połączenia?"
 
@@ -3183,7 +3254,7 @@ msgid "An exception already exists for this time on any date!"
 msgstr "Wyjątek już istnieje od pewnego czasu na tej dacie!"
 
 #: pgadmin/frm/frmOptions.cpp:307 pgadmin/frm/frmOptions.cpp:322
-#: pgadmin/frm/frmOptions.cpp:451 pgadmin/frm/frmOptions.cpp:598
+#: pgadmin/frm/frmOptions.cpp:451 pgadmin/frm/frmOptions.cpp:599
 msgid ""
 "An invalid EnterpriseDB help path was specified.\n"
 "\n"
@@ -3195,7 +3266,7 @@ msgstr ""
 "pole ścieżki."
 
 #: pgadmin/frm/frmOptions.cpp:330 pgadmin/frm/frmOptions.cpp:459
-#: pgadmin/frm/frmOptions.cpp:606
+#: pgadmin/frm/frmOptions.cpp:607
 msgid ""
 "An invalid GreenplumDB help path was specified.\n"
 "\n"
@@ -3207,7 +3278,7 @@ msgstr ""
 "pole ścieżki."
 
 #: pgadmin/frm/frmOptions.cpp:299 pgadmin/frm/frmOptions.cpp:314
-#: pgadmin/frm/frmOptions.cpp:443 pgadmin/frm/frmOptions.cpp:590
+#: pgadmin/frm/frmOptions.cpp:443 pgadmin/frm/frmOptions.cpp:591
 msgid ""
 "An invalid PostgreSQL help path was specified.\n"
 "\n"
@@ -3219,7 +3290,7 @@ msgstr ""
 "pole ścieżki."
 
 #: pgadmin/frm/frmOptions.cpp:315 pgadmin/frm/frmOptions.cpp:338
-#: pgadmin/frm/frmOptions.cpp:467 pgadmin/frm/frmOptions.cpp:614
+#: pgadmin/frm/frmOptions.cpp:467 pgadmin/frm/frmOptions.cpp:615
 msgid ""
 "An invalid Slony help path was specified.\n"
 "\n"
@@ -3577,6 +3648,20 @@ msgstr ""
 #, c-format
 msgid "Are you sure you wish to drop Slony table \"%s\"?"
 msgstr "Czy na pewno chcesz skasować tabelę Slony \"%s\"?"
+
+#: pgadmin/schema/pgAccessMethod.cpp:41
+#, fuzzy, c-format
+msgid ""
+"Are you sure you wish to drop access method \"%s\" including all objects "
+"that depend on it?"
+msgstr ""
+"Czy na pewno chcesz skasować wszystkie rzutowania \"%s\" wraz z obiektami "
+"zależnymi?"
+
+#: pgadmin/schema/pgAccessMethod.cpp:45
+#, fuzzy, c-format
+msgid "Are you sure you wish to drop access method \"%s\"?"
+msgstr "Czy na pewno chcesz skasować rzutowanie \"%s\"?"
 
 #: pgadmin/schema/pgAggregate.cpp:41
 #, c-format
@@ -4500,7 +4585,7 @@ msgid "Available Columns"
 msgstr "Dostępne kolumny"
 
 #: pgadmin/schema/pgIndex.cpp:260 pgadmin/schema/pgIndex.cpp:290
-#: pgadmin/schema/pgIndex.cpp:439
+#: pgadmin/schema/pgIndex.cpp:438
 msgid "Average Leaf Density"
 msgstr "Średnia Gęstość Liścia"
 
@@ -4570,7 +4655,7 @@ msgstr "Start procesu w tle"
 #: src/schema/pgDatabase.cpp:574 src/schema/pgDatabase.cpp:594
 #: pgadmin/schema/pgDatabase.cpp:680 pgadmin/schema/pgDatabase.cpp:746
 #: pgadmin/schema/pgDatabase.cpp:197 pgadmin/schema/pgDatabase.cpp:944
-#: pgadmin/schema/pgDatabase.cpp:308 pgadmin/schema/pgDatabase.cpp:1195
+#: pgadmin/schema/pgDatabase.cpp:311 pgadmin/schema/pgDatabase.cpp:1201
 msgid "Backends"
 msgstr "Procesy w tle"
 
@@ -4712,11 +4797,11 @@ msgstr "Blokowe wc&ięcie\tTab"
 msgid "Block &Outdent\tShift-Tab"
 msgstr "Bl&okowe wysunięcie\tShift-Tab"
 
-#: pgadmin/schema/pgDatabase.cpp:333
+#: pgadmin/schema/pgDatabase.cpp:336
 msgid "Block read time"
 msgstr "Czas odczytu bloku"
 
-#: pgadmin/schema/pgDatabase.cpp:334
+#: pgadmin/schema/pgDatabase.cpp:337
 msgid "Block write time"
 msgstr "Czas zapisu bloku"
 
@@ -4732,16 +4817,16 @@ msgstr "Zablokowany przez"
 #: src/schema/pgDatabase.cpp:578 src/schema/pgDatabase.cpp:598
 #: pgadmin/schema/pgDatabase.cpp:686 pgadmin/schema/pgDatabase.cpp:752
 #: pgadmin/schema/pgDatabase.cpp:201 pgadmin/schema/pgDatabase.cpp:950
-#: pgadmin/schema/pgSequence.cpp:136 pgadmin/schema/pgDatabase.cpp:312
-#: pgadmin/schema/pgDatabase.cpp:1201 pgadmin/schema/pgSequence.cpp:225
+#: pgadmin/schema/pgSequence.cpp:136 pgadmin/schema/pgDatabase.cpp:315
+#: pgadmin/schema/pgDatabase.cpp:1207 pgadmin/schema/pgSequence.cpp:225
 msgid "Blocks Hit"
 msgstr "Bloki Trafione"
 
 #: src/schema/pgDatabase.cpp:577 src/schema/pgDatabase.cpp:597
 #: pgadmin/schema/pgDatabase.cpp:685 pgadmin/schema/pgDatabase.cpp:751
 #: pgadmin/schema/pgDatabase.cpp:200 pgadmin/schema/pgDatabase.cpp:949
-#: pgadmin/schema/pgSequence.cpp:134 pgadmin/schema/pgDatabase.cpp:311
-#: pgadmin/schema/pgDatabase.cpp:1200 pgadmin/schema/pgSequence.cpp:223
+#: pgadmin/schema/pgSequence.cpp:134 pgadmin/schema/pgDatabase.cpp:314
+#: pgadmin/schema/pgDatabase.cpp:1206 pgadmin/schema/pgSequence.cpp:223
 msgid "Blocks Read"
 msgstr "Bloki czytane"
 
@@ -4776,7 +4861,12 @@ msgstr "Przejrzyj plik logów."
 msgid "Browser"
 msgstr "Przeglądarka"
 
-#: pgadmin/schema/pgDatabase.cpp:326 pgadmin/schema/pgDatabase.cpp:1216
+#: pgadmin/schema/pgIndex.cpp:690
+#, fuzzy
+msgid "Buffering"
+msgstr "Bufory"
+
+#: pgadmin/schema/pgDatabase.cpp:329 pgadmin/schema/pgDatabase.cpp:1222
 msgid "Bufferpin conflicts"
 msgstr "Konflikty w zablokowanych buforach"
 
@@ -5072,7 +5162,7 @@ msgstr "Nie można utworzyć pułapki"
 msgid "Cannot disassociate from controlling TTY"
 msgstr "Nie można odłączyć od kontroli TTY"
 
-#: pgadmin/schema/pgDatabase.cpp:1330 pgadmin/schema/pgServer.cpp:2123
+#: pgadmin/schema/pgDatabase.cpp:1336 pgadmin/schema/pgServer.cpp:2123
 msgid "Cannot disconnect database"
 msgstr "Nie można rozłączyć się z bazą danych"
 
@@ -5190,8 +5280,8 @@ msgstr "Raport właściwości rzutowania"
 #: pgadmin/utils/sysSettings.cpp:174 pgadmin/frm/frmOptions.cpp:303
 #: pgadmin/schema/pgDatabase.cpp:62 pgadmin/schema/pgDatabase.cpp:478
 #: pgadmin/frm/frmOptions.cpp:393 pgadmin/schema/pgCast.cpp:268
-#: pgadmin/schema/pgDatabase.cpp:144 pgadmin/schema/pgDatabase.cpp:620
-#: pgadmin/utils/sysSettings.cpp:96 pgadmin/utils/sysSettings.cpp:215
+#: pgadmin/schema/pgDatabase.cpp:147 pgadmin/schema/pgDatabase.cpp:626
+#: pgadmin/utils/sysSettings.cpp:101 pgadmin/utils/sysSettings.cpp:221
 #: pgadmin/dlg/dlgSearchObject.cpp:86 pgadmin/dlg/dlgSearchObject.cpp:121
 msgid "Casts"
 msgstr "Rzutowania"
@@ -5288,9 +5378,9 @@ msgstr "Raport właściwości katalogu"
 #: pgadmin/utils/sysSettings.cpp:79 pgadmin/utils/sysSettings.cpp:173
 #: pgadmin/gqb/gqbBrowser.cpp:75 pgadmin/frm/frmOptions.cpp:302
 #: pgadmin/schema/pgDatabase.cpp:476 pgadmin/schema/pgSchema.cpp:555
-#: pgadmin/frm/frmOptions.cpp:392 pgadmin/schema/pgDatabase.cpp:618
+#: pgadmin/frm/frmOptions.cpp:391 pgadmin/schema/pgDatabase.cpp:624
 #: pgadmin/schema/pgSchema.cpp:815 pgadmin/utils/sysSettings.cpp:92
-#: pgadmin/utils/sysSettings.cpp:214
+#: pgadmin/utils/sysSettings.cpp:220
 msgid "Catalogs"
 msgstr "Katalogi"
 
@@ -5327,7 +5417,7 @@ msgid "Change Password"
 msgstr "Zmiana hasła"
 
 #: pgadmin/dlg/dlgIndex.cpp:220 pgadmin/dlg/dlgIndex.cpp:247
-#: pgadmin/dlg/dlgIndex.cpp:259 pgadmin/dlg/dlgIndexConstraint.cpp:464
+#: pgadmin/dlg/dlgIndex.cpp:344 pgadmin/dlg/dlgIndexConstraint.cpp:455
 msgid "Change index type?"
 msgstr "Zmienić typ indeksu?"
 
@@ -5366,7 +5456,7 @@ msgid "Changes applied."
 msgstr "Zmiany zastosowane."
 
 #: pgadmin/frm/frmOptions.cpp:472 pgadmin/frm/frmOptions.cpp:503
-#: pgadmin/frm/frmOptions.cpp:716 pgadmin/frm/frmOptions.cpp:886
+#: pgadmin/frm/frmOptions.cpp:716 pgadmin/frm/frmOptions.cpp:887
 msgid ""
 "Changes to the display options may not be visible until the browser tree is "
 "refreshed."
@@ -5386,7 +5476,7 @@ msgstr ""
 "Czy chcesz kontynuować?"
 
 #: pgadmin/dlg/dlgIndex.cpp:220 pgadmin/dlg/dlgIndex.cpp:247
-#: pgadmin/dlg/dlgIndex.cpp:259 pgadmin/dlg/dlgIndexConstraint.cpp:464
+#: pgadmin/dlg/dlgIndex.cpp:344 pgadmin/dlg/dlgIndexConstraint.cpp:455
 msgid ""
 "Changing the index type will cause the column list to be cleared. Do you "
 "wish to continue?"
@@ -5397,7 +5487,7 @@ msgstr ""
 # standard input:15
 # standard
 #: pgadmin/schema/pgDatabase.cpp:446 pgadmin/ui/dlgDatabase.xrc:11
-#: pgadmin/schema/pgDatabase.cpp:531 pgadmin/schema/pgDatabase.cpp:721
+#: pgadmin/schema/pgDatabase.cpp:531 pgadmin/schema/pgDatabase.cpp:727
 #: pgadmin/ui/dlgDatabase.xrc:166
 msgid "Character type"
 msgstr "Typ znakowy"
@@ -5446,11 +5536,11 @@ msgstr ""
 "Zaznacz\n"
 "wszystko"
 
-#: pgadmin/schema/pgCheck.cpp:76 pgadmin/schema/pgPolicy.cpp:59
+#: pgadmin/schema/pgCheck.cpp:76
 msgid "Check constraint DDL"
 msgstr "DDL Ograniczenia sprawdzającego"
 
-#: pgadmin/schema/pgCheck.cpp:72 pgadmin/schema/pgPolicy.cpp:55
+#: pgadmin/schema/pgCheck.cpp:72
 msgid "Check constraint DDL report"
 msgstr "Raport DDL ograniczenia sprawdzającego"
 
@@ -5483,7 +5573,7 @@ msgid "Check constraints list report"
 msgstr "Raport listy ograniczeń sprawdzających"
 
 # standard
-#: pgadmin/schema/pgPolicy.cpp:135 pgadmin/ui/dlgPolicy.xrc:162
+#: pgadmin/schema/pgPolicy.cpp:127 pgadmin/ui/dlgPolicy.xrc:162
 #, fuzzy
 msgid "Check expression"
 msgstr "Opcje Sprawdzenia"
@@ -5498,7 +5588,7 @@ msgstr "Sprawdzenie położenia pojedynczych znaków cytatu w wierszu #%d."
 msgid "Check online for updates"
 msgstr "Sprawdzenie online czy są uaktualnienia"
 
-#: pgadmin/schema/pgPolicy.cpp:220
+#: pgadmin/schema/pgPolicy.cpp:212
 #, fuzzy
 msgid "Check policies list report"
 msgstr "Raport listy ograniczeń sprawdzających"
@@ -5721,7 +5811,7 @@ msgstr "Nazwa klastra"
 # standard input:212
 # standard
 #: standard input:214 input:251 pgadmin/ui/dlgIndex.xrc:7
-#: pgadmin/ui/dlgIndex.xrc:135
+#: pgadmin/ui/dlgIndex.xrc:115
 msgid "Clustered"
 msgstr "Klaster"
 
@@ -5760,11 +5850,11 @@ msgstr "Porównywalne?"
 # standard
 #: pgadmin/schema/pgDatabase.cpp:445 pgadmin/ui/dlgDatabase.xrc:10
 #: pgadmin/schema/pgDatabase.cpp:530 pgadmin/schema/pgCollation.cpp:238
-#: pgadmin/schema/pgColumn.cpp:478 pgadmin/schema/pgDatabase.cpp:720
+#: pgadmin/schema/pgColumn.cpp:478 pgadmin/schema/pgDatabase.cpp:726
 #: pgadmin/schema/pgDomain.cpp:206 pgadmin/schema/pgType.cpp:336
-#: pgadmin/dlg/dlgIndex.cpp:206 pgadmin/dlg/dlgType.cpp:122
+#: pgadmin/dlg/dlgIndex.cpp:199 pgadmin/dlg/dlgType.cpp:122
 #: pgadmin/ui/dlgColumn.xrc:121 pgadmin/ui/dlgDatabase.xrc:151
-#: pgadmin/ui/dlgDomain.xrc:191 pgadmin/ui/dlgIndex.xrc:216
+#: pgadmin/ui/dlgDomain.xrc:191 pgadmin/ui/dlgIndex.xrc:288
 #: pgadmin/ui/dlgType.xrc:231 pgadmin/ui/dlgType.xrc:736
 msgid "Collation"
 msgstr "Porównanie"
@@ -5831,7 +5921,7 @@ msgstr "Kolory"
 #: pgadmin/ui/dlgIndex.xrc:13 pgadmin/schema/pgColumn.cpp:528
 #: pgadmin/dlg/dlgTable.cpp:185 pgadmin/ui/dlgTrigger.xrc:19
 #: pgadmin/schema/pgColumn.cpp:779 pgadmin/dlg/dlgTable.cpp:204
-#: pgadmin/ui/dlgIndexConstraint.xrc:203 pgadmin/ui/dlgIndex.xrc:201
+#: pgadmin/ui/dlgIndexConstraint.xrc:179 pgadmin/ui/dlgIndex.xrc:274
 #: pgadmin/ui/dlgTrigger.xrc:286
 msgid "Column"
 msgstr "Kolumna"
@@ -5877,8 +5967,8 @@ msgstr "Raport zależnych od kolumny"
 #: pgadmin/dlg/dlgTable.cpp:173 pgadmin/dlg/dlgEditGridOptions.cpp:88
 #: pgadmin/dlg/dlgIndex.cpp:194 pgadmin/dlg/dlgTable.cpp:175
 #: pgadmin/dlg/dlgTrigger.cpp:81 pgadmin/dlg/dlgEditGridOptions.cpp:95
-#: pgadmin/dlg/dlgIndex.cpp:202 pgadmin/dlg/dlgIndexConstraint.cpp:55
-#: pgadmin/dlg/dlgIndexConstraint.cpp:66 pgadmin/dlg/dlgTable.cpp:189
+#: pgadmin/dlg/dlgIndex.cpp:195 pgadmin/dlg/dlgIndexConstraint.cpp:54
+#: pgadmin/dlg/dlgIndexConstraint.cpp:65 pgadmin/dlg/dlgTable.cpp:189
 #: pgadmin/dlg/dlgTrigger.cpp:89
 msgid "Column name"
 msgstr "Nazwa kolumny"
@@ -5960,7 +6050,7 @@ msgstr "Oid typu kolumny"
 #: pgadmin/schema/pgIndexConstraint.cpp:183 pgadmin/schema/pgTrigger.cpp:358
 #: pgadmin/dlg/dlgSearchObject.cpp:72 pgadmin/dlg/dlgSearchObject.cpp:107
 #: pgadmin/ui/dlgForeignKey.xrc:163 pgadmin/ui/dlgForeignTable.xrc:139
-#: pgadmin/ui/dlgIndexConstraint.xrc:181 pgadmin/ui/dlgIndex.xrc:179
+#: pgadmin/ui/dlgIndexConstraint.xrc:312 pgadmin/ui/dlgIndex.xrc:408
 #: pgadmin/ui/dlgTable.xrc:395 pgadmin/ui/dlgTrigger.xrc:264
 #: pgadmin/ui/frmImport.xrc:80
 msgid "Columns"
@@ -5980,7 +6070,7 @@ msgstr "Kolumny do zaimportowania"
 #: src/slony/slNode.cpp:200 src/slony/slNode.cpp:326
 #: pgadmin/slony/slNode.cpp:193 pgadmin/slony/slNode.cpp:317
 #: pgadmin/slony/slNode.cpp:194 pgadmin/slony/slNode.cpp:318
-#: pgadmin/slony/slNode.cpp:321 pgadmin/schema/pgPolicy.cpp:133
+#: pgadmin/slony/slNode.cpp:321 pgadmin/schema/pgPolicy.cpp:125
 #: pgadmin/slony/slNode.cpp:255 pgadmin/slony/slNode.cpp:421
 #: pgadmin/ui/dlgPolicy.xrc:131
 msgid "Command"
@@ -6098,18 +6188,18 @@ msgstr "Komenda"
 #: pgadmin/frm/frmReport.cpp:1346 pgadmin/agent/pgaJob.cpp:140
 #: pgadmin/agent/pgaSchedule.cpp:111 pgadmin/agent/pgaStep.cpp:114
 #: pgadmin/schema/edbPackage.cpp:199 pgadmin/schema/gpExtTable.cpp:457
-#: pgadmin/schema/gpResQueue.cpp:190 pgadmin/schema/pgAggregate.cpp:174
-#: pgadmin/schema/pgCast.cpp:138 pgadmin/schema/pgCatalogObject.cpp:94
-#: pgadmin/schema/pgCheck.cpp:172 pgadmin/schema/pgCollation.cpp:139
-#: pgadmin/schema/pgCollection.cpp:73 pgadmin/schema/pgColumn.cpp:515
-#: pgadmin/schema/pgConversion.cpp:135 pgadmin/schema/pgDatabase.cpp:767
-#: pgadmin/schema/pgDomain.cpp:210 pgadmin/schema/pgEventTrigger.cpp:149
-#: pgadmin/schema/pgExtension.cpp:127 pgadmin/schema/pgForeignKey.cpp:254
-#: pgadmin/schema/pgForeignTable.cpp:187 pgadmin/schema/pgFunction.cpp:426
-#: pgadmin/schema/pgIndex.cpp:412 pgadmin/schema/pgIndexConstraint.cpp:198
-#: pgadmin/schema/pgLanguage.cpp:141 pgadmin/schema/pgOperator.cpp:207
-#: pgadmin/schema/pgOperatorClass.cpp:292
-#: pgadmin/schema/pgOperatorFamily.cpp:126 pgadmin/schema/pgPolicy.cpp:136
+#: pgadmin/schema/gpResQueue.cpp:190 pgadmin/schema/pgAccessMethod.cpp:121
+#: pgadmin/schema/pgAggregate.cpp:174 pgadmin/schema/pgCast.cpp:138
+#: pgadmin/schema/pgCatalogObject.cpp:94 pgadmin/schema/pgCheck.cpp:172
+#: pgadmin/schema/pgCollation.cpp:139 pgadmin/schema/pgCollection.cpp:73
+#: pgadmin/schema/pgColumn.cpp:515 pgadmin/schema/pgConversion.cpp:135
+#: pgadmin/schema/pgDatabase.cpp:773 pgadmin/schema/pgDomain.cpp:210
+#: pgadmin/schema/pgEventTrigger.cpp:149 pgadmin/schema/pgExtension.cpp:127
+#: pgadmin/schema/pgForeignKey.cpp:254 pgadmin/schema/pgForeignTable.cpp:187
+#: pgadmin/schema/pgFunction.cpp:426 pgadmin/schema/pgIndex.cpp:411
+#: pgadmin/schema/pgIndexConstraint.cpp:198 pgadmin/schema/pgLanguage.cpp:141
+#: pgadmin/schema/pgOperator.cpp:207 pgadmin/schema/pgOperatorClass.cpp:292
+#: pgadmin/schema/pgOperatorFamily.cpp:126 pgadmin/schema/pgPolicy.cpp:128
 #: pgadmin/schema/pgRole.cpp:476 pgadmin/schema/pgRule.cpp:184
 #: pgadmin/schema/pgSchema.cpp:439 pgadmin/schema/pgSequence.cpp:193
 #: pgadmin/schema/pgTable.cpp:1098 pgadmin/schema/pgTablespace.cpp:203
@@ -6129,7 +6219,7 @@ msgstr "Komenda"
 #: pgadmin/ui/dlgExtTable.xrc:67 pgadmin/ui/dlgForeignDataWrapper.xrc:70
 #: pgadmin/ui/dlgForeignKey.xrc:38 pgadmin/ui/dlgForeignServer.xrc:70
 #: pgadmin/ui/dlgForeignTable.xrc:82 pgadmin/ui/dlgFunction.xrc:79
-#: pgadmin/ui/dlgIndexConstraint.xrc:39 pgadmin/ui/dlgIndex.xrc:38
+#: pgadmin/ui/dlgIndexConstraint.xrc:35 pgadmin/ui/dlgIndex.xrc:35
 #: pgadmin/ui/dlgJob.xrc:160 pgadmin/ui/dlgLanguage.xrc:69
 #: pgadmin/ui/dlgMainConfig.xrc:72 pgadmin/ui/dlgOperator.xrc:80
 #: pgadmin/ui/dlgPackage.xrc:66 pgadmin/ui/dlgPolicy.xrc:51
@@ -6222,7 +6312,7 @@ msgstr "Typy złożone"
 msgid "Compress Ratio"
 msgstr "Współczynnik kompresji"
 
-#: standard input:252 pgadmin/ui/dlgIndex.xrc:8 pgadmin/ui/dlgIndex.xrc:149
+#: standard input:252 pgadmin/ui/dlgIndex.xrc:8 pgadmin/ui/dlgIndex.xrc:127
 msgid "Concurrent build?"
 msgstr "Jednoczesne tworzenie?"
 
@@ -6391,7 +6481,7 @@ msgstr "Połącz z debugerem"
 #: src/schema/pgServer.cpp:894 pgadmin/schema/pgDatabase.cpp:446
 #: pgadmin/schema/pgServer.cpp:903 pgadmin/schema/pgDatabase.cpp:459
 #: pgadmin/schema/pgServer.cpp:954 pgadmin/schema/pgDatabase.cpp:566
-#: pgadmin/schema/pgServer.cpp:975 pgadmin/schema/pgDatabase.cpp:755
+#: pgadmin/schema/pgServer.cpp:975 pgadmin/schema/pgDatabase.cpp:761
 #: pgadmin/schema/pgServer.cpp:1253
 msgid "Connected?"
 msgstr "Połączony?"
@@ -6492,7 +6582,7 @@ msgstr "Połączenie przerwane."
 
 # standard
 #: pgadmin/schema/pgDatabase.cpp:464 pgadmin/schema/pgDatabase.cpp:571
-#: pgadmin/schema/pgDatabase.cpp:760
+#: pgadmin/schema/pgDatabase.cpp:766
 msgid "Connection limit"
 msgstr "Limit połączenia"
 
@@ -6562,7 +6652,7 @@ msgstr "Łącznik"
 #: pgadmin/ui/dlgIndex.xrc:9 pgadmin/schema/pgIndex.cpp:259
 #: pgadmin/schema/pgConstraints.cpp:109 pgadmin/schema/pgIndex.cpp:408
 #: pgadmin/schema/pgIndexConstraint.cpp:194 pgadmin/dlg/dlgForeignTable.cpp:76
-#: pgadmin/ui/dlgIndexConstraint.xrc:165 pgadmin/ui/dlgIndex.xrc:163
+#: pgadmin/ui/dlgIndexConstraint.xrc:141 pgadmin/ui/dlgIndex.xrc:139
 msgid "Constraint"
 msgstr "Ograniczenie"
 
@@ -6694,8 +6784,8 @@ msgstr "Raport właściwości konwersji"
 #: pgadmin/frm/frmOptions.cpp:309 pgadmin/schema/pgSchema.cpp:87
 #: pgadmin/schema/pgSchema.cpp:200 pgadmin/frm/frmOptions.cpp:405
 #: pgadmin/schema/pgConversion.cpp:245 pgadmin/schema/pgSchema.cpp:211
-#: pgadmin/schema/pgSchema.cpp:336 pgadmin/utils/sysSettings.cpp:139
-#: pgadmin/utils/sysSettings.cpp:227 pgadmin/dlg/dlgSearchObject.cpp:85
+#: pgadmin/schema/pgSchema.cpp:336 pgadmin/utils/sysSettings.cpp:144
+#: pgadmin/utils/sysSettings.cpp:233 pgadmin/dlg/dlgSearchObject.cpp:85
 #: pgadmin/dlg/dlgSearchObject.cpp:120
 msgid "Conversions"
 msgstr "Konwersje"
@@ -7079,6 +7169,11 @@ msgstr "Utwórz DB"
 msgid "Create a Primary Key."
 msgstr "Utworzenie klucza głównego."
 
+#: pgadmin/schema/pgAccessMethod.cpp:204
+#, fuzzy
+msgid "Create a new Access Method."
+msgstr "Utworzenie nowego rzutowania."
+
 #: src/schema/pgAggregate.cpp:202 pgadmin/schema/pgAggregate.cpp:261
 #: pgadmin/schema/pgAggregate.cpp:289 pgadmin/schema/pgAggregate.cpp:400
 msgid "Create a new Aggregate."
@@ -7121,7 +7216,7 @@ msgstr "Utworzenie nowej konwersji."
 
 #: src/schema/pgDatabase.cpp:628 src/schema/pgDatabase.cpp:648
 #: pgadmin/schema/pgDatabase.cpp:752 pgadmin/schema/pgDatabase.cpp:818
-#: pgadmin/schema/pgDatabase.cpp:1025 pgadmin/schema/pgDatabase.cpp:1294
+#: pgadmin/schema/pgDatabase.cpp:1025 pgadmin/schema/pgDatabase.cpp:1300
 msgid "Create a new Database."
 msgstr "Utworzenie nowej bazy danych."
 
@@ -7204,7 +7299,7 @@ msgstr "Utworzenie nowej grupy."
 
 #: src/schema/pgIndex.cpp:361 src/schema/pgIndex.cpp:371
 #: pgadmin/schema/pgIndex.cpp:467 pgadmin/schema/pgIndex.cpp:506
-#: pgadmin/schema/pgIndex.cpp:513 pgadmin/schema/pgIndex.cpp:690
+#: pgadmin/schema/pgIndex.cpp:513 pgadmin/schema/pgIndex.cpp:741
 msgid "Create a new Index."
 msgstr "Utworzenie nowego Indeksu."
 
@@ -7264,7 +7359,7 @@ msgstr "Utworzenie nowej partycji."
 msgid "Create a new Path."
 msgstr "Utworzenie nowej ścieżki."
 
-#: pgadmin/schema/pgPolicy.cpp:233
+#: pgadmin/schema/pgPolicy.cpp:225
 #, fuzzy
 msgid "Create a new Policy."
 msgstr "Utworzenie nowego zadania."
@@ -7728,7 +7823,7 @@ msgid "DELETE script"
 msgstr "skrypt DELETE"
 
 #: pgadmin/ui/dlgIndex.xrc:14 pgadmin/ui/dlgIndex.xrc:15
-#: pgadmin/ui/dlgIndexConstraint.xrc:233 pgadmin/ui/dlgIndex.xrc:246
+#: pgadmin/ui/dlgIndexConstraint.xrc:207 pgadmin/ui/dlgIndex.xrc:317
 msgid "DESC"
 msgstr "DESC"
 
@@ -7927,8 +8022,8 @@ msgstr "Zapisano dane do pliku."
 #: pgadmin/schema/pgServer.cpp:1018 pgadmin/schema/pgUser.cpp:90
 #: pgadmin/schema/pgUser.cpp:122 pgadmin/frm/frmBackup.cpp:155
 #: pgadmin/frm/frmStatus.cpp:676 pgadmin/frm/frmStatus.cpp:786
-#: pgadmin/agent/pgaStep.cpp:108 pgadmin/schema/pgDatabase.cpp:1194
-#: pgadmin/schema/pgDatabase.cpp:1294 pgadmin/schema/pgRole.cpp:306
+#: pgadmin/agent/pgaStep.cpp:108 pgadmin/schema/pgDatabase.cpp:1200
+#: pgadmin/schema/pgDatabase.cpp:1300 pgadmin/schema/pgRole.cpp:306
 #: pgadmin/schema/pgRole.cpp:332 pgadmin/schema/pgServer.cpp:1365
 #: pgadmin/schema/pgTablespace.cpp:105 pgadmin/schema/pgTablespace.cpp:124
 #: pgadmin/schema/pgUser.cpp:157 pgadmin/schema/pgUser.cpp:189
@@ -8038,22 +8133,22 @@ msgstr "Raport statystyki bazy danych"
 #: pgadmin/utils/sysSettings.cpp:67 pgadmin/utils/sysSettings.cpp:167
 #: pgadmin/frm/frmOptions.cpp:296 pgadmin/schema/pgDatabase.cpp:1044
 #: pgadmin/schema/pgServer.cpp:861 pgadmin/frm/frmOptions.cpp:384
-#: pgadmin/schema/pgDatabase.cpp:1313 pgadmin/schema/pgServer.cpp:1100
-#: pgadmin/utils/sysSettings.cpp:78 pgadmin/utils/sysSettings.cpp:206
+#: pgadmin/schema/pgDatabase.cpp:1319 pgadmin/schema/pgServer.cpp:1100
+#: pgadmin/utils/sysSettings.cpp:78 pgadmin/utils/sysSettings.cpp:211
 #: pgadmin/dlg/dlgSearchObject.cpp:860
 msgid "Databases"
 msgstr "Bazy danych"
 
-#: pgadmin/schema/pgDatabase.cpp:1153
+#: pgadmin/schema/pgDatabase.cpp:1159
 msgid "Databases list report"
 msgstr "Wykaz bazy danych"
 
 # standard
-#: pgadmin/schema/pgDatabase.cpp:1150
+#: pgadmin/schema/pgDatabase.cpp:1156
 msgid "Databases statistics"
 msgstr "Statystyki baz danych"
 
-#: pgadmin/schema/pgDatabase.cpp:1147
+#: pgadmin/schema/pgDatabase.cpp:1153
 msgid "Databases statistics report"
 msgstr "Raport statystyki baz danych"
 
@@ -8118,11 +8213,11 @@ msgstr "Martwe krotki"
 msgid "Dead tuples"
 msgstr "Martwe krotki"
 
-#: pgadmin/schema/pgDatabase.cpp:327 pgadmin/schema/pgDatabase.cpp:1217
+#: pgadmin/schema/pgDatabase.cpp:330 pgadmin/schema/pgDatabase.cpp:1223
 msgid "Deadlock conflicts"
 msgstr "Konflikty zakleszczenia"
 
-#: pgadmin/schema/pgDatabase.cpp:332
+#: pgadmin/schema/pgDatabase.cpp:335
 msgid "Deadlocks"
 msgstr "Zakleszczenia"
 
@@ -8263,7 +8358,7 @@ msgstr "Wartość Domyślna"
 
 # standard
 #: pgadmin/schema/pgDatabase.cpp:538 pgadmin/schema/pgSchema.cpp:280
-#: pgadmin/schema/pgDatabase.cpp:730 pgadmin/schema/pgSchema.cpp:431
+#: pgadmin/schema/pgDatabase.cpp:736 pgadmin/schema/pgSchema.cpp:431
 msgid "Default function ACL"
 msgstr "Domyślna funkcja ACL"
 
@@ -8275,19 +8370,19 @@ msgstr "Domyślna rola"
 # standard
 #: src/schema/pgDatabase.cpp:408 src/schema/pgDatabase.cpp:424
 #: pgadmin/schema/pgDatabase.cpp:437 pgadmin/schema/pgDatabase.cpp:450
-#: pgadmin/schema/pgDatabase.cpp:534 pgadmin/schema/pgDatabase.cpp:724
+#: pgadmin/schema/pgDatabase.cpp:534 pgadmin/schema/pgDatabase.cpp:730
 msgid "Default schema"
 msgstr "Schemat domyślny"
 
 # standard
 #: pgadmin/schema/pgDatabase.cpp:537 pgadmin/schema/pgSchema.cpp:279
-#: pgadmin/schema/pgDatabase.cpp:729 pgadmin/schema/pgSchema.cpp:430
+#: pgadmin/schema/pgDatabase.cpp:735 pgadmin/schema/pgSchema.cpp:430
 msgid "Default sequence ACL"
 msgstr "Domyślna sekwencja ACL"
 
 # standard
 #: pgadmin/schema/pgDatabase.cpp:536 pgadmin/schema/pgSchema.cpp:278
-#: pgadmin/schema/pgDatabase.cpp:728 pgadmin/schema/pgSchema.cpp:429
+#: pgadmin/schema/pgDatabase.cpp:734 pgadmin/schema/pgSchema.cpp:429
 msgid "Default table ACL"
 msgstr "Domyślna tabela ACL"
 
@@ -8295,12 +8390,12 @@ msgstr "Domyślna tabela ACL"
 #: pgadmin/dlg/dlgIndex.cpp:295 pgadmin/dlg/dlgIndexConstraint.cpp:66
 #: pgadmin/dlg/dlgTable.cpp:309 pgadmin/schema/pgDatabase.cpp:432
 #: pgadmin/schema/pgDatabase.cpp:439 pgadmin/schema/pgDatabase.cpp:524
-#: pgadmin/schema/pgDatabase.cpp:714
+#: pgadmin/schema/pgDatabase.cpp:720
 msgid "Default tablespace"
 msgstr "Domyślna tablespace"
 
 # standard
-#: pgadmin/schema/pgDatabase.cpp:733 pgadmin/schema/pgSchema.cpp:434
+#: pgadmin/schema/pgDatabase.cpp:739 pgadmin/schema/pgSchema.cpp:434
 msgid "Default type ACL"
 msgstr "Domyślny typ ACL"
 
@@ -8327,7 +8422,7 @@ msgstr "Domyślnie?"
 # standard
 #: standard input:30 input:127 input:227 input:35 input:164 input:265
 #: pgadmin/ui/dlgForeignKey.xrc:4 pgadmin/ui/dlgIndexConstraint.xrc:4
-#: pgadmin/ui/dlgForeignKey.xrc:78 pgadmin/ui/dlgIndexConstraint.xrc:137
+#: pgadmin/ui/dlgForeignKey.xrc:78 pgadmin/ui/dlgIndexConstraint.xrc:117
 #: pgadmin/ui/dlgTrigger.xrc:124
 msgid "Deferrable"
 msgstr "Odraczalny"
@@ -8341,12 +8436,12 @@ msgstr "Odraczalny?"
 # standard
 #: standard input:31 input:128 input:228 input:36 input:165 input:266
 #: pgadmin/ui/dlgForeignKey.xrc:5 pgadmin/ui/dlgIndexConstraint.xrc:5
-#: pgadmin/ui/dlgForeignKey.xrc:92 pgadmin/ui/dlgIndexConstraint.xrc:151
+#: pgadmin/ui/dlgForeignKey.xrc:92 pgadmin/ui/dlgIndexConstraint.xrc:129
 #: pgadmin/ui/dlgTrigger.xrc:138
 msgid "Deferred"
 msgstr "Odroczony"
 
-#: pgadmin/schema/pgPolicy.cpp:130 pgadmin/ui/dlgPolicy.xrc:35
+#: pgadmin/schema/pgPolicy.cpp:122 pgadmin/ui/dlgPolicy.xrc:35
 msgid "Defined for"
 msgstr ""
 
@@ -8382,7 +8477,7 @@ msgstr ""
 #: pgadmin/ui/dlgExtTable.xrc:98 pgadmin/ui/dlgForeignDataWrapper.xrc:103
 #: pgadmin/ui/dlgForeignKey.xrc:69 pgadmin/ui/dlgForeignServer.xrc:103
 #: pgadmin/ui/dlgForeignTable.xrc:113 pgadmin/ui/dlgFunction.xrc:110
-#: pgadmin/ui/dlgIndexConstraint.xrc:70 pgadmin/ui/dlgIndex.xrc:69
+#: pgadmin/ui/dlgIndexConstraint.xrc:155 pgadmin/ui/dlgIndex.xrc:154
 #: pgadmin/ui/dlgLanguage.xrc:100 pgadmin/ui/dlgOperator.xrc:111
 #: pgadmin/ui/dlgPolicy.xrc:178 pgadmin/ui/dlgRole.xrc:85
 #: pgadmin/ui/dlgRule.xrc:83 pgadmin/ui/dlgSequence.xrc:115
@@ -8473,7 +8568,7 @@ msgid "Delete/Drop the selected object."
 msgstr "Usunięcie/Skasowanie wybranego obiektu."
 
 #: pgadmin/schema/pgIndex.cpp:259 pgadmin/schema/pgIndex.cpp:289
-#: pgadmin/schema/pgIndex.cpp:438
+#: pgadmin/schema/pgIndex.cpp:437
 msgid "Deleted Pages"
 msgstr "Usunięte Strony"
 
@@ -8683,7 +8778,7 @@ msgstr "Wyłączenie wyzwalaczy"
 msgid "Disconnec&t"
 msgstr "&Rozłącz"
 
-#: pgadmin/schema/pgDatabase.cpp:1318
+#: pgadmin/schema/pgDatabase.cpp:1324
 msgid "Disconnec&t database"
 msgstr "&Rozłącz bazę danych"
 
@@ -8691,7 +8786,7 @@ msgstr "&Rozłącz bazę danych"
 msgid "Disconnec&t server"
 msgstr "&Rozłącz serwer"
 
-#: pgadmin/schema/pgDatabase.cpp:1318
+#: pgadmin/schema/pgDatabase.cpp:1324
 msgid "Disconnect from the selected database."
 msgstr "Rozłączenie z wybraną bazą danych."
 
@@ -8795,7 +8890,7 @@ msgid "Display only those rows that have this value in this column."
 msgstr "Wyświetl tylko wiersze o takiej wartości w danej kolumnie."
 
 #: pgadmin/frm/frmOptions.cpp:472 pgadmin/frm/frmOptions.cpp:503
-#: pgadmin/frm/frmOptions.cpp:716 pgadmin/frm/frmOptions.cpp:886
+#: pgadmin/frm/frmOptions.cpp:716 pgadmin/frm/frmOptions.cpp:887
 msgid "Display options"
 msgstr "Opcje wyświetlania"
 
@@ -8935,8 +9030,8 @@ msgstr "Raport właściwości domeny"
 #: pgadmin/frm/frmOptions.cpp:310 pgadmin/schema/pgSchema.cpp:89
 #: pgadmin/schema/pgSchema.cpp:202 pgadmin/frm/frmOptions.cpp:406
 #: pgadmin/schema/pgDomain.cpp:392 pgadmin/schema/pgSchema.cpp:213
-#: pgadmin/schema/pgSchema.cpp:338 pgadmin/utils/sysSettings.cpp:144
-#: pgadmin/utils/sysSettings.cpp:228 pgadmin/dlg/dlgSearchObject.cpp:83
+#: pgadmin/schema/pgSchema.cpp:338 pgadmin/utils/sysSettings.cpp:149
+#: pgadmin/utils/sysSettings.cpp:234 pgadmin/dlg/dlgSearchObject.cpp:83
 #: pgadmin/dlg/dlgSearchObject.cpp:119
 msgid "Domains"
 msgstr "Domeny"
@@ -9139,6 +9234,18 @@ msgstr "Skasować kaskadowo tabelę Slony?"
 #: pgadmin/slony/slTable.cpp:61
 msgid "Drop Slony table?"
 msgstr "Skasować tabelę Slony?"
+
+#: pgadmin/schema/pgAccessMethod.cpp:49
+#, fuzzy
+msgid "Drop access method cascaded?"
+msgstr "Skasować kaskadowo rzutowanie?"
+
+# src/schema/pgOperatorClass.cpp:163 standard input:210
+# standard
+#: pgadmin/schema/pgAccessMethod.cpp:52
+#, fuzzy
+msgid "Drop access method?"
+msgstr "Metoda dostępu"
 
 #: pgadmin/schema/pgAggregate.cpp:49
 msgid "Drop aggregate cascaded?"
@@ -9418,7 +9525,7 @@ msgstr "Skasować kaskadowo zmienną pakietu?"
 msgid "Drop package?"
 msgstr "Skasować pakiet?"
 
-#: pgadmin/schema/pgPolicy.cpp:49
+#: pgadmin/schema/pgPolicy.cpp:48
 #, fuzzy
 msgid "Drop policy?"
 msgstr "Skasować procedurę?"
@@ -9591,7 +9698,7 @@ msgstr "Skasować widok?"
 
 #: src/schema/pgDatabase.cpp:317 src/schema/pgDatabase.cpp:320
 #: pgadmin/schema/pgDatabase.cpp:326 pgadmin/schema/pgDatabase.cpp:322
-#: pgadmin/schema/pgDatabase.cpp:374 pgadmin/schema/pgDatabase.cpp:506
+#: pgadmin/schema/pgDatabase.cpp:374 pgadmin/schema/pgDatabase.cpp:509
 msgid "Dropping database not allowed"
 msgstr "Skasowanie bazy danych niedozwolone"
 
@@ -9765,7 +9872,7 @@ msgid "Embed pgAdmin's default stylesheet into the report."
 msgstr "Osadź domyślne style pgAdmina w raporcie."
 
 #: pgadmin/schema/pgIndex.cpp:258 pgadmin/schema/pgIndex.cpp:288
-#: pgadmin/schema/pgIndex.cpp:437
+#: pgadmin/schema/pgIndex.cpp:436
 msgid "Empty Pages"
 msgstr "Puste Strony"
 
@@ -9890,7 +9997,7 @@ msgstr "Zalecane włączenie autoodkurzania"
 #: pgadmin/schema/pgDatabase.cpp:434 pgadmin/ui/dlgDatabase.xrc:5
 #: pgadmin/ui/frmExport.xrc:13 pgadmin/schema/pgDatabase.cpp:441
 #: pgadmin/schema/pgDatabase.cpp:526 pgadmin/ui/frmBackup.xrc:10
-#: pgadmin/schema/pgDatabase.cpp:716 pgadmin/ui/dlgDatabase.xrc:93
+#: pgadmin/schema/pgDatabase.cpp:722 pgadmin/ui/dlgDatabase.xrc:93
 #: pgadmin/ui/frmBackup.xrc:84 pgadmin/ui/frmExport.xrc:62
 #: pgadmin/ui/frmImport.xrc:63
 msgid "Encoding"
@@ -10077,11 +10184,11 @@ msgstr "Wyliczenie"
 #: pgadmin/frm/frmOptions.cpp:425 pgadmin/frm/frmOptions.cpp:435
 #: pgadmin/frm/frmOptions.cpp:443 pgadmin/frm/frmOptions.cpp:451
 #: pgadmin/frm/frmOptions.cpp:459 pgadmin/frm/frmOptions.cpp:467
-#: pgadmin/frm/frmQuery.cpp:2389 pgadmin/frm/frmOptions.cpp:551
-#: pgadmin/frm/frmOptions.cpp:561 pgadmin/frm/frmOptions.cpp:571
-#: pgadmin/frm/frmOptions.cpp:581 pgadmin/frm/frmOptions.cpp:590
-#: pgadmin/frm/frmOptions.cpp:598 pgadmin/frm/frmOptions.cpp:606
-#: pgadmin/frm/frmOptions.cpp:614 pgadmin/frm/frmQuery.cpp:2837
+#: pgadmin/frm/frmQuery.cpp:2389 pgadmin/frm/frmOptions.cpp:552
+#: pgadmin/frm/frmOptions.cpp:562 pgadmin/frm/frmOptions.cpp:572
+#: pgadmin/frm/frmOptions.cpp:582 pgadmin/frm/frmOptions.cpp:591
+#: pgadmin/frm/frmOptions.cpp:599 pgadmin/frm/frmOptions.cpp:607
+#: pgadmin/frm/frmOptions.cpp:615 pgadmin/frm/frmQuery.cpp:2837
 msgid "Error"
 msgstr "Błąd"
 
@@ -10199,9 +10306,9 @@ msgstr "Zdarzenie nr"
 msgid "Event Trigger"
 msgstr "Wyzwalacz Zdarzeniowy"
 
-#: pgadmin/frm/frmOptions.cpp:394 pgadmin/schema/pgDatabase.cpp:622
-#: pgadmin/schema/pgEventTrigger.cpp:315 pgadmin/utils/sysSettings.cpp:190
-#: pgadmin/utils/sysSettings.cpp:221
+#: pgadmin/frm/frmOptions.cpp:394 pgadmin/schema/pgDatabase.cpp:628
+#: pgadmin/schema/pgEventTrigger.cpp:315 pgadmin/utils/sysSettings.cpp:195
+#: pgadmin/utils/sysSettings.cpp:227
 msgid "Event Triggers"
 msgstr "Wyzwalacze Zdarzeniowe"
 
@@ -10596,9 +10703,9 @@ msgstr "Właściwości rozszerzenia"
 msgid "Extension properties report"
 msgstr "Raport właściwości rozszerzenia"
 
-#: pgadmin/frm/frmOptions.cpp:395 pgadmin/schema/pgDatabase.cpp:146
-#: pgadmin/schema/pgDatabase.cpp:624 pgadmin/schema/pgExtension.cpp:234
-#: pgadmin/utils/sysSettings.cpp:126 pgadmin/utils/sysSettings.cpp:222
+#: pgadmin/frm/frmOptions.cpp:395 pgadmin/schema/pgDatabase.cpp:149
+#: pgadmin/schema/pgDatabase.cpp:630 pgadmin/schema/pgExtension.cpp:234
+#: pgadmin/utils/sysSettings.cpp:131 pgadmin/utils/sysSettings.cpp:228
 #: pgadmin/dlg/dlgSearchObject.cpp:100 pgadmin/dlg/dlgSearchObject.cpp:144
 msgid "Extensions"
 msgstr "Rozszerzenia"
@@ -10637,8 +10744,8 @@ msgstr "Tabela Zewnętrzna"
 #: pgadmin/frm/frmOptions.cpp:320 pgadmin/schema/pgSchema.cpp:135
 #: pgadmin/schema/pgSchema.cpp:251 pgadmin/frm/frmOptions.cpp:407
 #: pgadmin/schema/gpExtTable.cpp:575 pgadmin/schema/pgSchema.cpp:264
-#: pgadmin/schema/pgSchema.cpp:389 pgadmin/utils/sysSettings.cpp:188
-#: pgadmin/utils/sysSettings.cpp:244
+#: pgadmin/schema/pgSchema.cpp:389 pgadmin/utils/sysSettings.cpp:193
+#: pgadmin/utils/sysSettings.cpp:250
 msgid "External Tables"
 msgstr "Tabele Zewnętrzne"
 
@@ -10712,7 +10819,7 @@ msgid "FATAL"
 msgstr "FATAL"
 
 #: pgadmin/ui/dlgIndex.xrc:16 pgadmin/ui/dlgIndex.xrc:17
-#: pgadmin/ui/dlgIndexConstraint.xrc:266 pgadmin/ui/dlgIndex.xrc:279
+#: pgadmin/ui/dlgIndexConstraint.xrc:240 pgadmin/ui/dlgIndex.xrc:350
 msgid "FIRST"
 msgstr "FIRST"
 
@@ -10773,7 +10880,7 @@ msgstr "Konfiguracja FTS"
 #: pgadmin/schema/pgSchema.cpp:204 pgadmin/frm/frmOptions.cpp:409
 #: pgadmin/schema/pgSchema.cpp:233 pgadmin/schema/pgSchema.cpp:342
 #: pgadmin/schema/pgTextSearchConfiguration.cpp:277
-#: pgadmin/utils/sysSettings.cpp:173 pgadmin/utils/sysSettings.cpp:238
+#: pgadmin/utils/sysSettings.cpp:178 pgadmin/utils/sysSettings.cpp:244
 #: pgadmin/dlg/dlgSearchObject.cpp:89 pgadmin/dlg/dlgSearchObject.cpp:124
 msgid "FTS Configurations"
 msgstr "Konfiguracje FTS"
@@ -10786,7 +10893,7 @@ msgstr "Konfiguracje FTS"
 #: pgadmin/schema/pgSchema.cpp:209 pgadmin/frm/frmOptions.cpp:410
 #: pgadmin/schema/pgSchema.cpp:238 pgadmin/schema/pgSchema.cpp:347
 #: pgadmin/schema/pgTextSearchDictionary.cpp:241
-#: pgadmin/utils/sysSettings.cpp:175 pgadmin/utils/sysSettings.cpp:239
+#: pgadmin/utils/sysSettings.cpp:180 pgadmin/utils/sysSettings.cpp:245
 #: pgadmin/dlg/dlgSearchObject.cpp:90 pgadmin/dlg/dlgSearchObject.cpp:125
 msgid "FTS Dictionaries"
 msgstr "Słowniki FTS"
@@ -10807,8 +10914,8 @@ msgstr "Parser FTS"
 #: pgadmin/frm/frmOptions.cpp:323 pgadmin/schema/pgSchema.cpp:119
 #: pgadmin/schema/pgSchema.cpp:214 pgadmin/frm/frmOptions.cpp:411
 #: pgadmin/schema/pgSchema.cpp:243 pgadmin/schema/pgSchema.cpp:352
-#: pgadmin/schema/pgTextSearchParser.cpp:253 pgadmin/utils/sysSettings.cpp:177
-#: pgadmin/utils/sysSettings.cpp:240 pgadmin/dlg/dlgSearchObject.cpp:91
+#: pgadmin/schema/pgTextSearchParser.cpp:253 pgadmin/utils/sysSettings.cpp:182
+#: pgadmin/utils/sysSettings.cpp:246 pgadmin/dlg/dlgSearchObject.cpp:91
 #: pgadmin/dlg/dlgSearchObject.cpp:126
 msgid "FTS Parsers"
 msgstr "Parsery FTS"
@@ -10831,7 +10938,7 @@ msgstr "Szablon FTS"
 #: pgadmin/schema/pgSchema.cpp:219 pgadmin/frm/frmOptions.cpp:412
 #: pgadmin/schema/pgSchema.cpp:248 pgadmin/schema/pgSchema.cpp:357
 #: pgadmin/schema/pgTextSearchTemplate.cpp:242
-#: pgadmin/utils/sysSettings.cpp:179 pgadmin/utils/sysSettings.cpp:241
+#: pgadmin/utils/sysSettings.cpp:184 pgadmin/utils/sysSettings.cpp:247
 #: pgadmin/dlg/dlgSearchObject.cpp:92 pgadmin/dlg/dlgSearchObject.cpp:127
 msgid "FTS Templates"
 msgstr "Szablony FTS"
@@ -11260,6 +11367,12 @@ msgstr "Działanie awaryjne dla węzła kopii zapasowej."
 msgid "Family"
 msgstr "Rodzina"
 
+# standard
+#: pgadmin/schema/pgIndex.cpp:692
+#, fuzzy
+msgid "Fast update?"
+msgstr "Przy modyfikacji"
+
 #: pgadmin/frm/frmQuery.cpp:208 pgadmin/frm/frmQuery.cpp:252
 #: pgadmin/frm/frmQuery.cpp:319 pgadmin/frm/frmQuery.cpp:352
 #: pgadmin/frm/frmQuery.cpp:1524
@@ -11320,9 +11433,8 @@ msgstr "Czynnik wypełnienia"
 #: pgadmin/schema/pgIndex.cpp:229 pgadmin/schema/pgTable.cpp:569
 #: pgadmin/schema/pgIndex.cpp:262 pgadmin/schema/pgTable.cpp:833
 #: pgadmin/schema/pgTable.cpp:880 pgadmin/ui/dlgIndex.xrc:5
-#: pgadmin/schema/pgIndex.cpp:411 pgadmin/schema/pgIndexConstraint.cpp:197
-#: pgadmin/schema/pgTable.cpp:1000 pgadmin/schema/pgView.cpp:527
-#: pgadmin/ui/dlgIndexConstraint.xrc:125 pgadmin/ui/dlgIndex.xrc:109
+#: pgadmin/schema/pgIndex.cpp:688 pgadmin/schema/pgTable.cpp:1000
+#: pgadmin/schema/pgView.cpp:527
 msgid "Fill factor"
 msgstr "Czynnik wypełnienia"
 
@@ -11482,10 +11594,10 @@ msgstr "Pierwszy plan/Tło"
 msgid "Foreign Data Wrapper"
 msgstr "Opakowanie Obcych Danych"
 
-#: pgadmin/frm/frmOptions.cpp:396 pgadmin/schema/pgDatabase.cpp:148
-#: pgadmin/schema/pgDatabase.cpp:626
+#: pgadmin/frm/frmOptions.cpp:396 pgadmin/schema/pgDatabase.cpp:151
+#: pgadmin/schema/pgDatabase.cpp:632
 #: pgadmin/schema/pgForeignDataWrapper.cpp:408
-#: pgadmin/utils/sysSettings.cpp:101 pgadmin/utils/sysSettings.cpp:216
+#: pgadmin/utils/sysSettings.cpp:106 pgadmin/utils/sysSettings.cpp:222
 #: pgadmin/dlg/dlgSearchObject.cpp:93 pgadmin/dlg/dlgSearchObject.cpp:130
 msgid "Foreign Data Wrappers"
 msgstr "Opakowania Obcych Danych"
@@ -11509,8 +11621,8 @@ msgid "Foreign Server"
 msgstr "Serwer Obcy"
 
 #: pgadmin/frm/frmOptions.cpp:397 pgadmin/schema/pgForeignDataWrapper.cpp:143
-#: pgadmin/schema/pgForeignServer.cpp:351 pgadmin/utils/sysSettings.cpp:106
-#: pgadmin/utils/sysSettings.cpp:217 pgadmin/dlg/dlgSearchObject.cpp:94
+#: pgadmin/schema/pgForeignServer.cpp:351 pgadmin/utils/sysSettings.cpp:111
+#: pgadmin/utils/sysSettings.cpp:223 pgadmin/dlg/dlgSearchObject.cpp:94
 #: pgadmin/dlg/dlgSearchObject.cpp:131
 msgid "Foreign Servers"
 msgstr "Serwery Obce"
@@ -11521,7 +11633,7 @@ msgstr "Tabela Obca"
 
 #: pgadmin/frm/frmOptions.cpp:408 pgadmin/schema/pgForeignTable.cpp:415
 #: pgadmin/schema/pgSchema.cpp:253 pgadmin/schema/pgSchema.cpp:340
-#: pgadmin/utils/sysSettings.cpp:116 pgadmin/utils/sysSettings.cpp:219
+#: pgadmin/utils/sysSettings.cpp:121 pgadmin/utils/sysSettings.cpp:225
 #: pgadmin/dlg/dlgSearchObject.cpp:95 pgadmin/dlg/dlgSearchObject.cpp:136
 msgid "Foreign Tables"
 msgstr "Tabele Obce"
@@ -11868,8 +11980,8 @@ msgstr "Raport właściwości funkcji"
 #: pgadmin/schema/pgSchema.cpp:91 pgadmin/schema/pgSchema.cpp:224
 #: pgadmin/frm/frmOptions.cpp:413 pgadmin/schema/edbPackageFunction.cpp:544
 #: pgadmin/schema/pgFunction.cpp:1127 pgadmin/schema/pgSchema.cpp:215
-#: pgadmin/schema/pgSchema.cpp:362 pgadmin/utils/sysSettings.cpp:146
-#: pgadmin/utils/sysSettings.cpp:229 pgadmin/dlg/dlgSearchObject.cpp:77
+#: pgadmin/schema/pgSchema.cpp:362 pgadmin/utils/sysSettings.cpp:151
+#: pgadmin/utils/sysSettings.cpp:235 pgadmin/dlg/dlgSearchObject.cpp:77
 #: pgadmin/dlg/dlgSearchObject.cpp:112
 msgid "Functions"
 msgstr "Funkcje"
@@ -12001,7 +12113,7 @@ msgid "Geometric types"
 msgstr "Typy geometryczne"
 
 #: pgadmin/schema/pgIndex.cpp:287 pgadmin/schema/pgIndex.cpp:327
-#: pgadmin/schema/pgIndex.cpp:476
+#: pgadmin/schema/pgIndex.cpp:475
 msgid "Get extended statistics via pgstatindex for the selected object."
 msgstr ""
 "Pobranie rozszerzonych statystyk przez pgstatindex dla wybranego obiektu."
@@ -12218,7 +12330,7 @@ msgstr "Wykaz grup"
 #: pgadmin/frm/frmOptions.cpp:387 pgadmin/schema/pgServer.cpp:185
 #: pgadmin/schema/pgServer.cpp:197 pgadmin/schema/pgServer.cpp:1125
 #: pgadmin/schema/pgServer.cpp:1137 pgadmin/utils/sysSettings.cpp:84
-#: pgadmin/utils/sysSettings.cpp:209
+#: pgadmin/utils/sysSettings.cpp:214
 msgid "Groups/group Roles"
 msgstr "Grupy/grupa ról"
 
@@ -12279,7 +12391,8 @@ msgstr "HTTP proxy"
 #: src/schema/pgLanguage.cpp:67 standard input:264
 #: src/schema/pgLanguage.cpp:74 input:302 pgadmin/schema/pgLanguage.cpp:68
 #: pgadmin/ui/dlgLanguage.xrc:5 pgadmin/schema/pgLanguage.cpp:70
-#: pgadmin/ui/dlgLanguage.xrc:6 pgadmin/schema/pgForeignDataWrapper.cpp:155
+#: pgadmin/ui/dlgLanguage.xrc:6 pgadmin/schema/pgAccessMethod.cpp:119
+#: pgadmin/schema/pgForeignDataWrapper.cpp:155
 #: pgadmin/ui/dlgForeignDataWrapper.xrc:112
 msgid "Handler"
 msgstr "Program obsługi"
@@ -12411,7 +12524,7 @@ msgstr "Czytane Bloki Sterty"
 #: pgadmin/ui/dlgForeignKey.xrc:311 pgadmin/ui/dlgForeignServer.xrc:236
 #: pgadmin/ui/dlgForeignTable.xrc:363 pgadmin/ui/dlgFunction.xrc:578
 #: pgadmin/ui/dlgGroup.xrc:149 pgadmin/ui/dlgHbaConfig.xrc:128
-#: pgadmin/ui/dlgIndexConstraint.xrc:344 pgadmin/ui/dlgIndex.xrc:342
+#: pgadmin/ui/dlgIndexConstraint.xrc:324 pgadmin/ui/dlgIndex.xrc:420
 #: pgadmin/ui/dlgJob.xrc:291 pgadmin/ui/dlgLanguage.xrc:180
 #: pgadmin/ui/dlgMainConfig.xrc:111 pgadmin/ui/dlgManageMacros.xrc:105
 #: pgadmin/ui/dlgOperator.xrc:335 pgadmin/ui/dlgPackage.xrc:145
@@ -12842,7 +12955,7 @@ msgstr "Wsuwa zaznaczony blok"
 #: src/schema/pgIndex.cpp:361 standard input:380 src/schema/pgIndex.cpp:371
 #: input:435 pgadmin/schema/pgIndex.cpp:467 pgadmin/ui/dlgRepTable.xrc:4
 #: pgadmin/schema/pgIndex.cpp:506 pgadmin/schema/pgIndex.cpp:513
-#: pgadmin/schema/pgIndex.cpp:690 pgadmin/ui/dlgIndexConstraint.xrc:95
+#: pgadmin/schema/pgIndex.cpp:741 pgadmin/ui/dlgIndexConstraint.xrc:89
 #: pgadmin/ui/dlgRepTable.xrc:54
 msgid "Index"
 msgstr "Indeks"
@@ -12850,14 +12963,14 @@ msgstr "Indeks"
 #: src/schema/pgTable.cpp:609 src/schema/pgTable.cpp:712
 #: pgadmin/schema/pgTable.cpp:781 pgadmin/schema/pgIndex.cpp:275
 #: pgadmin/schema/pgTable.cpp:1142 pgadmin/schema/pgTable.cpp:1189
-#: pgadmin/schema/pgIndex.cpp:424 pgadmin/schema/pgTable.cpp:1369
+#: pgadmin/schema/pgIndex.cpp:423 pgadmin/schema/pgTable.cpp:1369
 msgid "Index Blocks Hit"
 msgstr "Trafione Bloki Indeksu"
 
 #: src/schema/pgTable.cpp:608 src/schema/pgTable.cpp:711
 #: pgadmin/schema/pgTable.cpp:780 pgadmin/schema/pgIndex.cpp:274
 #: pgadmin/schema/pgTable.cpp:1141 pgadmin/schema/pgTable.cpp:1188
-#: pgadmin/schema/pgIndex.cpp:423 pgadmin/schema/pgTable.cpp:1368
+#: pgadmin/schema/pgIndex.cpp:422 pgadmin/schema/pgTable.cpp:1368
 msgid "Index Blocks Read"
 msgstr "Czytane Bloki Indeksu"
 
@@ -12870,7 +12983,7 @@ msgid "Index DDL report"
 msgstr "Raport DDL indeku"
 
 #: src/slony/slTable.cpp:95 pgadmin/slony/slTable.cpp:86
-#: pgadmin/schema/pgIndex.cpp:537 pgadmin/schema/pgIndex.cpp:714
+#: pgadmin/schema/pgIndex.cpp:537 pgadmin/schema/pgIndex.cpp:765
 #: pgadmin/slony/slTable.cpp:160
 msgid "Index Name"
 msgstr "Nazwa Indeksu"
@@ -12883,28 +12996,28 @@ msgstr "Indeks OID"
 #: src/schema/pgTable.cpp:601 src/schema/pgTable.cpp:704
 #: pgadmin/schema/pgTable.cpp:773 pgadmin/schema/pgIndex.cpp:271
 #: pgadmin/schema/pgTable.cpp:1125 pgadmin/schema/pgIndex.cpp:538
-#: pgadmin/schema/pgTable.cpp:1172 pgadmin/schema/pgIndex.cpp:420
-#: pgadmin/schema/pgIndex.cpp:715 pgadmin/schema/pgTable.cpp:1352
+#: pgadmin/schema/pgTable.cpp:1172 pgadmin/schema/pgIndex.cpp:419
+#: pgadmin/schema/pgIndex.cpp:766 pgadmin/schema/pgTable.cpp:1352
 msgid "Index Scans"
 msgstr "Skanowanie Indeksu"
 
 #: src/schema/pgIndex.cpp:220 src/schema/pgIndex.cpp:230
 #: pgadmin/schema/pgIndex.cpp:240 pgadmin/schema/pgIndex.cpp:254
 #: pgadmin/schema/pgIndex.cpp:278 pgadmin/schema/pgIndex.cpp:284
-#: pgadmin/schema/pgIndex.cpp:427 pgadmin/schema/pgIndex.cpp:433
+#: pgadmin/schema/pgIndex.cpp:426 pgadmin/schema/pgIndex.cpp:432
 msgid "Index Size"
 msgstr "Rozmiar Indeksu"
 
 #: src/schema/pgTable.cpp:602 src/schema/pgTable.cpp:705
 #: pgadmin/schema/pgTable.cpp:774 pgadmin/schema/pgIndex.cpp:273
 #: pgadmin/schema/pgTable.cpp:1126 pgadmin/schema/pgIndex.cpp:540
-#: pgadmin/schema/pgTable.cpp:1173 pgadmin/schema/pgIndex.cpp:422
-#: pgadmin/schema/pgIndex.cpp:717 pgadmin/schema/pgTable.cpp:1353
+#: pgadmin/schema/pgTable.cpp:1173 pgadmin/schema/pgIndex.cpp:421
+#: pgadmin/schema/pgIndex.cpp:768 pgadmin/schema/pgTable.cpp:1353
 msgid "Index Tuples Fetched"
 msgstr "Otrzymane krotki z indeksu"
 
 #: pgadmin/schema/pgIndex.cpp:272 pgadmin/schema/pgIndex.cpp:539
-#: pgadmin/schema/pgIndex.cpp:421 pgadmin/schema/pgIndex.cpp:716
+#: pgadmin/schema/pgIndex.cpp:420 pgadmin/schema/pgIndex.cpp:767
 msgid "Index Tuples Read"
 msgstr "Indeks odczytanych krotek"
 
@@ -12989,7 +13102,7 @@ msgstr "Raport statystyki indeksu"
 
 #: src/schema/pgIndex.cpp:367 src/schema/pgIndex.cpp:377
 #: pgadmin/schema/pgIndex.cpp:474 pgadmin/schema/pgIndex.cpp:513
-#: pgadmin/schema/pgIndex.cpp:520 pgadmin/schema/pgIndex.cpp:697
+#: pgadmin/schema/pgIndex.cpp:520 pgadmin/schema/pgIndex.cpp:748
 #: pgadmin/dlg/dlgMoveTablespace.cpp:52 pgadmin/dlg/dlgMoveTablespace.cpp:106
 #: pgadmin/dlg/dlgSearchObject.cpp:76 pgadmin/dlg/dlgSearchObject.cpp:111
 #: pgadmin/ui/dlgTable.xrc:314
@@ -13002,7 +13115,7 @@ msgstr "Indeksy"
 msgid "Indexes Size"
 msgstr "Rozmiar Indeksu"
 
-#: pgadmin/schema/pgIndex.cpp:677
+#: pgadmin/schema/pgIndex.cpp:728
 msgid "Indexes list report"
 msgstr "Wykaz indeksu"
 
@@ -13193,7 +13306,7 @@ msgstr "Wewnętrzny - nie zewnętrznie ustawiania tabela"
 
 # standard
 #: pgadmin/schema/pgIndex.cpp:256 pgadmin/schema/pgIndex.cpp:286
-#: pgadmin/schema/pgIndex.cpp:435
+#: pgadmin/schema/pgIndex.cpp:434
 msgid "Internal Pages"
 msgstr "Wewnętrzne strony"
 
@@ -13350,7 +13463,7 @@ msgid "Kind"
 msgstr "Rodzaj"
 
 #: pgadmin/ui/dlgIndex.xrc:17 pgadmin/ui/dlgIndex.xrc:18
-#: pgadmin/ui/dlgIndexConstraint.xrc:275 pgadmin/ui/dlgIndex.xrc:288
+#: pgadmin/ui/dlgIndexConstraint.xrc:251 pgadmin/ui/dlgIndex.xrc:361
 msgid "LAST"
 msgstr "LAST"
 
@@ -13454,9 +13567,9 @@ msgstr "Raport właściwości języka"
 #: pgadmin/schema/pgLanguage.cpp:154 pgadmin/utils/sysSettings.cpp:86
 #: pgadmin/utils/sysSettings.cpp:175 pgadmin/frm/frmOptions.cpp:304
 #: pgadmin/schema/pgDatabase.cpp:64 pgadmin/schema/pgDatabase.cpp:480
-#: pgadmin/frm/frmOptions.cpp:399 pgadmin/schema/pgDatabase.cpp:150
-#: pgadmin/schema/pgDatabase.cpp:628 pgadmin/schema/pgLanguage.cpp:280
-#: pgadmin/utils/sysSettings.cpp:121 pgadmin/utils/sysSettings.cpp:220
+#: pgadmin/frm/frmOptions.cpp:399 pgadmin/schema/pgDatabase.cpp:153
+#: pgadmin/schema/pgDatabase.cpp:634 pgadmin/schema/pgLanguage.cpp:280
+#: pgadmin/utils/sysSettings.cpp:126 pgadmin/utils/sysSettings.cpp:226
 #: pgadmin/dlg/dlgSearchObject.cpp:84 pgadmin/dlg/dlgSearchObject.cpp:118
 msgid "Languages"
 msgstr "Języki"
@@ -13571,7 +13684,7 @@ msgstr "Ostatni wynik"
 msgid "Last run"
 msgstr "Ostatnie uruchomienie"
 
-#: pgadmin/schema/pgDatabase.cpp:322 pgadmin/schema/pgDatabase.cpp:1212
+#: pgadmin/schema/pgDatabase.cpp:325 pgadmin/schema/pgDatabase.cpp:1218
 msgid "Last statistics reset"
 msgstr "Ostatnie przeładowanie statystyk"
 
@@ -13591,12 +13704,12 @@ msgstr "Ostatnie czyszczenie"
 # standard input:9
 # standard
 #: pgadmin/schema/pgIndex.cpp:261 pgadmin/schema/pgIndex.cpp:291
-#: pgadmin/schema/pgIndex.cpp:440
+#: pgadmin/schema/pgIndex.cpp:439
 msgid "Leaf Fragmentation"
 msgstr "Fragmentacja liścia"
 
 #: pgadmin/schema/pgIndex.cpp:257 pgadmin/schema/pgIndex.cpp:287
-#: pgadmin/schema/pgIndex.cpp:436
+#: pgadmin/schema/pgIndex.cpp:435
 msgid "Leaf Pages"
 msgstr "Strony liścia"
 
@@ -13827,7 +13940,7 @@ msgstr "Blokada XXID"
 msgid "Lock a replication set against updates."
 msgstr "Blokada grupy replikacji przed modyfikacjami."
 
-#: pgadmin/schema/pgDatabase.cpp:324 pgadmin/schema/pgDatabase.cpp:1214
+#: pgadmin/schema/pgDatabase.cpp:327 pgadmin/schema/pgDatabase.cpp:1220
 msgid "Lock conflicts"
 msgstr "Konflikty blokady"
 
@@ -14058,7 +14171,7 @@ msgstr "Serwisowa baza danych"
 # standard
 #: src/schema/pgDatabase.cpp:316 src/schema/pgDatabase.cpp:319
 #: pgadmin/schema/pgDatabase.cpp:325 pgadmin/schema/pgDatabase.cpp:321
-#: pgadmin/schema/pgDatabase.cpp:373 pgadmin/schema/pgDatabase.cpp:505
+#: pgadmin/schema/pgDatabase.cpp:373 pgadmin/schema/pgDatabase.cpp:508
 msgid "Maintenance database can't be dropped."
 msgstr "Porządkowanej bazy danych nie można skasować."
 
@@ -14517,7 +14630,7 @@ msgstr "Ciąg znaków NULL"
 # standard input:11
 # standard
 #: pgadmin/ui/dlgIndex.xrc:15 pgadmin/ui/dlgIndex.xrc:16
-#: pgadmin/ui/dlgIndexConstraint.xrc:253 pgadmin/ui/dlgIndex.xrc:266
+#: pgadmin/ui/dlgIndexConstraint.xrc:226 pgadmin/ui/dlgIndex.xrc:336
 msgid "NULLs"
 msgstr "NULLe"
 
@@ -14525,8 +14638,8 @@ msgstr "NULLe"
 msgid "NULLs Order"
 msgstr "Kolejność NULLi"
 
-#: pgadmin/dlg/dlgIndex.cpp:196 pgadmin/dlg/dlgIndex.cpp:204
-#: pgadmin/dlg/dlgIndexConstraint.cpp:57 pgadmin/dlg/dlgIndexConstraint.cpp:68
+#: pgadmin/dlg/dlgIndex.cpp:196 pgadmin/dlg/dlgIndex.cpp:197
+#: pgadmin/dlg/dlgIndexConstraint.cpp:56 pgadmin/dlg/dlgIndexConstraint.cpp:67
 msgid "NULLs order"
 msgstr "Kolejność NULLi"
 
@@ -14652,12 +14765,12 @@ msgstr "Kolejność NULLi"
 #: pgadmin/schema/edbPrivateSynonym.cpp:89
 #: pgadmin/schema/edbResourceGroup.cpp:118 pgadmin/schema/edbSynonym.cpp:117
 #: pgadmin/schema/gpExtTable.cpp:452 pgadmin/schema/gpResQueue.cpp:173
-#: pgadmin/schema/pgAggregate.cpp:152 pgadmin/schema/pgCast.cpp:127
-#: pgadmin/schema/pgCatalogObject.cpp:91 pgadmin/schema/pgCheck.cpp:162
-#: pgadmin/schema/pgCollation.cpp:134 pgadmin/schema/pgColumn.cpp:473
-#: pgadmin/schema/pgConversion.cpp:126 pgadmin/schema/pgDatabase.cpp:703
-#: pgadmin/schema/pgDomain.cpp:199 pgadmin/schema/pgEventTrigger.cpp:143
-#: pgadmin/schema/pgExtension.cpp:121
+#: pgadmin/schema/pgAccessMethod.cpp:117 pgadmin/schema/pgAggregate.cpp:152
+#: pgadmin/schema/pgCast.cpp:127 pgadmin/schema/pgCatalogObject.cpp:91
+#: pgadmin/schema/pgCheck.cpp:162 pgadmin/schema/pgCollation.cpp:134
+#: pgadmin/schema/pgColumn.cpp:473 pgadmin/schema/pgConversion.cpp:126
+#: pgadmin/schema/pgDatabase.cpp:709 pgadmin/schema/pgDomain.cpp:199
+#: pgadmin/schema/pgEventTrigger.cpp:143 pgadmin/schema/pgExtension.cpp:121
 #: pgadmin/schema/pgForeignDataWrapper.cpp:151
 #: pgadmin/schema/pgForeignKey.cpp:237 pgadmin/schema/pgForeignServer.cpp:152
 #: pgadmin/schema/pgForeignTable.cpp:181 pgadmin/schema/pgFunction.cpp:384
@@ -14665,7 +14778,7 @@ msgstr "Kolejność NULLi"
 #: pgadmin/schema/pgIndexConstraint.cpp:177 pgadmin/schema/pgLanguage.cpp:129
 #: pgadmin/schema/pgObject.cpp:245 pgadmin/schema/pgOperator.cpp:181
 #: pgadmin/schema/pgOperatorClass.cpp:274
-#: pgadmin/schema/pgOperatorFamily.cpp:121 pgadmin/schema/pgPolicy.cpp:129
+#: pgadmin/schema/pgOperatorFamily.cpp:121 pgadmin/schema/pgPolicy.cpp:121
 #: pgadmin/schema/pgRole.cpp:307 pgadmin/schema/pgRole.cpp:456
 #: pgadmin/schema/pgRule.cpp:175 pgadmin/schema/pgSchema.cpp:423
 #: pgadmin/schema/pgSequence.cpp:180 pgadmin/schema/pgTable.cpp:978
@@ -14689,8 +14802,8 @@ msgstr "Kolejność NULLi"
 #: pgadmin/ui/dlgExtension.xrc:26 pgadmin/ui/dlgExtTable.xrc:26
 #: pgadmin/ui/dlgForeignDataWrapper.xrc:26 pgadmin/ui/dlgForeignKey.xrc:26
 #: pgadmin/ui/dlgForeignServer.xrc:26 pgadmin/ui/dlgForeignTable.xrc:26
-#: pgadmin/ui/dlgFunction.xrc:26 pgadmin/ui/dlgIndexConstraint.xrc:26
-#: pgadmin/ui/dlgIndex.xrc:26 pgadmin/ui/dlgJob.xrc:26
+#: pgadmin/ui/dlgFunction.xrc:26 pgadmin/ui/dlgIndexConstraint.xrc:23
+#: pgadmin/ui/dlgIndex.xrc:23 pgadmin/ui/dlgJob.xrc:26
 #: pgadmin/ui/dlgLanguage.xrc:26 pgadmin/ui/dlgManageMacros.xrc:33
 #: pgadmin/ui/dlgOperator.xrc:26 pgadmin/ui/dlgPackage.xrc:26
 #: pgadmin/ui/dlgPolicy.xrc:23 pgadmin/ui/dlgRule.xrc:26
@@ -14745,6 +14858,13 @@ msgstr "Nowy"
 #: pgadmin/frm/frmMain.cpp:366
 msgid "New &Object"
 msgstr "Nowy &obiekt"
+
+# src/schema/pgOperatorClass.cpp:163 standard input:210
+# standard
+#: pgadmin/schema/pgAccessMethod.cpp:204
+#, fuzzy
+msgid "New Access Method..."
+msgstr "Metoda dostępu"
 
 #: src/schema/pgAggregate.cpp:202
 msgid "New Aggregate"
@@ -14817,7 +14937,7 @@ msgstr "Nowa baza danych"
 
 #: src/schema/pgDatabase.cpp:648 pgadmin/schema/pgDatabase.cpp:752
 #: pgadmin/schema/pgDatabase.cpp:818 pgadmin/schema/pgDatabase.cpp:1025
-#: pgadmin/schema/pgDatabase.cpp:1294
+#: pgadmin/schema/pgDatabase.cpp:1300
 msgid "New Database..."
 msgstr "Nowa baza danych..."
 
@@ -14936,7 +15056,7 @@ msgstr "Nowy indeks"
 
 #: src/schema/pgIndex.cpp:371 pgadmin/schema/pgIndex.cpp:467
 #: pgadmin/schema/pgIndex.cpp:506 pgadmin/schema/pgIndex.cpp:513
-#: pgadmin/schema/pgIndex.cpp:690
+#: pgadmin/schema/pgIndex.cpp:741
 msgid "New Index..."
 msgstr "Nowy indeks..."
 
@@ -15026,7 +15146,7 @@ msgstr "Nowe hasło"
 msgid "New Path"
 msgstr "Nowe Ścieżka"
 
-#: pgadmin/schema/pgPolicy.cpp:233
+#: pgadmin/schema/pgPolicy.cpp:225
 #, fuzzy
 msgid "New Policy..."
 msgstr "Nowy publiczny synonim..."
@@ -15465,7 +15585,7 @@ msgstr "Węzły"
 #: standard input:877 pgadmin/frm/frmOptions.cpp:537
 #: pgadmin/ui/frmOptions.xrc:35 pgadmin/frm/frmOptions.cpp:567
 #: pgadmin/ui/frmOptions.xrc:40 pgadmin/frm/frmOptions.cpp:744
-#: pgadmin/ui/frmOptions.xrc:38 pgadmin/frm/frmOptions.cpp:914
+#: pgadmin/ui/frmOptions.xrc:38 pgadmin/frm/frmOptions.cpp:915
 #: pgadmin/ui/frmOptions.xrc:382 pgadmin/ui/frmOptions.xrc:829
 msgid "None"
 msgstr "Nic"
@@ -15696,19 +15816,19 @@ msgstr "Typy liczbowe"
 #: pgadmin/schema/pgView.cpp:229 pgadmin/schema/edbPackage.cpp:192
 #: pgadmin/schema/edbPackageFunction.cpp:204
 #: pgadmin/schema/edbPackageVariable.cpp:91 pgadmin/schema/gpExtTable.cpp:453
-#: pgadmin/schema/gpResQueue.cpp:174 pgadmin/schema/pgAggregate.cpp:153
-#: pgadmin/schema/pgCast.cpp:128 pgadmin/schema/pgCatalogObject.cpp:92
-#: pgadmin/schema/pgCheck.cpp:163 pgadmin/schema/pgCollation.cpp:135
-#: pgadmin/schema/pgConversion.cpp:127 pgadmin/schema/pgDatabase.cpp:704
-#: pgadmin/schema/pgDomain.cpp:200 pgadmin/schema/pgEventTrigger.cpp:144
-#: pgadmin/schema/pgExtension.cpp:122
+#: pgadmin/schema/gpResQueue.cpp:174 pgadmin/schema/pgAccessMethod.cpp:118
+#: pgadmin/schema/pgAggregate.cpp:153 pgadmin/schema/pgCast.cpp:128
+#: pgadmin/schema/pgCatalogObject.cpp:92 pgadmin/schema/pgCheck.cpp:163
+#: pgadmin/schema/pgCollation.cpp:135 pgadmin/schema/pgConversion.cpp:127
+#: pgadmin/schema/pgDatabase.cpp:710 pgadmin/schema/pgDomain.cpp:200
+#: pgadmin/schema/pgEventTrigger.cpp:144 pgadmin/schema/pgExtension.cpp:122
 #: pgadmin/schema/pgForeignDataWrapper.cpp:152
 #: pgadmin/schema/pgForeignKey.cpp:238 pgadmin/schema/pgForeignServer.cpp:153
 #: pgadmin/schema/pgForeignTable.cpp:182 pgadmin/schema/pgFunction.cpp:385
 #: pgadmin/schema/pgIndex.cpp:394 pgadmin/schema/pgIndexConstraint.cpp:178
 #: pgadmin/schema/pgLanguage.cpp:130 pgadmin/schema/pgOperator.cpp:182
 #: pgadmin/schema/pgOperatorClass.cpp:275
-#: pgadmin/schema/pgOperatorFamily.cpp:122 pgadmin/schema/pgPolicy.cpp:131
+#: pgadmin/schema/pgOperatorFamily.cpp:122 pgadmin/schema/pgPolicy.cpp:123
 #: pgadmin/schema/pgRole.cpp:457 pgadmin/schema/pgRule.cpp:176
 #: pgadmin/schema/pgSchema.cpp:424 pgadmin/schema/pgSequence.cpp:181
 #: pgadmin/schema/pgTable.cpp:985 pgadmin/schema/pgTablespace.cpp:193
@@ -15847,7 +15967,7 @@ msgstr "Typu"
 
 #: src/schema/pgDatabase.cpp:420 src/schema/pgDatabase.cpp:436
 #: pgadmin/schema/pgDatabase.cpp:449 pgadmin/schema/pgDatabase.cpp:468
-#: pgadmin/schema/pgDatabase.cpp:575 pgadmin/schema/pgDatabase.cpp:764
+#: pgadmin/schema/pgDatabase.cpp:575 pgadmin/schema/pgDatabase.cpp:770
 msgid "Old style FKs"
 msgstr "Stary styl FK"
 
@@ -15946,8 +16066,8 @@ msgid "Only schema"
 msgstr "Wyłacznie schemat"
 
 # standard
-#: pgadmin/dlg/dlgIndex.cpp:197 pgadmin/dlg/dlgIndex.cpp:205
-#: pgadmin/dlg/dlgIndexConstraint.cpp:58 pgadmin/dlg/dlgIndexConstraint.cpp:69
+#: pgadmin/dlg/dlgIndex.cpp:197 pgadmin/dlg/dlgIndex.cpp:198
+#: pgadmin/dlg/dlgIndexConstraint.cpp:57 pgadmin/dlg/dlgIndexConstraint.cpp:68
 msgid "Op. class"
 msgstr "Op. klasy"
 
@@ -16104,8 +16224,8 @@ msgstr "Otwórz narzędzie zapytania z wybranym zapytaniem"
 # standard
 #: src/schema/pgOperator.cpp:233 pgadmin/schema/pgOperator.cpp:277
 #: pgadmin/gqb/gqbGridRestTable.cpp:92 pgadmin/ui/frmOptions.xrc:70
-#: pgadmin/schema/pgOperator.cpp:368 pgadmin/dlg/dlgIndexConstraint.cpp:59
-#: pgadmin/dlg/dlgIndexConstraint.cpp:70 pgadmin/ui/dlgIndexConstraint.xrc:289
+#: pgadmin/schema/pgOperator.cpp:368 pgadmin/dlg/dlgIndexConstraint.cpp:58
+#: pgadmin/dlg/dlgIndexConstraint.cpp:69 pgadmin/ui/dlgIndexConstraint.xrc:265
 #: pgadmin/ui/frmOptions.xrc:744
 msgid "Operator"
 msgstr "Operator"
@@ -16122,7 +16242,7 @@ msgstr "Klasa Operatora"
 #: pgadmin/utils/sysSettings.cpp:187 pgadmin/frm/frmOptions.cpp:316
 #: pgadmin/schema/pgSchema.cpp:229 pgadmin/frm/frmOptions.cpp:415
 #: pgadmin/schema/pgOperatorClass.cpp:426 pgadmin/schema/pgSchema.cpp:367
-#: pgadmin/utils/sysSettings.cpp:159 pgadmin/utils/sysSettings.cpp:234
+#: pgadmin/utils/sysSettings.cpp:164 pgadmin/utils/sysSettings.cpp:240
 #: pgadmin/dlg/dlgSearchObject.cpp:98 pgadmin/dlg/dlgSearchObject.cpp:139
 msgid "Operator Classes"
 msgstr "Klasy Operatora"
@@ -16141,7 +16261,7 @@ msgstr "Raport DDL operatora"
 #: pgadmin/utils/sysSettings.cpp:188 pgadmin/frm/frmOptions.cpp:317
 #: pgadmin/schema/pgSchema.cpp:232 pgadmin/frm/frmOptions.cpp:416
 #: pgadmin/schema/pgOperatorFamily.cpp:237 pgadmin/schema/pgSchema.cpp:370
-#: pgadmin/utils/sysSettings.cpp:164 pgadmin/utils/sysSettings.cpp:235
+#: pgadmin/utils/sysSettings.cpp:169 pgadmin/utils/sysSettings.cpp:241
 #: pgadmin/dlg/dlgSearchObject.cpp:99 pgadmin/dlg/dlgSearchObject.cpp:140
 msgid "Operator Families"
 msgstr "Rodziny Operatora"
@@ -16152,8 +16272,8 @@ msgstr "Rodziny Operatora"
 msgid "Operator Family"
 msgstr "Rodzina Operatora"
 
-#: pgadmin/ui/dlgIndex.xrc:14 pgadmin/ui/dlgIndexConstraint.xrc:218
-#: pgadmin/ui/dlgIndex.xrc:231
+#: pgadmin/ui/dlgIndex.xrc:14 pgadmin/ui/dlgIndexConstraint.xrc:193
+#: pgadmin/ui/dlgIndex.xrc:303
 msgid "Operator class"
 msgstr "Klasa Operatora"
 
@@ -16287,7 +16407,7 @@ msgstr "Raport właściwości operatora"
 #: pgadmin/frm/frmOptions.cpp:315 pgadmin/schema/pgSchema.cpp:103
 #: pgadmin/schema/pgSchema.cpp:227 pgadmin/frm/frmOptions.cpp:414
 #: pgadmin/schema/pgOperator.cpp:379 pgadmin/schema/pgSchema.cpp:365
-#: pgadmin/utils/sysSettings.cpp:154 pgadmin/utils/sysSettings.cpp:233
+#: pgadmin/utils/sysSettings.cpp:159 pgadmin/utils/sysSettings.cpp:239
 #: pgadmin/dlg/dlgSearchObject.cpp:97 pgadmin/dlg/dlgSearchObject.cpp:138
 msgid "Operators"
 msgstr "Operatory"
@@ -16335,7 +16455,7 @@ msgstr "Opcjonalne 2"
 #: pgadmin/schema/pgTextSearchDictionary.cpp:74
 #: pgadmin/ui/dlgFindReplace.xrc:22 pgadmin/ui/dlgFunction.xrc:10
 #: pgadmin/ui/dlgSequence.xrc:9 pgadmin/ui/dlgTextSearchDictionary.xrc:8
-#: pgadmin/frm/frmEditGrid.cpp:131 pgadmin/frm/frmOptions.cpp:434
+#: pgadmin/frm/frmEditGrid.cpp:131 pgadmin/frm/frmOptions.cpp:435
 #: pgadmin/schema/pgForeignDataWrapper.cpp:157
 #: pgadmin/schema/pgForeignServer.cpp:158
 #: pgadmin/schema/pgForeignTable.cpp:186
@@ -16360,8 +16480,8 @@ msgid "Or"
 msgstr "Lub"
 
 #: pgadmin/dlg/dlgIndex.cpp:169 pgadmin/gqb/gqbGridOrderTable.cpp:109
-#: pgadmin/dlg/dlgIndex.cpp:195 pgadmin/dlg/dlgIndex.cpp:203
-#: pgadmin/dlg/dlgIndexConstraint.cpp:56 pgadmin/dlg/dlgIndexConstraint.cpp:67
+#: pgadmin/dlg/dlgIndex.cpp:195 pgadmin/dlg/dlgIndex.cpp:196
+#: pgadmin/dlg/dlgIndexConstraint.cpp:55 pgadmin/dlg/dlgIndexConstraint.cpp:66
 msgid "Order"
 msgstr "Kolejność"
 
@@ -16542,7 +16662,7 @@ msgstr "Nadpisać plik?"
 #: pgadmin/schema/edbSynonym.cpp:118 pgadmin/schema/gpExtTable.cpp:454
 #: pgadmin/schema/pgAggregate.cpp:154 pgadmin/schema/pgCatalogObject.cpp:93
 #: pgadmin/schema/pgCollation.cpp:136 pgadmin/schema/pgCollection.cpp:73
-#: pgadmin/schema/pgConversion.cpp:128 pgadmin/schema/pgDatabase.cpp:705
+#: pgadmin/schema/pgConversion.cpp:128 pgadmin/schema/pgDatabase.cpp:711
 #: pgadmin/schema/pgDomain.cpp:201 pgadmin/schema/pgExtension.cpp:123
 #: pgadmin/schema/pgForeignDataWrapper.cpp:153
 #: pgadmin/schema/pgForeignServer.cpp:154
@@ -16689,13 +16809,17 @@ msgstr "Wykaz zmiennych pakietu"
 #: pgadmin/schema/pgSchema.cpp:93 pgadmin/schema/pgSchema.cpp:238
 #: pgadmin/frm/frmOptions.cpp:417 pgadmin/schema/edbPackage.cpp:355
 #: pgadmin/schema/pgSchema.cpp:217 pgadmin/schema/pgSchema.cpp:376
-#: pgadmin/utils/sysSettings.cpp:150 pgadmin/utils/sysSettings.cpp:231
+#: pgadmin/utils/sysSettings.cpp:155 pgadmin/utils/sysSettings.cpp:237
 msgid "Packages"
 msgstr "Pakiety"
 
 #: pgadmin/schema/edbPackage.cpp:330
 msgid "Packages list report"
 msgstr "Wykaz pakietów"
+
+#: pgadmin/schema/pgIndex.cpp:696
+msgid "Pages per range"
+msgstr ""
 
 #: pgadmin/debugger/dlgDirectDbg.cpp:1034
 #, c-format
@@ -16706,7 +16830,7 @@ msgstr "Param#%d"
 # standard input:132
 # standard input:15
 # standard
-#: standard input:171 input:208
+#: standard input:171 input:208 pgadmin/dlg/dlgIndex.cpp:200
 msgid "Parameter"
 msgstr "Parametr"
 
@@ -16718,6 +16842,24 @@ msgid ""
 msgstr ""
 "Wyjątek Parametru - Niektóre parametry są niepoprawne:\n"
 "%s"
+
+# standard input:169
+# standard input:132
+# standard input:15
+# standard
+#: pgadmin/ui/dlgIndex.xrc:207
+#, fuzzy
+msgid "Parameter name"
+msgstr "Parametr"
+
+# standard input:169
+# standard input:132
+# standard input:15
+# standard
+#: pgadmin/ui/dlgIndex.xrc:222
+#, fuzzy
+msgid "Parameter value"
+msgstr "Parametr"
 
 # standard input:132
 # standard input:15
@@ -16841,7 +16983,7 @@ msgstr "Wklej tekst z schowka"
 #: src/schema/pgDatabase.cpp:418 input:82 pgadmin/schema/pgDatabase.cpp:428
 #: pgadmin/slony/slPath.cpp:141 pgadmin/ui/dlgDatabase.xrc:7
 #: pgadmin/schema/pgDatabase.cpp:433 pgadmin/schema/pgDatabase.cpp:518
-#: pgadmin/schema/pgDatabase.cpp:708 pgadmin/slony/slPath.cpp:223
+#: pgadmin/schema/pgDatabase.cpp:714 pgadmin/slony/slPath.cpp:223
 #: pgadmin/dlg/dlgSearchObject.cpp:63 pgadmin/ui/dlgDatabase.xrc:123
 msgid "Path"
 msgstr "Ścieżka"
@@ -16869,6 +17011,10 @@ msgstr "Wstrzymany w linii %d"
 #: pgadmin/schema/pgServer.cpp:2182
 msgid "Pausing replay of WAL"
 msgstr "Odtwarzanie WAL wstrzymane"
+
+#: pgadmin/schema/pgIndex.cpp:694
+msgid "Pending list limit"
+msgstr ""
 
 #: pgadmin/frm/frmBackup.cpp:279
 msgid "Plain"
@@ -17187,7 +17333,7 @@ msgstr "Proszę określić kod do wykonania."
 #: pgadmin/dlg/dlgIndex.cpp:198 pgadmin/dlg/dlgTable.cpp:1630
 #: pgadmin/dlg/dlgIndex.cpp:173 pgadmin/dlg/dlgIndex.cpp:225
 #: pgadmin/dlg/dlgTable.cpp:1665 pgadmin/dlg/dlgForeignKey.cpp:210
-#: pgadmin/dlg/dlgIndex.cpp:181 pgadmin/dlg/dlgIndex.cpp:237
+#: pgadmin/dlg/dlgIndex.cpp:171 pgadmin/dlg/dlgIndex.cpp:228
 #: pgadmin/dlg/dlgTable.cpp:1721
 msgid "Please specify columns."
 msgstr "Proszę podać klolumny."
@@ -17312,7 +17458,7 @@ msgstr "Proszę określić miejsce."
 #: pgadmin/dlg/dlgExtTable.cpp:116 pgadmin/dlg/dlgExtension.cpp:170
 #: pgadmin/dlg/dlgForeignDataWrapper.cpp:192
 #: pgadmin/dlg/dlgForeignServer.cpp:129 pgadmin/dlg/dlgForeignTable.cpp:249
-#: pgadmin/dlg/dlgFunction.cpp:584 pgadmin/dlg/dlgIndex.cpp:236
+#: pgadmin/dlg/dlgFunction.cpp:584 pgadmin/dlg/dlgIndex.cpp:227
 #: pgadmin/dlg/dlgLanguage.cpp:209 pgadmin/dlg/dlgOperator.cpp:209
 #: pgadmin/dlg/dlgPackage.cpp:122 pgadmin/dlg/dlgPolicy.cpp:84
 #: pgadmin/dlg/dlgResourceGroup.cpp:101 pgadmin/dlg/dlgRole.cpp:425
@@ -17439,17 +17585,17 @@ msgstr "Proszę określić ważną precyzje numeryczną (0.."
 msgid "Plugins"
 msgstr "Wtyczki"
 
-#: pgadmin/frm/frmOptions.cpp:391 pgadmin/schema/pgPolicy.cpp:245
-#: pgadmin/utils/sysSettings.cpp:94 pgadmin/utils/sysSettings.cpp:213
+#: pgadmin/frm/frmOptions.cpp:421 pgadmin/schema/pgPolicy.cpp:237
+#: pgadmin/utils/sysSettings.cpp:94 pgadmin/utils/sysSettings.cpp:218
 msgid "Policies"
 msgstr ""
 
-#: pgadmin/schema/pgPolicy.cpp:233
+#: pgadmin/schema/pgPolicy.cpp:225
 msgid "Policy"
 msgstr ""
 
 # standard
-#: pgadmin/schema/pgPolicy.cpp:52
+#: pgadmin/schema/pgPolicy.cpp:51
 #, fuzzy
 msgid "Policy properties"
 msgstr " właściwości"
@@ -17851,8 +17997,8 @@ msgstr "Raport właściwości procedury"
 #: pgadmin/schema/pgSchema.cpp:98 pgadmin/schema/pgSchema.cpp:241
 #: pgadmin/frm/frmOptions.cpp:418 pgadmin/schema/edbPackageFunction.cpp:560
 #: pgadmin/schema/pgFunction.cpp:1150 pgadmin/schema/pgSchema.cpp:222
-#: pgadmin/schema/pgSchema.cpp:379 pgadmin/utils/sysSettings.cpp:152
-#: pgadmin/utils/sysSettings.cpp:232
+#: pgadmin/schema/pgSchema.cpp:379 pgadmin/utils/sysSettings.cpp:157
+#: pgadmin/utils/sysSettings.cpp:238
 msgid "Procedures"
 msgstr "Procedury"
 
@@ -17939,8 +18085,8 @@ msgstr "Proces danych XML używa określonego arkusza stylów"
 #: pgadmin/ui/dlgExtTable.xrc:16 pgadmin/ui/dlgForeignDataWrapper.xrc:16
 #: pgadmin/ui/dlgForeignKey.xrc:16 pgadmin/ui/dlgForeignServer.xrc:16
 #: pgadmin/ui/dlgForeignTable.xrc:16 pgadmin/ui/dlgFunction.xrc:16
-#: pgadmin/ui/dlgGroup.xrc:16 pgadmin/ui/dlgIndexConstraint.xrc:16
-#: pgadmin/ui/dlgIndex.xrc:16 pgadmin/ui/dlgJob.xrc:16
+#: pgadmin/ui/dlgGroup.xrc:16 pgadmin/ui/dlgIndexConstraint.xrc:63
+#: pgadmin/ui/dlgIndex.xrc:63 pgadmin/ui/dlgJob.xrc:16
 #: pgadmin/ui/dlgLanguage.xrc:16 pgadmin/ui/dlgOperator.xrc:16
 #: pgadmin/ui/dlgPackage.xrc:16 pgadmin/ui/dlgPolicy.xrc:65
 #: pgadmin/ui/dlgRepClusterUpgrade.xrc:16 pgadmin/ui/dlgRepCluster.xrc:16
@@ -18709,6 +18855,16 @@ msgstr "Odświeżanie tabeli Slony"
 msgid "Refreshing Slony tables"
 msgstr "Odświeżanie tabel Slony"
 
+#: pgadmin/schema/pgAccessMethod.cpp:37
+#, fuzzy
+msgid "Refreshing access method"
+msgstr "Odświeżanie rzutowania"
+
+#: pgadmin/schema/pgAccessMethod.cpp:187
+#, fuzzy
+msgid "Refreshing access methods"
+msgstr "Odświeżanie rzutowań"
+
 # standard
 #: pgadmin/schema/pgAggregate.cpp:37
 msgid "Refreshing aggregate"
@@ -18798,7 +18954,7 @@ msgstr "Odświeżanie danych, prosze czekać."
 msgid "Refreshing database"
 msgstr "Odświeżanie bazy danych"
 
-#: pgadmin/schema/pgDatabase.cpp:1144
+#: pgadmin/schema/pgDatabase.cpp:1150
 msgid "Refreshing databases"
 msgstr "Odświeżanie baz danych"
 
@@ -18904,7 +19060,7 @@ msgstr "Odświeżanie indeksu"
 msgid "Refreshing index constraint"
 msgstr "Odświeżanie ograniczeń indeksu"
 
-#: pgadmin/schema/pgIndex.cpp:674
+#: pgadmin/schema/pgIndex.cpp:725
 msgid "Refreshing indexes"
 msgstr "Odświeżanie indeksów"
 
@@ -19009,12 +19165,12 @@ msgstr "Odświeżanie kroku pgAgenta"
 msgid "Refreshing pgAgent steps"
 msgstr "Odświeżanie kroków pgAgenta"
 
-#: pgadmin/schema/pgPolicy.cpp:217
+#: pgadmin/schema/pgPolicy.cpp:209
 #, fuzzy
 msgid "Refreshing policies"
 msgstr "Odświeżanie procedur"
 
-#: pgadmin/schema/pgPolicy.cpp:45
+#: pgadmin/schema/pgPolicy.cpp:44
 #, fuzzy
 msgid "Refreshing policy"
 msgstr "Odświeżanie kolumny"
@@ -19284,13 +19440,13 @@ msgstr "Oddalony"
 #: pgadmin/ui/dlgForeignDataWrapper.xrc:204 pgadmin/ui/dlgForeignKey.xrc:246
 #: pgadmin/ui/dlgForeignServer.xrc:200 pgadmin/ui/dlgForeignTable.xrc:243
 #: pgadmin/ui/dlgForeignTable.xrc:333 pgadmin/ui/dlgFunction.xrc:386
-#: pgadmin/ui/dlgFunction.xrc:504 pgadmin/ui/dlgIndexConstraint.xrc:323
-#: pgadmin/ui/dlgIndex.xrc:321 pgadmin/ui/dlgJob.xrc:216
-#: pgadmin/ui/dlgJob.xrc:269 pgadmin/ui/dlgPolicy.xrc:105
-#: pgadmin/ui/dlgRole.xrc:353 pgadmin/ui/dlgSchedule.xrc:404
-#: pgadmin/ui/dlgTablespace.xrc:146 pgadmin/ui/dlgTable.xrc:250
-#: pgadmin/ui/dlgTable.xrc:383 pgadmin/ui/dlgTable.xrc:432
-#: pgadmin/ui/dlgTextSearchConfiguration.xrc:236
+#: pgadmin/ui/dlgFunction.xrc:504 pgadmin/ui/dlgIndexConstraint.xrc:301
+#: pgadmin/ui/dlgIndex.xrc:189 pgadmin/ui/dlgIndex.xrc:397
+#: pgadmin/ui/dlgJob.xrc:216 pgadmin/ui/dlgJob.xrc:269
+#: pgadmin/ui/dlgPolicy.xrc:105 pgadmin/ui/dlgRole.xrc:353
+#: pgadmin/ui/dlgSchedule.xrc:404 pgadmin/ui/dlgTablespace.xrc:146
+#: pgadmin/ui/dlgTable.xrc:250 pgadmin/ui/dlgTable.xrc:383
+#: pgadmin/ui/dlgTable.xrc:432 pgadmin/ui/dlgTextSearchConfiguration.xrc:236
 #: pgadmin/ui/dlgTextSearchDictionary.xrc:203 pgadmin/ui/dlgTrigger.xrc:320
 #: pgadmin/ui/dlgType.xrc:252 pgadmin/ui/dlgType.xrc:345
 #: pgadmin/ui/dlgUserMapping.xrc:133 pgadmin/ui/dlgUser.xrc:260
@@ -19529,7 +19685,7 @@ msgstr "Grupa zasobów"
 
 #: pgadmin/frm/frmOptions.cpp:390 pgadmin/schema/edbResourceGroup.cpp:179
 #: pgadmin/schema/pgServer.cpp:205 pgadmin/schema/pgServer.cpp:1146
-#: pgadmin/utils/sysSettings.cpp:90 pgadmin/utils/sysSettings.cpp:212
+#: pgadmin/utils/sysSettings.cpp:90 pgadmin/utils/sysSettings.cpp:217
 msgid "Resource Groups"
 msgstr "Grupy zasobów"
 
@@ -19545,7 +19701,7 @@ msgstr "Kolejka zasobów"
 #: pgadmin/schema/pgServer.cpp:892 pgadmin/frm/frmOptions.cpp:389
 #: pgadmin/schema/gpResQueue.cpp:295 pgadmin/schema/pgServer.cpp:191
 #: pgadmin/schema/pgServer.cpp:1131 pgadmin/utils/sysSettings.cpp:88
-#: pgadmin/utils/sysSettings.cpp:211
+#: pgadmin/utils/sysSettings.cpp:216
 msgid "Resource Queues"
 msgstr "Kolejki zasobów"
 
@@ -19933,6 +20089,16 @@ msgstr "Pobieranie szczegółów tabeli Slony"
 msgid "Retrieving details on Slony tables"
 msgstr "Pobieranie szczegółów tabel Slony"
 
+#: pgadmin/schema/pgAccessMethod.cpp:33
+#, fuzzy
+msgid "Retrieving details on access method"
+msgstr "Pobieranie szczegółów rzutowania"
+
+#: pgadmin/schema/pgAccessMethod.cpp:184
+#, fuzzy
+msgid "Retrieving details on access methods"
+msgstr "Pobieranie szczegółów rzutowań"
+
 #: pgadmin/schema/pgAggregate.cpp:33
 msgid "Retrieving details on aggregate"
 msgstr "Pobieranie szczegółów agregatu"
@@ -20005,7 +20171,7 @@ msgstr "Pobieranie szczegółów konwersji"
 msgid "Retrieving details on database"
 msgstr "Pobieranie szczegółów bazy danych"
 
-#: pgadmin/schema/pgDatabase.cpp:1141
+#: pgadmin/schema/pgDatabase.cpp:1147
 msgid "Retrieving details on databases"
 msgstr "Pobieranie szczegółów baz danych"
 
@@ -20110,7 +20276,7 @@ msgstr "Pobieranie szczegółów indeksu"
 msgid "Retrieving details on index constraint"
 msgstr "Pobieranie szczegółów ograniczenia indeksu"
 
-#: pgadmin/schema/pgIndex.cpp:671
+#: pgadmin/schema/pgIndex.cpp:722
 msgid "Retrieving details on indexes"
 msgstr "Pobieranie szczegółów indeksów"
 
@@ -20202,12 +20368,12 @@ msgstr "Pobieranie szczegółów kroku pgAgenta"
 msgid "Retrieving details on pgAgent steps"
 msgstr "Pobieranie szczegółów kroków pgAgenta"
 
-#: pgadmin/schema/pgPolicy.cpp:214
+#: pgadmin/schema/pgPolicy.cpp:206
 #, fuzzy
 msgid "Retrieving details on policies"
 msgstr "Pobieranie szczegółów reguł"
 
-#: pgadmin/schema/pgPolicy.cpp:41
+#: pgadmin/schema/pgPolicy.cpp:40
 #, fuzzy
 msgid "Retrieving details on policy"
 msgstr "Pobieranie szczegółów kolumny"
@@ -20466,7 +20632,7 @@ msgstr "Rola/Grupa"
 msgid "Rolename"
 msgstr "Nazwa roli"
 
-#: pgadmin/schema/pgPolicy.cpp:132 pgadmin/ui/dlgPolicy.xrc:118
+#: pgadmin/schema/pgPolicy.cpp:124 pgadmin/ui/dlgPolicy.xrc:118
 #, fuzzy
 msgid "Roles"
 msgstr "Rola"
@@ -20512,7 +20678,7 @@ msgid "Rollback transaction?"
 msgstr "Wycofać transakcję?"
 
 #: pgadmin/schema/pgIndex.cpp:255 pgadmin/schema/pgIndex.cpp:285
-#: pgadmin/schema/pgIndex.cpp:434
+#: pgadmin/schema/pgIndex.cpp:433
 msgid "Root Block No"
 msgstr "Blok Podstawowy Nr"
 
@@ -21229,7 +21395,7 @@ msgstr "Raport właściwości schematu"
 #: src/schema/pgDatabase.cpp:438 input:83 pgadmin/schema/pgDatabase.cpp:451
 #: pgadmin/ui/dlgDatabase.xrc:8 pgadmin/schema/pgDatabase.cpp:470
 #: pgadmin/ui/dlgDatabase.xrc:9 pgadmin/schema/pgDatabase.cpp:577
-#: pgadmin/schema/pgDatabase.cpp:766 pgadmin/ui/dlgDatabase.xrc:196
+#: pgadmin/schema/pgDatabase.cpp:772 pgadmin/ui/dlgDatabase.xrc:196
 msgid "Schema restriction"
 msgstr "Schemat ograniczenia"
 
@@ -21242,9 +21408,9 @@ msgstr "Schemat ograniczenia"
 #: pgadmin/utils/sysSettings.cpp:177 pgadmin/gqb/gqbBrowser.cpp:76
 #: pgadmin/frm/frmOptions.cpp:306 pgadmin/schema/pgDatabase.cpp:69
 #: pgadmin/schema/pgDatabase.cpp:485 pgadmin/schema/pgSchema.cpp:552
-#: pgadmin/frm/frmOptions.cpp:400 pgadmin/schema/pgDatabase.cpp:155
-#: pgadmin/schema/pgDatabase.cpp:633 pgadmin/schema/pgSchema.cpp:812
-#: pgadmin/utils/sysSettings.cpp:130 pgadmin/utils/sysSettings.cpp:224
+#: pgadmin/frm/frmOptions.cpp:400 pgadmin/schema/pgDatabase.cpp:158
+#: pgadmin/schema/pgDatabase.cpp:639 pgadmin/schema/pgSchema.cpp:812
+#: pgadmin/utils/sysSettings.cpp:135 pgadmin/utils/sysSettings.cpp:230
 #: pgadmin/dlg/dlgSearchObject.cpp:70 pgadmin/dlg/dlgSearchObject.cpp:105
 msgid "Schemas"
 msgstr "Schematy"
@@ -21688,7 +21854,7 @@ msgstr "Raport statystyk sekwencji"
 #: pgadmin/schema/pgSchema.cpp:105 pgadmin/schema/pgSchema.cpp:247
 #: pgadmin/frm/frmOptions.cpp:419 pgadmin/schema/pgSchema.cpp:229
 #: pgadmin/schema/pgSchema.cpp:385 pgadmin/schema/pgSequence.cpp:348
-#: pgadmin/utils/sysSettings.cpp:169 pgadmin/utils/sysSettings.cpp:236
+#: pgadmin/utils/sysSettings.cpp:174 pgadmin/utils/sysSettings.cpp:242
 #: pgadmin/slony/slSequence.cpp:230 pgadmin/dlg/dlgSearchObject.cpp:81
 #: pgadmin/dlg/dlgSearchObject.cpp:116
 msgid "Sequences"
@@ -21991,7 +22157,7 @@ msgstr "Pokazać własności obiektu po dwukrotnym kliknięciu na drzewie?"
 
 #: src/frm/frmOptions.cpp:326 src/frm/frmOptions.cpp:349
 #: pgadmin/frm/frmOptions.cpp:523 pgadmin/frm/frmOptions.cpp:553
-#: pgadmin/frm/frmOptions.cpp:730 pgadmin/frm/frmOptions.cpp:900
+#: pgadmin/frm/frmOptions.cpp:730 pgadmin/frm/frmOptions.cpp:901
 msgid "Show options dialog."
 msgstr "Wyświetl dialog opcji."
 
@@ -22137,13 +22303,13 @@ msgstr "Jedna transakcja"
 #: pgadmin/schema/pgDatabase.cpp:748 pgadmin/schema/pgTable.cpp:1062
 #: pgadmin/schema/pgDatabase.cpp:211 pgadmin/schema/pgDatabase.cpp:946
 #: pgadmin/schema/pgIndex.cpp:542 pgadmin/schema/pgTable.cpp:1109
-#: pgadmin/schema/pgTablespace.cpp:248 pgadmin/schema/pgDatabase.cpp:337
-#: pgadmin/schema/pgDatabase.cpp:1197 pgadmin/schema/pgIndex.cpp:719
+#: pgadmin/schema/pgTablespace.cpp:248 pgadmin/schema/pgDatabase.cpp:340
+#: pgadmin/schema/pgDatabase.cpp:1203 pgadmin/schema/pgIndex.cpp:770
 #: pgadmin/schema/pgTable.cpp:1280 pgadmin/schema/pgTablespace.cpp:383
 msgid "Size"
 msgstr "Rozmiar"
 
-#: pgadmin/schema/pgDatabase.cpp:331
+#: pgadmin/schema/pgDatabase.cpp:334
 msgid "Size of temporary files"
 msgstr "Rozmiar plików tymczasowych"
 
@@ -22158,7 +22324,7 @@ msgid "Slon process running on node; stop it before upgrading."
 msgstr "Proces Slon działa na węźle; zatrzym proces przed aktualizacją."
 
 #: pgadmin/schema/pgDatabase.cpp:69 pgadmin/schema/pgDatabase.cpp:71
-#: pgadmin/schema/pgDatabase.cpp:157
+#: pgadmin/schema/pgDatabase.cpp:160
 msgid "Slony"
 msgstr "Slony"
 
@@ -22484,8 +22650,8 @@ msgstr "Klaster Slony-I"
 #: pgadmin/frm/frmOptions.cpp:182 pgadmin/schema/pgDatabase.cpp:407
 #: pgadmin/utils/sysSettings.cpp:95 pgadmin/utils/sysSettings.cpp:178
 #: pgadmin/frm/frmOptions.cpp:307 pgadmin/schema/pgDatabase.cpp:487
-#: pgadmin/frm/frmOptions.cpp:402 pgadmin/schema/pgDatabase.cpp:635
-#: pgadmin/utils/sysSettings.cpp:132 pgadmin/utils/sysSettings.cpp:225
+#: pgadmin/frm/frmOptions.cpp:402 pgadmin/schema/pgDatabase.cpp:641
+#: pgadmin/utils/sysSettings.cpp:137 pgadmin/utils/sysSettings.cpp:231
 msgid "Slony-I Clusters"
 msgstr "Klastry Slony-I"
 
@@ -22514,7 +22680,7 @@ msgstr "Ścieżka Slony-I"
 msgid "Slow Process Colour"
 msgstr "Kolor Powolnego Procesu"
 
-#: pgadmin/schema/pgDatabase.cpp:325 pgadmin/schema/pgDatabase.cpp:1215
+#: pgadmin/schema/pgDatabase.cpp:328 pgadmin/schema/pgDatabase.cpp:1221
 msgid "Snapshot conflicts"
 msgstr "Konflikty migawek"
 
@@ -22771,7 +22937,7 @@ msgstr "Wyrażenia"
 #: pgadmin/schema/pgTablespace.cpp:135 pgadmin/slony/slNode.cpp:120
 #: pgadmin/schema/pgObject.cpp:1051 pgadmin/slony/slNode.cpp:121
 #: pgadmin/schema/pgDatabase.cpp:217 pgadmin/schema/pgObject.cpp:1058
-#: pgadmin/schema/pgTablespace.cpp:146 pgadmin/schema/pgDatabase.cpp:346
+#: pgadmin/schema/pgTablespace.cpp:146 pgadmin/schema/pgDatabase.cpp:349
 #: pgadmin/schema/pgObject.cpp:1364 pgadmin/schema/pgSequence.cpp:216
 #: pgadmin/schema/pgTablespace.cpp:229 pgadmin/slony/slNode.cpp:182
 msgid "Statistic"
@@ -22916,6 +23082,11 @@ msgstr "Zatrzymywanie serwisu"
 #: pgadmin/ui/dlgType.xrc:642
 msgid "Storage"
 msgstr "Pamięć"
+
+#: pgadmin/ui/dlgIndex.xrc:250
+#, fuzzy
+msgid "Storage parametres"
+msgstr "Ustawianie parametrów klienta"
 
 # standard input:53
 # standard input:409
@@ -23139,9 +23310,9 @@ msgstr "Raport właściwości synonimu"
 #: pgadmin/schema/pgSchema.cpp:140 pgadmin/schema/pgSchema.cpp:262
 #: pgadmin/utils/sysSettings.cpp:91 pgadmin/utils/sysSettings.cpp:176
 #: pgadmin/frm/frmOptions.cpp:401 pgadmin/schema/edbPrivateSynonym.cpp:226
-#: pgadmin/schema/pgDatabase.cpp:152 pgadmin/schema/pgDatabase.cpp:630
+#: pgadmin/schema/pgDatabase.cpp:155 pgadmin/schema/pgDatabase.cpp:636
 #: pgadmin/schema/pgSchema.cpp:269 pgadmin/schema/pgSchema.cpp:400
-#: pgadmin/utils/sysSettings.cpp:128 pgadmin/utils/sysSettings.cpp:223
+#: pgadmin/utils/sysSettings.cpp:133 pgadmin/utils/sysSettings.cpp:229
 msgid "Synonyms"
 msgstr "Synonimy"
 
@@ -23185,7 +23356,7 @@ msgstr "Konwersja systemowa?"
 
 #: src/schema/pgDatabase.cpp:418 src/schema/pgDatabase.cpp:434
 #: pgadmin/schema/pgDatabase.cpp:447 pgadmin/schema/pgDatabase.cpp:466
-#: pgadmin/schema/pgDatabase.cpp:573 pgadmin/schema/pgDatabase.cpp:762
+#: pgadmin/schema/pgDatabase.cpp:573 pgadmin/schema/pgDatabase.cpp:768
 msgid "System database?"
 msgstr "Systemowa baza danych?"
 
@@ -23338,7 +23509,7 @@ msgstr "TX start"
 #: pgadmin/frm/frmOptions.cpp:124 pgadmin/frm/frmOptions.cpp:388
 #: pgadmin/ui/frmOptions.xrc:50 pgadmin/frm/frmOptions.cpp:223
 #: pgadmin/frm/frmOptions.cpp:519 pgadmin/ui/frmOptions.xrc:48
-#: pgadmin/frm/frmOptions.cpp:301 pgadmin/frm/frmOptions.cpp:668
+#: pgadmin/frm/frmOptions.cpp:301 pgadmin/frm/frmOptions.cpp:669
 #: pgadmin/ui/frmOptions.xrc:869
 msgid "Tab"
 msgstr "Zakładka"
@@ -23499,7 +23670,7 @@ msgstr "Raport tabela statystyk"
 #: pgadmin/schema/pgSchema.cpp:249 pgadmin/schema/pgTable.cpp:1518
 #: pgadmin/frm/frmOptions.cpp:420 pgadmin/schema/pgSchema.cpp:231
 #: pgadmin/schema/pgSchema.cpp:387 pgadmin/schema/pgTable.cpp:1738
-#: pgadmin/utils/sysSettings.cpp:171 pgadmin/utils/sysSettings.cpp:237
+#: pgadmin/utils/sysSettings.cpp:176 pgadmin/utils/sysSettings.cpp:243
 #: pgadmin/slony/slTable.cpp:277 pgadmin/dlg/dlgMoveTablespace.cpp:51
 #: pgadmin/dlg/dlgMoveTablespace.cpp:104 pgadmin/dlg/dlgSearchObject.cpp:71
 #: pgadmin/dlg/dlgSearchObject.cpp:106
@@ -23547,13 +23718,13 @@ msgstr "Tabele/Widoki"
 #: pgadmin/schema/pgRole.cpp:179 pgadmin/schema/pgTable.cpp:868
 #: pgadmin/schema/pgTablespace.cpp:247 pgadmin/schema/pgTablespace.cpp:276
 #: pgadmin/schema/pgUser.cpp:125 pgadmin/ui/frmBackup.xrc:19
-#: pgadmin/ui/frmRestore.xrc:13 pgadmin/schema/pgDatabase.cpp:713
+#: pgadmin/ui/frmRestore.xrc:13 pgadmin/schema/pgDatabase.cpp:719
 #: pgadmin/schema/pgIndex.cpp:396 pgadmin/schema/pgIndexConstraint.cpp:181
 #: pgadmin/schema/pgRole.cpp:335 pgadmin/schema/pgTable.cpp:988
 #: pgadmin/schema/pgTablespace.cpp:382 pgadmin/schema/pgTablespace.cpp:437
 #: pgadmin/schema/pgUser.cpp:192 pgadmin/schema/pgView.cpp:577
-#: pgadmin/ui/dlgDatabase.xrc:136 pgadmin/ui/dlgIndexConstraint.xrc:80
-#: pgadmin/ui/dlgIndex.xrc:79 pgadmin/ui/dlgTable.xrc:116
+#: pgadmin/ui/dlgDatabase.xrc:136 pgadmin/ui/dlgIndexConstraint.xrc:75
+#: pgadmin/ui/dlgIndex.xrc:75 pgadmin/ui/dlgTable.xrc:116
 #: pgadmin/ui/dlgView.xrc:213 pgadmin/ui/frmBackup.xrc:226
 #: pgadmin/ui/frmRestore.xrc:190
 msgid "Tablespace"
@@ -23574,7 +23745,7 @@ msgid "Tablespace Size"
 msgstr "Rozmiar Tablespace"
 
 # standard
-#: pgadmin/schema/pgDatabase.cpp:323 pgadmin/schema/pgDatabase.cpp:1213
+#: pgadmin/schema/pgDatabase.cpp:326 pgadmin/schema/pgDatabase.cpp:1219
 msgid "Tablespace conflicts"
 msgstr "Konflikty przestrzeni tabel"
 
@@ -23623,7 +23794,7 @@ msgstr "Raport statystyki przestrzeni tabel"
 #: pgadmin/schema/pgTablespace.cpp:288 pgadmin/frm/frmOptions.cpp:385
 #: pgadmin/schema/pgServer.cpp:181 pgadmin/schema/pgServer.cpp:1103
 #: pgadmin/schema/pgTablespace.cpp:449 pgadmin/utils/sysSettings.cpp:80
-#: pgadmin/utils/sysSettings.cpp:207
+#: pgadmin/utils/sysSettings.cpp:212
 msgid "Tablespaces"
 msgstr "Przestrzenie tabel"
 
@@ -23705,7 +23876,7 @@ msgstr "Typ docelowy"
 msgid "Template"
 msgstr "Przykład"
 
-#: pgadmin/schema/pgDatabase.cpp:330
+#: pgadmin/schema/pgDatabase.cpp:333
 msgid "Temporary files"
 msgstr "Pliki tymczasowe"
 
@@ -23758,7 +23929,7 @@ msgstr ""
 "Pseudotyp danych ANY nie może być użyty w wieloparametrowych agregatach."
 
 #: pgadmin/frm/frmOptions.cpp:290 pgadmin/frm/frmOptions.cpp:294
-#: pgadmin/frm/frmOptions.cpp:425 pgadmin/frm/frmOptions.cpp:561
+#: pgadmin/frm/frmOptions.cpp:425 pgadmin/frm/frmOptions.cpp:562
 msgid ""
 "The EnterpriseDB bin path specified is not valid or does not contain an "
 "EnterpriseDB pg_dump executable.\n"
@@ -23771,7 +23942,7 @@ msgstr ""
 "Proszę wybrać inny katalog lub zostawić puste miejsce w ścieżce."
 
 #: pgadmin/frm/frmOptions.cpp:305 pgadmin/frm/frmOptions.cpp:435
-#: pgadmin/frm/frmOptions.cpp:571
+#: pgadmin/frm/frmOptions.cpp:572
 msgid ""
 "The Greenplum bin path specified is not valid or does not contain a "
 "Greenplum pg_dump executable.\n"
@@ -23784,7 +23955,7 @@ msgstr ""
 "Proszę wybrać inny katalog lub zostawić puste miejsce w ścieżce."
 
 #: pgadmin/frm/frmOptions.cpp:279 pgadmin/frm/frmOptions.cpp:283
-#: pgadmin/frm/frmOptions.cpp:415 pgadmin/frm/frmOptions.cpp:551
+#: pgadmin/frm/frmOptions.cpp:415 pgadmin/frm/frmOptions.cpp:552
 msgid ""
 "The PostgreSQL bin path specified is not valid or does not contain a "
 "PostgreSQL pg_dump executable.\n"
@@ -23859,7 +24030,7 @@ msgid "The client at %s:%d disconnected!"
 msgstr "Klient z %s:%d rozłączony!"
 
 #: pgadmin/dlg/dlgServer.cpp:165 pgadmin/frm/frmOptions.cpp:762
-#: pgadmin/frm/frmOptions.cpp:932
+#: pgadmin/frm/frmOptions.cpp:933
 msgid "The colour specified is not valid."
 msgstr "Wskazany kolor nie jest prawidłowy."
 
@@ -23881,7 +24052,7 @@ msgid ""
 "transaction by executing COMMIT, or ROLLBACK statement."
 msgstr ""
 
-#: pgadmin/frm/frmOptions.cpp:581
+#: pgadmin/frm/frmOptions.cpp:582
 msgid "The decimal mark and thousands separator must not be equal."
 msgstr ""
 "Znak oddzielający część dziesiętną i rozdzielający tysiące nie może być taki "
@@ -24280,7 +24451,7 @@ msgstr ""
 "Otwarte są okna właściwości jednego lub więcej obiektów do usunięcia. Należy "
 "zamknąć okna właściwości i spróbować ponownie."
 
-#: pgadmin/frm/frmMain.cpp:556 pgadmin/schema/pgDatabase.cpp:1329
+#: pgadmin/frm/frmMain.cpp:556 pgadmin/schema/pgDatabase.cpp:1335
 msgid ""
 "There are properties dialogues open for one or more objects that would be "
 "refreshed. Please close the properties dialogues and try again."
@@ -24703,7 +24874,7 @@ msgstr ""
 # standard input:23
 # standard
 #: pgadmin/schema/pgIndex.cpp:253 pgadmin/schema/pgIndex.cpp:283
-#: pgadmin/schema/pgIndex.cpp:432
+#: pgadmin/schema/pgIndex.cpp:431
 msgid "Tree Level"
 msgstr "Drzewo Poziomu"
 
@@ -24737,10 +24908,10 @@ msgstr "Funkcja wyzwalacza"
 #: pgadmin/schema/pgSchema.cpp:248 pgadmin/utils/sysSettings.cpp:111
 #: pgadmin/utils/sysSettings.cpp:183 pgadmin/frm/frmOptions.cpp:312
 #: pgadmin/schema/pgFunction.cpp:818 pgadmin/schema/pgSchema.cpp:129
-#: pgadmin/schema/pgSchema.cpp:256 pgadmin/frm/frmOptions.cpp:421
+#: pgadmin/schema/pgSchema.cpp:256 pgadmin/frm/frmOptions.cpp:422
 #: pgadmin/schema/pgFunction.cpp:1139 pgadmin/schema/pgSchema.cpp:258
-#: pgadmin/schema/pgSchema.cpp:394 pgadmin/utils/sysSettings.cpp:148
-#: pgadmin/utils/sysSettings.cpp:230 pgadmin/dlg/dlgSearchObject.cpp:79
+#: pgadmin/schema/pgSchema.cpp:394 pgadmin/utils/sysSettings.cpp:153
+#: pgadmin/utils/sysSettings.cpp:236 pgadmin/dlg/dlgSearchObject.cpp:79
 #: pgadmin/dlg/dlgSearchObject.cpp:114
 msgid "Trigger Functions"
 msgstr "Funkcje wyzwalaczy"
@@ -24949,14 +25120,14 @@ msgstr "Procent krotek"
 #: pgadmin/schema/pgDatabase.cpp:693 pgadmin/schema/pgTable.cpp:777
 #: pgadmin/schema/pgDatabase.cpp:759 pgadmin/schema/pgTable.cpp:1129
 #: pgadmin/schema/pgDatabase.cpp:208 pgadmin/schema/pgDatabase.cpp:957
-#: pgadmin/schema/pgTable.cpp:1176 pgadmin/schema/pgDatabase.cpp:319
-#: pgadmin/schema/pgDatabase.cpp:1208 pgadmin/schema/pgTable.cpp:1356
+#: pgadmin/schema/pgTable.cpp:1176 pgadmin/schema/pgDatabase.cpp:322
+#: pgadmin/schema/pgDatabase.cpp:1214 pgadmin/schema/pgTable.cpp:1356
 msgid "Tuples Deleted"
 msgstr "Krotki Usunięte"
 
 #: pgadmin/schema/pgDatabase.cpp:690 pgadmin/schema/pgDatabase.cpp:756
 #: pgadmin/schema/pgDatabase.cpp:205 pgadmin/schema/pgDatabase.cpp:954
-#: pgadmin/schema/pgDatabase.cpp:316 pgadmin/schema/pgDatabase.cpp:1205
+#: pgadmin/schema/pgDatabase.cpp:319 pgadmin/schema/pgDatabase.cpp:1211
 msgid "Tuples Fetched"
 msgstr "Krotki przeniesione"
 
@@ -24976,15 +25147,15 @@ msgstr "Krotki HOT zmodyfikowane"
 #: pgadmin/schema/pgDatabase.cpp:691 pgadmin/schema/pgTable.cpp:775
 #: pgadmin/schema/pgDatabase.cpp:757 pgadmin/schema/pgTable.cpp:1127
 #: pgadmin/schema/pgDatabase.cpp:206 pgadmin/schema/pgDatabase.cpp:955
-#: pgadmin/schema/pgTable.cpp:1174 pgadmin/schema/pgDatabase.cpp:317
-#: pgadmin/schema/pgDatabase.cpp:1206 pgadmin/schema/pgTable.cpp:1354
+#: pgadmin/schema/pgTable.cpp:1174 pgadmin/schema/pgDatabase.cpp:320
+#: pgadmin/schema/pgDatabase.cpp:1212 pgadmin/schema/pgTable.cpp:1354
 msgid "Tuples Inserted"
 msgstr "Krotki Wstawione"
 
 # standard
 #: pgadmin/schema/pgDatabase.cpp:689 pgadmin/schema/pgDatabase.cpp:755
 #: pgadmin/schema/pgDatabase.cpp:204 pgadmin/schema/pgDatabase.cpp:953
-#: pgadmin/schema/pgDatabase.cpp:315 pgadmin/schema/pgDatabase.cpp:1204
+#: pgadmin/schema/pgDatabase.cpp:318 pgadmin/schema/pgDatabase.cpp:1210
 msgid "Tuples Returned"
 msgstr "Krotki zwrócone"
 
@@ -24993,8 +25164,8 @@ msgstr "Krotki zwrócone"
 #: pgadmin/schema/pgDatabase.cpp:692 pgadmin/schema/pgTable.cpp:776
 #: pgadmin/schema/pgDatabase.cpp:758 pgadmin/schema/pgTable.cpp:1128
 #: pgadmin/schema/pgDatabase.cpp:207 pgadmin/schema/pgDatabase.cpp:956
-#: pgadmin/schema/pgTable.cpp:1175 pgadmin/schema/pgDatabase.cpp:318
-#: pgadmin/schema/pgDatabase.cpp:1207 pgadmin/schema/pgTable.cpp:1355
+#: pgadmin/schema/pgTable.cpp:1175 pgadmin/schema/pgDatabase.cpp:321
+#: pgadmin/schema/pgDatabase.cpp:1213 pgadmin/schema/pgTable.cpp:1355
 msgid "Tuples Updated"
 msgstr "Krotki Zmodyfikowane"
 
@@ -25048,6 +25219,7 @@ msgstr "Krotki zmodyfikowane"
 #: pgadmin/schema/pgServer.cpp:1067 pgadmin/schema/pgUser.cpp:89
 #: pgadmin/dlg/dlgFunction.cpp:184 pgadmin/frm/frmReport.cpp:1346
 #: pgadmin/debugger/ctlVarWindow.cpp:42 pgadmin/debugger/dlgDirectDbg.cpp:141
+#: pgadmin/schema/pgAccessMethod.cpp:120
 #: pgadmin/schema/pgForeignServer.cpp:156 pgadmin/schema/pgObject.cpp:244
 #: pgadmin/schema/pgRole.cpp:305 pgadmin/schema/pgTablespace.cpp:104
 #: pgadmin/schema/pgType.cpp:561 pgadmin/schema/pgUser.cpp:156
@@ -25105,10 +25277,10 @@ msgstr "Raport właściwości typu"
 #: pgadmin/schema/pgSchema.cpp:250 pgadmin/schema/pgType.cpp:330
 #: pgadmin/utils/sysSettings.cpp:144 pgadmin/utils/sysSettings.cpp:195
 #: pgadmin/frm/frmOptions.cpp:325 pgadmin/schema/pgSchema.cpp:131
-#: pgadmin/schema/pgSchema.cpp:258 pgadmin/frm/frmOptions.cpp:422
+#: pgadmin/schema/pgSchema.cpp:258 pgadmin/frm/frmOptions.cpp:423
 #: pgadmin/schema/pgSchema.cpp:260 pgadmin/schema/pgSchema.cpp:396
-#: pgadmin/schema/pgType.cpp:572 pgadmin/utils/sysSettings.cpp:181
-#: pgadmin/utils/sysSettings.cpp:242 pgadmin/dlg/dlgSearchObject.cpp:82
+#: pgadmin/schema/pgType.cpp:572 pgadmin/utils/sysSettings.cpp:186
+#: pgadmin/utils/sysSettings.cpp:248 pgadmin/dlg/dlgSearchObject.cpp:82
 #: pgadmin/dlg/dlgSearchObject.cpp:117
 msgid "Types"
 msgstr "Obiekty"
@@ -25246,7 +25418,7 @@ msgstr "Unikod UTF-8"
 #: pgadmin/frm/frmReport.cpp:1345 pgadmin/dlg/dlgTable.cpp:1444
 #: pgadmin/frm/frmReport.cpp:1363 pgadmin/dlg/dlgTable.cpp:1479
 #: pgadmin/frm/frmReport.cpp:1358 pgadmin/schema/pgIndexConstraint.cpp:484
-#: pgadmin/dlg/dlgTable.cpp:1552 pgadmin/ui/dlgIndex.xrc:121
+#: pgadmin/dlg/dlgTable.cpp:1552 pgadmin/ui/dlgIndex.xrc:103
 msgid "Unique"
 msgstr "Unikalny"
 
@@ -25471,8 +25643,8 @@ msgstr "Użyj tunelowania SSH"
 #: pgadmin/ui/dlgExtTable.xrc:81 pgadmin/ui/dlgForeignDataWrapper.xrc:85
 #: pgadmin/ui/dlgForeignKey.xrc:52 pgadmin/ui/dlgForeignServer.xrc:85
 #: pgadmin/ui/dlgForeignTable.xrc:96 pgadmin/ui/dlgFunction.xrc:93
-#: pgadmin/ui/dlgGroup.xrc:51 pgadmin/ui/dlgIndexConstraint.xrc:53
-#: pgadmin/ui/dlgIndex.xrc:52 pgadmin/ui/dlgLanguage.xrc:83
+#: pgadmin/ui/dlgGroup.xrc:51 pgadmin/ui/dlgIndexConstraint.xrc:49
+#: pgadmin/ui/dlgIndex.xrc:49 pgadmin/ui/dlgLanguage.xrc:83
 #: pgadmin/ui/dlgOperator.xrc:94 pgadmin/ui/dlgPackage.xrc:80
 #: pgadmin/ui/dlgRole.xrc:68 pgadmin/ui/dlgRule.xrc:66
 #: pgadmin/ui/dlgSchema.xrc:81 pgadmin/ui/dlgSequence.xrc:96
@@ -25609,8 +25781,8 @@ msgstr "Mapowanie użytkownika"
 
 # standard
 #: pgadmin/frm/frmOptions.cpp:398 pgadmin/schema/pgForeignServer.cpp:144
-#: pgadmin/schema/pgUserMapping.cpp:269 pgadmin/utils/sysSettings.cpp:111
-#: pgadmin/utils/sysSettings.cpp:218 pgadmin/dlg/dlgSearchObject.cpp:96
+#: pgadmin/schema/pgUserMapping.cpp:269 pgadmin/utils/sysSettings.cpp:116
+#: pgadmin/utils/sysSettings.cpp:224 pgadmin/dlg/dlgSearchObject.cpp:96
 #: pgadmin/dlg/dlgSearchObject.cpp:132
 msgid "User Mappings"
 msgstr "Mapowania użytkownika"
@@ -25766,7 +25938,7 @@ msgstr "Wykaz użytkowników"
 #: pgadmin/frm/frmOptions.cpp:388 pgadmin/schema/pgServer.cpp:187
 #: pgadmin/schema/pgServer.cpp:199 pgadmin/schema/pgServer.cpp:1127
 #: pgadmin/schema/pgServer.cpp:1139 pgadmin/utils/sysSettings.cpp:86
-#: pgadmin/utils/sysSettings.cpp:210
+#: pgadmin/utils/sysSettings.cpp:215
 msgid "Users/login Roles"
 msgstr "Role użytkowników/login"
 
@@ -25791,7 +25963,7 @@ msgstr "Użyj wyrażenia wywoływalnego EnterpriseDB"
 msgid "Using embedded XRC data."
 msgstr "Użyj wbudowanych danych XRC."
 
-#: pgadmin/schema/pgPolicy.cpp:134 pgadmin/ui/dlgPolicy.xrc:145
+#: pgadmin/schema/pgPolicy.cpp:126 pgadmin/ui/dlgPolicy.xrc:145
 #, fuzzy
 msgid "Using expression"
 msgstr "Wyrażenie"
@@ -25981,15 +26153,15 @@ msgstr "Funkcja walidatora"
 #: pgadmin/dlg/dlgFunction.cpp:140 pgadmin/dlg/dlgTablespace.cpp:56
 #: pgadmin/include/schema/pgObject.h:153 pgadmin/include/schema/pgObject.h:154
 #: pgadmin/frm/frmMainConfig.cpp:182 pgadmin/debugger/ctlVarWindow.cpp:43
-#: pgadmin/debugger/dlgDirectDbg.cpp:144 pgadmin/schema/pgDatabase.cpp:346
+#: pgadmin/debugger/dlgDirectDbg.cpp:144 pgadmin/schema/pgDatabase.cpp:349
 #: pgadmin/schema/pgObject.cpp:1364 pgadmin/schema/pgSequence.cpp:216
 #: pgadmin/schema/pgTablespace.cpp:229 pgadmin/slony/slNode.cpp:182
 #: pgadmin/dlg/dlgColumn.cpp:88 pgadmin/dlg/dlgDatabase.cpp:85
 #: pgadmin/dlg/dlgForeignDataWrapper.cpp:114
 #: pgadmin/dlg/dlgForeignServer.cpp:67 pgadmin/dlg/dlgForeignTable.cpp:114
-#: pgadmin/dlg/dlgFunction.cpp:161 pgadmin/dlg/dlgRole.cpp:106
-#: pgadmin/dlg/dlgUserMapping.cpp:86 pgadmin/include/schema/pgObject.h:363
-#: pgadmin/include/schema/pgObject.h:364
+#: pgadmin/dlg/dlgFunction.cpp:161 pgadmin/dlg/dlgIndex.cpp:200
+#: pgadmin/dlg/dlgRole.cpp:106 pgadmin/dlg/dlgUserMapping.cpp:86
+#: pgadmin/include/schema/pgObject.h:363 pgadmin/include/schema/pgObject.h:364
 #: pgadmin/ui/dlgForeignDataWrapper.xrc:183
 #: pgadmin/ui/dlgForeignServer.xrc:179 pgadmin/ui/dlgForeignTable.xrc:312
 #: pgadmin/ui/dlgMainConfig.xrc:35 pgadmin/ui/dlgTextSearchDictionary.xrc:182
@@ -26099,7 +26271,7 @@ msgstr "Szczegółowe komunikaty"
 #: pgadmin/schema/pgIndex.cpp:252 pgadmin/slony/slCluster.cpp:303
 #: pgadmin/ui/dlgRepClusterUpgrade.xrc:7 pgadmin/schema/pgIndex.cpp:282
 #: pgadmin/schema/pgExtension.cpp:126 pgadmin/schema/pgForeignServer.cpp:157
-#: pgadmin/schema/pgIndex.cpp:431 pgadmin/slony/slCluster.cpp:386
+#: pgadmin/schema/pgIndex.cpp:430 pgadmin/slony/slCluster.cpp:386
 #: pgadmin/ui/dlgExtension.xrc:109 pgadmin/ui/dlgForeignServer.xrc:126
 #: pgadmin/ui/dlgRepClusterUpgrade.xrc:83
 msgid "Version"
@@ -26283,9 +26455,9 @@ msgstr "Przeglądanie danych wybranego obiektu."
 #: pgadmin/utils/sysSettings.cpp:149 pgadmin/utils/sysSettings.cpp:196
 #: pgadmin/frm/frmOptions.cpp:326 pgadmin/schema/pgSchema.cpp:133
 #: pgadmin/schema/pgSchema.cpp:260 pgadmin/schema/pgView.cpp:351
-#: pgadmin/frm/frmOptions.cpp:423 pgadmin/schema/pgSchema.cpp:262
+#: pgadmin/frm/frmOptions.cpp:424 pgadmin/schema/pgSchema.cpp:262
 #: pgadmin/schema/pgSchema.cpp:398 pgadmin/schema/pgView.cpp:912
-#: pgadmin/utils/sysSettings.cpp:186 pgadmin/utils/sysSettings.cpp:243
+#: pgadmin/utils/sysSettings.cpp:191 pgadmin/utils/sysSettings.cpp:249
 #: pgadmin/dlg/dlgSearchObject.cpp:74 pgadmin/dlg/dlgSearchObject.cpp:109
 msgid "Views"
 msgstr "Widoki"
@@ -26536,14 +26708,14 @@ msgstr "XML files (*.xml)|*.xml|Wszystkie pliki (*.*)|*.*"
 #: src/schema/pgDatabase.cpp:575 src/schema/pgDatabase.cpp:595
 #: pgadmin/schema/pgDatabase.cpp:683 pgadmin/schema/pgDatabase.cpp:749
 #: pgadmin/schema/pgDatabase.cpp:198 pgadmin/schema/pgDatabase.cpp:947
-#: pgadmin/schema/pgDatabase.cpp:309 pgadmin/schema/pgDatabase.cpp:1198
+#: pgadmin/schema/pgDatabase.cpp:312 pgadmin/schema/pgDatabase.cpp:1204
 msgid "Xact Committed"
 msgstr "Xact Zatwierdzony"
 
 #: src/schema/pgDatabase.cpp:576 src/schema/pgDatabase.cpp:596
 #: pgadmin/schema/pgDatabase.cpp:684 pgadmin/schema/pgDatabase.cpp:750
 #: pgadmin/schema/pgDatabase.cpp:199 pgadmin/schema/pgDatabase.cpp:948
-#: pgadmin/schema/pgDatabase.cpp:310 pgadmin/schema/pgDatabase.cpp:1199
+#: pgadmin/schema/pgDatabase.cpp:313 pgadmin/schema/pgDatabase.cpp:1205
 msgid "Xact Rolled Back"
 msgstr "Xact Wycofany"
 
@@ -27025,7 +27197,7 @@ msgstr "Zadania pgAgenta"
 #: pgadmin/utils/sysSettings.cpp:71 pgadmin/utils/sysSettings.cpp:169
 #: pgadmin/frm/frmOptions.cpp:298 pgadmin/schema/pgServer.cpp:869
 #: pgadmin/frm/frmOptions.cpp:386 pgadmin/schema/pgServer.cpp:1108
-#: pgadmin/utils/sysSettings.cpp:82 pgadmin/utils/sysSettings.cpp:208
+#: pgadmin/utils/sysSettings.cpp:82 pgadmin/utils/sysSettings.cpp:213
 msgid "pgAgent Jobs"
 msgstr "Zadania pgAgenta"
 

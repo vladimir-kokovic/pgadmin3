@@ -132,8 +132,8 @@ wxString pgIndexBase::GetCreate()
 
 	str += wxT(")");
 
-	if (GetConnection()->BackendMinimumVersion(8, 2) && GetFillFactor().Length() > 0)
-		str += wxT("\n  WITH (FILLFACTOR=") + GetFillFactor() + wxT(")");
+	if (GetConnection()->BackendMinimumVersion(8, 2) && GetRelOptions().GetCount() > 0)
+		str += wxT("\n  WITH (") + GetRelOptionsStr() << wxT(")");
 
 	if (GetConnection()->BackendMinimumVersion(8, 0) && tablespace != GetDatabase()->GetDefaultTablespace())
 		str += wxT("\nTABLESPACE ") + qtIdent(tablespace);
@@ -407,8 +407,7 @@ void pgIndexBase::ShowTreeDetail(ctlTree *browser, frmMain *form, ctlListView *p
 		properties->AppendItem(_("Access method"), GetIndexType());
 		properties->AppendItem(_("Constraint"), GetConstraint());
 		properties->AppendYesNoItem(_("System index?"), GetSystemObject());
-		if (GetConnection()->BackendMinimumVersion(8, 2))
-			properties->AppendItem(_("Fill factor"), GetFillFactor());
+		AppendIndexReloptions(properties);
 		properties->AppendItem(_("Comment"), firstLineOnly(GetComment()));
 	}
 }
@@ -548,7 +547,7 @@ pgObject *pgIndexBaseFactory::CreateObjects(pgCollection *coll, ctlTree *browser
 	        wxT("       ") + proname + wxT("tab.relname as tabname, indclass, con.oid AS conoid, CASE contype WHEN 'p' THEN desp.description WHEN 'u' THEN desp.description WHEN 'x' THEN desp.description ELSE des.description END AS description,\n")
 	        wxT("       pg_get_expr(indpred, indrelid") + collection->GetDatabase()->GetPrettyOption() + wxT(") as indconstraint, contype, condeferrable, condeferred, amname\n");
 	if (collection->GetConnection()->BackendMinimumVersion(8, 2))
-		query += wxT(", substring(array_to_string(cls.reloptions, ',') from 'fillfactor=([0-9]*)') AS fillfactor \n");
+		query += wxT(", cls.reloptions AS reloptions \n");
 	query += wxT("  FROM pg_index idx\n")
 	         wxT("  JOIN pg_class cls ON cls.oid=indexrelid\n")
 	         wxT("  JOIN pg_class tab ON tab.oid=indrelid\n")
@@ -631,7 +630,7 @@ pgObject *pgIndexBaseFactory::CreateObjects(pgCollection *coll, ctlTree *browser
 			index->iSetConstraint(indexes->GetVal(wxT("indconstraint")));
 			index->iSetIndexType(indexes->GetVal(wxT("amname")));
 			if (collection->GetConnection()->BackendMinimumVersion(8, 2))
-				index->iSetFillFactor(indexes->GetVal(wxT("fillfactor")));
+				index->ParseReloptions(indexes->GetVal(wxT("reloptions")));
 
 			if (browser)
 			{
@@ -645,6 +644,58 @@ pgObject *pgIndexBaseFactory::CreateObjects(pgCollection *coll, ctlTree *browser
 		delete indexes;
 	}
 	return index;
+}
+
+void pgIndexBase::ParseReloptions(const wxString &s)
+{
+	wxString r = s.Mid(1, s.Length() - 2);
+	if (!r.IsEmpty())
+		FillArray(reloptions, r);
+}
+
+wxString pgIndexBase::GetRelOptionsStr() const
+{
+	wxString result = wxEmptyString;
+
+	if (GetConnection()->BackendMinimumVersion(8, 2) && reloptions.GetCount() > 0)
+	{
+		for (unsigned int i = 0; i < reloptions.GetCount(); i++)
+		{
+			wxStringTokenizer tokenizer(reloptions[i], wxT("="));
+			if (tokenizer.CountTokens() == 2)
+			{
+				wxString key = tokenizer.GetNextToken();
+				wxString value = tokenizer.GetNextToken();
+				result += key + wxT("=") + value;
+			}
+			if (i + 1 != reloptions.GetCount())
+				result += wxT(", ");
+		}
+	}
+	return result;
+}
+
+void pgIndexBase::AppendIndexReloptions(ctlListView *properties)
+{
+	for (unsigned int i = 0; i < reloptions.GetCount(); i++)
+	{
+		wxStringTokenizer tokenizer(reloptions[i], wxT("="));
+		if (tokenizer.CountTokens() == 2)
+		{
+			wxString key = tokenizer.GetNextToken();
+			wxString value = tokenizer.GetNextToken();
+			if (key == wxT("fillfactor"))
+				properties->AppendItem(_("Fill factor"), value);
+			else if (key == wxT("buffering"))
+				properties->AppendItem(_("Buffering"), value);
+			else if (key == wxT("fastupdate"))
+				properties->AppendYesNoItem(_("Fast update?"), StrToBool(value));
+			else if (key == wxT("gin_pending_list_limit"))
+				properties->AppendItem(_("Pending list limit"), value + wxT("Kb"));
+			else if (key == wxT("pages_per_range"))
+				properties->AppendItem(_("Pages per range"), value);
+		}
+	}
 }
 
 

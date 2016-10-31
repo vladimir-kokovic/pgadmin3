@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pgAdmin III\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-23 17:44+0300\n"
+"POT-Creation-Date: 2016-10-31 14:46+0300\n"
 "PO-Revision-Date: 2011-02-18 14:39+0800\n"
 "Last-Translator: \n"
 "Language-Team: The pgAdmin Development Team <pgadmin-hackers@postgresql."
@@ -94,7 +94,7 @@ msgstr " - %s 在 %s (%s:%d) 上"
 
 #: pgadmin/schema/pgDatabase.cpp:92 pgadmin/schema/pgServer.cpp:620
 #: pgadmin/schema/pgServer.cpp:627 pgadmin/schema/pgServer.cpp:634
-#: pgadmin/schema/pgDatabase.cpp:178 pgadmin/schema/pgServer.cpp:809
+#: pgadmin/schema/pgDatabase.cpp:181 pgadmin/schema/pgServer.cpp:809
 #: pgadmin/schema/pgServer.cpp:816 pgadmin/schema/pgServer.cpp:823
 msgid " - Browser"
 msgstr " - 遊覽器"
@@ -690,8 +690,8 @@ msgstr "Bug 回報(&B)"
 #: pgadmin/ui/dlgForeignDataWrapper.xrc:257 pgadmin/ui/dlgForeignKey.xrc:329
 #: pgadmin/ui/dlgForeignServer.xrc:253 pgadmin/ui/dlgForeignTable.xrc:381
 #: pgadmin/ui/dlgFunction.xrc:596 pgadmin/ui/dlgGroup.xrc:167
-#: pgadmin/ui/dlgHbaConfig.xrc:146 pgadmin/ui/dlgIndexConstraint.xrc:362
-#: pgadmin/ui/dlgIndex.xrc:360 pgadmin/ui/dlgJob.xrc:309
+#: pgadmin/ui/dlgHbaConfig.xrc:146 pgadmin/ui/dlgIndexConstraint.xrc:343
+#: pgadmin/ui/dlgIndex.xrc:439 pgadmin/ui/dlgJob.xrc:309
 #: pgadmin/ui/dlgLanguage.xrc:198 pgadmin/ui/dlgMainConfig.xrc:129
 #: pgadmin/ui/dlgManageFavourites.xrc:73 pgadmin/ui/dlgManageMacros.xrc:123
 #: pgadmin/ui/dlgMoveTablespace.xrc:85 pgadmin/ui/dlgOperator.xrc:353
@@ -1079,7 +1079,7 @@ msgid "&Export..."
 msgstr "匯出(&E)..."
 
 # standard
-#: pgadmin/schema/pgIndex.cpp:327 pgadmin/schema/pgIndex.cpp:476
+#: pgadmin/schema/pgIndex.cpp:327 pgadmin/schema/pgIndex.cpp:475
 msgid "&Extended index statistics"
 msgstr "已延伸索引統計(&E)"
 
@@ -1437,7 +1437,7 @@ msgstr "不記錄日誌(&N)"
 #: pgadmin/ui/dlgForeignKey.xrc:321 pgadmin/ui/dlgForeignServer.xrc:244
 #: pgadmin/ui/dlgForeignTable.xrc:373 pgadmin/ui/dlgFunction.xrc:588
 #: pgadmin/ui/dlgGroup.xrc:159 pgadmin/ui/dlgHbaConfig.xrc:138
-#: pgadmin/ui/dlgIndexConstraint.xrc:354 pgadmin/ui/dlgIndex.xrc:352
+#: pgadmin/ui/dlgIndexConstraint.xrc:335 pgadmin/ui/dlgIndex.xrc:431
 #: pgadmin/ui/dlgJob.xrc:301 pgadmin/ui/dlgLanguage.xrc:190
 #: pgadmin/ui/dlgMainConfig.xrc:121 pgadmin/ui/dlgManageFavourites.xrc:65
 #: pgadmin/ui/dlgManageMacros.xrc:115 pgadmin/ui/dlgMoveTablespace.xrc:77
@@ -1517,7 +1517,7 @@ msgstr "開啟(&O)...\tCtrl-O"
 # standard
 #: src/frm/frmOptions.cpp:326 src/frm/frmOptions.cpp:349
 #: pgadmin/frm/frmOptions.cpp:523 pgadmin/frm/frmOptions.cpp:553
-#: pgadmin/frm/frmOptions.cpp:730 pgadmin/frm/frmOptions.cpp:900
+#: pgadmin/frm/frmOptions.cpp:730 pgadmin/frm/frmOptions.cpp:901
 msgid "&Options..."
 msgstr "選項(&O)..."
 
@@ -2500,8 +2500,8 @@ msgstr "<二進制碼資料>"
 #: pgadmin/dlg/dlgIndex.cpp:381 pgadmin/dlg/dlgTable.cpp:345
 #: pgadmin/dlg/dlgDatabase.cpp:266 pgadmin/dlg/dlgIndex.cpp:439
 #: pgadmin/dlg/dlgIndexConstraint.cpp:102 pgadmin/dlg/dlgTable.cpp:367
-#: pgadmin/dlg/dlgDatabase.cpp:279 pgadmin/dlg/dlgIndex.cpp:454
-#: pgadmin/dlg/dlgIndexConstraint.cpp:279 pgadmin/dlg/dlgTable.cpp:435
+#: pgadmin/dlg/dlgDatabase.cpp:279 pgadmin/dlg/dlgIndex.cpp:567
+#: pgadmin/dlg/dlgIndexConstraint.cpp:273 pgadmin/dlg/dlgTable.cpp:435
 #: pgadmin/dlg/dlgView.cpp:367
 msgid "<default tablespace>"
 msgstr "<預設表格空間>"
@@ -2653,7 +2653,7 @@ msgstr ""
 #: pgadmin/schema/pgTable.cpp:869 pgadmin/schema/pgTablespace.cpp:131
 #: pgadmin/schema/pgView.cpp:231 pgadmin/schema/edbPackage.cpp:196
 #: pgadmin/schema/gpExtTable.cpp:455 pgadmin/schema/pgAggregate.cpp:155
-#: pgadmin/schema/pgColumn.cpp:512 pgadmin/schema/pgDatabase.cpp:706
+#: pgadmin/schema/pgColumn.cpp:512 pgadmin/schema/pgDatabase.cpp:712
 #: pgadmin/schema/pgForeignDataWrapper.cpp:154
 #: pgadmin/schema/pgForeignServer.cpp:155 pgadmin/schema/pgFunction.cpp:424
 #: pgadmin/schema/pgLanguage.cpp:133 pgadmin/schema/pgSchema.cpp:426
@@ -2728,6 +2728,20 @@ msgid "Accept the current settings and close the dialogue."
 msgstr "接受當前的設置並關閉交談窗格。"
 
 # standard
+#: pgadmin/schema/pgAccessMethod.cpp:204
+#, fuzzy
+msgid "Access Method"
+msgstr "存取方法"
+
+# standard
+#: pgadmin/frm/frmOptions.cpp:392 pgadmin/schema/pgAccessMethod.cpp:220
+#: pgadmin/schema/pgDatabase.cpp:145 pgadmin/schema/pgDatabase.cpp:622
+#: pgadmin/utils/sysSettings.cpp:96 pgadmin/utils/sysSettings.cpp:219
+#, fuzzy
+msgid "Access Methods"
+msgstr "存取方法"
+
+# standard
 #: src/schema/pgIndex.cpp:208 src/schema/pgIndexConstraint.cpp:105
 #: src/schema/pgOperatorClass.cpp:163 standard input:212
 #: src/schema/pgIndex.cpp:218 input:249 pgadmin/schema/pgIndex.cpp:225
@@ -2738,9 +2752,63 @@ msgstr "接受當前的設置並關閉交談窗格。"
 #: pgadmin/schema/pgIndex.cpp:407 pgadmin/schema/pgIndexConstraint.cpp:193
 #: pgadmin/schema/pgOperatorClass.cpp:279
 #: pgadmin/schema/pgOperatorFamily.cpp:124
-#: pgadmin/ui/dlgIndexConstraint.xrc:110 pgadmin/ui/dlgIndex.xrc:94
+#: pgadmin/ui/dlgIndexConstraint.xrc:103 pgadmin/ui/dlgIndex.xrc:89
 msgid "Access method"
 msgstr "存取方法"
+
+# standard
+#: pgadmin/schema/pgAccessMethod.cpp:66
+#, fuzzy
+msgid "Access method DDL"
+msgstr "存取方法"
+
+# standard
+#: pgadmin/schema/pgAccessMethod.cpp:62
+#, fuzzy
+msgid "Access method DDL report"
+msgstr "存取方法"
+
+# standard
+#: pgadmin/schema/pgAccessMethod.cpp:73
+#, fuzzy
+msgid "Access method dependencies"
+msgstr " 依賴物件"
+
+# standard
+#: pgadmin/schema/pgAccessMethod.cpp:69
+#, fuzzy
+msgid "Access method dependencies report"
+msgstr "依賴物件報告(&D)"
+
+# standard
+#: pgadmin/schema/pgAccessMethod.cpp:80
+#, fuzzy
+msgid "Access method dependents"
+msgstr "存取方法"
+
+# standard
+#: pgadmin/schema/pgAccessMethod.cpp:76
+#, fuzzy
+msgid "Access method dependents report"
+msgstr "隸屬物件報告(&D)"
+
+# standard
+#: pgadmin/schema/pgAccessMethod.cpp:59
+#, fuzzy
+msgid "Access method properties"
+msgstr "存取方法"
+
+# standard
+# standard
+#: pgadmin/schema/pgAccessMethod.cpp:55
+#, fuzzy
+msgid "Access method properties report"
+msgstr "屬性報告(&P)"
+
+#: pgadmin/schema/pgAccessMethod.cpp:190
+#, fuzzy
+msgid "Access methods list report"
+msgstr "%s 清單報告"
 
 #: src/schema/pgRole.cpp:245 src/schema/pgUser.cpp:208 standard input:392
 #: input:667 input:447 input:724 pgadmin/schema/pgRole.cpp:251
@@ -2813,8 +2881,8 @@ msgstr "活躍地"
 #: pgadmin/ui/dlgTable.xrc:16 pgadmin/ui/dlgTable.xrc:19
 #: pgadmin/ui/dlgTrigger.xrc:20 pgadmin/ui/dlgDomain.xrc:239
 #: pgadmin/ui/dlgForeignKey.xrc:239 pgadmin/ui/dlgForeignTable.xrc:250
-#: pgadmin/ui/dlgFunction.xrc:393 pgadmin/ui/dlgIndexConstraint.xrc:315
-#: pgadmin/ui/dlgIndex.xrc:313 pgadmin/ui/dlgJob.xrc:209
+#: pgadmin/ui/dlgFunction.xrc:393 pgadmin/ui/dlgIndexConstraint.xrc:291
+#: pgadmin/ui/dlgIndex.xrc:387 pgadmin/ui/dlgJob.xrc:209
 #: pgadmin/ui/dlgJob.xrc:262 pgadmin/ui/dlgSchedule.xrc:397
 #: pgadmin/ui/dlgTable.xrc:243 pgadmin/ui/dlgTable.xrc:376
 #: pgadmin/ui/dlgTable.xrc:425 pgadmin/ui/dlgTrigger.xrc:312
@@ -2990,8 +3058,9 @@ msgstr "增加這個已選取的欄位。"
 #: pgadmin/ctl/ctlSeclabelPanel.cpp:66 pgadmin/ui/dlgColumn.xrc:219
 #: pgadmin/ui/dlgDatabase.xrc:236 pgadmin/ui/dlgForeignDataWrapper.xrc:212
 #: pgadmin/ui/dlgForeignServer.xrc:208 pgadmin/ui/dlgForeignTable.xrc:341
-#: pgadmin/ui/dlgFunction.xrc:497 pgadmin/ui/dlgPolicy.xrc:98
-#: pgadmin/ui/dlgRole.xrc:345 pgadmin/ui/dlgTablespace.xrc:139
+#: pgadmin/ui/dlgFunction.xrc:497 pgadmin/ui/dlgIndex.xrc:181
+#: pgadmin/ui/dlgPolicy.xrc:98 pgadmin/ui/dlgRole.xrc:345
+#: pgadmin/ui/dlgTablespace.xrc:139
 #: pgadmin/ui/dlgTextSearchConfiguration.xrc:244
 #: pgadmin/ui/dlgTextSearchDictionary.xrc:211
 #: pgadmin/ui/dlgUserMapping.xrc:141 pgadmin/ui/dlgUser.xrc:252
@@ -3092,7 +3161,7 @@ msgstr "屬性報告(&P)"
 #: pgadmin/schema/pgSchema.cpp:85 pgadmin/schema/pgSchema.cpp:198
 #: pgadmin/frm/frmOptions.cpp:403 pgadmin/schema/pgAggregate.cpp:410
 #: pgadmin/schema/pgSchema.cpp:207 pgadmin/schema/pgSchema.cpp:332
-#: pgadmin/utils/sysSettings.cpp:134 pgadmin/utils/sysSettings.cpp:226
+#: pgadmin/utils/sysSettings.cpp:139 pgadmin/utils/sysSettings.cpp:232
 #: pgadmin/dlg/dlgSearchObject.cpp:78 pgadmin/dlg/dlgSearchObject.cpp:113
 msgid "Aggregates"
 msgstr "聚集函數"
@@ -3150,7 +3219,7 @@ msgstr "分派新的連線到資料庫 %s"
 
 #: src/schema/pgDatabase.cpp:416 src/schema/pgDatabase.cpp:432
 #: pgadmin/schema/pgDatabase.cpp:445 pgadmin/schema/pgDatabase.cpp:458
-#: pgadmin/schema/pgDatabase.cpp:565 pgadmin/schema/pgDatabase.cpp:754
+#: pgadmin/schema/pgDatabase.cpp:565 pgadmin/schema/pgDatabase.cpp:760
 msgid "Allow connections?"
 msgstr "允許連線？"
 
@@ -3219,7 +3288,7 @@ msgid "An exception already exists for this time on any date!"
 msgstr "一個異常已經存在於該時間的任何日期上！"
 
 #: pgadmin/frm/frmOptions.cpp:307 pgadmin/frm/frmOptions.cpp:322
-#: pgadmin/frm/frmOptions.cpp:451 pgadmin/frm/frmOptions.cpp:598
+#: pgadmin/frm/frmOptions.cpp:451 pgadmin/frm/frmOptions.cpp:599
 msgid ""
 "An invalid EnterpriseDB help path was specified.\n"
 "\n"
@@ -3230,7 +3299,7 @@ msgstr ""
 "請輸入另一個文件名稱，目錄或者 URL，或是將這路徑標為空白的。"
 
 #: pgadmin/frm/frmOptions.cpp:330 pgadmin/frm/frmOptions.cpp:459
-#: pgadmin/frm/frmOptions.cpp:606
+#: pgadmin/frm/frmOptions.cpp:607
 msgid ""
 "An invalid GreenplumDB help path was specified.\n"
 "\n"
@@ -3241,7 +3310,7 @@ msgstr ""
 "請輸入另一個作者檔案名稱，目錄或者 URL，或是將這路徑標為空白的。"
 
 #: pgadmin/frm/frmOptions.cpp:299 pgadmin/frm/frmOptions.cpp:314
-#: pgadmin/frm/frmOptions.cpp:443 pgadmin/frm/frmOptions.cpp:590
+#: pgadmin/frm/frmOptions.cpp:443 pgadmin/frm/frmOptions.cpp:591
 msgid ""
 "An invalid PostgreSQL help path was specified.\n"
 "\n"
@@ -3252,7 +3321,7 @@ msgstr ""
 "請輸入另一個文件名稱，目錄或者 URL，或是將這路徑標為空白的。"
 
 #: pgadmin/frm/frmOptions.cpp:315 pgadmin/frm/frmOptions.cpp:338
-#: pgadmin/frm/frmOptions.cpp:467 pgadmin/frm/frmOptions.cpp:614
+#: pgadmin/frm/frmOptions.cpp:467 pgadmin/frm/frmOptions.cpp:615
 msgid ""
 "An invalid Slony help path was specified.\n"
 "\n"
@@ -3578,6 +3647,18 @@ msgstr "您確定您想要移除 %s %s 包括附屬在它的全部物件？"
 #: pgadmin/slony/slTable.cpp:54
 #, fuzzy, c-format
 msgid "Are you sure you wish to drop Slony table \"%s\"?"
+msgstr "您確定您想要移除 %s \"%s\"?"
+
+#: pgadmin/schema/pgAccessMethod.cpp:41
+#, fuzzy, c-format
+msgid ""
+"Are you sure you wish to drop access method \"%s\" including all objects "
+"that depend on it?"
+msgstr "您確定您想要移除 %s %s 包括附屬在它的全部物件？"
+
+#: pgadmin/schema/pgAccessMethod.cpp:45
+#, fuzzy, c-format
+msgid "Are you sure you wish to drop access method \"%s\"?"
 msgstr "您確定您想要移除 %s \"%s\"?"
 
 #: pgadmin/schema/pgAggregate.cpp:41
@@ -4400,7 +4481,7 @@ msgid "Available Columns"
 msgstr "可用欄位"
 
 #: pgadmin/schema/pgIndex.cpp:260 pgadmin/schema/pgIndex.cpp:290
-#: pgadmin/schema/pgIndex.cpp:439
+#: pgadmin/schema/pgIndex.cpp:438
 msgid "Average Leaf Density"
 msgstr "平均葉級(Leaf)密度"
 
@@ -4470,7 +4551,7 @@ msgstr "伺服端啟動"
 #: src/schema/pgDatabase.cpp:574 src/schema/pgDatabase.cpp:594
 #: pgadmin/schema/pgDatabase.cpp:680 pgadmin/schema/pgDatabase.cpp:746
 #: pgadmin/schema/pgDatabase.cpp:197 pgadmin/schema/pgDatabase.cpp:944
-#: pgadmin/schema/pgDatabase.cpp:308 pgadmin/schema/pgDatabase.cpp:1195
+#: pgadmin/schema/pgDatabase.cpp:311 pgadmin/schema/pgDatabase.cpp:1201
 msgid "Backends"
 msgstr "伺服端"
 
@@ -4608,12 +4689,12 @@ msgstr "區塊縮排(&I)\tTab"
 msgid "Block &Outdent\tShift-Tab"
 msgstr "減少區塊縮排(&O)\tShift-Tab"
 
-#: pgadmin/schema/pgDatabase.cpp:333
+#: pgadmin/schema/pgDatabase.cpp:336
 #, fuzzy
 msgid "Block read time"
 msgstr "區塊讀取"
 
-#: pgadmin/schema/pgDatabase.cpp:334
+#: pgadmin/schema/pgDatabase.cpp:337
 #, fuzzy
 msgid "Block write time"
 msgstr "區塊碰撞"
@@ -4630,16 +4711,16 @@ msgstr "阻塞依照"
 #: src/schema/pgDatabase.cpp:578 src/schema/pgDatabase.cpp:598
 #: pgadmin/schema/pgDatabase.cpp:686 pgadmin/schema/pgDatabase.cpp:752
 #: pgadmin/schema/pgDatabase.cpp:201 pgadmin/schema/pgDatabase.cpp:950
-#: pgadmin/schema/pgSequence.cpp:136 pgadmin/schema/pgDatabase.cpp:312
-#: pgadmin/schema/pgDatabase.cpp:1201 pgadmin/schema/pgSequence.cpp:225
+#: pgadmin/schema/pgSequence.cpp:136 pgadmin/schema/pgDatabase.cpp:315
+#: pgadmin/schema/pgDatabase.cpp:1207 pgadmin/schema/pgSequence.cpp:225
 msgid "Blocks Hit"
 msgstr "區塊碰撞"
 
 #: src/schema/pgDatabase.cpp:577 src/schema/pgDatabase.cpp:597
 #: pgadmin/schema/pgDatabase.cpp:685 pgadmin/schema/pgDatabase.cpp:751
 #: pgadmin/schema/pgDatabase.cpp:200 pgadmin/schema/pgDatabase.cpp:949
-#: pgadmin/schema/pgSequence.cpp:134 pgadmin/schema/pgDatabase.cpp:311
-#: pgadmin/schema/pgDatabase.cpp:1200 pgadmin/schema/pgSequence.cpp:223
+#: pgadmin/schema/pgSequence.cpp:134 pgadmin/schema/pgDatabase.cpp:314
+#: pgadmin/schema/pgDatabase.cpp:1206 pgadmin/schema/pgSequence.cpp:223
 msgid "Blocks Read"
 msgstr "區塊讀取"
 
@@ -4674,7 +4755,12 @@ msgstr "瀏覽日誌檔。"
 msgid "Browser"
 msgstr "遊覽器"
 
-#: pgadmin/schema/pgDatabase.cpp:326 pgadmin/schema/pgDatabase.cpp:1216
+#: pgadmin/schema/pgIndex.cpp:690
+#, fuzzy
+msgid "Buffering"
+msgstr "緩衝區"
+
+#: pgadmin/schema/pgDatabase.cpp:329 pgadmin/schema/pgDatabase.cpp:1222
 msgid "Bufferpin conflicts"
 msgstr ""
 
@@ -4947,7 +5033,7 @@ msgstr "不能建立中斷點"
 msgid "Cannot disassociate from controlling TTY"
 msgstr "來自控制中的 TTY 不能被分離關聯"
 
-#: pgadmin/schema/pgDatabase.cpp:1330 pgadmin/schema/pgServer.cpp:2123
+#: pgadmin/schema/pgDatabase.cpp:1336 pgadmin/schema/pgServer.cpp:2123
 #, fuzzy
 msgid "Cannot disconnect database"
 msgstr "無連線到伺服器。"
@@ -5084,8 +5170,8 @@ msgstr "%s 屬性報告 - %s"
 #: pgadmin/utils/sysSettings.cpp:174 pgadmin/frm/frmOptions.cpp:303
 #: pgadmin/schema/pgDatabase.cpp:62 pgadmin/schema/pgDatabase.cpp:478
 #: pgadmin/frm/frmOptions.cpp:393 pgadmin/schema/pgCast.cpp:268
-#: pgadmin/schema/pgDatabase.cpp:144 pgadmin/schema/pgDatabase.cpp:620
-#: pgadmin/utils/sysSettings.cpp:96 pgadmin/utils/sysSettings.cpp:215
+#: pgadmin/schema/pgDatabase.cpp:147 pgadmin/schema/pgDatabase.cpp:626
+#: pgadmin/utils/sysSettings.cpp:101 pgadmin/utils/sysSettings.cpp:221
 #: pgadmin/dlg/dlgSearchObject.cpp:86 pgadmin/dlg/dlgSearchObject.cpp:121
 msgid "Casts"
 msgstr "型別轉換"
@@ -5213,9 +5299,9 @@ msgstr "屬性報告(&P)"
 #: pgadmin/utils/sysSettings.cpp:79 pgadmin/utils/sysSettings.cpp:173
 #: pgadmin/gqb/gqbBrowser.cpp:75 pgadmin/frm/frmOptions.cpp:302
 #: pgadmin/schema/pgDatabase.cpp:476 pgadmin/schema/pgSchema.cpp:555
-#: pgadmin/frm/frmOptions.cpp:392 pgadmin/schema/pgDatabase.cpp:618
+#: pgadmin/frm/frmOptions.cpp:391 pgadmin/schema/pgDatabase.cpp:624
 #: pgadmin/schema/pgSchema.cpp:815 pgadmin/utils/sysSettings.cpp:92
-#: pgadmin/utils/sysSettings.cpp:214
+#: pgadmin/utils/sysSettings.cpp:220
 msgid "Catalogs"
 msgstr "元目錄"
 
@@ -5252,7 +5338,7 @@ msgid "Change Password"
 msgstr "更改密碼"
 
 #: pgadmin/dlg/dlgIndex.cpp:220 pgadmin/dlg/dlgIndex.cpp:247
-#: pgadmin/dlg/dlgIndex.cpp:259 pgadmin/dlg/dlgIndexConstraint.cpp:464
+#: pgadmin/dlg/dlgIndex.cpp:344 pgadmin/dlg/dlgIndexConstraint.cpp:455
 msgid "Change index type?"
 msgstr "確定變更索引類型?"
 
@@ -5296,7 +5382,7 @@ msgid "Changes applied."
 msgstr "更改已完成。"
 
 #: pgadmin/frm/frmOptions.cpp:472 pgadmin/frm/frmOptions.cpp:503
-#: pgadmin/frm/frmOptions.cpp:716 pgadmin/frm/frmOptions.cpp:886
+#: pgadmin/frm/frmOptions.cpp:716 pgadmin/frm/frmOptions.cpp:887
 msgid ""
 "Changes to the display options may not be visible until the browser tree is "
 "refreshed."
@@ -5313,7 +5399,7 @@ msgstr ""
 "您確定要繼續？"
 
 #: pgadmin/dlg/dlgIndex.cpp:220 pgadmin/dlg/dlgIndex.cpp:247
-#: pgadmin/dlg/dlgIndex.cpp:259 pgadmin/dlg/dlgIndexConstraint.cpp:464
+#: pgadmin/dlg/dlgIndex.cpp:344 pgadmin/dlg/dlgIndexConstraint.cpp:455
 msgid ""
 "Changing the index type will cause the column list to be cleared. Do you "
 "wish to continue?"
@@ -5322,7 +5408,7 @@ msgstr "改變索引型態會導致欄位列表被清空，你確定要繼續嗎
 # standard
 # standard
 #: pgadmin/schema/pgDatabase.cpp:446 pgadmin/ui/dlgDatabase.xrc:11
-#: pgadmin/schema/pgDatabase.cpp:531 pgadmin/schema/pgDatabase.cpp:721
+#: pgadmin/schema/pgDatabase.cpp:531 pgadmin/schema/pgDatabase.cpp:727
 #: pgadmin/ui/dlgDatabase.xrc:166
 msgid "Character type"
 msgstr "字元型別"
@@ -5370,12 +5456,12 @@ msgstr "檔案選項"
 msgid "Check all"
 msgstr "勾選全部"
 
-#: pgadmin/schema/pgCheck.cpp:76 pgadmin/schema/pgPolicy.cpp:59
+#: pgadmin/schema/pgCheck.cpp:76
 #, fuzzy
 msgid "Check constraint DDL"
 msgstr "新檢查約束限制"
 
-#: pgadmin/schema/pgCheck.cpp:72 pgadmin/schema/pgPolicy.cpp:55
+#: pgadmin/schema/pgCheck.cpp:72
 #, fuzzy
 msgid "Check constraint DDL report"
 msgstr "新檢查約束限制"
@@ -5422,7 +5508,7 @@ msgstr "物件清單報告(&O)"
 
 # standard
 # standard
-#: pgadmin/schema/pgPolicy.cpp:135 pgadmin/ui/dlgPolicy.xrc:162
+#: pgadmin/schema/pgPolicy.cpp:127 pgadmin/ui/dlgPolicy.xrc:162
 #, fuzzy
 msgid "Check expression"
 msgstr "檔案選項"
@@ -5438,7 +5524,7 @@ msgstr "即時更新檢查"
 
 # standard
 # standard
-#: pgadmin/schema/pgPolicy.cpp:220
+#: pgadmin/schema/pgPolicy.cpp:212
 #, fuzzy
 msgid "Check policies list report"
 msgstr "物件清單報告(&O)"
@@ -5665,7 +5751,7 @@ msgstr "叢集名稱"
 # standard
 # standard
 #: standard input:214 input:251 pgadmin/ui/dlgIndex.xrc:7
-#: pgadmin/ui/dlgIndex.xrc:135
+#: pgadmin/ui/dlgIndex.xrc:115
 msgid "Clustered"
 msgstr "已叢集"
 
@@ -5713,11 +5799,11 @@ msgstr "移除資料表?"
 # standard
 #: pgadmin/schema/pgDatabase.cpp:445 pgadmin/ui/dlgDatabase.xrc:10
 #: pgadmin/schema/pgDatabase.cpp:530 pgadmin/schema/pgCollation.cpp:238
-#: pgadmin/schema/pgColumn.cpp:478 pgadmin/schema/pgDatabase.cpp:720
+#: pgadmin/schema/pgColumn.cpp:478 pgadmin/schema/pgDatabase.cpp:726
 #: pgadmin/schema/pgDomain.cpp:206 pgadmin/schema/pgType.cpp:336
-#: pgadmin/dlg/dlgIndex.cpp:206 pgadmin/dlg/dlgType.cpp:122
+#: pgadmin/dlg/dlgIndex.cpp:199 pgadmin/dlg/dlgType.cpp:122
 #: pgadmin/ui/dlgColumn.xrc:121 pgadmin/ui/dlgDatabase.xrc:151
-#: pgadmin/ui/dlgDomain.xrc:191 pgadmin/ui/dlgIndex.xrc:216
+#: pgadmin/ui/dlgDomain.xrc:191 pgadmin/ui/dlgIndex.xrc:288
 #: pgadmin/ui/dlgType.xrc:231 pgadmin/ui/dlgType.xrc:736
 msgid "Collation"
 msgstr "校對"
@@ -5802,7 +5888,7 @@ msgstr "顏色"
 #: pgadmin/ui/dlgIndex.xrc:13 pgadmin/schema/pgColumn.cpp:528
 #: pgadmin/dlg/dlgTable.cpp:185 pgadmin/ui/dlgTrigger.xrc:19
 #: pgadmin/schema/pgColumn.cpp:779 pgadmin/dlg/dlgTable.cpp:204
-#: pgadmin/ui/dlgIndexConstraint.xrc:203 pgadmin/ui/dlgIndex.xrc:201
+#: pgadmin/ui/dlgIndexConstraint.xrc:179 pgadmin/ui/dlgIndex.xrc:274
 #: pgadmin/ui/dlgTrigger.xrc:286
 msgid "Column"
 msgstr "欄位"
@@ -5860,8 +5946,8 @@ msgstr "隸屬物件報告(&D)"
 #: pgadmin/dlg/dlgTable.cpp:173 pgadmin/dlg/dlgEditGridOptions.cpp:88
 #: pgadmin/dlg/dlgIndex.cpp:194 pgadmin/dlg/dlgTable.cpp:175
 #: pgadmin/dlg/dlgTrigger.cpp:81 pgadmin/dlg/dlgEditGridOptions.cpp:95
-#: pgadmin/dlg/dlgIndex.cpp:202 pgadmin/dlg/dlgIndexConstraint.cpp:55
-#: pgadmin/dlg/dlgIndexConstraint.cpp:66 pgadmin/dlg/dlgTable.cpp:189
+#: pgadmin/dlg/dlgIndex.cpp:195 pgadmin/dlg/dlgIndexConstraint.cpp:54
+#: pgadmin/dlg/dlgIndexConstraint.cpp:65 pgadmin/dlg/dlgTable.cpp:189
 #: pgadmin/dlg/dlgTrigger.cpp:89
 msgid "Column name"
 msgstr "欄位名稱"
@@ -5950,7 +6036,7 @@ msgstr " 隸屬物件"
 #: pgadmin/schema/pgIndexConstraint.cpp:183 pgadmin/schema/pgTrigger.cpp:358
 #: pgadmin/dlg/dlgSearchObject.cpp:72 pgadmin/dlg/dlgSearchObject.cpp:107
 #: pgadmin/ui/dlgForeignKey.xrc:163 pgadmin/ui/dlgForeignTable.xrc:139
-#: pgadmin/ui/dlgIndexConstraint.xrc:181 pgadmin/ui/dlgIndex.xrc:179
+#: pgadmin/ui/dlgIndexConstraint.xrc:312 pgadmin/ui/dlgIndex.xrc:408
 #: pgadmin/ui/dlgTable.xrc:395 pgadmin/ui/dlgTrigger.xrc:264
 #: pgadmin/ui/frmImport.xrc:80
 msgid "Columns"
@@ -5971,7 +6057,7 @@ msgstr "%s 清單報告"
 #: src/slony/slNode.cpp:200 src/slony/slNode.cpp:326
 #: pgadmin/slony/slNode.cpp:193 pgadmin/slony/slNode.cpp:317
 #: pgadmin/slony/slNode.cpp:194 pgadmin/slony/slNode.cpp:318
-#: pgadmin/slony/slNode.cpp:321 pgadmin/schema/pgPolicy.cpp:133
+#: pgadmin/slony/slNode.cpp:321 pgadmin/schema/pgPolicy.cpp:125
 #: pgadmin/slony/slNode.cpp:255 pgadmin/slony/slNode.cpp:421
 #: pgadmin/ui/dlgPolicy.xrc:131
 msgid "Command"
@@ -6082,18 +6168,18 @@ msgstr "命令"
 #: pgadmin/frm/frmReport.cpp:1346 pgadmin/agent/pgaJob.cpp:140
 #: pgadmin/agent/pgaSchedule.cpp:111 pgadmin/agent/pgaStep.cpp:114
 #: pgadmin/schema/edbPackage.cpp:199 pgadmin/schema/gpExtTable.cpp:457
-#: pgadmin/schema/gpResQueue.cpp:190 pgadmin/schema/pgAggregate.cpp:174
-#: pgadmin/schema/pgCast.cpp:138 pgadmin/schema/pgCatalogObject.cpp:94
-#: pgadmin/schema/pgCheck.cpp:172 pgadmin/schema/pgCollation.cpp:139
-#: pgadmin/schema/pgCollection.cpp:73 pgadmin/schema/pgColumn.cpp:515
-#: pgadmin/schema/pgConversion.cpp:135 pgadmin/schema/pgDatabase.cpp:767
-#: pgadmin/schema/pgDomain.cpp:210 pgadmin/schema/pgEventTrigger.cpp:149
-#: pgadmin/schema/pgExtension.cpp:127 pgadmin/schema/pgForeignKey.cpp:254
-#: pgadmin/schema/pgForeignTable.cpp:187 pgadmin/schema/pgFunction.cpp:426
-#: pgadmin/schema/pgIndex.cpp:412 pgadmin/schema/pgIndexConstraint.cpp:198
-#: pgadmin/schema/pgLanguage.cpp:141 pgadmin/schema/pgOperator.cpp:207
-#: pgadmin/schema/pgOperatorClass.cpp:292
-#: pgadmin/schema/pgOperatorFamily.cpp:126 pgadmin/schema/pgPolicy.cpp:136
+#: pgadmin/schema/gpResQueue.cpp:190 pgadmin/schema/pgAccessMethod.cpp:121
+#: pgadmin/schema/pgAggregate.cpp:174 pgadmin/schema/pgCast.cpp:138
+#: pgadmin/schema/pgCatalogObject.cpp:94 pgadmin/schema/pgCheck.cpp:172
+#: pgadmin/schema/pgCollation.cpp:139 pgadmin/schema/pgCollection.cpp:73
+#: pgadmin/schema/pgColumn.cpp:515 pgadmin/schema/pgConversion.cpp:135
+#: pgadmin/schema/pgDatabase.cpp:773 pgadmin/schema/pgDomain.cpp:210
+#: pgadmin/schema/pgEventTrigger.cpp:149 pgadmin/schema/pgExtension.cpp:127
+#: pgadmin/schema/pgForeignKey.cpp:254 pgadmin/schema/pgForeignTable.cpp:187
+#: pgadmin/schema/pgFunction.cpp:426 pgadmin/schema/pgIndex.cpp:411
+#: pgadmin/schema/pgIndexConstraint.cpp:198 pgadmin/schema/pgLanguage.cpp:141
+#: pgadmin/schema/pgOperator.cpp:207 pgadmin/schema/pgOperatorClass.cpp:292
+#: pgadmin/schema/pgOperatorFamily.cpp:126 pgadmin/schema/pgPolicy.cpp:128
 #: pgadmin/schema/pgRole.cpp:476 pgadmin/schema/pgRule.cpp:184
 #: pgadmin/schema/pgSchema.cpp:439 pgadmin/schema/pgSequence.cpp:193
 #: pgadmin/schema/pgTable.cpp:1098 pgadmin/schema/pgTablespace.cpp:203
@@ -6113,7 +6199,7 @@ msgstr "命令"
 #: pgadmin/ui/dlgExtTable.xrc:67 pgadmin/ui/dlgForeignDataWrapper.xrc:70
 #: pgadmin/ui/dlgForeignKey.xrc:38 pgadmin/ui/dlgForeignServer.xrc:70
 #: pgadmin/ui/dlgForeignTable.xrc:82 pgadmin/ui/dlgFunction.xrc:79
-#: pgadmin/ui/dlgIndexConstraint.xrc:39 pgadmin/ui/dlgIndex.xrc:38
+#: pgadmin/ui/dlgIndexConstraint.xrc:35 pgadmin/ui/dlgIndex.xrc:35
 #: pgadmin/ui/dlgJob.xrc:160 pgadmin/ui/dlgLanguage.xrc:69
 #: pgadmin/ui/dlgMainConfig.xrc:72 pgadmin/ui/dlgOperator.xrc:80
 #: pgadmin/ui/dlgPackage.xrc:66 pgadmin/ui/dlgPolicy.xrc:51
@@ -6213,7 +6299,7 @@ msgstr "合成"
 msgid "Compress Ratio"
 msgstr "壓縮率"
 
-#: standard input:252 pgadmin/ui/dlgIndex.xrc:8 pgadmin/ui/dlgIndex.xrc:149
+#: standard input:252 pgadmin/ui/dlgIndex.xrc:8 pgadmin/ui/dlgIndex.xrc:127
 msgid "Concurrent build?"
 msgstr "共同時點建構？"
 
@@ -6392,7 +6478,7 @@ msgstr "已連線至除錯器"
 #: src/schema/pgServer.cpp:894 pgadmin/schema/pgDatabase.cpp:446
 #: pgadmin/schema/pgServer.cpp:903 pgadmin/schema/pgDatabase.cpp:459
 #: pgadmin/schema/pgServer.cpp:954 pgadmin/schema/pgDatabase.cpp:566
-#: pgadmin/schema/pgServer.cpp:975 pgadmin/schema/pgDatabase.cpp:755
+#: pgadmin/schema/pgServer.cpp:975 pgadmin/schema/pgDatabase.cpp:761
 #: pgadmin/schema/pgServer.cpp:1253
 msgid "Connected?"
 msgstr "已連線？"
@@ -6505,7 +6591,7 @@ msgstr "連線被打斷。"
 # standard
 # standard
 #: pgadmin/schema/pgDatabase.cpp:464 pgadmin/schema/pgDatabase.cpp:571
-#: pgadmin/schema/pgDatabase.cpp:760
+#: pgadmin/schema/pgDatabase.cpp:766
 msgid "Connection limit"
 msgstr "連線限制"
 
@@ -6578,7 +6664,7 @@ msgstr "連線器"
 #: pgadmin/ui/dlgIndex.xrc:9 pgadmin/schema/pgIndex.cpp:259
 #: pgadmin/schema/pgConstraints.cpp:109 pgadmin/schema/pgIndex.cpp:408
 #: pgadmin/schema/pgIndexConstraint.cpp:194 pgadmin/dlg/dlgForeignTable.cpp:76
-#: pgadmin/ui/dlgIndexConstraint.xrc:165 pgadmin/ui/dlgIndex.xrc:163
+#: pgadmin/ui/dlgIndexConstraint.xrc:141 pgadmin/ui/dlgIndex.xrc:139
 msgid "Constraint"
 msgstr "約束限制"
 
@@ -6730,8 +6816,8 @@ msgstr "%s 屬性報告 - %s"
 #: pgadmin/frm/frmOptions.cpp:309 pgadmin/schema/pgSchema.cpp:87
 #: pgadmin/schema/pgSchema.cpp:200 pgadmin/frm/frmOptions.cpp:405
 #: pgadmin/schema/pgConversion.cpp:245 pgadmin/schema/pgSchema.cpp:211
-#: pgadmin/schema/pgSchema.cpp:336 pgadmin/utils/sysSettings.cpp:139
-#: pgadmin/utils/sysSettings.cpp:227 pgadmin/dlg/dlgSearchObject.cpp:85
+#: pgadmin/schema/pgSchema.cpp:336 pgadmin/utils/sysSettings.cpp:144
+#: pgadmin/utils/sysSettings.cpp:233 pgadmin/dlg/dlgSearchObject.cpp:85
 #: pgadmin/dlg/dlgSearchObject.cpp:120
 msgid "Conversions"
 msgstr "編碼轉換"
@@ -7122,6 +7208,11 @@ msgstr "建立資料庫"
 msgid "Create a Primary Key."
 msgstr "建立主鍵(PK)。"
 
+#: pgadmin/schema/pgAccessMethod.cpp:204
+#, fuzzy
+msgid "Create a new Access Method."
+msgstr "建立新型別轉換。"
+
 #: src/schema/pgAggregate.cpp:202 pgadmin/schema/pgAggregate.cpp:261
 #: pgadmin/schema/pgAggregate.cpp:289 pgadmin/schema/pgAggregate.cpp:400
 msgid "Create a new Aggregate."
@@ -7165,7 +7256,7 @@ msgstr "建立新編碼轉換。"
 
 #: src/schema/pgDatabase.cpp:628 src/schema/pgDatabase.cpp:648
 #: pgadmin/schema/pgDatabase.cpp:752 pgadmin/schema/pgDatabase.cpp:818
-#: pgadmin/schema/pgDatabase.cpp:1025 pgadmin/schema/pgDatabase.cpp:1294
+#: pgadmin/schema/pgDatabase.cpp:1025 pgadmin/schema/pgDatabase.cpp:1300
 msgid "Create a new Database."
 msgstr "建立新資料庫。"
 
@@ -7253,7 +7344,7 @@ msgstr "建立新群組。"
 
 #: src/schema/pgIndex.cpp:361 src/schema/pgIndex.cpp:371
 #: pgadmin/schema/pgIndex.cpp:467 pgadmin/schema/pgIndex.cpp:506
-#: pgadmin/schema/pgIndex.cpp:513 pgadmin/schema/pgIndex.cpp:690
+#: pgadmin/schema/pgIndex.cpp:513 pgadmin/schema/pgIndex.cpp:741
 msgid "Create a new Index."
 msgstr "建立新索引。"
 
@@ -7313,7 +7404,7 @@ msgstr "建立新分割區。"
 msgid "Create a new Path."
 msgstr "建立新投射路徑。"
 
-#: pgadmin/schema/pgPolicy.cpp:233
+#: pgadmin/schema/pgPolicy.cpp:225
 #, fuzzy
 msgid "Create a new Policy."
 msgstr "建立新工作。"
@@ -7775,7 +7866,7 @@ msgid "DELETE script"
 msgstr "DELETE 描述稿本"
 
 #: pgadmin/ui/dlgIndex.xrc:14 pgadmin/ui/dlgIndex.xrc:15
-#: pgadmin/ui/dlgIndexConstraint.xrc:233 pgadmin/ui/dlgIndex.xrc:246
+#: pgadmin/ui/dlgIndexConstraint.xrc:207 pgadmin/ui/dlgIndex.xrc:317
 msgid "DESC"
 msgstr "DESC"
 
@@ -7957,8 +8048,8 @@ msgstr "資料寫入至檔案。"
 #: pgadmin/schema/pgServer.cpp:1018 pgadmin/schema/pgUser.cpp:90
 #: pgadmin/schema/pgUser.cpp:122 pgadmin/frm/frmBackup.cpp:155
 #: pgadmin/frm/frmStatus.cpp:676 pgadmin/frm/frmStatus.cpp:786
-#: pgadmin/agent/pgaStep.cpp:108 pgadmin/schema/pgDatabase.cpp:1194
-#: pgadmin/schema/pgDatabase.cpp:1294 pgadmin/schema/pgRole.cpp:306
+#: pgadmin/agent/pgaStep.cpp:108 pgadmin/schema/pgDatabase.cpp:1200
+#: pgadmin/schema/pgDatabase.cpp:1300 pgadmin/schema/pgRole.cpp:306
 #: pgadmin/schema/pgRole.cpp:332 pgadmin/schema/pgServer.cpp:1365
 #: pgadmin/schema/pgTablespace.cpp:105 pgadmin/schema/pgTablespace.cpp:124
 #: pgadmin/schema/pgUser.cpp:157 pgadmin/schema/pgUser.cpp:189
@@ -8083,23 +8174,23 @@ msgstr "資料庫統計數據"
 #: pgadmin/utils/sysSettings.cpp:67 pgadmin/utils/sysSettings.cpp:167
 #: pgadmin/frm/frmOptions.cpp:296 pgadmin/schema/pgDatabase.cpp:1044
 #: pgadmin/schema/pgServer.cpp:861 pgadmin/frm/frmOptions.cpp:384
-#: pgadmin/schema/pgDatabase.cpp:1313 pgadmin/schema/pgServer.cpp:1100
-#: pgadmin/utils/sysSettings.cpp:78 pgadmin/utils/sysSettings.cpp:206
+#: pgadmin/schema/pgDatabase.cpp:1319 pgadmin/schema/pgServer.cpp:1100
+#: pgadmin/utils/sysSettings.cpp:78 pgadmin/utils/sysSettings.cpp:211
 #: pgadmin/dlg/dlgSearchObject.cpp:860
 msgid "Databases"
 msgstr "資料庫"
 
-#: pgadmin/schema/pgDatabase.cpp:1153
+#: pgadmin/schema/pgDatabase.cpp:1159
 msgid "Databases list report"
 msgstr "資料庫清單"
 
 # standard
 # standard
-#: pgadmin/schema/pgDatabase.cpp:1150
+#: pgadmin/schema/pgDatabase.cpp:1156
 msgid "Databases statistics"
 msgstr "資料庫統計數據"
 
-#: pgadmin/schema/pgDatabase.cpp:1147
+#: pgadmin/schema/pgDatabase.cpp:1153
 msgid "Databases statistics report"
 msgstr "資料庫統計報告"
 
@@ -8169,11 +8260,11 @@ msgstr "已廢值組"
 msgid "Dead tuples"
 msgstr "已廢值組"
 
-#: pgadmin/schema/pgDatabase.cpp:327 pgadmin/schema/pgDatabase.cpp:1217
+#: pgadmin/schema/pgDatabase.cpp:330 pgadmin/schema/pgDatabase.cpp:1223
 msgid "Deadlock conflicts"
 msgstr ""
 
-#: pgadmin/schema/pgDatabase.cpp:332
+#: pgadmin/schema/pgDatabase.cpp:335
 #, fuzzy
 msgid "Deadlocks"
 msgstr "已廢值組"
@@ -8310,7 +8401,7 @@ msgstr "預設值"
 
 # standard
 #: pgadmin/schema/pgDatabase.cpp:538 pgadmin/schema/pgSchema.cpp:280
-#: pgadmin/schema/pgDatabase.cpp:730 pgadmin/schema/pgSchema.cpp:431
+#: pgadmin/schema/pgDatabase.cpp:736 pgadmin/schema/pgSchema.cpp:431
 #, fuzzy
 msgid "Default function ACL"
 msgstr "運算子函數"
@@ -8325,14 +8416,14 @@ msgstr "預設身分"
 # standard
 #: src/schema/pgDatabase.cpp:408 src/schema/pgDatabase.cpp:424
 #: pgadmin/schema/pgDatabase.cpp:437 pgadmin/schema/pgDatabase.cpp:450
-#: pgadmin/schema/pgDatabase.cpp:534 pgadmin/schema/pgDatabase.cpp:724
+#: pgadmin/schema/pgDatabase.cpp:534 pgadmin/schema/pgDatabase.cpp:730
 msgid "Default schema"
 msgstr "預設架構綱要"
 
 # standard
 # standard
 #: pgadmin/schema/pgDatabase.cpp:537 pgadmin/schema/pgSchema.cpp:279
-#: pgadmin/schema/pgDatabase.cpp:729 pgadmin/schema/pgSchema.cpp:430
+#: pgadmin/schema/pgDatabase.cpp:735 pgadmin/schema/pgSchema.cpp:430
 #, fuzzy
 msgid "Default sequence ACL"
 msgstr "預設架構綱要"
@@ -8340,7 +8431,7 @@ msgstr "預設架構綱要"
 # standard
 # standard
 #: pgadmin/schema/pgDatabase.cpp:536 pgadmin/schema/pgSchema.cpp:278
-#: pgadmin/schema/pgDatabase.cpp:728 pgadmin/schema/pgSchema.cpp:429
+#: pgadmin/schema/pgDatabase.cpp:734 pgadmin/schema/pgSchema.cpp:429
 #, fuzzy
 msgid "Default table ACL"
 msgstr "預設表格空間"
@@ -8350,13 +8441,13 @@ msgstr "預設表格空間"
 #: pgadmin/dlg/dlgIndex.cpp:295 pgadmin/dlg/dlgIndexConstraint.cpp:66
 #: pgadmin/dlg/dlgTable.cpp:309 pgadmin/schema/pgDatabase.cpp:432
 #: pgadmin/schema/pgDatabase.cpp:439 pgadmin/schema/pgDatabase.cpp:524
-#: pgadmin/schema/pgDatabase.cpp:714
+#: pgadmin/schema/pgDatabase.cpp:720
 msgid "Default tablespace"
 msgstr "預設表格空間"
 
 # standard
 # standard
-#: pgadmin/schema/pgDatabase.cpp:733 pgadmin/schema/pgSchema.cpp:434
+#: pgadmin/schema/pgDatabase.cpp:739 pgadmin/schema/pgSchema.cpp:434
 #, fuzzy
 msgid "Default type ACL"
 msgstr "預設表格空間"
@@ -8386,7 +8477,7 @@ msgstr "預設？"
 # standard
 #: standard input:30 input:127 input:227 input:35 input:164 input:265
 #: pgadmin/ui/dlgForeignKey.xrc:4 pgadmin/ui/dlgIndexConstraint.xrc:4
-#: pgadmin/ui/dlgForeignKey.xrc:78 pgadmin/ui/dlgIndexConstraint.xrc:137
+#: pgadmin/ui/dlgForeignKey.xrc:78 pgadmin/ui/dlgIndexConstraint.xrc:117
 #: pgadmin/ui/dlgTrigger.xrc:124
 msgid "Deferrable"
 msgstr "可延期的"
@@ -8400,12 +8491,12 @@ msgstr "可延期的？"
 # standard
 #: standard input:31 input:128 input:228 input:36 input:165 input:266
 #: pgadmin/ui/dlgForeignKey.xrc:5 pgadmin/ui/dlgIndexConstraint.xrc:5
-#: pgadmin/ui/dlgForeignKey.xrc:92 pgadmin/ui/dlgIndexConstraint.xrc:151
+#: pgadmin/ui/dlgForeignKey.xrc:92 pgadmin/ui/dlgIndexConstraint.xrc:129
 #: pgadmin/ui/dlgTrigger.xrc:138
 msgid "Deferred"
 msgstr "已延期"
 
-#: pgadmin/schema/pgPolicy.cpp:130 pgadmin/ui/dlgPolicy.xrc:35
+#: pgadmin/schema/pgPolicy.cpp:122 pgadmin/ui/dlgPolicy.xrc:35
 msgid "Defined for"
 msgstr ""
 
@@ -8440,7 +8531,7 @@ msgstr ""
 #: pgadmin/ui/dlgExtTable.xrc:98 pgadmin/ui/dlgForeignDataWrapper.xrc:103
 #: pgadmin/ui/dlgForeignKey.xrc:69 pgadmin/ui/dlgForeignServer.xrc:103
 #: pgadmin/ui/dlgForeignTable.xrc:113 pgadmin/ui/dlgFunction.xrc:110
-#: pgadmin/ui/dlgIndexConstraint.xrc:70 pgadmin/ui/dlgIndex.xrc:69
+#: pgadmin/ui/dlgIndexConstraint.xrc:155 pgadmin/ui/dlgIndex.xrc:154
 #: pgadmin/ui/dlgLanguage.xrc:100 pgadmin/ui/dlgOperator.xrc:111
 #: pgadmin/ui/dlgPolicy.xrc:178 pgadmin/ui/dlgRole.xrc:85
 #: pgadmin/ui/dlgRule.xrc:83 pgadmin/ui/dlgSequence.xrc:115
@@ -8541,7 +8632,7 @@ msgstr "刪除/移除這已選取的的物件。"
 
 # standard
 #: pgadmin/schema/pgIndex.cpp:259 pgadmin/schema/pgIndex.cpp:289
-#: pgadmin/schema/pgIndex.cpp:438
+#: pgadmin/schema/pgIndex.cpp:437
 msgid "Deleted Pages"
 msgstr "已刪除頁"
 
@@ -8747,7 +8838,7 @@ msgstr "停用觸發器"
 msgid "Disconnec&t"
 msgstr "中斷連線(&t)"
 
-#: pgadmin/schema/pgDatabase.cpp:1318
+#: pgadmin/schema/pgDatabase.cpp:1324
 #, fuzzy
 msgid "Disconnec&t database"
 msgstr "無連線到伺服器。"
@@ -8757,7 +8848,7 @@ msgstr "無連線到伺服器。"
 msgid "Disconnec&t server"
 msgstr "中斷連線(&t)"
 
-#: pgadmin/schema/pgDatabase.cpp:1318
+#: pgadmin/schema/pgDatabase.cpp:1324
 #, fuzzy
 msgid "Disconnect from the selected database."
 msgstr "從已選取的伺服器斷線。"
@@ -8862,7 +8953,7 @@ msgid "Display only those rows that have this value in this column."
 msgstr "僅顯示有此值在這欄位上的資料列。"
 
 #: pgadmin/frm/frmOptions.cpp:472 pgadmin/frm/frmOptions.cpp:503
-#: pgadmin/frm/frmOptions.cpp:716 pgadmin/frm/frmOptions.cpp:886
+#: pgadmin/frm/frmOptions.cpp:716 pgadmin/frm/frmOptions.cpp:887
 msgid "Display options"
 msgstr "顯示選項"
 
@@ -9017,8 +9108,8 @@ msgstr "屬性報告(&P)"
 #: pgadmin/frm/frmOptions.cpp:310 pgadmin/schema/pgSchema.cpp:89
 #: pgadmin/schema/pgSchema.cpp:202 pgadmin/frm/frmOptions.cpp:406
 #: pgadmin/schema/pgDomain.cpp:392 pgadmin/schema/pgSchema.cpp:213
-#: pgadmin/schema/pgSchema.cpp:338 pgadmin/utils/sysSettings.cpp:144
-#: pgadmin/utils/sysSettings.cpp:228 pgadmin/dlg/dlgSearchObject.cpp:83
+#: pgadmin/schema/pgSchema.cpp:338 pgadmin/utils/sysSettings.cpp:149
+#: pgadmin/utils/sysSettings.cpp:234 pgadmin/dlg/dlgSearchObject.cpp:83
 #: pgadmin/dlg/dlgSearchObject.cpp:119
 msgid "Domains"
 msgstr "共同值域"
@@ -9242,6 +9333,17 @@ msgstr "一併刪除資料表?"
 #, fuzzy
 msgid "Drop Slony table?"
 msgstr "移除資料表?"
+
+#: pgadmin/schema/pgAccessMethod.cpp:49
+#, fuzzy
+msgid "Drop access method cascaded?"
+msgstr "移除 %s 附屬串聯？"
+
+# standard
+#: pgadmin/schema/pgAccessMethod.cpp:52
+#, fuzzy
+msgid "Drop access method?"
+msgstr "存取方法"
 
 #: pgadmin/schema/pgAggregate.cpp:49
 #, fuzzy
@@ -9565,7 +9667,7 @@ msgstr "移除 %s 附屬串聯？"
 msgid "Drop package?"
 msgstr "移除附屬串聯"
 
-#: pgadmin/schema/pgPolicy.cpp:49
+#: pgadmin/schema/pgPolicy.cpp:48
 #, fuzzy
 msgid "Drop policy?"
 msgstr "程序語言"
@@ -9762,7 +9864,7 @@ msgstr "移除view?"
 
 #: src/schema/pgDatabase.cpp:317 src/schema/pgDatabase.cpp:320
 #: pgadmin/schema/pgDatabase.cpp:326 pgadmin/schema/pgDatabase.cpp:322
-#: pgadmin/schema/pgDatabase.cpp:374 pgadmin/schema/pgDatabase.cpp:506
+#: pgadmin/schema/pgDatabase.cpp:374 pgadmin/schema/pgDatabase.cpp:509
 msgid "Dropping database not allowed"
 msgstr "移除資料庫不被允許"
 
@@ -9933,7 +10035,7 @@ msgid "Embed pgAdmin's default stylesheet into the report."
 msgstr "嵌入 pgAdmin's 預設樣式表到這份報告。"
 
 #: pgadmin/schema/pgIndex.cpp:258 pgadmin/schema/pgIndex.cpp:288
-#: pgadmin/schema/pgIndex.cpp:437
+#: pgadmin/schema/pgIndex.cpp:436
 msgid "Empty Pages"
 msgstr "空頁"
 
@@ -10058,7 +10160,7 @@ msgstr "啟用已被建議的自動化重整(autovacuum)中"
 #: pgadmin/schema/pgDatabase.cpp:434 pgadmin/ui/dlgDatabase.xrc:5
 #: pgadmin/ui/frmExport.xrc:13 pgadmin/schema/pgDatabase.cpp:441
 #: pgadmin/schema/pgDatabase.cpp:526 pgadmin/ui/frmBackup.xrc:10
-#: pgadmin/schema/pgDatabase.cpp:716 pgadmin/ui/dlgDatabase.xrc:93
+#: pgadmin/schema/pgDatabase.cpp:722 pgadmin/ui/dlgDatabase.xrc:93
 #: pgadmin/ui/frmBackup.xrc:84 pgadmin/ui/frmExport.xrc:62
 #: pgadmin/ui/frmImport.xrc:63
 msgid "Encoding"
@@ -10235,11 +10337,11 @@ msgstr "細目數"
 #: pgadmin/frm/frmOptions.cpp:425 pgadmin/frm/frmOptions.cpp:435
 #: pgadmin/frm/frmOptions.cpp:443 pgadmin/frm/frmOptions.cpp:451
 #: pgadmin/frm/frmOptions.cpp:459 pgadmin/frm/frmOptions.cpp:467
-#: pgadmin/frm/frmQuery.cpp:2389 pgadmin/frm/frmOptions.cpp:551
-#: pgadmin/frm/frmOptions.cpp:561 pgadmin/frm/frmOptions.cpp:571
-#: pgadmin/frm/frmOptions.cpp:581 pgadmin/frm/frmOptions.cpp:590
-#: pgadmin/frm/frmOptions.cpp:598 pgadmin/frm/frmOptions.cpp:606
-#: pgadmin/frm/frmOptions.cpp:614 pgadmin/frm/frmQuery.cpp:2837
+#: pgadmin/frm/frmQuery.cpp:2389 pgadmin/frm/frmOptions.cpp:552
+#: pgadmin/frm/frmOptions.cpp:562 pgadmin/frm/frmOptions.cpp:572
+#: pgadmin/frm/frmOptions.cpp:582 pgadmin/frm/frmOptions.cpp:591
+#: pgadmin/frm/frmOptions.cpp:599 pgadmin/frm/frmOptions.cpp:607
+#: pgadmin/frm/frmOptions.cpp:615 pgadmin/frm/frmQuery.cpp:2837
 msgid "Error"
 msgstr "錯誤"
 
@@ -10357,9 +10459,9 @@ msgstr "事件編號"
 msgid "Event Trigger"
 msgstr "新觸發器"
 
-#: pgadmin/frm/frmOptions.cpp:394 pgadmin/schema/pgDatabase.cpp:622
-#: pgadmin/schema/pgEventTrigger.cpp:315 pgadmin/utils/sysSettings.cpp:190
-#: pgadmin/utils/sysSettings.cpp:221
+#: pgadmin/frm/frmOptions.cpp:394 pgadmin/schema/pgDatabase.cpp:628
+#: pgadmin/schema/pgEventTrigger.cpp:315 pgadmin/utils/sysSettings.cpp:195
+#: pgadmin/utils/sysSettings.cpp:227
 #, fuzzy
 msgid "Event Triggers"
 msgstr "觸發器"
@@ -10802,9 +10904,9 @@ msgstr " 屬性"
 msgid "Extension properties report"
 msgstr "%s 屬性報告 - %s"
 
-#: pgadmin/frm/frmOptions.cpp:395 pgadmin/schema/pgDatabase.cpp:146
-#: pgadmin/schema/pgDatabase.cpp:624 pgadmin/schema/pgExtension.cpp:234
-#: pgadmin/utils/sysSettings.cpp:126 pgadmin/utils/sysSettings.cpp:222
+#: pgadmin/frm/frmOptions.cpp:395 pgadmin/schema/pgDatabase.cpp:149
+#: pgadmin/schema/pgDatabase.cpp:630 pgadmin/schema/pgExtension.cpp:234
+#: pgadmin/utils/sysSettings.cpp:131 pgadmin/utils/sysSettings.cpp:228
 #: pgadmin/dlg/dlgSearchObject.cpp:100 pgadmin/dlg/dlgSearchObject.cpp:144
 #, fuzzy
 msgid "Extensions"
@@ -10841,8 +10943,8 @@ msgstr "外部表"
 #: pgadmin/frm/frmOptions.cpp:320 pgadmin/schema/pgSchema.cpp:135
 #: pgadmin/schema/pgSchema.cpp:251 pgadmin/frm/frmOptions.cpp:407
 #: pgadmin/schema/gpExtTable.cpp:575 pgadmin/schema/pgSchema.cpp:264
-#: pgadmin/schema/pgSchema.cpp:389 pgadmin/utils/sysSettings.cpp:188
-#: pgadmin/utils/sysSettings.cpp:244
+#: pgadmin/schema/pgSchema.cpp:389 pgadmin/utils/sysSettings.cpp:193
+#: pgadmin/utils/sysSettings.cpp:250
 msgid "External Tables"
 msgstr "外部表"
 
@@ -10920,7 +11022,7 @@ msgid "FATAL"
 msgstr "FATAL"
 
 #: pgadmin/ui/dlgIndex.xrc:16 pgadmin/ui/dlgIndex.xrc:17
-#: pgadmin/ui/dlgIndexConstraint.xrc:266 pgadmin/ui/dlgIndex.xrc:279
+#: pgadmin/ui/dlgIndexConstraint.xrc:240 pgadmin/ui/dlgIndex.xrc:350
 msgid "FIRST"
 msgstr "FIRST"
 
@@ -10983,7 +11085,7 @@ msgstr "FTS 組態"
 #: pgadmin/schema/pgSchema.cpp:204 pgadmin/frm/frmOptions.cpp:409
 #: pgadmin/schema/pgSchema.cpp:233 pgadmin/schema/pgSchema.cpp:342
 #: pgadmin/schema/pgTextSearchConfiguration.cpp:277
-#: pgadmin/utils/sysSettings.cpp:173 pgadmin/utils/sysSettings.cpp:238
+#: pgadmin/utils/sysSettings.cpp:178 pgadmin/utils/sysSettings.cpp:244
 #: pgadmin/dlg/dlgSearchObject.cpp:89 pgadmin/dlg/dlgSearchObject.cpp:124
 msgid "FTS Configurations"
 msgstr "FTS 組態"
@@ -10996,7 +11098,7 @@ msgstr "FTS 組態"
 #: pgadmin/schema/pgSchema.cpp:209 pgadmin/frm/frmOptions.cpp:410
 #: pgadmin/schema/pgSchema.cpp:238 pgadmin/schema/pgSchema.cpp:347
 #: pgadmin/schema/pgTextSearchDictionary.cpp:241
-#: pgadmin/utils/sysSettings.cpp:175 pgadmin/utils/sysSettings.cpp:239
+#: pgadmin/utils/sysSettings.cpp:180 pgadmin/utils/sysSettings.cpp:245
 #: pgadmin/dlg/dlgSearchObject.cpp:90 pgadmin/dlg/dlgSearchObject.cpp:125
 msgid "FTS Dictionaries"
 msgstr "FTS 詞典"
@@ -11017,8 +11119,8 @@ msgstr "FTS 解析器"
 #: pgadmin/frm/frmOptions.cpp:323 pgadmin/schema/pgSchema.cpp:119
 #: pgadmin/schema/pgSchema.cpp:214 pgadmin/frm/frmOptions.cpp:411
 #: pgadmin/schema/pgSchema.cpp:243 pgadmin/schema/pgSchema.cpp:352
-#: pgadmin/schema/pgTextSearchParser.cpp:253 pgadmin/utils/sysSettings.cpp:177
-#: pgadmin/utils/sysSettings.cpp:240 pgadmin/dlg/dlgSearchObject.cpp:91
+#: pgadmin/schema/pgTextSearchParser.cpp:253 pgadmin/utils/sysSettings.cpp:182
+#: pgadmin/utils/sysSettings.cpp:246 pgadmin/dlg/dlgSearchObject.cpp:91
 #: pgadmin/dlg/dlgSearchObject.cpp:126
 msgid "FTS Parsers"
 msgstr "FTS 解析器"
@@ -11039,7 +11141,7 @@ msgstr "FTS 模版"
 #: pgadmin/schema/pgSchema.cpp:219 pgadmin/frm/frmOptions.cpp:412
 #: pgadmin/schema/pgSchema.cpp:248 pgadmin/schema/pgSchema.cpp:357
 #: pgadmin/schema/pgTextSearchTemplate.cpp:242
-#: pgadmin/utils/sysSettings.cpp:179 pgadmin/utils/sysSettings.cpp:241
+#: pgadmin/utils/sysSettings.cpp:184 pgadmin/utils/sysSettings.cpp:247
 #: pgadmin/dlg/dlgSearchObject.cpp:92 pgadmin/dlg/dlgSearchObject.cpp:127
 msgid "FTS Templates"
 msgstr "FTS 模版"
@@ -11522,6 +11624,12 @@ msgstr "災難復原到備份節點。"
 msgid "Family"
 msgstr "族群"
 
+# standard
+#: pgadmin/schema/pgIndex.cpp:692
+#, fuzzy
+msgid "Fast update?"
+msgstr "在更新時"
+
 #: pgadmin/frm/frmQuery.cpp:208 pgadmin/frm/frmQuery.cpp:252
 #: pgadmin/frm/frmQuery.cpp:319 pgadmin/frm/frmQuery.cpp:352
 #: pgadmin/frm/frmQuery.cpp:1524
@@ -11583,9 +11691,8 @@ msgstr "覆蓋係數"
 #: pgadmin/schema/pgIndex.cpp:229 pgadmin/schema/pgTable.cpp:569
 #: pgadmin/schema/pgIndex.cpp:262 pgadmin/schema/pgTable.cpp:833
 #: pgadmin/schema/pgTable.cpp:880 pgadmin/ui/dlgIndex.xrc:5
-#: pgadmin/schema/pgIndex.cpp:411 pgadmin/schema/pgIndexConstraint.cpp:197
-#: pgadmin/schema/pgTable.cpp:1000 pgadmin/schema/pgView.cpp:527
-#: pgadmin/ui/dlgIndexConstraint.xrc:125 pgadmin/ui/dlgIndex.xrc:109
+#: pgadmin/schema/pgIndex.cpp:688 pgadmin/schema/pgTable.cpp:1000
+#: pgadmin/schema/pgView.cpp:527
 msgid "Fill factor"
 msgstr "覆蓋係數"
 
@@ -11742,10 +11849,10 @@ msgstr ""
 msgid "Foreign Data Wrapper"
 msgstr "外部鍵(FK)"
 
-#: pgadmin/frm/frmOptions.cpp:396 pgadmin/schema/pgDatabase.cpp:148
-#: pgadmin/schema/pgDatabase.cpp:626
+#: pgadmin/frm/frmOptions.cpp:396 pgadmin/schema/pgDatabase.cpp:151
+#: pgadmin/schema/pgDatabase.cpp:632
 #: pgadmin/schema/pgForeignDataWrapper.cpp:408
-#: pgadmin/utils/sysSettings.cpp:101 pgadmin/utils/sysSettings.cpp:216
+#: pgadmin/utils/sysSettings.cpp:106 pgadmin/utils/sysSettings.cpp:222
 #: pgadmin/dlg/dlgSearchObject.cpp:93 pgadmin/dlg/dlgSearchObject.cpp:130
 #, fuzzy
 msgid "Foreign Data Wrappers"
@@ -11769,8 +11876,8 @@ msgid "Foreign Server"
 msgstr "外部鍵(FK)"
 
 #: pgadmin/frm/frmOptions.cpp:397 pgadmin/schema/pgForeignDataWrapper.cpp:143
-#: pgadmin/schema/pgForeignServer.cpp:351 pgadmin/utils/sysSettings.cpp:106
-#: pgadmin/utils/sysSettings.cpp:217 pgadmin/dlg/dlgSearchObject.cpp:94
+#: pgadmin/schema/pgForeignServer.cpp:351 pgadmin/utils/sysSettings.cpp:111
+#: pgadmin/utils/sysSettings.cpp:223 pgadmin/dlg/dlgSearchObject.cpp:94
 #: pgadmin/dlg/dlgSearchObject.cpp:131
 #, fuzzy
 msgid "Foreign Servers"
@@ -11783,7 +11890,7 @@ msgstr "外部鍵(FK)"
 
 #: pgadmin/frm/frmOptions.cpp:408 pgadmin/schema/pgForeignTable.cpp:415
 #: pgadmin/schema/pgSchema.cpp:253 pgadmin/schema/pgSchema.cpp:340
-#: pgadmin/utils/sysSettings.cpp:116 pgadmin/utils/sysSettings.cpp:219
+#: pgadmin/utils/sysSettings.cpp:121 pgadmin/utils/sysSettings.cpp:225
 #: pgadmin/dlg/dlgSearchObject.cpp:95 pgadmin/dlg/dlgSearchObject.cpp:136
 #, fuzzy
 msgid "Foreign Tables"
@@ -12199,8 +12306,8 @@ msgstr "屬性報告(&P)"
 #: pgadmin/schema/pgSchema.cpp:91 pgadmin/schema/pgSchema.cpp:224
 #: pgadmin/frm/frmOptions.cpp:413 pgadmin/schema/edbPackageFunction.cpp:544
 #: pgadmin/schema/pgFunction.cpp:1127 pgadmin/schema/pgSchema.cpp:215
-#: pgadmin/schema/pgSchema.cpp:362 pgadmin/utils/sysSettings.cpp:146
-#: pgadmin/utils/sysSettings.cpp:229 pgadmin/dlg/dlgSearchObject.cpp:77
+#: pgadmin/schema/pgSchema.cpp:362 pgadmin/utils/sysSettings.cpp:151
+#: pgadmin/utils/sysSettings.cpp:235 pgadmin/dlg/dlgSearchObject.cpp:77
 #: pgadmin/dlg/dlgSearchObject.cpp:112
 msgid "Functions"
 msgstr "函數"
@@ -12348,7 +12455,7 @@ msgid "Geometric types"
 msgstr "回傳型別"
 
 #: pgadmin/schema/pgIndex.cpp:287 pgadmin/schema/pgIndex.cpp:327
-#: pgadmin/schema/pgIndex.cpp:476
+#: pgadmin/schema/pgIndex.cpp:475
 msgid "Get extended statistics via pgstatindex for the selected object."
 msgstr "得到已延伸的統計情報通過 pgstatindex 給這個已選擇的物件。"
 
@@ -12603,7 +12710,7 @@ msgstr "%s 清單報告"
 #: pgadmin/frm/frmOptions.cpp:387 pgadmin/schema/pgServer.cpp:185
 #: pgadmin/schema/pgServer.cpp:197 pgadmin/schema/pgServer.cpp:1125
 #: pgadmin/schema/pgServer.cpp:1137 pgadmin/utils/sysSettings.cpp:84
-#: pgadmin/utils/sysSettings.cpp:209
+#: pgadmin/utils/sysSettings.cpp:214
 msgid "Groups/group Roles"
 msgstr "群組/群組角色"
 
@@ -12659,7 +12766,8 @@ msgstr "HTTP 代理伺服器"
 #: src/schema/pgLanguage.cpp:67 standard input:264
 #: src/schema/pgLanguage.cpp:74 input:302 pgadmin/schema/pgLanguage.cpp:68
 #: pgadmin/ui/dlgLanguage.xrc:5 pgadmin/schema/pgLanguage.cpp:70
-#: pgadmin/ui/dlgLanguage.xrc:6 pgadmin/schema/pgForeignDataWrapper.cpp:155
+#: pgadmin/ui/dlgLanguage.xrc:6 pgadmin/schema/pgAccessMethod.cpp:119
+#: pgadmin/schema/pgForeignDataWrapper.cpp:155
 #: pgadmin/ui/dlgForeignDataWrapper.xrc:112
 msgid "Handler"
 msgstr "處理器"
@@ -12783,7 +12891,7 @@ msgstr "堆積(Heap)區塊讀取"
 #: pgadmin/ui/dlgForeignKey.xrc:311 pgadmin/ui/dlgForeignServer.xrc:236
 #: pgadmin/ui/dlgForeignTable.xrc:363 pgadmin/ui/dlgFunction.xrc:578
 #: pgadmin/ui/dlgGroup.xrc:149 pgadmin/ui/dlgHbaConfig.xrc:128
-#: pgadmin/ui/dlgIndexConstraint.xrc:344 pgadmin/ui/dlgIndex.xrc:342
+#: pgadmin/ui/dlgIndexConstraint.xrc:324 pgadmin/ui/dlgIndex.xrc:420
 #: pgadmin/ui/dlgJob.xrc:291 pgadmin/ui/dlgLanguage.xrc:180
 #: pgadmin/ui/dlgMainConfig.xrc:111 pgadmin/ui/dlgManageMacros.xrc:105
 #: pgadmin/ui/dlgOperator.xrc:335 pgadmin/ui/dlgPackage.xrc:145
@@ -13194,7 +13302,7 @@ msgstr "縮排已選取的區塊"
 #: src/schema/pgIndex.cpp:361 standard input:380 src/schema/pgIndex.cpp:371
 #: input:435 pgadmin/schema/pgIndex.cpp:467 pgadmin/ui/dlgRepTable.xrc:4
 #: pgadmin/schema/pgIndex.cpp:506 pgadmin/schema/pgIndex.cpp:513
-#: pgadmin/schema/pgIndex.cpp:690 pgadmin/ui/dlgIndexConstraint.xrc:95
+#: pgadmin/schema/pgIndex.cpp:741 pgadmin/ui/dlgIndexConstraint.xrc:89
 #: pgadmin/ui/dlgRepTable.xrc:54
 msgid "Index"
 msgstr "索引"
@@ -13202,14 +13310,14 @@ msgstr "索引"
 #: src/schema/pgTable.cpp:609 src/schema/pgTable.cpp:712
 #: pgadmin/schema/pgTable.cpp:781 pgadmin/schema/pgIndex.cpp:275
 #: pgadmin/schema/pgTable.cpp:1142 pgadmin/schema/pgTable.cpp:1189
-#: pgadmin/schema/pgIndex.cpp:424 pgadmin/schema/pgTable.cpp:1369
+#: pgadmin/schema/pgIndex.cpp:423 pgadmin/schema/pgTable.cpp:1369
 msgid "Index Blocks Hit"
 msgstr "索引區塊碰撞"
 
 #: src/schema/pgTable.cpp:608 src/schema/pgTable.cpp:711
 #: pgadmin/schema/pgTable.cpp:780 pgadmin/schema/pgIndex.cpp:274
 #: pgadmin/schema/pgTable.cpp:1141 pgadmin/schema/pgTable.cpp:1188
-#: pgadmin/schema/pgIndex.cpp:423 pgadmin/schema/pgTable.cpp:1368
+#: pgadmin/schema/pgIndex.cpp:422 pgadmin/schema/pgTable.cpp:1368
 msgid "Index Blocks Read"
 msgstr "索引區塊讀取"
 
@@ -13225,7 +13333,7 @@ msgid "Index DDL report"
 msgstr "資料定義語言(&DDL)報告"
 
 #: src/slony/slTable.cpp:95 pgadmin/slony/slTable.cpp:86
-#: pgadmin/schema/pgIndex.cpp:537 pgadmin/schema/pgIndex.cpp:714
+#: pgadmin/schema/pgIndex.cpp:537 pgadmin/schema/pgIndex.cpp:765
 #: pgadmin/slony/slTable.cpp:160
 msgid "Index Name"
 msgstr "索引名稱"
@@ -13238,28 +13346,28 @@ msgstr "索引 OID"
 #: src/schema/pgTable.cpp:601 src/schema/pgTable.cpp:704
 #: pgadmin/schema/pgTable.cpp:773 pgadmin/schema/pgIndex.cpp:271
 #: pgadmin/schema/pgTable.cpp:1125 pgadmin/schema/pgIndex.cpp:538
-#: pgadmin/schema/pgTable.cpp:1172 pgadmin/schema/pgIndex.cpp:420
-#: pgadmin/schema/pgIndex.cpp:715 pgadmin/schema/pgTable.cpp:1352
+#: pgadmin/schema/pgTable.cpp:1172 pgadmin/schema/pgIndex.cpp:419
+#: pgadmin/schema/pgIndex.cpp:766 pgadmin/schema/pgTable.cpp:1352
 msgid "Index Scans"
 msgstr "索引掃描"
 
 #: src/schema/pgIndex.cpp:220 src/schema/pgIndex.cpp:230
 #: pgadmin/schema/pgIndex.cpp:240 pgadmin/schema/pgIndex.cpp:254
 #: pgadmin/schema/pgIndex.cpp:278 pgadmin/schema/pgIndex.cpp:284
-#: pgadmin/schema/pgIndex.cpp:427 pgadmin/schema/pgIndex.cpp:433
+#: pgadmin/schema/pgIndex.cpp:426 pgadmin/schema/pgIndex.cpp:432
 msgid "Index Size"
 msgstr "索引大小"
 
 #: src/schema/pgTable.cpp:602 src/schema/pgTable.cpp:705
 #: pgadmin/schema/pgTable.cpp:774 pgadmin/schema/pgIndex.cpp:273
 #: pgadmin/schema/pgTable.cpp:1126 pgadmin/schema/pgIndex.cpp:540
-#: pgadmin/schema/pgTable.cpp:1173 pgadmin/schema/pgIndex.cpp:422
-#: pgadmin/schema/pgIndex.cpp:717 pgadmin/schema/pgTable.cpp:1353
+#: pgadmin/schema/pgTable.cpp:1173 pgadmin/schema/pgIndex.cpp:421
+#: pgadmin/schema/pgIndex.cpp:768 pgadmin/schema/pgTable.cpp:1353
 msgid "Index Tuples Fetched"
 msgstr "已取得索引值組"
 
 #: pgadmin/schema/pgIndex.cpp:272 pgadmin/schema/pgIndex.cpp:539
-#: pgadmin/schema/pgIndex.cpp:421 pgadmin/schema/pgIndex.cpp:716
+#: pgadmin/schema/pgIndex.cpp:420 pgadmin/schema/pgIndex.cpp:767
 msgid "Index Tuples Read"
 msgstr "索引值組讀取"
 
@@ -13372,7 +13480,7 @@ msgstr "統計情報報告(&S)"
 
 #: src/schema/pgIndex.cpp:367 src/schema/pgIndex.cpp:377
 #: pgadmin/schema/pgIndex.cpp:474 pgadmin/schema/pgIndex.cpp:513
-#: pgadmin/schema/pgIndex.cpp:520 pgadmin/schema/pgIndex.cpp:697
+#: pgadmin/schema/pgIndex.cpp:520 pgadmin/schema/pgIndex.cpp:748
 #: pgadmin/dlg/dlgMoveTablespace.cpp:52 pgadmin/dlg/dlgMoveTablespace.cpp:106
 #: pgadmin/dlg/dlgSearchObject.cpp:76 pgadmin/dlg/dlgSearchObject.cpp:111
 #: pgadmin/ui/dlgTable.xrc:314
@@ -13387,7 +13495,7 @@ msgstr "索引"
 msgid "Indexes Size"
 msgstr "索引大小"
 
-#: pgadmin/schema/pgIndex.cpp:677
+#: pgadmin/schema/pgIndex.cpp:728
 #, fuzzy
 msgid "Indexes list report"
 msgstr "%s 清單報告"
@@ -13579,7 +13687,7 @@ msgstr "內部 - 非外部能設置"
 # standard
 # standard
 #: pgadmin/schema/pgIndex.cpp:256 pgadmin/schema/pgIndex.cpp:286
-#: pgadmin/schema/pgIndex.cpp:435
+#: pgadmin/schema/pgIndex.cpp:434
 msgid "Internal Pages"
 msgstr "內部頁數"
 
@@ -13731,7 +13839,7 @@ msgid "Kind"
 msgstr "種類"
 
 #: pgadmin/ui/dlgIndex.xrc:17 pgadmin/ui/dlgIndex.xrc:18
-#: pgadmin/ui/dlgIndexConstraint.xrc:275 pgadmin/ui/dlgIndex.xrc:288
+#: pgadmin/ui/dlgIndexConstraint.xrc:251 pgadmin/ui/dlgIndex.xrc:361
 msgid "LAST"
 msgstr "LAST"
 
@@ -13849,9 +13957,9 @@ msgstr "屬性報告(&P)"
 #: pgadmin/schema/pgLanguage.cpp:154 pgadmin/utils/sysSettings.cpp:86
 #: pgadmin/utils/sysSettings.cpp:175 pgadmin/frm/frmOptions.cpp:304
 #: pgadmin/schema/pgDatabase.cpp:64 pgadmin/schema/pgDatabase.cpp:480
-#: pgadmin/frm/frmOptions.cpp:399 pgadmin/schema/pgDatabase.cpp:150
-#: pgadmin/schema/pgDatabase.cpp:628 pgadmin/schema/pgLanguage.cpp:280
-#: pgadmin/utils/sysSettings.cpp:121 pgadmin/utils/sysSettings.cpp:220
+#: pgadmin/frm/frmOptions.cpp:399 pgadmin/schema/pgDatabase.cpp:153
+#: pgadmin/schema/pgDatabase.cpp:634 pgadmin/schema/pgLanguage.cpp:280
+#: pgadmin/utils/sysSettings.cpp:126 pgadmin/utils/sysSettings.cpp:226
 #: pgadmin/dlg/dlgSearchObject.cpp:84 pgadmin/dlg/dlgSearchObject.cpp:118
 msgid "Languages"
 msgstr "語言"
@@ -13960,7 +14068,7 @@ msgstr "最後結果"
 msgid "Last run"
 msgstr "最後運轉"
 
-#: pgadmin/schema/pgDatabase.cpp:322 pgadmin/schema/pgDatabase.cpp:1212
+#: pgadmin/schema/pgDatabase.cpp:325 pgadmin/schema/pgDatabase.cpp:1218
 #, fuzzy
 msgid "Last statistics reset"
 msgstr "%s 統計情報報告 - %s"
@@ -13982,12 +14090,12 @@ msgstr "上次重整(vacuum)"
 # standard
 # standard
 #: pgadmin/schema/pgIndex.cpp:261 pgadmin/schema/pgIndex.cpp:291
-#: pgadmin/schema/pgIndex.cpp:440
+#: pgadmin/schema/pgIndex.cpp:439
 msgid "Leaf Fragmentation"
 msgstr "葉級(Leaf)破碎"
 
 #: pgadmin/schema/pgIndex.cpp:257 pgadmin/schema/pgIndex.cpp:287
-#: pgadmin/schema/pgIndex.cpp:436
+#: pgadmin/schema/pgIndex.cpp:435
 msgid "Leaf Pages"
 msgstr "葉級(Leaf)頁"
 
@@ -14210,7 +14318,7 @@ msgstr "鎖 XXID"
 msgid "Lock a replication set against updates."
 msgstr "鎖定一個複寫組集反對更新。"
 
-#: pgadmin/schema/pgDatabase.cpp:324 pgadmin/schema/pgDatabase.cpp:1214
+#: pgadmin/schema/pgDatabase.cpp:327 pgadmin/schema/pgDatabase.cpp:1220
 msgid "Lock conflicts"
 msgstr ""
 
@@ -14444,7 +14552,7 @@ msgstr "維護資料庫"
 # standard
 #: src/schema/pgDatabase.cpp:316 src/schema/pgDatabase.cpp:319
 #: pgadmin/schema/pgDatabase.cpp:325 pgadmin/schema/pgDatabase.cpp:321
-#: pgadmin/schema/pgDatabase.cpp:373 pgadmin/schema/pgDatabase.cpp:505
+#: pgadmin/schema/pgDatabase.cpp:373 pgadmin/schema/pgDatabase.cpp:508
 msgid "Maintenance database can't be dropped."
 msgstr "維護資料庫不能被移除。"
 
@@ -14897,7 +15005,7 @@ msgstr "NULLs"
 # standard
 # standard
 #: pgadmin/ui/dlgIndex.xrc:15 pgadmin/ui/dlgIndex.xrc:16
-#: pgadmin/ui/dlgIndexConstraint.xrc:253 pgadmin/ui/dlgIndex.xrc:266
+#: pgadmin/ui/dlgIndexConstraint.xrc:226 pgadmin/ui/dlgIndex.xrc:336
 msgid "NULLs"
 msgstr "NULLs"
 
@@ -14905,8 +15013,8 @@ msgstr "NULLs"
 msgid "NULLs Order"
 msgstr "依 NULL 排序"
 
-#: pgadmin/dlg/dlgIndex.cpp:196 pgadmin/dlg/dlgIndex.cpp:204
-#: pgadmin/dlg/dlgIndexConstraint.cpp:57 pgadmin/dlg/dlgIndexConstraint.cpp:68
+#: pgadmin/dlg/dlgIndex.cpp:196 pgadmin/dlg/dlgIndex.cpp:197
+#: pgadmin/dlg/dlgIndexConstraint.cpp:56 pgadmin/dlg/dlgIndexConstraint.cpp:67
 msgid "NULLs order"
 msgstr "空值排序"
 
@@ -15026,12 +15134,12 @@ msgstr "空值排序"
 #: pgadmin/schema/edbPrivateSynonym.cpp:89
 #: pgadmin/schema/edbResourceGroup.cpp:118 pgadmin/schema/edbSynonym.cpp:117
 #: pgadmin/schema/gpExtTable.cpp:452 pgadmin/schema/gpResQueue.cpp:173
-#: pgadmin/schema/pgAggregate.cpp:152 pgadmin/schema/pgCast.cpp:127
-#: pgadmin/schema/pgCatalogObject.cpp:91 pgadmin/schema/pgCheck.cpp:162
-#: pgadmin/schema/pgCollation.cpp:134 pgadmin/schema/pgColumn.cpp:473
-#: pgadmin/schema/pgConversion.cpp:126 pgadmin/schema/pgDatabase.cpp:703
-#: pgadmin/schema/pgDomain.cpp:199 pgadmin/schema/pgEventTrigger.cpp:143
-#: pgadmin/schema/pgExtension.cpp:121
+#: pgadmin/schema/pgAccessMethod.cpp:117 pgadmin/schema/pgAggregate.cpp:152
+#: pgadmin/schema/pgCast.cpp:127 pgadmin/schema/pgCatalogObject.cpp:91
+#: pgadmin/schema/pgCheck.cpp:162 pgadmin/schema/pgCollation.cpp:134
+#: pgadmin/schema/pgColumn.cpp:473 pgadmin/schema/pgConversion.cpp:126
+#: pgadmin/schema/pgDatabase.cpp:709 pgadmin/schema/pgDomain.cpp:199
+#: pgadmin/schema/pgEventTrigger.cpp:143 pgadmin/schema/pgExtension.cpp:121
 #: pgadmin/schema/pgForeignDataWrapper.cpp:151
 #: pgadmin/schema/pgForeignKey.cpp:237 pgadmin/schema/pgForeignServer.cpp:152
 #: pgadmin/schema/pgForeignTable.cpp:181 pgadmin/schema/pgFunction.cpp:384
@@ -15039,7 +15147,7 @@ msgstr "空值排序"
 #: pgadmin/schema/pgIndexConstraint.cpp:177 pgadmin/schema/pgLanguage.cpp:129
 #: pgadmin/schema/pgObject.cpp:245 pgadmin/schema/pgOperator.cpp:181
 #: pgadmin/schema/pgOperatorClass.cpp:274
-#: pgadmin/schema/pgOperatorFamily.cpp:121 pgadmin/schema/pgPolicy.cpp:129
+#: pgadmin/schema/pgOperatorFamily.cpp:121 pgadmin/schema/pgPolicy.cpp:121
 #: pgadmin/schema/pgRole.cpp:307 pgadmin/schema/pgRole.cpp:456
 #: pgadmin/schema/pgRule.cpp:175 pgadmin/schema/pgSchema.cpp:423
 #: pgadmin/schema/pgSequence.cpp:180 pgadmin/schema/pgTable.cpp:978
@@ -15063,8 +15171,8 @@ msgstr "空值排序"
 #: pgadmin/ui/dlgExtension.xrc:26 pgadmin/ui/dlgExtTable.xrc:26
 #: pgadmin/ui/dlgForeignDataWrapper.xrc:26 pgadmin/ui/dlgForeignKey.xrc:26
 #: pgadmin/ui/dlgForeignServer.xrc:26 pgadmin/ui/dlgForeignTable.xrc:26
-#: pgadmin/ui/dlgFunction.xrc:26 pgadmin/ui/dlgIndexConstraint.xrc:26
-#: pgadmin/ui/dlgIndex.xrc:26 pgadmin/ui/dlgJob.xrc:26
+#: pgadmin/ui/dlgFunction.xrc:26 pgadmin/ui/dlgIndexConstraint.xrc:23
+#: pgadmin/ui/dlgIndex.xrc:23 pgadmin/ui/dlgJob.xrc:26
 #: pgadmin/ui/dlgLanguage.xrc:26 pgadmin/ui/dlgManageMacros.xrc:33
 #: pgadmin/ui/dlgOperator.xrc:26 pgadmin/ui/dlgPackage.xrc:26
 #: pgadmin/ui/dlgPolicy.xrc:23 pgadmin/ui/dlgRule.xrc:26
@@ -15117,6 +15225,12 @@ msgstr "新"
 #: pgadmin/frm/frmMain.cpp:366
 msgid "New &Object"
 msgstr "新物件(&O)"
+
+# standard
+#: pgadmin/schema/pgAccessMethod.cpp:204
+#, fuzzy
+msgid "New Access Method..."
+msgstr "存取方法"
 
 #: src/schema/pgAggregate.cpp:202
 msgid "New Aggregate"
@@ -15192,7 +15306,7 @@ msgstr "新資料庫"
 
 #: src/schema/pgDatabase.cpp:648 pgadmin/schema/pgDatabase.cpp:752
 #: pgadmin/schema/pgDatabase.cpp:818 pgadmin/schema/pgDatabase.cpp:1025
-#: pgadmin/schema/pgDatabase.cpp:1294
+#: pgadmin/schema/pgDatabase.cpp:1300
 msgid "New Database..."
 msgstr "新資料庫..."
 
@@ -15320,7 +15434,7 @@ msgstr "新索引"
 
 #: src/schema/pgIndex.cpp:371 pgadmin/schema/pgIndex.cpp:467
 #: pgadmin/schema/pgIndex.cpp:506 pgadmin/schema/pgIndex.cpp:513
-#: pgadmin/schema/pgIndex.cpp:690
+#: pgadmin/schema/pgIndex.cpp:741
 msgid "New Index..."
 msgstr "新索引..."
 
@@ -15409,7 +15523,7 @@ msgstr "新密碼"
 msgid "New Path"
 msgstr "新投射通路"
 
-#: pgadmin/schema/pgPolicy.cpp:233
+#: pgadmin/schema/pgPolicy.cpp:225
 #, fuzzy
 msgid "New Policy..."
 msgstr "新公共同義詞..."
@@ -15849,7 +15963,7 @@ msgstr "節點"
 #: standard input:877 pgadmin/frm/frmOptions.cpp:537
 #: pgadmin/ui/frmOptions.xrc:35 pgadmin/frm/frmOptions.cpp:567
 #: pgadmin/ui/frmOptions.xrc:40 pgadmin/frm/frmOptions.cpp:744
-#: pgadmin/ui/frmOptions.xrc:38 pgadmin/frm/frmOptions.cpp:914
+#: pgadmin/ui/frmOptions.xrc:38 pgadmin/frm/frmOptions.cpp:915
 #: pgadmin/ui/frmOptions.xrc:382 pgadmin/ui/frmOptions.xrc:829
 msgid "None"
 msgstr "無"
@@ -16067,19 +16181,19 @@ msgstr "來源型別"
 #: pgadmin/schema/pgView.cpp:229 pgadmin/schema/edbPackage.cpp:192
 #: pgadmin/schema/edbPackageFunction.cpp:204
 #: pgadmin/schema/edbPackageVariable.cpp:91 pgadmin/schema/gpExtTable.cpp:453
-#: pgadmin/schema/gpResQueue.cpp:174 pgadmin/schema/pgAggregate.cpp:153
-#: pgadmin/schema/pgCast.cpp:128 pgadmin/schema/pgCatalogObject.cpp:92
-#: pgadmin/schema/pgCheck.cpp:163 pgadmin/schema/pgCollation.cpp:135
-#: pgadmin/schema/pgConversion.cpp:127 pgadmin/schema/pgDatabase.cpp:704
-#: pgadmin/schema/pgDomain.cpp:200 pgadmin/schema/pgEventTrigger.cpp:144
-#: pgadmin/schema/pgExtension.cpp:122
+#: pgadmin/schema/gpResQueue.cpp:174 pgadmin/schema/pgAccessMethod.cpp:118
+#: pgadmin/schema/pgAggregate.cpp:153 pgadmin/schema/pgCast.cpp:128
+#: pgadmin/schema/pgCatalogObject.cpp:92 pgadmin/schema/pgCheck.cpp:163
+#: pgadmin/schema/pgCollation.cpp:135 pgadmin/schema/pgConversion.cpp:127
+#: pgadmin/schema/pgDatabase.cpp:710 pgadmin/schema/pgDomain.cpp:200
+#: pgadmin/schema/pgEventTrigger.cpp:144 pgadmin/schema/pgExtension.cpp:122
 #: pgadmin/schema/pgForeignDataWrapper.cpp:152
 #: pgadmin/schema/pgForeignKey.cpp:238 pgadmin/schema/pgForeignServer.cpp:153
 #: pgadmin/schema/pgForeignTable.cpp:182 pgadmin/schema/pgFunction.cpp:385
 #: pgadmin/schema/pgIndex.cpp:394 pgadmin/schema/pgIndexConstraint.cpp:178
 #: pgadmin/schema/pgLanguage.cpp:130 pgadmin/schema/pgOperator.cpp:182
 #: pgadmin/schema/pgOperatorClass.cpp:275
-#: pgadmin/schema/pgOperatorFamily.cpp:122 pgadmin/schema/pgPolicy.cpp:131
+#: pgadmin/schema/pgOperatorFamily.cpp:122 pgadmin/schema/pgPolicy.cpp:123
 #: pgadmin/schema/pgRole.cpp:457 pgadmin/schema/pgRule.cpp:176
 #: pgadmin/schema/pgSchema.cpp:424 pgadmin/schema/pgSequence.cpp:181
 #: pgadmin/schema/pgTable.cpp:985 pgadmin/schema/pgTablespace.cpp:193
@@ -16211,7 +16325,7 @@ msgstr "左型別"
 
 #: src/schema/pgDatabase.cpp:420 src/schema/pgDatabase.cpp:436
 #: pgadmin/schema/pgDatabase.cpp:449 pgadmin/schema/pgDatabase.cpp:468
-#: pgadmin/schema/pgDatabase.cpp:575 pgadmin/schema/pgDatabase.cpp:764
+#: pgadmin/schema/pgDatabase.cpp:575 pgadmin/schema/pgDatabase.cpp:770
 msgid "Old style FKs"
 msgstr "老舊樣式 FKs"
 
@@ -16306,8 +16420,8 @@ msgstr "僅資料"
 msgid "Only schema"
 msgstr "僅架構綱要"
 
-#: pgadmin/dlg/dlgIndex.cpp:197 pgadmin/dlg/dlgIndex.cpp:205
-#: pgadmin/dlg/dlgIndexConstraint.cpp:58 pgadmin/dlg/dlgIndexConstraint.cpp:69
+#: pgadmin/dlg/dlgIndex.cpp:197 pgadmin/dlg/dlgIndex.cpp:198
+#: pgadmin/dlg/dlgIndexConstraint.cpp:57 pgadmin/dlg/dlgIndexConstraint.cpp:68
 #, fuzzy
 msgid "Op. class"
 msgstr "工作類別"
@@ -16469,8 +16583,8 @@ msgstr "以選取的查詢句開啟查詢工具。"
 # standard
 #: src/schema/pgOperator.cpp:233 pgadmin/schema/pgOperator.cpp:277
 #: pgadmin/gqb/gqbGridRestTable.cpp:92 pgadmin/ui/frmOptions.xrc:70
-#: pgadmin/schema/pgOperator.cpp:368 pgadmin/dlg/dlgIndexConstraint.cpp:59
-#: pgadmin/dlg/dlgIndexConstraint.cpp:70 pgadmin/ui/dlgIndexConstraint.xrc:289
+#: pgadmin/schema/pgOperator.cpp:368 pgadmin/dlg/dlgIndexConstraint.cpp:58
+#: pgadmin/dlg/dlgIndexConstraint.cpp:69 pgadmin/ui/dlgIndexConstraint.xrc:265
 #: pgadmin/ui/frmOptions.xrc:744
 msgid "Operator"
 msgstr "運算子"
@@ -16487,7 +16601,7 @@ msgstr "運算子類別"
 #: pgadmin/utils/sysSettings.cpp:187 pgadmin/frm/frmOptions.cpp:316
 #: pgadmin/schema/pgSchema.cpp:229 pgadmin/frm/frmOptions.cpp:415
 #: pgadmin/schema/pgOperatorClass.cpp:426 pgadmin/schema/pgSchema.cpp:367
-#: pgadmin/utils/sysSettings.cpp:159 pgadmin/utils/sysSettings.cpp:234
+#: pgadmin/utils/sysSettings.cpp:164 pgadmin/utils/sysSettings.cpp:240
 #: pgadmin/dlg/dlgSearchObject.cpp:98 pgadmin/dlg/dlgSearchObject.cpp:139
 msgid "Operator Classes"
 msgstr "運算子類別"
@@ -16510,7 +16624,7 @@ msgstr "資料定義語言(&DDL)報告"
 #: pgadmin/utils/sysSettings.cpp:188 pgadmin/frm/frmOptions.cpp:317
 #: pgadmin/schema/pgSchema.cpp:232 pgadmin/frm/frmOptions.cpp:416
 #: pgadmin/schema/pgOperatorFamily.cpp:237 pgadmin/schema/pgSchema.cpp:370
-#: pgadmin/utils/sysSettings.cpp:164 pgadmin/utils/sysSettings.cpp:235
+#: pgadmin/utils/sysSettings.cpp:169 pgadmin/utils/sysSettings.cpp:241
 #: pgadmin/dlg/dlgSearchObject.cpp:99 pgadmin/dlg/dlgSearchObject.cpp:140
 msgid "Operator Families"
 msgstr "運算子家族"
@@ -16522,8 +16636,8 @@ msgstr "運算子家族"
 msgid "Operator Family"
 msgstr "運算子族群"
 
-#: pgadmin/ui/dlgIndex.xrc:14 pgadmin/ui/dlgIndexConstraint.xrc:218
-#: pgadmin/ui/dlgIndex.xrc:231
+#: pgadmin/ui/dlgIndex.xrc:14 pgadmin/ui/dlgIndexConstraint.xrc:193
+#: pgadmin/ui/dlgIndex.xrc:303
 #, fuzzy
 msgid "Operator class"
 msgstr "運算子類別"
@@ -16691,7 +16805,7 @@ msgstr "屬性報告(&P)"
 #: pgadmin/frm/frmOptions.cpp:315 pgadmin/schema/pgSchema.cpp:103
 #: pgadmin/schema/pgSchema.cpp:227 pgadmin/frm/frmOptions.cpp:414
 #: pgadmin/schema/pgOperator.cpp:379 pgadmin/schema/pgSchema.cpp:365
-#: pgadmin/utils/sysSettings.cpp:154 pgadmin/utils/sysSettings.cpp:233
+#: pgadmin/utils/sysSettings.cpp:159 pgadmin/utils/sysSettings.cpp:239
 #: pgadmin/dlg/dlgSearchObject.cpp:97 pgadmin/dlg/dlgSearchObject.cpp:138
 msgid "Operators"
 msgstr "運算子"
@@ -16745,7 +16859,7 @@ msgstr "選項"
 #: pgadmin/schema/pgTextSearchDictionary.cpp:74
 #: pgadmin/ui/dlgFindReplace.xrc:22 pgadmin/ui/dlgFunction.xrc:10
 #: pgadmin/ui/dlgSequence.xrc:9 pgadmin/ui/dlgTextSearchDictionary.xrc:8
-#: pgadmin/frm/frmEditGrid.cpp:131 pgadmin/frm/frmOptions.cpp:434
+#: pgadmin/frm/frmEditGrid.cpp:131 pgadmin/frm/frmOptions.cpp:435
 #: pgadmin/schema/pgForeignDataWrapper.cpp:157
 #: pgadmin/schema/pgForeignServer.cpp:158
 #: pgadmin/schema/pgForeignTable.cpp:186
@@ -16770,8 +16884,8 @@ msgid "Or"
 msgstr "或"
 
 #: pgadmin/dlg/dlgIndex.cpp:169 pgadmin/gqb/gqbGridOrderTable.cpp:109
-#: pgadmin/dlg/dlgIndex.cpp:195 pgadmin/dlg/dlgIndex.cpp:203
-#: pgadmin/dlg/dlgIndexConstraint.cpp:56 pgadmin/dlg/dlgIndexConstraint.cpp:67
+#: pgadmin/dlg/dlgIndex.cpp:195 pgadmin/dlg/dlgIndex.cpp:196
+#: pgadmin/dlg/dlgIndexConstraint.cpp:55 pgadmin/dlg/dlgIndexConstraint.cpp:66
 msgid "Order"
 msgstr "排序"
 
@@ -16948,7 +17062,7 @@ msgstr "覆寫檔案？"
 #: pgadmin/schema/edbSynonym.cpp:118 pgadmin/schema/gpExtTable.cpp:454
 #: pgadmin/schema/pgAggregate.cpp:154 pgadmin/schema/pgCatalogObject.cpp:93
 #: pgadmin/schema/pgCollation.cpp:136 pgadmin/schema/pgCollection.cpp:73
-#: pgadmin/schema/pgConversion.cpp:128 pgadmin/schema/pgDatabase.cpp:705
+#: pgadmin/schema/pgConversion.cpp:128 pgadmin/schema/pgDatabase.cpp:711
 #: pgadmin/schema/pgDomain.cpp:201 pgadmin/schema/pgExtension.cpp:123
 #: pgadmin/schema/pgForeignDataWrapper.cpp:153
 #: pgadmin/schema/pgForeignServer.cpp:154
@@ -17119,7 +17233,7 @@ msgstr "%s 清單報告"
 #: pgadmin/schema/pgSchema.cpp:93 pgadmin/schema/pgSchema.cpp:238
 #: pgadmin/frm/frmOptions.cpp:417 pgadmin/schema/edbPackage.cpp:355
 #: pgadmin/schema/pgSchema.cpp:217 pgadmin/schema/pgSchema.cpp:376
-#: pgadmin/utils/sysSettings.cpp:150 pgadmin/utils/sysSettings.cpp:231
+#: pgadmin/utils/sysSettings.cpp:155 pgadmin/utils/sysSettings.cpp:237
 msgid "Packages"
 msgstr "套裝程序"
 
@@ -17128,6 +17242,10 @@ msgstr "套裝程序"
 msgid "Packages list report"
 msgstr "%s 清單報告"
 
+#: pgadmin/schema/pgIndex.cpp:696
+msgid "Pages per range"
+msgstr ""
+
 #: pgadmin/debugger/dlgDirectDbg.cpp:1034
 #, c-format
 msgid "Param#%d"
@@ -17135,7 +17253,7 @@ msgstr ""
 
 # standard
 # standard
-#: standard input:171 input:208
+#: standard input:171 input:208 pgadmin/dlg/dlgIndex.cpp:200
 msgid "Parameter"
 msgstr "參數"
 
@@ -17147,6 +17265,20 @@ msgid ""
 msgstr ""
 "參數異常 - 某些參數是無效的：\n"
 "%s"
+
+# standard
+# standard
+#: pgadmin/ui/dlgIndex.xrc:207
+#, fuzzy
+msgid "Parameter name"
+msgstr "參數"
+
+# standard
+# standard
+#: pgadmin/ui/dlgIndex.xrc:222
+#, fuzzy
+msgid "Parameter value"
+msgstr "參數"
 
 # standard
 # standard
@@ -17263,7 +17395,7 @@ msgstr "從剪貼簿貼上已選取的文本"
 #: src/schema/pgDatabase.cpp:418 input:82 pgadmin/schema/pgDatabase.cpp:428
 #: pgadmin/slony/slPath.cpp:141 pgadmin/ui/dlgDatabase.xrc:7
 #: pgadmin/schema/pgDatabase.cpp:433 pgadmin/schema/pgDatabase.cpp:518
-#: pgadmin/schema/pgDatabase.cpp:708 pgadmin/slony/slPath.cpp:223
+#: pgadmin/schema/pgDatabase.cpp:714 pgadmin/slony/slPath.cpp:223
 #: pgadmin/dlg/dlgSearchObject.cpp:63 pgadmin/ui/dlgDatabase.xrc:123
 msgid "Path"
 msgstr "路徑"
@@ -17291,6 +17423,10 @@ msgstr "已暫停在 %d 行"
 
 #: pgadmin/schema/pgServer.cpp:2182
 msgid "Pausing replay of WAL"
+msgstr ""
+
+#: pgadmin/schema/pgIndex.cpp:694
+msgid "Pending list limit"
 msgstr ""
 
 #: pgadmin/frm/frmBackup.cpp:279
@@ -17621,7 +17757,7 @@ msgstr "請明確指定執行碼。"
 #: pgadmin/dlg/dlgIndex.cpp:198 pgadmin/dlg/dlgTable.cpp:1630
 #: pgadmin/dlg/dlgIndex.cpp:173 pgadmin/dlg/dlgIndex.cpp:225
 #: pgadmin/dlg/dlgTable.cpp:1665 pgadmin/dlg/dlgForeignKey.cpp:210
-#: pgadmin/dlg/dlgIndex.cpp:181 pgadmin/dlg/dlgIndex.cpp:237
+#: pgadmin/dlg/dlgIndex.cpp:171 pgadmin/dlg/dlgIndex.cpp:228
 #: pgadmin/dlg/dlgTable.cpp:1721
 msgid "Please specify columns."
 msgstr "請明確指定欄位。"
@@ -17748,7 +17884,7 @@ msgstr "請明確指定本地端。"
 #: pgadmin/dlg/dlgExtTable.cpp:116 pgadmin/dlg/dlgExtension.cpp:170
 #: pgadmin/dlg/dlgForeignDataWrapper.cpp:192
 #: pgadmin/dlg/dlgForeignServer.cpp:129 pgadmin/dlg/dlgForeignTable.cpp:249
-#: pgadmin/dlg/dlgFunction.cpp:584 pgadmin/dlg/dlgIndex.cpp:236
+#: pgadmin/dlg/dlgFunction.cpp:584 pgadmin/dlg/dlgIndex.cpp:227
 #: pgadmin/dlg/dlgLanguage.cpp:209 pgadmin/dlg/dlgOperator.cpp:209
 #: pgadmin/dlg/dlgPackage.cpp:122 pgadmin/dlg/dlgPolicy.cpp:84
 #: pgadmin/dlg/dlgResourceGroup.cpp:101 pgadmin/dlg/dlgRole.cpp:425
@@ -17881,18 +18017,18 @@ msgstr "請明確指定有效的數字精度 (0.."
 msgid "Plugins"
 msgstr "附加功能"
 
-#: pgadmin/frm/frmOptions.cpp:391 pgadmin/schema/pgPolicy.cpp:245
-#: pgadmin/utils/sysSettings.cpp:94 pgadmin/utils/sysSettings.cpp:213
+#: pgadmin/frm/frmOptions.cpp:421 pgadmin/schema/pgPolicy.cpp:237
+#: pgadmin/utils/sysSettings.cpp:94 pgadmin/utils/sysSettings.cpp:218
 msgid "Policies"
 msgstr ""
 
-#: pgadmin/schema/pgPolicy.cpp:233
+#: pgadmin/schema/pgPolicy.cpp:225
 msgid "Policy"
 msgstr ""
 
 # standard
 # standard
-#: pgadmin/schema/pgPolicy.cpp:52
+#: pgadmin/schema/pgPolicy.cpp:51
 #, fuzzy
 msgid "Policy properties"
 msgstr " 屬性"
@@ -18343,8 +18479,8 @@ msgstr "屬性報告(&P)"
 #: pgadmin/schema/pgSchema.cpp:98 pgadmin/schema/pgSchema.cpp:241
 #: pgadmin/frm/frmOptions.cpp:418 pgadmin/schema/edbPackageFunction.cpp:560
 #: pgadmin/schema/pgFunction.cpp:1150 pgadmin/schema/pgSchema.cpp:222
-#: pgadmin/schema/pgSchema.cpp:379 pgadmin/utils/sysSettings.cpp:152
-#: pgadmin/utils/sysSettings.cpp:232
+#: pgadmin/schema/pgSchema.cpp:379 pgadmin/utils/sysSettings.cpp:157
+#: pgadmin/utils/sysSettings.cpp:238
 msgid "Procedures"
 msgstr "程序語言"
 
@@ -18421,8 +18557,8 @@ msgstr "XML資料進程使用指定樣式表中"
 #: pgadmin/ui/dlgExtTable.xrc:16 pgadmin/ui/dlgForeignDataWrapper.xrc:16
 #: pgadmin/ui/dlgForeignKey.xrc:16 pgadmin/ui/dlgForeignServer.xrc:16
 #: pgadmin/ui/dlgForeignTable.xrc:16 pgadmin/ui/dlgFunction.xrc:16
-#: pgadmin/ui/dlgGroup.xrc:16 pgadmin/ui/dlgIndexConstraint.xrc:16
-#: pgadmin/ui/dlgIndex.xrc:16 pgadmin/ui/dlgJob.xrc:16
+#: pgadmin/ui/dlgGroup.xrc:16 pgadmin/ui/dlgIndexConstraint.xrc:63
+#: pgadmin/ui/dlgIndex.xrc:63 pgadmin/ui/dlgJob.xrc:16
 #: pgadmin/ui/dlgLanguage.xrc:16 pgadmin/ui/dlgOperator.xrc:16
 #: pgadmin/ui/dlgPackage.xrc:16 pgadmin/ui/dlgPolicy.xrc:65
 #: pgadmin/ui/dlgRepClusterUpgrade.xrc:16 pgadmin/ui/dlgRepCluster.xrc:16
@@ -19210,6 +19346,16 @@ msgstr "重新整理資料表中"
 msgid "Refreshing Slony tables"
 msgstr "重新整理多個資料表中"
 
+#: pgadmin/schema/pgAccessMethod.cpp:37
+#, fuzzy
+msgid "Refreshing access method"
+msgstr "更新整理 %s 中"
+
+#: pgadmin/schema/pgAccessMethod.cpp:187
+#, fuzzy
+msgid "Refreshing access methods"
+msgstr "更新整理 %s 中"
+
 # standard
 # standard
 #: pgadmin/schema/pgAggregate.cpp:37
@@ -19319,7 +19465,7 @@ msgstr "更新資料中，請稍候。"
 msgid "Refreshing database"
 msgstr "重新整理資料庫中"
 
-#: pgadmin/schema/pgDatabase.cpp:1144
+#: pgadmin/schema/pgDatabase.cpp:1150
 msgid "Refreshing databases"
 msgstr "重新整理多個資料庫中"
 
@@ -19439,7 +19585,7 @@ msgstr "重新整理索引中"
 msgid "Refreshing index constraint"
 msgstr "重新整理索引限制中"
 
-#: pgadmin/schema/pgIndex.cpp:674
+#: pgadmin/schema/pgIndex.cpp:725
 msgid "Refreshing indexes"
 msgstr "重新整理多個索引中"
 
@@ -19567,12 +19713,12 @@ msgstr "日誌清單刷新中。"
 msgid "Refreshing pgAgent steps"
 msgstr "日誌清單刷新中。"
 
-#: pgadmin/schema/pgPolicy.cpp:217
+#: pgadmin/schema/pgPolicy.cpp:209
 #, fuzzy
 msgid "Refreshing policies"
 msgstr "更新整理 %s 中"
 
-#: pgadmin/schema/pgPolicy.cpp:45
+#: pgadmin/schema/pgPolicy.cpp:44
 #, fuzzy
 msgid "Refreshing policy"
 msgstr "重新整理欄位中"
@@ -19864,13 +20010,13 @@ msgstr "遠端"
 #: pgadmin/ui/dlgForeignDataWrapper.xrc:204 pgadmin/ui/dlgForeignKey.xrc:246
 #: pgadmin/ui/dlgForeignServer.xrc:200 pgadmin/ui/dlgForeignTable.xrc:243
 #: pgadmin/ui/dlgForeignTable.xrc:333 pgadmin/ui/dlgFunction.xrc:386
-#: pgadmin/ui/dlgFunction.xrc:504 pgadmin/ui/dlgIndexConstraint.xrc:323
-#: pgadmin/ui/dlgIndex.xrc:321 pgadmin/ui/dlgJob.xrc:216
-#: pgadmin/ui/dlgJob.xrc:269 pgadmin/ui/dlgPolicy.xrc:105
-#: pgadmin/ui/dlgRole.xrc:353 pgadmin/ui/dlgSchedule.xrc:404
-#: pgadmin/ui/dlgTablespace.xrc:146 pgadmin/ui/dlgTable.xrc:250
-#: pgadmin/ui/dlgTable.xrc:383 pgadmin/ui/dlgTable.xrc:432
-#: pgadmin/ui/dlgTextSearchConfiguration.xrc:236
+#: pgadmin/ui/dlgFunction.xrc:504 pgadmin/ui/dlgIndexConstraint.xrc:301
+#: pgadmin/ui/dlgIndex.xrc:189 pgadmin/ui/dlgIndex.xrc:397
+#: pgadmin/ui/dlgJob.xrc:216 pgadmin/ui/dlgJob.xrc:269
+#: pgadmin/ui/dlgPolicy.xrc:105 pgadmin/ui/dlgRole.xrc:353
+#: pgadmin/ui/dlgSchedule.xrc:404 pgadmin/ui/dlgTablespace.xrc:146
+#: pgadmin/ui/dlgTable.xrc:250 pgadmin/ui/dlgTable.xrc:383
+#: pgadmin/ui/dlgTable.xrc:432 pgadmin/ui/dlgTextSearchConfiguration.xrc:236
 #: pgadmin/ui/dlgTextSearchDictionary.xrc:203 pgadmin/ui/dlgTrigger.xrc:320
 #: pgadmin/ui/dlgType.xrc:252 pgadmin/ui/dlgType.xrc:345
 #: pgadmin/ui/dlgUserMapping.xrc:133 pgadmin/ui/dlgUser.xrc:260
@@ -20110,7 +20256,7 @@ msgstr "資源佇例(Queue)"
 
 #: pgadmin/frm/frmOptions.cpp:390 pgadmin/schema/edbResourceGroup.cpp:179
 #: pgadmin/schema/pgServer.cpp:205 pgadmin/schema/pgServer.cpp:1146
-#: pgadmin/utils/sysSettings.cpp:90 pgadmin/utils/sysSettings.cpp:212
+#: pgadmin/utils/sysSettings.cpp:90 pgadmin/utils/sysSettings.cpp:217
 #, fuzzy
 msgid "Resource Groups"
 msgstr "資源佇列(Queues)"
@@ -20128,7 +20274,7 @@ msgstr "資源佇例(Queue)"
 #: pgadmin/schema/pgServer.cpp:892 pgadmin/frm/frmOptions.cpp:389
 #: pgadmin/schema/gpResQueue.cpp:295 pgadmin/schema/pgServer.cpp:191
 #: pgadmin/schema/pgServer.cpp:1131 pgadmin/utils/sysSettings.cpp:88
-#: pgadmin/utils/sysSettings.cpp:211
+#: pgadmin/utils/sysSettings.cpp:216
 msgid "Resource Queues"
 msgstr "資源佇列(Queues)"
 
@@ -20570,6 +20716,16 @@ msgstr "取回 %s 詳述中"
 msgid "Retrieving details on Slony tables"
 msgstr "取回 %s 詳述中"
 
+#: pgadmin/schema/pgAccessMethod.cpp:33
+#, fuzzy
+msgid "Retrieving details on access method"
+msgstr "取回 %s 詳述中"
+
+#: pgadmin/schema/pgAccessMethod.cpp:184
+#, fuzzy
+msgid "Retrieving details on access methods"
+msgstr "取回 %s 詳述中"
+
 #: pgadmin/schema/pgAggregate.cpp:33
 #, fuzzy
 msgid "Retrieving details on aggregate"
@@ -20655,7 +20811,7 @@ msgstr "提取多個編碼轉換相關的詳細資料"
 msgid "Retrieving details on database"
 msgstr "提取資料庫的詳細資料"
 
-#: pgadmin/schema/pgDatabase.cpp:1141
+#: pgadmin/schema/pgDatabase.cpp:1147
 msgid "Retrieving details on databases"
 msgstr "提取多個資料庫的詳細資料"
 
@@ -20775,7 +20931,7 @@ msgstr "取回 %s 詳述中"
 msgid "Retrieving details on index constraint"
 msgstr "取回 %s 詳述中"
 
-#: pgadmin/schema/pgIndex.cpp:671
+#: pgadmin/schema/pgIndex.cpp:722
 #, fuzzy
 msgid "Retrieving details on indexes"
 msgstr "取回 %s 詳述中"
@@ -20890,12 +21046,12 @@ msgstr "取回 %s 詳述中"
 msgid "Retrieving details on pgAgent steps"
 msgstr "取回 %s 詳述中"
 
-#: pgadmin/schema/pgPolicy.cpp:214
+#: pgadmin/schema/pgPolicy.cpp:206
 #, fuzzy
 msgid "Retrieving details on policies"
 msgstr "取回 %s 詳述中"
 
-#: pgadmin/schema/pgPolicy.cpp:41
+#: pgadmin/schema/pgPolicy.cpp:40
 #, fuzzy
 msgid "Retrieving details on policy"
 msgstr "提取欄位中的詳細資料"
@@ -21192,7 +21348,7 @@ msgstr "使用者/群組"
 msgid "Rolename"
 msgstr "角色名稱"
 
-#: pgadmin/schema/pgPolicy.cpp:132 pgadmin/ui/dlgPolicy.xrc:118
+#: pgadmin/schema/pgPolicy.cpp:124 pgadmin/ui/dlgPolicy.xrc:118
 #, fuzzy
 msgid "Roles"
 msgstr "角色"
@@ -21239,7 +21395,7 @@ msgid "Rollback transaction?"
 msgstr "滾返(Rollback)事務交易？"
 
 #: pgadmin/schema/pgIndex.cpp:255 pgadmin/schema/pgIndex.cpp:285
-#: pgadmin/schema/pgIndex.cpp:434
+#: pgadmin/schema/pgIndex.cpp:433
 msgid "Root Block No"
 msgstr "Root 區塊編號"
 
@@ -21983,7 +22139,7 @@ msgstr "屬性報告(&P)"
 #: src/schema/pgDatabase.cpp:438 input:83 pgadmin/schema/pgDatabase.cpp:451
 #: pgadmin/ui/dlgDatabase.xrc:8 pgadmin/schema/pgDatabase.cpp:470
 #: pgadmin/ui/dlgDatabase.xrc:9 pgadmin/schema/pgDatabase.cpp:577
-#: pgadmin/schema/pgDatabase.cpp:766 pgadmin/ui/dlgDatabase.xrc:196
+#: pgadmin/schema/pgDatabase.cpp:772 pgadmin/ui/dlgDatabase.xrc:196
 msgid "Schema restriction"
 msgstr "架構綱要限制規定"
 
@@ -21996,9 +22152,9 @@ msgstr "架構綱要限制規定"
 #: pgadmin/utils/sysSettings.cpp:177 pgadmin/gqb/gqbBrowser.cpp:76
 #: pgadmin/frm/frmOptions.cpp:306 pgadmin/schema/pgDatabase.cpp:69
 #: pgadmin/schema/pgDatabase.cpp:485 pgadmin/schema/pgSchema.cpp:552
-#: pgadmin/frm/frmOptions.cpp:400 pgadmin/schema/pgDatabase.cpp:155
-#: pgadmin/schema/pgDatabase.cpp:633 pgadmin/schema/pgSchema.cpp:812
-#: pgadmin/utils/sysSettings.cpp:130 pgadmin/utils/sysSettings.cpp:224
+#: pgadmin/frm/frmOptions.cpp:400 pgadmin/schema/pgDatabase.cpp:158
+#: pgadmin/schema/pgDatabase.cpp:639 pgadmin/schema/pgSchema.cpp:812
+#: pgadmin/utils/sysSettings.cpp:135 pgadmin/utils/sysSettings.cpp:230
 #: pgadmin/dlg/dlgSearchObject.cpp:70 pgadmin/dlg/dlgSearchObject.cpp:105
 msgid "Schemas"
 msgstr "架構綱要"
@@ -22471,7 +22627,7 @@ msgstr "統計情報報告(&S)"
 #: pgadmin/schema/pgSchema.cpp:105 pgadmin/schema/pgSchema.cpp:247
 #: pgadmin/frm/frmOptions.cpp:419 pgadmin/schema/pgSchema.cpp:229
 #: pgadmin/schema/pgSchema.cpp:385 pgadmin/schema/pgSequence.cpp:348
-#: pgadmin/utils/sysSettings.cpp:169 pgadmin/utils/sysSettings.cpp:236
+#: pgadmin/utils/sysSettings.cpp:174 pgadmin/utils/sysSettings.cpp:242
 #: pgadmin/slony/slSequence.cpp:230 pgadmin/dlg/dlgSearchObject.cpp:81
 #: pgadmin/dlg/dlgSearchObject.cpp:116
 msgid "Sequences"
@@ -22791,7 +22947,7 @@ msgstr "在樹狀圖雙擊顯示物件屬件？"
 
 #: src/frm/frmOptions.cpp:326 src/frm/frmOptions.cpp:349
 #: pgadmin/frm/frmOptions.cpp:523 pgadmin/frm/frmOptions.cpp:553
-#: pgadmin/frm/frmOptions.cpp:730 pgadmin/frm/frmOptions.cpp:900
+#: pgadmin/frm/frmOptions.cpp:730 pgadmin/frm/frmOptions.cpp:901
 msgid "Show options dialog."
 msgstr "顯示選項對話框。"
 
@@ -22932,13 +23088,13 @@ msgstr "單一交易事件"
 #: pgadmin/schema/pgDatabase.cpp:748 pgadmin/schema/pgTable.cpp:1062
 #: pgadmin/schema/pgDatabase.cpp:211 pgadmin/schema/pgDatabase.cpp:946
 #: pgadmin/schema/pgIndex.cpp:542 pgadmin/schema/pgTable.cpp:1109
-#: pgadmin/schema/pgTablespace.cpp:248 pgadmin/schema/pgDatabase.cpp:337
-#: pgadmin/schema/pgDatabase.cpp:1197 pgadmin/schema/pgIndex.cpp:719
+#: pgadmin/schema/pgTablespace.cpp:248 pgadmin/schema/pgDatabase.cpp:340
+#: pgadmin/schema/pgDatabase.cpp:1203 pgadmin/schema/pgIndex.cpp:770
 #: pgadmin/schema/pgTable.cpp:1280 pgadmin/schema/pgTablespace.cpp:383
 msgid "Size"
 msgstr "容量"
 
-#: pgadmin/schema/pgDatabase.cpp:331
+#: pgadmin/schema/pgDatabase.cpp:334
 #, fuzzy
 msgid "Size of temporary files"
 msgstr "無法移除暫存檔案：%s"
@@ -22954,7 +23110,7 @@ msgid "Slon process running on node; stop it before upgrading."
 msgstr "Slon 進程運轉在節點上; 在更新之前停止它中。"
 
 #: pgadmin/schema/pgDatabase.cpp:69 pgadmin/schema/pgDatabase.cpp:71
-#: pgadmin/schema/pgDatabase.cpp:157
+#: pgadmin/schema/pgDatabase.cpp:160
 msgid "Slony"
 msgstr "Slony(複寫叢集系統)"
 
@@ -23402,8 +23558,8 @@ msgstr "Slony-I 複寫叢集"
 #: pgadmin/frm/frmOptions.cpp:182 pgadmin/schema/pgDatabase.cpp:407
 #: pgadmin/utils/sysSettings.cpp:95 pgadmin/utils/sysSettings.cpp:178
 #: pgadmin/frm/frmOptions.cpp:307 pgadmin/schema/pgDatabase.cpp:487
-#: pgadmin/frm/frmOptions.cpp:402 pgadmin/schema/pgDatabase.cpp:635
-#: pgadmin/utils/sysSettings.cpp:132 pgadmin/utils/sysSettings.cpp:225
+#: pgadmin/frm/frmOptions.cpp:402 pgadmin/schema/pgDatabase.cpp:641
+#: pgadmin/utils/sysSettings.cpp:137 pgadmin/utils/sysSettings.cpp:231
 msgid "Slony-I Clusters"
 msgstr "Slony-I 叢集"
 
@@ -23431,7 +23587,7 @@ msgstr "Slony-I 路徑"
 msgid "Slow Process Colour"
 msgstr "慢速程序顏色"
 
-#: pgadmin/schema/pgDatabase.cpp:325 pgadmin/schema/pgDatabase.cpp:1215
+#: pgadmin/schema/pgDatabase.cpp:328 pgadmin/schema/pgDatabase.cpp:1221
 msgid "Snapshot conflicts"
 msgstr ""
 
@@ -23691,7 +23847,7 @@ msgstr "段"
 #: pgadmin/schema/pgTablespace.cpp:135 pgadmin/slony/slNode.cpp:120
 #: pgadmin/schema/pgObject.cpp:1051 pgadmin/slony/slNode.cpp:121
 #: pgadmin/schema/pgDatabase.cpp:217 pgadmin/schema/pgObject.cpp:1058
-#: pgadmin/schema/pgTablespace.cpp:146 pgadmin/schema/pgDatabase.cpp:346
+#: pgadmin/schema/pgTablespace.cpp:146 pgadmin/schema/pgDatabase.cpp:349
 #: pgadmin/schema/pgObject.cpp:1364 pgadmin/schema/pgSequence.cpp:216
 #: pgadmin/schema/pgTablespace.cpp:229 pgadmin/slony/slNode.cpp:182
 msgid "Statistic"
@@ -23838,6 +23994,11 @@ msgstr "正在中止服務"
 #: pgadmin/ui/dlgType.xrc:642
 msgid "Storage"
 msgstr "儲存"
+
+#: pgadmin/ui/dlgIndex.xrc:250
+#, fuzzy
+msgid "Storage parametres"
+msgstr "設置在客戶端參變量"
 
 # standard
 # standard
@@ -24070,9 +24231,9 @@ msgstr "屬性報告(&P)"
 #: pgadmin/schema/pgSchema.cpp:140 pgadmin/schema/pgSchema.cpp:262
 #: pgadmin/utils/sysSettings.cpp:91 pgadmin/utils/sysSettings.cpp:176
 #: pgadmin/frm/frmOptions.cpp:401 pgadmin/schema/edbPrivateSynonym.cpp:226
-#: pgadmin/schema/pgDatabase.cpp:152 pgadmin/schema/pgDatabase.cpp:630
+#: pgadmin/schema/pgDatabase.cpp:155 pgadmin/schema/pgDatabase.cpp:636
 #: pgadmin/schema/pgSchema.cpp:269 pgadmin/schema/pgSchema.cpp:400
-#: pgadmin/utils/sysSettings.cpp:128 pgadmin/utils/sysSettings.cpp:223
+#: pgadmin/utils/sysSettings.cpp:133 pgadmin/utils/sysSettings.cpp:229
 msgid "Synonyms"
 msgstr "同義詞"
 
@@ -24120,7 +24281,7 @@ msgstr "系統編碼轉換？"
 # standard
 #: src/schema/pgDatabase.cpp:418 src/schema/pgDatabase.cpp:434
 #: pgadmin/schema/pgDatabase.cpp:447 pgadmin/schema/pgDatabase.cpp:466
-#: pgadmin/schema/pgDatabase.cpp:573 pgadmin/schema/pgDatabase.cpp:762
+#: pgadmin/schema/pgDatabase.cpp:573 pgadmin/schema/pgDatabase.cpp:768
 msgid "System database?"
 msgstr "系統資料庫？"
 
@@ -24270,7 +24431,7 @@ msgstr "TX 開始"
 #: pgadmin/frm/frmOptions.cpp:124 pgadmin/frm/frmOptions.cpp:388
 #: pgadmin/ui/frmOptions.xrc:50 pgadmin/frm/frmOptions.cpp:223
 #: pgadmin/frm/frmOptions.cpp:519 pgadmin/ui/frmOptions.xrc:48
-#: pgadmin/frm/frmOptions.cpp:301 pgadmin/frm/frmOptions.cpp:668
+#: pgadmin/frm/frmOptions.cpp:301 pgadmin/frm/frmOptions.cpp:669
 #: pgadmin/ui/frmOptions.xrc:869
 msgid "Tab"
 msgstr "Tab"
@@ -24449,7 +24610,7 @@ msgstr "統計情報報告(&S)"
 #: pgadmin/schema/pgSchema.cpp:249 pgadmin/schema/pgTable.cpp:1518
 #: pgadmin/frm/frmOptions.cpp:420 pgadmin/schema/pgSchema.cpp:231
 #: pgadmin/schema/pgSchema.cpp:387 pgadmin/schema/pgTable.cpp:1738
-#: pgadmin/utils/sysSettings.cpp:171 pgadmin/utils/sysSettings.cpp:237
+#: pgadmin/utils/sysSettings.cpp:176 pgadmin/utils/sysSettings.cpp:243
 #: pgadmin/slony/slTable.cpp:277 pgadmin/dlg/dlgMoveTablespace.cpp:51
 #: pgadmin/dlg/dlgMoveTablespace.cpp:104 pgadmin/dlg/dlgSearchObject.cpp:71
 #: pgadmin/dlg/dlgSearchObject.cpp:106
@@ -24499,13 +24660,13 @@ msgstr "資料表/視觀表"
 #: pgadmin/schema/pgRole.cpp:179 pgadmin/schema/pgTable.cpp:868
 #: pgadmin/schema/pgTablespace.cpp:247 pgadmin/schema/pgTablespace.cpp:276
 #: pgadmin/schema/pgUser.cpp:125 pgadmin/ui/frmBackup.xrc:19
-#: pgadmin/ui/frmRestore.xrc:13 pgadmin/schema/pgDatabase.cpp:713
+#: pgadmin/ui/frmRestore.xrc:13 pgadmin/schema/pgDatabase.cpp:719
 #: pgadmin/schema/pgIndex.cpp:396 pgadmin/schema/pgIndexConstraint.cpp:181
 #: pgadmin/schema/pgRole.cpp:335 pgadmin/schema/pgTable.cpp:988
 #: pgadmin/schema/pgTablespace.cpp:382 pgadmin/schema/pgTablespace.cpp:437
 #: pgadmin/schema/pgUser.cpp:192 pgadmin/schema/pgView.cpp:577
-#: pgadmin/ui/dlgDatabase.xrc:136 pgadmin/ui/dlgIndexConstraint.xrc:80
-#: pgadmin/ui/dlgIndex.xrc:79 pgadmin/ui/dlgTable.xrc:116
+#: pgadmin/ui/dlgDatabase.xrc:136 pgadmin/ui/dlgIndexConstraint.xrc:75
+#: pgadmin/ui/dlgIndex.xrc:75 pgadmin/ui/dlgTable.xrc:116
 #: pgadmin/ui/dlgView.xrc:213 pgadmin/ui/frmBackup.xrc:226
 #: pgadmin/ui/frmRestore.xrc:190
 msgid "Tablespace"
@@ -24530,7 +24691,7 @@ msgstr "表格空間容量"
 
 # standard
 # standard
-#: pgadmin/schema/pgDatabase.cpp:323 pgadmin/schema/pgDatabase.cpp:1213
+#: pgadmin/schema/pgDatabase.cpp:326 pgadmin/schema/pgDatabase.cpp:1219
 #, fuzzy
 msgid "Tablespace conflicts"
 msgstr "表格空間"
@@ -24593,7 +24754,7 @@ msgstr "%s 統計情報報告 - %s"
 #: pgadmin/schema/pgTablespace.cpp:288 pgadmin/frm/frmOptions.cpp:385
 #: pgadmin/schema/pgServer.cpp:181 pgadmin/schema/pgServer.cpp:1103
 #: pgadmin/schema/pgTablespace.cpp:449 pgadmin/utils/sysSettings.cpp:80
-#: pgadmin/utils/sysSettings.cpp:207
+#: pgadmin/utils/sysSettings.cpp:212
 msgid "Tablespaces"
 msgstr "表格空間"
 
@@ -24681,7 +24842,7 @@ msgstr "目標型別"
 msgid "Template"
 msgstr "模版"
 
-#: pgadmin/schema/pgDatabase.cpp:330
+#: pgadmin/schema/pgDatabase.cpp:333
 msgid "Temporary files"
 msgstr ""
 
@@ -24732,7 +24893,7 @@ msgid "The ANY pseudo-datatype cannot be used in multi parameter aggregates."
 msgstr "這 ANY 偽裝-資料型別不能被使用在多個參數的總合中。"
 
 #: pgadmin/frm/frmOptions.cpp:290 pgadmin/frm/frmOptions.cpp:294
-#: pgadmin/frm/frmOptions.cpp:425 pgadmin/frm/frmOptions.cpp:561
+#: pgadmin/frm/frmOptions.cpp:425 pgadmin/frm/frmOptions.cpp:562
 msgid ""
 "The EnterpriseDB bin path specified is not valid or does not contain an "
 "EnterpriseDB pg_dump executable.\n"
@@ -24745,7 +24906,7 @@ msgstr ""
 "請選擇另一個文件夾，或者使這路徑成為空白。"
 
 #: pgadmin/frm/frmOptions.cpp:305 pgadmin/frm/frmOptions.cpp:435
-#: pgadmin/frm/frmOptions.cpp:571
+#: pgadmin/frm/frmOptions.cpp:572
 msgid ""
 "The Greenplum bin path specified is not valid or does not contain a "
 "Greenplum pg_dump executable.\n"
@@ -24757,7 +24918,7 @@ msgstr ""
 "請選擇另一個文件夾，或者使這路徑成為空白。"
 
 #: pgadmin/frm/frmOptions.cpp:279 pgadmin/frm/frmOptions.cpp:283
-#: pgadmin/frm/frmOptions.cpp:415 pgadmin/frm/frmOptions.cpp:551
+#: pgadmin/frm/frmOptions.cpp:415 pgadmin/frm/frmOptions.cpp:552
 msgid ""
 "The PostgreSQL bin path specified is not valid or does not contain a "
 "PostgreSQL pg_dump executable.\n"
@@ -24830,7 +24991,7 @@ msgid "The client at %s:%d disconnected!"
 msgstr ""
 
 #: pgadmin/dlg/dlgServer.cpp:165 pgadmin/frm/frmOptions.cpp:762
-#: pgadmin/frm/frmOptions.cpp:932
+#: pgadmin/frm/frmOptions.cpp:933
 msgid "The colour specified is not valid."
 msgstr "指定該色彩是無效的。"
 
@@ -24852,7 +25013,7 @@ msgid ""
 "transaction by executing COMMIT, or ROLLBACK statement."
 msgstr ""
 
-#: pgadmin/frm/frmOptions.cpp:581
+#: pgadmin/frm/frmOptions.cpp:582
 msgid "The decimal mark and thousands separator must not be equal."
 msgstr ""
 
@@ -25208,7 +25369,7 @@ msgid ""
 "dropped. Please close the properties dialogues and try again."
 msgstr ""
 
-#: pgadmin/frm/frmMain.cpp:556 pgadmin/schema/pgDatabase.cpp:1329
+#: pgadmin/frm/frmMain.cpp:556 pgadmin/schema/pgDatabase.cpp:1335
 msgid ""
 "There are properties dialogues open for one or more objects that would be "
 "refreshed. Please close the properties dialogues and try again."
@@ -25607,7 +25768,7 @@ msgstr "轉譯員注意：必須匹配 libpq 轉譯！在主機上這伺服器�
 # standard
 # standard
 #: pgadmin/schema/pgIndex.cpp:253 pgadmin/schema/pgIndex.cpp:283
-#: pgadmin/schema/pgIndex.cpp:432
+#: pgadmin/schema/pgIndex.cpp:431
 msgid "Tree Level"
 msgstr "樹狀層級"
 
@@ -25643,10 +25804,10 @@ msgstr "觸發器函數"
 #: pgadmin/schema/pgSchema.cpp:248 pgadmin/utils/sysSettings.cpp:111
 #: pgadmin/utils/sysSettings.cpp:183 pgadmin/frm/frmOptions.cpp:312
 #: pgadmin/schema/pgFunction.cpp:818 pgadmin/schema/pgSchema.cpp:129
-#: pgadmin/schema/pgSchema.cpp:256 pgadmin/frm/frmOptions.cpp:421
+#: pgadmin/schema/pgSchema.cpp:256 pgadmin/frm/frmOptions.cpp:422
 #: pgadmin/schema/pgFunction.cpp:1139 pgadmin/schema/pgSchema.cpp:258
-#: pgadmin/schema/pgSchema.cpp:394 pgadmin/utils/sysSettings.cpp:148
-#: pgadmin/utils/sysSettings.cpp:230 pgadmin/dlg/dlgSearchObject.cpp:79
+#: pgadmin/schema/pgSchema.cpp:394 pgadmin/utils/sysSettings.cpp:153
+#: pgadmin/utils/sysSettings.cpp:236 pgadmin/dlg/dlgSearchObject.cpp:79
 #: pgadmin/dlg/dlgSearchObject.cpp:114
 msgid "Trigger Functions"
 msgstr "觸發器函數"
@@ -25889,14 +26050,14 @@ msgstr "值組百分比"
 #: pgadmin/schema/pgDatabase.cpp:693 pgadmin/schema/pgTable.cpp:777
 #: pgadmin/schema/pgDatabase.cpp:759 pgadmin/schema/pgTable.cpp:1129
 #: pgadmin/schema/pgDatabase.cpp:208 pgadmin/schema/pgDatabase.cpp:957
-#: pgadmin/schema/pgTable.cpp:1176 pgadmin/schema/pgDatabase.cpp:319
-#: pgadmin/schema/pgDatabase.cpp:1208 pgadmin/schema/pgTable.cpp:1356
+#: pgadmin/schema/pgTable.cpp:1176 pgadmin/schema/pgDatabase.cpp:322
+#: pgadmin/schema/pgDatabase.cpp:1214 pgadmin/schema/pgTable.cpp:1356
 msgid "Tuples Deleted"
 msgstr "已刪除值組"
 
 #: pgadmin/schema/pgDatabase.cpp:690 pgadmin/schema/pgDatabase.cpp:756
 #: pgadmin/schema/pgDatabase.cpp:205 pgadmin/schema/pgDatabase.cpp:954
-#: pgadmin/schema/pgDatabase.cpp:316 pgadmin/schema/pgDatabase.cpp:1205
+#: pgadmin/schema/pgDatabase.cpp:319 pgadmin/schema/pgDatabase.cpp:1211
 msgid "Tuples Fetched"
 msgstr "已取得值組"
 
@@ -25917,8 +26078,8 @@ msgstr "HOT 已更新值組"
 #: pgadmin/schema/pgDatabase.cpp:691 pgadmin/schema/pgTable.cpp:775
 #: pgadmin/schema/pgDatabase.cpp:757 pgadmin/schema/pgTable.cpp:1127
 #: pgadmin/schema/pgDatabase.cpp:206 pgadmin/schema/pgDatabase.cpp:955
-#: pgadmin/schema/pgTable.cpp:1174 pgadmin/schema/pgDatabase.cpp:317
-#: pgadmin/schema/pgDatabase.cpp:1206 pgadmin/schema/pgTable.cpp:1354
+#: pgadmin/schema/pgTable.cpp:1174 pgadmin/schema/pgDatabase.cpp:320
+#: pgadmin/schema/pgDatabase.cpp:1212 pgadmin/schema/pgTable.cpp:1354
 msgid "Tuples Inserted"
 msgstr "已插入值組"
 
@@ -25926,7 +26087,7 @@ msgstr "已插入值組"
 # standard
 #: pgadmin/schema/pgDatabase.cpp:689 pgadmin/schema/pgDatabase.cpp:755
 #: pgadmin/schema/pgDatabase.cpp:204 pgadmin/schema/pgDatabase.cpp:953
-#: pgadmin/schema/pgDatabase.cpp:315 pgadmin/schema/pgDatabase.cpp:1204
+#: pgadmin/schema/pgDatabase.cpp:318 pgadmin/schema/pgDatabase.cpp:1210
 msgid "Tuples Returned"
 msgstr "已遞迴值組"
 
@@ -25936,8 +26097,8 @@ msgstr "已遞迴值組"
 #: pgadmin/schema/pgDatabase.cpp:692 pgadmin/schema/pgTable.cpp:776
 #: pgadmin/schema/pgDatabase.cpp:758 pgadmin/schema/pgTable.cpp:1128
 #: pgadmin/schema/pgDatabase.cpp:207 pgadmin/schema/pgDatabase.cpp:956
-#: pgadmin/schema/pgTable.cpp:1175 pgadmin/schema/pgDatabase.cpp:318
-#: pgadmin/schema/pgDatabase.cpp:1207 pgadmin/schema/pgTable.cpp:1355
+#: pgadmin/schema/pgTable.cpp:1175 pgadmin/schema/pgDatabase.cpp:321
+#: pgadmin/schema/pgDatabase.cpp:1213 pgadmin/schema/pgTable.cpp:1355
 msgid "Tuples Updated"
 msgstr "已更新值組"
 
@@ -25990,6 +26151,7 @@ msgstr "已更新值組"
 #: pgadmin/schema/pgServer.cpp:1067 pgadmin/schema/pgUser.cpp:89
 #: pgadmin/dlg/dlgFunction.cpp:184 pgadmin/frm/frmReport.cpp:1346
 #: pgadmin/debugger/ctlVarWindow.cpp:42 pgadmin/debugger/dlgDirectDbg.cpp:141
+#: pgadmin/schema/pgAccessMethod.cpp:120
 #: pgadmin/schema/pgForeignServer.cpp:156 pgadmin/schema/pgObject.cpp:244
 #: pgadmin/schema/pgRole.cpp:305 pgadmin/schema/pgTablespace.cpp:104
 #: pgadmin/schema/pgType.cpp:561 pgadmin/schema/pgUser.cpp:156
@@ -26064,10 +26226,10 @@ msgstr "屬性報告(&P)"
 #: pgadmin/schema/pgSchema.cpp:250 pgadmin/schema/pgType.cpp:330
 #: pgadmin/utils/sysSettings.cpp:144 pgadmin/utils/sysSettings.cpp:195
 #: pgadmin/frm/frmOptions.cpp:325 pgadmin/schema/pgSchema.cpp:131
-#: pgadmin/schema/pgSchema.cpp:258 pgadmin/frm/frmOptions.cpp:422
+#: pgadmin/schema/pgSchema.cpp:258 pgadmin/frm/frmOptions.cpp:423
 #: pgadmin/schema/pgSchema.cpp:260 pgadmin/schema/pgSchema.cpp:396
-#: pgadmin/schema/pgType.cpp:572 pgadmin/utils/sysSettings.cpp:181
-#: pgadmin/utils/sysSettings.cpp:242 pgadmin/dlg/dlgSearchObject.cpp:82
+#: pgadmin/schema/pgType.cpp:572 pgadmin/utils/sysSettings.cpp:186
+#: pgadmin/utils/sysSettings.cpp:248 pgadmin/dlg/dlgSearchObject.cpp:82
 #: pgadmin/dlg/dlgSearchObject.cpp:117
 msgid "Types"
 msgstr "型別"
@@ -26196,7 +26358,7 @@ msgstr "萬國碼(UTF-8)"
 #: pgadmin/frm/frmReport.cpp:1345 pgadmin/dlg/dlgTable.cpp:1444
 #: pgadmin/frm/frmReport.cpp:1363 pgadmin/dlg/dlgTable.cpp:1479
 #: pgadmin/frm/frmReport.cpp:1358 pgadmin/schema/pgIndexConstraint.cpp:484
-#: pgadmin/dlg/dlgTable.cpp:1552 pgadmin/ui/dlgIndex.xrc:121
+#: pgadmin/dlg/dlgTable.cpp:1552 pgadmin/ui/dlgIndex.xrc:103
 msgid "Unique"
 msgstr "唯一約束限制(Unique)"
 
@@ -26439,8 +26601,8 @@ msgstr ""
 #: pgadmin/ui/dlgExtTable.xrc:81 pgadmin/ui/dlgForeignDataWrapper.xrc:85
 #: pgadmin/ui/dlgForeignKey.xrc:52 pgadmin/ui/dlgForeignServer.xrc:85
 #: pgadmin/ui/dlgForeignTable.xrc:96 pgadmin/ui/dlgFunction.xrc:93
-#: pgadmin/ui/dlgGroup.xrc:51 pgadmin/ui/dlgIndexConstraint.xrc:53
-#: pgadmin/ui/dlgIndex.xrc:52 pgadmin/ui/dlgLanguage.xrc:83
+#: pgadmin/ui/dlgGroup.xrc:51 pgadmin/ui/dlgIndexConstraint.xrc:49
+#: pgadmin/ui/dlgIndex.xrc:49 pgadmin/ui/dlgLanguage.xrc:83
 #: pgadmin/ui/dlgOperator.xrc:94 pgadmin/ui/dlgPackage.xrc:80
 #: pgadmin/ui/dlgRole.xrc:68 pgadmin/ui/dlgRule.xrc:66
 #: pgadmin/ui/dlgSchema.xrc:81 pgadmin/ui/dlgSequence.xrc:96
@@ -26580,8 +26742,8 @@ msgstr "使用者語系"
 # standard
 # standard
 #: pgadmin/frm/frmOptions.cpp:398 pgadmin/schema/pgForeignServer.cpp:144
-#: pgadmin/schema/pgUserMapping.cpp:269 pgadmin/utils/sysSettings.cpp:111
-#: pgadmin/utils/sysSettings.cpp:218 pgadmin/dlg/dlgSearchObject.cpp:96
+#: pgadmin/schema/pgUserMapping.cpp:269 pgadmin/utils/sysSettings.cpp:116
+#: pgadmin/utils/sysSettings.cpp:224 pgadmin/dlg/dlgSearchObject.cpp:96
 #: pgadmin/dlg/dlgSearchObject.cpp:132
 #, fuzzy
 msgid "User Mappings"
@@ -26767,7 +26929,7 @@ msgstr "使用者清單報告"
 #: pgadmin/frm/frmOptions.cpp:388 pgadmin/schema/pgServer.cpp:187
 #: pgadmin/schema/pgServer.cpp:199 pgadmin/schema/pgServer.cpp:1127
 #: pgadmin/schema/pgServer.cpp:1139 pgadmin/utils/sysSettings.cpp:86
-#: pgadmin/utils/sysSettings.cpp:210
+#: pgadmin/utils/sysSettings.cpp:215
 msgid "Users/login Roles"
 msgstr "使用者/登入角色"
 
@@ -26791,7 +26953,7 @@ msgstr "使用一個 EnterpriseDB 可呼叫的宣告"
 msgid "Using embedded XRC data."
 msgstr "使用內嵌 XRC 資料。"
 
-#: pgadmin/schema/pgPolicy.cpp:134 pgadmin/ui/dlgPolicy.xrc:145
+#: pgadmin/schema/pgPolicy.cpp:126 pgadmin/ui/dlgPolicy.xrc:145
 #, fuzzy
 msgid "Using expression"
 msgstr "表達式"
@@ -26983,15 +27145,15 @@ msgstr "運算子函數"
 #: pgadmin/dlg/dlgFunction.cpp:140 pgadmin/dlg/dlgTablespace.cpp:56
 #: pgadmin/include/schema/pgObject.h:153 pgadmin/include/schema/pgObject.h:154
 #: pgadmin/frm/frmMainConfig.cpp:182 pgadmin/debugger/ctlVarWindow.cpp:43
-#: pgadmin/debugger/dlgDirectDbg.cpp:144 pgadmin/schema/pgDatabase.cpp:346
+#: pgadmin/debugger/dlgDirectDbg.cpp:144 pgadmin/schema/pgDatabase.cpp:349
 #: pgadmin/schema/pgObject.cpp:1364 pgadmin/schema/pgSequence.cpp:216
 #: pgadmin/schema/pgTablespace.cpp:229 pgadmin/slony/slNode.cpp:182
 #: pgadmin/dlg/dlgColumn.cpp:88 pgadmin/dlg/dlgDatabase.cpp:85
 #: pgadmin/dlg/dlgForeignDataWrapper.cpp:114
 #: pgadmin/dlg/dlgForeignServer.cpp:67 pgadmin/dlg/dlgForeignTable.cpp:114
-#: pgadmin/dlg/dlgFunction.cpp:161 pgadmin/dlg/dlgRole.cpp:106
-#: pgadmin/dlg/dlgUserMapping.cpp:86 pgadmin/include/schema/pgObject.h:363
-#: pgadmin/include/schema/pgObject.h:364
+#: pgadmin/dlg/dlgFunction.cpp:161 pgadmin/dlg/dlgIndex.cpp:200
+#: pgadmin/dlg/dlgRole.cpp:106 pgadmin/dlg/dlgUserMapping.cpp:86
+#: pgadmin/include/schema/pgObject.h:363 pgadmin/include/schema/pgObject.h:364
 #: pgadmin/ui/dlgForeignDataWrapper.xrc:183
 #: pgadmin/ui/dlgForeignServer.xrc:179 pgadmin/ui/dlgForeignTable.xrc:312
 #: pgadmin/ui/dlgMainConfig.xrc:35 pgadmin/ui/dlgTextSearchDictionary.xrc:182
@@ -27100,7 +27262,7 @@ msgstr "詳細模式訊息"
 #: pgadmin/schema/pgIndex.cpp:252 pgadmin/slony/slCluster.cpp:303
 #: pgadmin/ui/dlgRepClusterUpgrade.xrc:7 pgadmin/schema/pgIndex.cpp:282
 #: pgadmin/schema/pgExtension.cpp:126 pgadmin/schema/pgForeignServer.cpp:157
-#: pgadmin/schema/pgIndex.cpp:431 pgadmin/slony/slCluster.cpp:386
+#: pgadmin/schema/pgIndex.cpp:430 pgadmin/slony/slCluster.cpp:386
 #: pgadmin/ui/dlgExtension.xrc:109 pgadmin/ui/dlgForeignServer.xrc:126
 #: pgadmin/ui/dlgRepClusterUpgrade.xrc:83
 msgid "Version"
@@ -27295,9 +27457,9 @@ msgstr "檢視這個已選取物件中的資料。"
 #: pgadmin/utils/sysSettings.cpp:149 pgadmin/utils/sysSettings.cpp:196
 #: pgadmin/frm/frmOptions.cpp:326 pgadmin/schema/pgSchema.cpp:133
 #: pgadmin/schema/pgSchema.cpp:260 pgadmin/schema/pgView.cpp:351
-#: pgadmin/frm/frmOptions.cpp:423 pgadmin/schema/pgSchema.cpp:262
+#: pgadmin/frm/frmOptions.cpp:424 pgadmin/schema/pgSchema.cpp:262
 #: pgadmin/schema/pgSchema.cpp:398 pgadmin/schema/pgView.cpp:912
-#: pgadmin/utils/sysSettings.cpp:186 pgadmin/utils/sysSettings.cpp:243
+#: pgadmin/utils/sysSettings.cpp:191 pgadmin/utils/sysSettings.cpp:249
 #: pgadmin/dlg/dlgSearchObject.cpp:74 pgadmin/dlg/dlgSearchObject.cpp:109
 msgid "Views"
 msgstr "視觀表"
@@ -27550,14 +27712,14 @@ msgstr "XML 檔案 (*.xml)|*.xml|全部檔案 (*.*)|*.*"
 #: src/schema/pgDatabase.cpp:575 src/schema/pgDatabase.cpp:595
 #: pgadmin/schema/pgDatabase.cpp:683 pgadmin/schema/pgDatabase.cpp:749
 #: pgadmin/schema/pgDatabase.cpp:198 pgadmin/schema/pgDatabase.cpp:947
-#: pgadmin/schema/pgDatabase.cpp:309 pgadmin/schema/pgDatabase.cpp:1198
+#: pgadmin/schema/pgDatabase.cpp:312 pgadmin/schema/pgDatabase.cpp:1204
 msgid "Xact Committed"
 msgstr "Xact 已提交"
 
 #: src/schema/pgDatabase.cpp:576 src/schema/pgDatabase.cpp:596
 #: pgadmin/schema/pgDatabase.cpp:684 pgadmin/schema/pgDatabase.cpp:750
 #: pgadmin/schema/pgDatabase.cpp:199 pgadmin/schema/pgDatabase.cpp:948
-#: pgadmin/schema/pgDatabase.cpp:310 pgadmin/schema/pgDatabase.cpp:1199
+#: pgadmin/schema/pgDatabase.cpp:313 pgadmin/schema/pgDatabase.cpp:1205
 msgid "Xact Rolled Back"
 msgstr "Xact 已滾回"
 
@@ -28028,7 +28190,7 @@ msgstr "pgAgent 工作"
 #: pgadmin/utils/sysSettings.cpp:71 pgadmin/utils/sysSettings.cpp:169
 #: pgadmin/frm/frmOptions.cpp:298 pgadmin/schema/pgServer.cpp:869
 #: pgadmin/frm/frmOptions.cpp:386 pgadmin/schema/pgServer.cpp:1108
-#: pgadmin/utils/sysSettings.cpp:82 pgadmin/utils/sysSettings.cpp:208
+#: pgadmin/utils/sysSettings.cpp:82 pgadmin/utils/sysSettings.cpp:213
 msgid "pgAgent Jobs"
 msgstr "pgAgent 任務"
 

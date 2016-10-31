@@ -26,7 +26,6 @@
 #define cbTablespace    CTRL_COMBOBOX("cbTablespace")
 #define cbIndex         CTRL_COMBOBOX("cbIndex")
 #define cbType          CTRL_COMBOBOX("cbType")
-#define txtFillFactor   CTRL_TEXT("txtFillFactor")
 #define txtWhere        CTRL_TEXT("txtWhere")
 #define chkDeferrable   CTRL_CHECKBOX("chkDeferrable")
 #define chkDeferred     CTRL_CHECKBOX("chkDeferred")
@@ -228,11 +227,6 @@ int dlgIndexConstraint::Go(bool modal)
 			cbTablespace->SetKey(idc->GetTablespaceOid());
 		cbTablespace->Enable(connection->BackendMinimumVersion(8, 0));
 
-		if (txtFillFactor)
-		{
-			txtFillFactor->SetValue(idc->GetFillFactor());
-		}
-
 		if (index->GetIndexType().Length() > 0)
 		{
 			cbType->Append(index->GetIndexType());
@@ -280,10 +274,14 @@ int dlgIndexConstraint::Go(bool modal)
 		cbTablespace->SetSelection(0);
 
 		cbType->Append(wxT(""));
-		set = connection->ExecuteSet(
-		          wxT("SELECT oid, amname FROM pg_am ")
-		          wxT("WHERE EXISTS (SELECT 1 FROM pg_proc WHERE oid=amgettuple) ")
-		          wxT("ORDER BY amname"));
+		wxString sql = wxEmptyString;
+		sql += wxT("SELECT oid, amname FROM pg_am ");
+		if (connection->BackendMinimumVersion(9, 6))
+			sql += wxT("WHERE EXISTS (SELECT 1 FROM pg_proc WHERE oid=amhandler AND amtype='i') ");
+		else
+			sql += wxT("WHERE EXISTS (SELECT 1 FROM pg_proc WHERE oid=amgettuple) ");
+		sql += wxT("ORDER BY amname");
+		set = connection->ExecuteSet(sql);
 		if (set)
 		{
 			while (!set->Eof())
@@ -297,12 +295,6 @@ int dlgIndexConstraint::Go(bool modal)
 		chkDeferrable->Enable(connection->BackendMinimumVersion(9, 0));
 		chkDeferred->Enable(connection->BackendMinimumVersion(9, 0));
 	}
-
-	txtFillFactor->SetValidator(numericValidator);
-	if (connection->BackendMinimumVersion(8, 2))
-		txtFillFactor->Enable();
-	else
-		txtFillFactor->Disable();
 
 	return dlgIndexBase::Go(modal);
 }
@@ -429,7 +421,6 @@ void dlgIndexConstraint::OnChangeIndex(wxCommandEvent &ev)
 
 	cbTablespace->Enable(!indexselected && connection->BackendMinimumVersion(8, 0));
 	cbType->Enable(!indexselected && excludeconstraint);
-	txtFillFactor->Enable(!indexselected && connection->BackendMinimumVersion(8, 2));
 	txtWhere->Enable(!indexselected && excludeconstraint);
 	chkDeferrable->Enable(!indexselected && connection->BackendMinimumVersion(9, 0));
 	chkDeferred->Enable(!indexselected && connection->BackendMinimumVersion(9, 0));
@@ -521,12 +512,6 @@ wxString dlgIndexConstraint::GetDefinition()
 
 		sql += wxT("(") + GetColumns() + wxT(")");
 
-		if (txtFillFactor)
-		{
-			if (connection->BackendMinimumVersion(8, 2) && txtFillFactor->GetValue().Length() > 0)
-				sql += wxT("\n  WITH (FILLFACTOR=") + txtFillFactor->GetValue() + wxT(")");
-		}
-
 		if (cbTablespace->GetOIDKey() > 0)
 			sql += wxT(" USING INDEX TABLESPACE ") + qtIdent(cbTablespace->GetValue());
 
@@ -574,12 +559,13 @@ wxString dlgIndexConstraint::GetSql()
 			       + wxT(";\n");
 		}
 
-		if (txtFillFactor->GetValue().Trim().Length() > 0 && txtFillFactor->GetValue() != index->GetFillFactor())
-		{
-			sql += wxT("ALTER INDEX ") + index->GetSchema()->GetQuotedIdentifier() + wxT(".") + qtIdent(name)
-			       +  wxT("\n  SET (FILLFACTOR=")
-			       +  txtFillFactor->GetValue() + wxT(");\n");
-		}
+		// TODO: FIXME
+//		if (txtFillFactor->GetValue().Trim().Length() > 0 && txtFillFactor->GetValue() != index->GetFillFactor())
+//		{
+//			sql += wxT("ALTER INDEX ") + index->GetSchema()->GetQuotedIdentifier() + wxT(".") + qtIdent(name)
+//			       +  wxT("\n  SET (FILLFACTOR=")
+//			       +  txtFillFactor->GetValue() + wxT(");\n");
+//		}
 	}
 
 	if (!name.IsEmpty())
