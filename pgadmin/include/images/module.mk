@@ -10,6 +10,8 @@
 #######################################################################
 
 pgadmin3_SOURCES += \
+	include/images/access-method.png \
+	include/images/access-methods.png \
 	include/images/aggregate-sm.png \
 	include/images/aggregate.png \
 	include/images/aggregates.png \

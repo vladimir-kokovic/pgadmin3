@@ -196,12 +196,11 @@ wxString pgAccessMethodCollection::GetTranslatedMessage(int kindOfMessage) const
 
 ///////////////////////////////////////////////////
 
-#include "images/language.pngc"
-#include "images/language-sm.pngc"
-#include "images/languages.pngc"
+#include "images/access-method.pngc"
+#include "images/access-methods.pngc"
 
 pgAccessMethodFactory::pgAccessMethodFactory()
-	: pgDatabaseObjFactory(__("Access Method"), __("New Access Method..."), __("Create a new Access Method."), language_png_img, language_sm_png_img)
+	: pgDatabaseObjFactory(__("Access Method"), __("New Access Method..."), __("Create a new Access Method."), access_method_png_img, access_methods_png_img)
 {
 	metaType = PGM_ACCESSMETHOD;
 }
@@ -217,4 +216,4 @@ pgCollection *pgAccessMethodFactory::CreateCollection(pgObject *obj)
 }
 
 pgAccessMethodFactory accessMethodFactory;
-static pgaCollectionFactory cf(&accessMethodFactory, __("Access Methods"), languages_png_img);
+static pgaCollectionFactory cf(&accessMethodFactory, __("Access Methods"), access_methods_png_img);
