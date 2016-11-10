@@ -31,5 +31,6 @@ stamp-h1
 cscope.out
 cscope.files
 tags
+.directory
 pgadmin/include/libssh2/libssh2_config.h
 pgadmin/include/libssh2/stamp-h2
