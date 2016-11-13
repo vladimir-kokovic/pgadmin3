@@ -98,7 +98,12 @@ int dlgConversion::Go(bool modal)
 		    wxT("  FROM pg_proc p\n")
 		    wxT("  JOIN pg_namespace n ON n.oid=pronamespace")
 		    wxT("\n WHERE prorettype = ") + NumToStr(PGOID_TYPE_VOID) +
-		    wxT("\n    AND pronargs = 5");
+		    wxT("\n   AND proargtypes[0] = ") + NumToStr(PGOID_TYPE_INT4) +
+		    wxT("\n   AND proargtypes[1] = ") + NumToStr(PGOID_TYPE_INT4) +
+		    wxT("\n   AND proargtypes[2] = ") + NumToStr(PGOID_TYPE_CSTRING) +
+		    wxT("\n   AND proargtypes[3] = ") + NumToStr(PGOID_TYPE_CSTRING) +
+		    wxT("\n   AND proargtypes[4] = ") + NumToStr(PGOID_TYPE_INT4) +
+		    wxT("\n   AND proargtypes[5] = 0");
 
 		pgSet *set = connection->ExecuteSet(qry);
 		if (set)
