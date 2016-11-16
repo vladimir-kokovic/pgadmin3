@@ -1,7 +1,7 @@
 #######################################################################
 #
 # pgAdmin III - PostgreSQL Tools
-# 
+#
 # Copyright (C) 2002 - 2016, The pgAdmin Development Team
 # This software is released under the PostgreSQL Licence
 #
@@ -31,13 +31,22 @@ else
 i18ndir = $(datadir)/i18n
 endif
 
-install-data-local:
+make-mo:
+	echo "make mo..."
+	@pub_tx='$(PUB_TX)'; \
+	for DIR in $$pub_tx; do \
+		msgfmt $$DIR/pgadmin3.po -o $$DIR/pgadmin3.mo; \
+		msgfmt $$DIR/wxstd.po -o $$DIR/wxstd.mo; \
+	done
+
+install-data-local: make-mo
 	$(mkinstalldirs) $(DESTDIR)$(i18ndir)
 	@pub_tx='$(PUB_TX)'; \
 	for DIR in $$pub_tx; do \
 		$(mkinstalldirs) $(DESTDIR)$(i18ndir)/$$DIR; \
 		for FILE in `ls $(srcdir)/$$DIR/*.mo`; do \
 			$(install_sh) -c -m 644 $$FILE $(DESTDIR)$(i18ndir)/$$DIR/; \
+			rm -f $$FILE; \
 		done \
 	done
 	$(install_sh) -c -m 644 $(srcdir)/pgadmin3.lng $(DESTDIR)$(i18ndir)/$$DIR
