@@ -255,7 +255,7 @@ wxString dlgPolicy::GetSql()
 			sql += wxT("\n  USING (") + ctrlUsingExpr->GetValue() + wxT(")");
 		if (!ctrlCheckExpr->GetValue().IsNull())
 			sql += wxT("\n  WITH CHECK (") + ctrlCheckExpr->GetValue() + wxT(")");
-		sql += ";\n\n";
+		sql += wxT(";\n\n");
 	}
 	else
 	{
@@ -276,7 +276,7 @@ wxString dlgPolicy::GetSql()
 				sql += wxT("\n  USING(") + ctrlUsingExpr->GetValue() + wxT(")");
 			if (ctrlCheckExpr->GetValue() != policy->GetCheckExpr())
 				sql += wxT("\n  WITH CHECK(") + ctrlCheckExpr->GetValue() + wxT(")");
-			sql += ";\n\n";
+			sql += wxT(";\n\n");
 		}
 	}
 	AppendComment(sql, wxT("POLICY ") + GetName() + wxT(" ON ") + table->GetQuotedFullIdentifier(), policy);
