@@ -810,7 +810,7 @@ void dlgIndex::FillStorageParamsCB(const wxString &indexType)
 	}
 	else if (indexType == wxT("spgist"))
 	{
-		cbParam->Append("fillfactor");
+		cbParam->Append(wxT("fillfactor"));
 	}
 	else if (indexType == wxT("brin"))
 	{
