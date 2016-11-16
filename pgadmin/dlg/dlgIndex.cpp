@@ -161,8 +161,6 @@ void dlgIndexBase::CheckChange()
 		EnableOK(txtName->GetValue() != index->GetName() ||
 		         txtComment->GetValue() != index->GetComment() ||
 		         cbTablespace->GetOIDKey() != index->GetTablespaceOid());
-				// TODO: FIXME
-//		         txtFillFactor->GetValue() != index->GetFillFactor());
 	}
 	else
 	{

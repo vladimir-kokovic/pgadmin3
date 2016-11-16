@@ -558,14 +558,6 @@ wxString dlgIndexConstraint::GetSql()
 			       +  wxT("\n  SET TABLESPACE ") + qtIdent(cbTablespace->GetValue())
 			       + wxT(";\n");
 		}
-
-		// TODO: FIXME
-//		if (txtFillFactor->GetValue().Trim().Length() > 0 && txtFillFactor->GetValue() != index->GetFillFactor())
-//		{
-//			sql += wxT("ALTER INDEX ") + index->GetSchema()->GetQuotedIdentifier() + wxT(".") + qtIdent(name)
-//			       +  wxT("\n  SET (FILLFACTOR=")
-//			       +  txtFillFactor->GetValue() + wxT(");\n");
-//		}
 	}
 
 	if (!name.IsEmpty())
