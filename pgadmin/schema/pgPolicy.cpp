@@ -81,7 +81,7 @@ wxString pgPolicy::GetSql(ctlTree *browser)
 			sql += wxT("\n  USING (") + GetUsingExpr() + wxT(")");
 		if (!GetCheckExpr().IsNull())
 			sql += wxT("\n  WITH CHECK (") + GetCheckExpr() + wxT(")");
-		sql += ";\n\n";
+		sql += wxT(";\n\n");
 		if (!GetComment().IsNull())
 		{
 			sql += wxT("COMMENT ON POLICY ") + GetQuotedIdentifier()
