@@ -1685,8 +1685,8 @@ pgObject *pgTableFactory::CreateObjects(pgCollection *collection, ctlTree *brows
 
 			if (collection->GetConnection()->BackendMinimumVersion(9, 5))
 			{
-				table->iSetRLSEnabled(tables->GetBool("relrowsecurity"));
-				table->iSetForceRLSEnabled(tables->GetBool("relforcerowsecurity"));
+				table->iSetRLSEnabled(tables->GetBool(wxT("relrowsecurity")));
+				table->iSetForceRLSEnabled(tables->GetBool(wxT("relforcerowsecurity")));
 			}
 
 			if (browser)
