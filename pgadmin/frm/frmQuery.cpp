@@ -3664,7 +3664,7 @@ void frmQuery::SqlBookAddPage()
 	box->Connect(wxID_ANY, wxEVT_KILL_FOCUS, wxFocusEventHandler(frmQuery::OnFocus));
 
 	sqlQueryCounter ++;
-	caption = wxString::Format(_("Query %i"), sqlQueryCounter);
+	caption = wxString::Format(_("Query %i"), (int) sqlQueryCounter);
 	box->SetTitle(caption);
 	sqlQueryBook->AddPage(box, caption, true);
 
