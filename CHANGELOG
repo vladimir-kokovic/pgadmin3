@@ -38,7 +38,8 @@ Changes
 
 Date       Dev Ver     Change details
 ---------- --- ------  --------------
-2017-01-28 DV  1.24.1  Fixing assert failing in opening sql tabs
+2017-01-28 DV  1.24.1  Fix segfault of startup
+2017-01-28 DV  1.24.1  Fix assert failing in opening sql tabs
 2016-11-17 DV  1.24.0  Showing Access methods for PostgreSQL 9.6.x
 2016-11-16 DV  1.24.0  Support for index's storage parametres
 2016-11-15 DV  1.24.0  Support for editing & showing RLS Policies
