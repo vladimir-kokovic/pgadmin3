@@ -1686,6 +1686,12 @@
     <ClCompile Include="dlg\dlgMoveTablespace.cpp">
       <Filter>dlg</Filter>
     </ClCompile>
+    <ClCompile Include="schema\pgAccessMethod.cpp">
+      <Filter>schema</Filter>
+    </ClCompile>
+    <ClCompile Include="schema\pgPolicy.cpp">
+      <Filter>schema</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="agent\module.mk">

@@ -2190,6 +2190,7 @@
     <ClCompile Include="schema\gpExtTable.cpp" />
     <ClCompile Include="schema\gpPartition.cpp" />
     <ClCompile Include="schema\gpResQueue.cpp" />
+    <ClCompile Include="schema\pgAccessMethod.cpp" />
     <ClCompile Include="schema\pgAggregate.cpp" />
     <ClCompile Include="schema\pgCast.cpp" />
     <ClCompile Include="schema\pgCatalogObject.cpp" />
@@ -2217,6 +2218,7 @@
     <ClCompile Include="schema\pgOperator.cpp" />
     <ClCompile Include="schema\pgOperatorClass.cpp" />
     <ClCompile Include="schema\pgOperatorFamily.cpp" />
+    <ClCompile Include="schema\pgPolicy.cpp" />
     <ClCompile Include="schema\pgRole.cpp" />
     <ClCompile Include="schema\pgRule.cpp" />
     <ClCompile Include="schema\pgSchema.cpp" />
