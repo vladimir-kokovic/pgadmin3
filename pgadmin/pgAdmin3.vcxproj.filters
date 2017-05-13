@@ -1692,6 +1692,9 @@
     <ClCompile Include="schema\pgPolicy.cpp">
       <Filter>schema</Filter>
     </ClCompile>
+    <ClCompile Include="dlg\dlgPolicy.cpp">
+      <Filter>dlg</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="agent\module.mk">

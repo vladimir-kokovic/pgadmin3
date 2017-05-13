@@ -857,6 +857,7 @@
     <ClCompile Include="dlg\dlgOperator.cpp" />
     <ClCompile Include="dlg\dlgPackage.cpp" />
     <ClCompile Include="dlg\dlgPgpassConfig.cpp" />
+    <ClCompile Include="dlg\dlgPolicy.cpp" />
     <ClCompile Include="dlg\dlgProperty.cpp" />
     <ClCompile Include="dlg\dlgReassignDropOwned.cpp" />
     <ClCompile Include="dlg\dlgResourceGroup.cpp" />
