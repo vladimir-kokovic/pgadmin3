@@ -4519,6 +4519,18 @@
     <png2c Include="include\images\query_rollback.png">
       <Filter>include\images</Filter>
     </png2c>
+    <png2c Include="include\images\access-method.png">
+      <Filter>include\images</Filter>
+    </png2c>
+    <png2c Include="include\images\access-methods.png">
+      <Filter>include\images</Filter>
+    </png2c>
+    <png2c Include="include\images\policies.png">
+      <Filter>include\images</Filter>
+    </png2c>
+    <png2c Include="include\images\policy.png">
+      <Filter>include\images</Filter>
+    </png2c>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="pgAdmin3.rc" />

@@ -3244,6 +3244,8 @@
     <ClInclude Include="include\hotdraw\utilities\hdRemoveDeleteDialog.h" />
   </ItemGroup>
   <ItemGroup>
+    <png2c Include="include\images\access-method.png" />
+    <png2c Include="include\images\access-methods.png" />
     <png2c Include="include\images\aggregate-sm.png" />
     <png2c Include="include\images\aggregate.png" />
     <png2c Include="include\images\aggregates.png" />
@@ -3458,6 +3460,8 @@
     <png2c Include="include\images\pgAdmin3-32.png" />
     <png2c Include="include\images\pgAdmin3.png" />
     <png2c Include="include\images\plugins.png" />
+    <png2c Include="include\images\policies.png" />
+    <png2c Include="include\images\policy.png" />
     <png2c Include="include\images\primarykey.png" />
     <png2c Include="include\images\procedure.png" />
     <png2c Include="include\images\procedures.png" />
