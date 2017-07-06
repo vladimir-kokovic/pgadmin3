@@ -905,13 +905,24 @@ int pgServer::Connect(frmMain *form, bool askPassword, const wxString &pwd, bool
 		if (conn->BackendMinimumVersion(8, 5))
 		{
 			sql += wxT(", CASE WHEN usesuper THEN pg_is_in_recovery() ELSE NULL END as inrecovery");
-			sql += wxT(", CASE WHEN usesuper THEN pg_last_xlog_receive_location() ELSE NULL END as receiveloc");
-			sql += wxT(", CASE WHEN usesuper THEN pg_last_xlog_replay_location() ELSE NULL END as replayloc");
+			if (conn->BackendMinimumVersion(10, 0))
+			{
+				sql += wxT(", CASE WHEN usesuper THEN pg_last_wal_receive_lsn() ELSE NULL END as receiveloc");
+				sql += wxT(", CASE WHEN usesuper THEN pg_last_wal_replay_lsn() ELSE NULL END as replayloc");
+			}
+			else
+			{
+				sql += wxT(", CASE WHEN usesuper THEN pg_last_xlog_receive_location() ELSE NULL END as receiveloc");
+				sql += wxT(", CASE WHEN usesuper THEN pg_last_xlog_replay_location() ELSE NULL END as replayloc");
+			}
 		}
 		if (conn->BackendMinimumVersion(9, 1))
 		{
 			sql += wxT(", CASE WHEN usesuper THEN pg_last_xact_replay_timestamp() ELSE NULL END as replay_timestamp");
-			sql += wxT(", CASE WHEN usesuper AND pg_is_in_recovery() THEN pg_is_xlog_replay_paused() ELSE NULL END as isreplaypaused");
+			if (conn->BackendMinimumVersion(10, 0))
+				sql += wxT(", CASE WHEN usesuper AND pg_is_in_recovery() THEN pg_is_wal_replay_paused() ELSE NULL END as isreplaypaused");
+			else
+				sql += wxT(", CASE WHEN usesuper AND pg_is_in_recovery() THEN pg_is_xlog_replay_paused() ELSE NULL END as isreplaypaused");
 		}
 
 		pgSet *set = ExecuteSet(sql + wxT("\n  FROM pg_user WHERE usename=current_user"));
