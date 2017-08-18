@@ -56,7 +56,7 @@
 #define nbNotebook        CTRL_NOTEBOOK("nbNotebook")
 
 // SSH Tunnel Tab
-#if defined(HAVE_OPENSSL_CRYPTO) || defined(HAVE_GCRYPT)
+#ifdef LIBSSH2
 #define chkSSHTunnel		 CTRL_CHECKBOX("chkSSHTunnel")
 #define txtTunnelHost		 CTRL_TEXT("txtTunnelHost")
 #define txtTunnelUsername	 CTRL_TEXT("txtTunnelUsername")
@@ -94,7 +94,7 @@ BEGIN_EVENT_TABLE(dlgServer, dlgProperty)
 	EVT_COMBOBOX(XRCID("cbGroup"),                     dlgProperty::OnChange)
 	EVT_CHECKBOX(XRCID("chkSSLCompression"),           dlgProperty::OnChange)
 	EVT_BUTTON(wxID_OK,                                dlgServer::OnOK)
-#if defined(HAVE_OPENSSL_CRYPTO) || defined(HAVE_GCRYPT)
+#ifdef LIBSSH2
 	EVT_TEXT(XRCID("txtTunnelHost"),                   dlgProperty::OnChange)
 	EVT_TEXT(XRCID("txtTunnelUsername"),               dlgProperty::OnChange)
 	EVT_CHECKBOX(XRCID("chkSSHTunnel"),                dlgServer::OnCheckSSHTunnel)
@@ -157,7 +157,7 @@ dlgServer::dlgServer(pgaFactory *f, frmMain *frame, pgServer *node)
 		}
 	}
 
-#if defined(HAVE_OPENSSL_CRYPTO) || defined(HAVE_GCRYPT)
+#ifdef LIBSSH2
 	EnableSSHTunnelControls(false);
 	radioBtnPassword->SetValue(true);
 	radioBtnKeyfile->SetValue(false);
@@ -239,7 +239,7 @@ void dlgServer::OnOK(wxCommandEvent &ev)
 		server->SetSSLRootCert(pickerSSLRootCert->GetPath());
 		server->SetSSLCrl(pickerSSLCrl->GetPath());
 		server->iSetSSLCompression(chkSSLCompression->GetValue());
-#if defined(HAVE_OPENSSL_CRYPTO) || defined(HAVE_GCRYPT)
+#ifdef LIBSSH2
 		server->iSetSSHTunnel(chkSSHTunnel->GetValue());
 		server->iSetTunnelPort(StrToLong(txtTunnelPort->GetValue()));
 		server->SetTunnelHost(txtTunnelHost->GetValue());
@@ -277,7 +277,7 @@ void dlgServer::OnOK(wxCommandEvent &ev)
 			    server->GetRestore(),
 			    server->GetSSL(),
 			    server->GetColour(),
-#if defined(HAVE_OPENSSL_CRYPTO) || defined(HAVE_GCRYPT)
+#ifdef LIBSSH2
 			    server->GetGroup(),
 			    server->GetSSHTunnel(),
 			    server->GetTunnelHost(),
@@ -478,7 +478,7 @@ int dlgServer::Go(bool modal)
 
 		chkSSLCompression->SetValue(server->GetSSLCompression());
 
-#if defined(HAVE_OPENSSL_CRYPTO) || defined(HAVE_GCRYPT)
+#ifdef LIBSSH2
 		chkSSHTunnel->SetValue(server->GetSSHTunnel());
 		if(server->GetSSHTunnel())
 		{
@@ -527,7 +527,7 @@ int dlgServer::Go(bool modal)
 			pickerSSLCrl->Disable();
 			chkSSLCompression->Disable();
 			EnableOK(false);
-#if defined(HAVE_OPENSSL_CRYPTO) || defined(HAVE_GCRYPT)
+#ifdef LIBSSH2
 			chkSSHTunnel->Enable(false);
 			EnableSSHTunnelControls(false);
 		}
@@ -572,7 +572,7 @@ pgObject *dlgServer::CreateObject(pgCollection *collection)
 {
 	pgServer *obj = NULL;
 
-#if defined(HAVE_OPENSSL_CRYPTO) || defined(HAVE_GCRYPT)
+#ifdef LIBSSH2
 	if (chkSSHTunnel->GetValue())
 	{
 		obj = new pgServer(GetName(), txtHostAddr->GetValue(), txtDescription->GetValue(),
@@ -670,7 +670,7 @@ void dlgServer::CheckChange()
 	}
 	CheckValid(enable, dbRestrictionOk, _("Restriction not valid."));
 
-#if defined(HAVE_OPENSSL_CRYPTO) || defined(HAVE_GCRYPT)
+#ifdef LIBSSH2
 	if(chkSSHTunnel->GetValue())
 	{
 		CheckValid(enable, !txtTunnelHost->GetValue().IsEmpty(), _("Please specify ssh tunnel host."));
@@ -688,7 +688,7 @@ wxString dlgServer::GetSql()
 	return wxEmptyString;
 }
 
-#if defined(HAVE_OPENSSL_CRYPTO) || defined(HAVE_GCRYPT)
+#ifdef LIBSSH2
 
 void dlgServer::OnCheckSSHTunnel(wxCommandEvent &ev)
 {

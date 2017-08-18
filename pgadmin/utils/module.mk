@@ -23,7 +23,7 @@ pgadmin3_SOURCES += \
 	utils/utffile.cpp \
 	utils/macros.cpp
 
-if BUILD_SSH_TUNNEL
+if HAVE_LIBSSH2
 pgadmin3_SOURCES += \
 	utils/sshTunnel.cpp
 endif
