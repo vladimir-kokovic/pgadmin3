@@ -37,7 +37,7 @@ protected:
 extern pgServerFactory serverFactory;
 #define DEFAULT_SSH_PORT  22
 
-#if defined(HAVE_OPENSSL_CRYPTO) || defined(HAVE_GCRYPT)
+#ifdef LIBSSH2
 class CSSHTunnelThread;
 #endif
 
@@ -441,7 +441,7 @@ public:
 		sslcompression = b;
 	}
 
-#if defined(HAVE_OPENSSL_CRYPTO) || defined(HAVE_GCRYPT)
+#ifdef LIBSSH2
 	//SSH Tunnel
 	bool GetSSHTunnel() const
 	{
@@ -553,7 +553,7 @@ private:
 	wxString receiveLoc, replayLoc, replayTimestamp;
 	wxDateTime confLoadedSince;
 
-#if defined(HAVE_OPENSSL_CRYPTO) || defined(HAVE_GCRYPT)
+#ifdef LIBSSH2
 	bool createSSHTunnel();
 
 	//SSH Tunnel

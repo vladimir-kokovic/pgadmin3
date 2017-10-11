@@ -47,7 +47,7 @@ private:
 	void OnChangeColour(wxColourPickerEvent &ev);
 	void OnChangeFile(wxFileDirPickerEvent &ev);
 
-#if defined(HAVE_OPENSSL_CRYPTO) || defined(HAVE_GCRYPT)
+#ifdef LIBSSH2
 	void OnCheckSSHTunnel(wxCommandEvent &ev);
 	void OnChangeAuthOption(wxCommandEvent &ev);
 	void EnableSSHTunnelControls(const bool &bEnable);
