@@ -101,7 +101,7 @@ extern wxLocale *locale;                // Application locale
 extern wxArrayInt existingLangs;        // Language IDs
 extern wxArrayString existingLangNames; // Language Names
 
-#if defined(HAVE_OPENSSL_CRYPTO) || defined(HAVE_GCRYPT)
+#ifdef LIBSSH2
 class CSSHTunnelThread;
 extern CSSHTunnelThread *pgadminTunnelThread; // SSH Tunneling Thread Object
 #endif

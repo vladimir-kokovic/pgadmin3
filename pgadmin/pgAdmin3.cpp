@@ -85,7 +85,7 @@
 frmMain *winMain = 0;
 wxThread *updateThread = 0;
 
-#if defined(HAVE_OPENSSL_CRYPTO) || defined(HAVE_GCRYPT)
+#ifdef LIBSSH2
 #include "utils/sshTunnel.h"
 CSSHTunnelThread *pgadminTunnelThread = 0;
 #endif

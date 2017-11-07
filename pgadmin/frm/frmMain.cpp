@@ -89,7 +89,7 @@
 #include "schema/pgDomain.h"
 #include "schema/pgEventTrigger.h"
 
-#if defined(HAVE_OPENSSL_CRYPTO) || defined(HAVE_GCRYPT)
+#ifdef LIBSSH2
 #include "utils/sshTunnel.h"
 #endif
 
@@ -97,7 +97,7 @@
 #error wxWindows must be compiled with wxDIALOG_UNIT_COMPATIBILITY=0!
 #endif
 
-#if defined(HAVE_OPENSSL_CRYPTO) || defined(HAVE_GCRYPT)
+#ifdef LIBSSH2
 DEFINE_EVENT_TYPE(SSH_TUNNEL_ERROR_EVENT);
 #endif
 
@@ -256,7 +256,7 @@ frmMain::~frmMain()
 	if (treeContextMenu)
 		delete treeContextMenu;
 
-#if defined(HAVE_OPENSSL_CRYPTO) || defined(HAVE_GCRYPT)
+#ifdef LIBSSH2
 	if(pgadminTunnelThread && pgadminTunnelThread->IsAlive())
 	{
 		pgadminTunnelThread->Cleanup();
@@ -1230,7 +1230,7 @@ void frmMain::StoreServers()
 					settings->Write(key + wxT("SSLRootCert"), server->GetSSLRootCert());
 					settings->Write(key + wxT("SSLCrl"), server->GetSSLCrl());
 					settings->WriteBool(key + wxT("SSLCompression"), server->GetSSLCompression());
-#if defined(HAVE_OPENSSL_CRYPTO) || defined(HAVE_GCRYPT)
+#ifdef LIBSSH2
 					settings->WriteBool(key + wxT("SSHTunnel"), server->GetSSHTunnel());
 					settings->Write(key + wxT("TunnelHost"), server->GetTunnelHost());
 					settings->Write(key + wxT("TunnelUserName"), server->GetTunnelUserName());
@@ -1399,7 +1399,7 @@ void frmMain::SetItemBackgroundColour(wxTreeItemId item, wxColour colour)
 	}
 }
 
-#if defined(HAVE_OPENSSL_CRYPTO) || defined(HAVE_GCRYPT)
+#ifdef LIBSSH2
 void frmMain::OnSSHTunnelEvent(wxCommandEvent &event)
 {
 	wxLogError(event.GetString());

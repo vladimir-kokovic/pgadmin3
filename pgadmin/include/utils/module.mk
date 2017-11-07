@@ -24,7 +24,7 @@ pgadmin3_SOURCES += \
 	include/utils/utffile.h \
 	include/utils/macros.h
 
-if BUILD_SSH_TUNNEL
+if HAVE_LIBSSH2
 pgadmin3_SOURCES += \
 	include/utils/sshTunnel.h
 endif
