@@ -392,6 +392,12 @@ void frmMain::CreateMenus()
 	new searchObjectFactory(menuFactories, editMenu, 0);
 	editMenu->AppendSeparator();
 
+	copytablefactory = new copyTableFactory(menuFactories, editMenu, toolBar);
+	copytableoptionalselecrfactory = new copyTableOptionalSelectFactory(menuFactories, editMenu, toolBar);
+	new copyTablesListFactory(menuFactories, editMenu, toolBar);
+	pastetablesfactory = new pasteTablesFactory(menuFactories, editMenu, toolBar);
+	editMenu->AppendSeparator();
+
 	new separatorFactory(menuFactories);
 
 	toolBar->AddSeparator();
@@ -432,10 +438,10 @@ void frmMain::CreateMenus()
 
 	toolsMenu->AppendSeparator();
 
-	new editGridLimitedFactory(menuFactories, viewDataMenu, toolBar, 100, true);
-	new editGridLimitedFactory(menuFactories, viewDataMenu, toolBar, 100, false);
-	new editGridFactory(menuFactories, viewDataMenu, toolBar);
-	new editGridFilteredFactory(menuFactories, viewDataMenu, toolBar);
+	editGridLimitedFactoryMain = new editGridLimitedFactory(menuFactories, viewDataMenu, toolBar, 100, true);
+	editGridLimitedFactoryMain1 = new editGridLimitedFactory(menuFactories, viewDataMenu, toolBar, 100, false);
+	editGridFactoryMain = new editGridFactory(menuFactories, viewDataMenu, toolBar);
+	editGridFilteredFactoryMain = new editGridFilteredFactory(menuFactories, viewDataMenu, toolBar);
 
 	new maintenanceFactory(menuFactories, toolsMenu, toolBar);
 
@@ -883,6 +889,8 @@ bool frmMain::CheckAlive()
 
 													browser->DeleteChildren(db->GetId());
 													db->UpdateIcon(browser);
+													copyTableFactory::copytObject = NULL;
+													frmCopyTables::selectedTables.empty();
 												}
 												else
 												{
@@ -901,6 +909,8 @@ bool frmMain::CheckAlive()
 
 														browser->DeleteChildren(db->GetId());
 														db->UpdateIcon(browser);
+														copyTableFactory::copytObject = NULL;
+														frmCopyTables::selectedTables.empty();
 													}
 													else
 														// Indicate things are back to normal
@@ -936,6 +946,8 @@ bool frmMain::CheckAlive()
 								browser->SelectItem(serverItem);
 								execSelChange(serverItem, true);
 								browser->DeleteChildren(serverItem);
+								copyTableFactory::copytObject = NULL;
+								frmCopyTables::selectedTables.empty();
 							}
 							else
 							{
@@ -954,6 +966,8 @@ bool frmMain::CheckAlive()
 									browser->SelectItem(serverItem);
 									execSelChange(serverItem, true);
 									browser->DeleteChildren(serverItem);
+									copyTableFactory::copytObject = NULL;
+									frmCopyTables::selectedTables.empty();
 								}
 								else
 									// Indicate things are back to normal
@@ -1503,4 +1517,158 @@ wxWindow *bugReportFactory::StartDialog(frmMain *form, pgObject *obj)
 {
 	DisplayHelp(wxT("bugreport"), HELP_PGADMIN);
 	return 0;
+}
+
+void frmMain::OnThreadCopypasteUpdateGUI(wxCommandEvent &ev)
+{
+	struct transfer_tag *transfer = (transfer_tag *)ev.GetClientData();
+	if (transfer->THIS->thread)
+	{
+		transfer->THIS->thread->Delete();
+		delete transfer->THIS->thread;
+		transfer->THIS->thread = NULL;
+	}
+	transfer->THIS->commitChanges();
+
+	int numfiles = transfer->numberOfCopypasteTables;
+	numfiles--;
+	if (numfiles < 1 && transfer->targetconn->IsAlive())
+	{
+		wxString msg1 = _("the selection list");
+#if wxCHECK_VERSION(3, 0, 0)
+		wxString pastemsg = wxString::Format(_("%d of %zd table(s) copied from %s to %s"),
+			transfer->THIS->copied,
+			transfer->THIS->tableCopyPasteArray->Count(),
+			(frmCopyTables::selectedTables.IsEmpty()) ?
+			(transfer->srcdatabase->GetQuotedIdentifier() + wxT(".") + transfer->srcschemaname).c_str() : msg1.c_str(),
+			(transfer->targetdatabase->GetQuotedIdentifier() + wxT(".") + transfer->targetschemaname).c_str());
+#else
+		wxString pastemsg = wxString::Format(_("%d of %d table(s) copied from %s to %s"),
+			transfer->THIS->copied,
+			transfer->THIS->tableCopyPasteArray->Count(),
+			(frmCopyTables::selectedTables.IsEmpty()) ?
+			(transfer->srcdatabase->GetQuotedIdentifier() + wxT(".") + transfer->srcschemaname).c_str() : msg1.c_str(),
+			(transfer->targetdatabase->GetQuotedIdentifier() + wxT(".") + transfer->targetschemaname).c_str());
+#endif
+		if (transfer->THIS->copied && transfer->targetdatabase)
+		{
+			pgSchema *targetschema = transfer->THIS->findSchema(this, transfer->targetdatabase, transfer->targetschemaname);
+			if (targetschema)
+			{
+				Refresh(transfer->targetschema);
+				targetschema = transfer->THIS->findSchema(this, transfer->targetdatabase, transfer->targetschemaname);
+				if (targetschema)
+				{
+					targetschema->ShowTreeDetail(GetBrowser());
+					GetMenuFactories()->CheckMenu(targetschema, GetMenuBar(), (ctlMenuToolbar *)GetToolBar());
+				}
+			}
+		}
+		GetStatusBar()->SetStatusText(pastemsg, 1);
+		transfer->THIS->GetFactory()->GetToolbar()->SetToolShortHelp(transfer->THIS->GetFactory()->GetId(), pastemsg);
+	}
+
+	if (!transfer->targetconn->IsAlive())
+	{
+		copyTableFactory::copytObject = NULL;
+		frmCopyTables::selectedTables.empty();
+		numfiles = -1;
+	}
+
+	if (transfer->sourceconn->GetDbname() == transfer->targetconn->GetDbname() &&
+		transfer->sourceconn->GetHost() == transfer->targetconn->GetHost() &&
+		transfer->sourceconn->GetPort() == transfer->targetconn->GetPort())
+	{
+		//same DB server
+	}
+	else
+	{
+		delete transfer->targetconn;
+	}
+	delete transfer->sourceconn;
+
+	if (numfiles < 1)
+	{
+		transfer->THIS->tableCopyPasteArray->Empty();
+		delete transfer->THIS->tableCopyPasteArray;
+		delete transfer->THIS;
+		delete transfer;
+		SetCopypasteobject(NULL);
+		pasteTables::setActive(false);
+		return;
+	}
+
+	transfer->numberOfCopypasteTables = numfiles;
+	bool OK = transfer->THIS->pasteNextTable();
+
+	if (OK && !transfer->pastesuccess)
+	{
+		if (transfer->THIS->thread)
+		{
+			transfer->THIS->thread->Delete();
+			transfer->THIS->thread = NULL;
+		}
+		if (transfer->sourceconn->GetDbname() == transfer->targetconn->GetDbname() &&
+			transfer->sourceconn->GetHost() == transfer->targetconn->GetHost() &&
+			transfer->sourceconn->GetPort() == transfer->targetconn->GetPort())
+		{
+			//same DB server
+		}
+		else
+		{
+			delete transfer->targetconn;
+		}
+		delete transfer->sourceconn;
+		transfer->THIS->tableCopyPasteArray->Empty();
+		delete transfer->THIS->tableCopyPasteArray;
+		transfer->THIS->GetFactory()->GetToolbar()->SetToolShortHelp(transfer->THIS->GetFactory()->GetId(), transfer->THIS->lastResultError.formatted_msg);
+		delete transfer->THIS;
+		delete transfer;
+		SetCopypasteobject(NULL);
+		pasteTables::setActive(false);
+	}
+}
+
+void frmMain::OnBeginDrag(wxTreeEvent &event)
+{
+	ctlTree *browser = GetBrowser();
+	wxTreeItemId item = event.GetItem();
+	pgObject *obj = browser->GetObject(item);
+
+	if (!obj || pasteTables::isActive())
+		return;
+	if (obj->GetConnection())
+	{
+		pgTable *table = (obj->GetMetaType() == PGM_TABLE) ? dynamic_cast<pgTable *>(obj) : 0;
+		if (table)
+		{
+			m_draggedObject = obj;
+			event.Allow();
+		}
+		else
+		{
+			pgSchema *schema = (obj->GetMetaType() == PGM_SCHEMA) ? dynamic_cast<pgSchema *>(obj) : 0;
+			if (schema)
+			{
+				m_draggedObject = obj;
+				event.Allow();
+			}
+		}
+	}
+}
+
+void frmMain::OnEndDrag(wxTreeEvent &event)
+{
+	pgObject *draggedObject = m_draggedObject;
+	m_draggedObject = NULL;
+	ctlTree *browser = GetBrowser();
+	wxTreeItemId item = event.GetItem();
+	pgObject *dst = browser->GetObject(item);
+	if (!draggedObject || !dst || pasteTables::isActive())
+		return;
+	pgSchema *schema = (dst->GetMetaType() == PGM_SCHEMA) ? dynamic_cast<pgSchema *>(dst) : 0;
+	if (!schema)
+		return;
+	copytablefactory->StartDialog(this, draggedObject);
+	pastetablesfactory->StartDialog(this, dst);
 }

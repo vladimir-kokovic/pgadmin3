@@ -10,7 +10,8 @@
 #######################################################################
 
 pgadmin3_SOURCES += \
-	include/parser/keywords.h
+	$(srcdir)/include/parser/keywords.h \
+	$(srcdir)/include/parser/keywords_pgadmin.h
 
 EXTRA_DIST += \
         include/parser/module.mk

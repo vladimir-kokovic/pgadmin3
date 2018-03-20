@@ -117,6 +117,10 @@ public:
 		distributionColNumbers = s;    // for Greenplum
 		if (s.Length() > 0) distributionIsRandom = false;
 	}
+	bool GetDistributionIsRandom() const
+	{
+		return distributionIsRandom;    // for Greenplum
+	}
 	void iSetDistributionIsRandom()
 	{
 		distributionIsRandom = true;

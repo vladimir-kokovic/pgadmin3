@@ -171,7 +171,12 @@ pgObject *pgLanguageFactory::CreateObjects(pgCollection *collection, ctlTree *br
 
 	sql = wxT("SELECT lan.oid, lanname, lanpltrusted, lanacl, hp.proname as lanproc, vp.proname as lanval, description");
 	if (collection->GetConnection()->BackendMinimumVersion(8, 3))
-		sql += wxT(", pg_get_userbyid(lan.lanowner) as languageowner");
+	{
+		if (collection->GetConnection()->GetIsGreenplumDevel())
+			sql += wxT(", 'gpadmin' as languageowner");
+		else
+			sql += wxT(", pg_get_userbyid(lan.lanowner) as languageowner");
+	}
 	if (collection->GetConnection()->BackendMinimumVersion(9, 0))
 		sql += wxT(", ip.proname as laninl");
 	if (collection->GetDatabase()->BackendMinimumVersion(9, 1))

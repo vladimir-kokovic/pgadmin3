@@ -48,8 +48,8 @@ dlgFindReplace::dlgFindReplace(ctlSQLBox *parent) :
 {
 	sqlbox = parent;
 
-	SetFont(settings->GetSystemFont());
 	LoadResource(parent, wxT("dlgFindReplace"));
+	SetFont(settings->GetSystemFont());
 	RestorePosition();
 
 	// Icon

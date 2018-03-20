@@ -20,16 +20,21 @@
 #include <wx/wx.h>
 #include <wx/aui/auibook.h>
 
-class ctlAuiNotebook : public wxAuiNotebook
-{
+class ctlAuiNotebook : public wxAuiNotebook {
 public:
-	ctlAuiNotebook(wxWindow *parent, wxWindowID id = wxID_ANY, const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize, long style = wxAUI_NB_DEFAULT_STYLE) :
-		wxAuiNotebook(parent, id, pos, size, style) { }
+
+    ctlAuiNotebook(wxWindow *parent, wxWindowID id = wxID_ANY, const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize, long style = wxAUI_NB_DEFAULT_STYLE) :
+    wxAuiNotebook(parent, id, pos, size, style)
+    {
+        parentframe = parent;
+    }
+    void *getParentFrame() { return parentframe; }
 
 protected:
-	void OnChildFocus(wxChildFocusEvent &evt);
+    void OnChildFocus(wxChildFocusEvent &evt);
+    void *parentframe; // frmQuery
 
-	DECLARE_EVENT_TABLE()
+    DECLARE_EVENT_TABLE()
 };
 
 #endif

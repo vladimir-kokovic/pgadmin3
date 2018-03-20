@@ -33,8 +33,8 @@ ddTableNameDialog::ddTableNameDialog(	wxWindow *parent,
                                     ) :
 	pgDialog()
 {
-	SetFont(settings->GetSystemFont());
 	LoadResource(parent, wxT("ddTableNameDialog"));
+	SetFont(settings->GetSystemFont());
 	RestorePosition();
 	Init();
 	tabItem = tableItem;

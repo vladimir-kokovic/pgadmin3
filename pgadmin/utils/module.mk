@@ -21,7 +21,9 @@ pgadmin3_SOURCES += \
 	utils/sysSettings.cpp \
 	utils/tabcomplete.c \
 	utils/utffile.cpp \
-	utils/macros.cpp
+	utils/macros.cpp \
+	utils/pasteTables.cpp \
+	utils/vkRossiDFP.cpp
 
 if HAVE_LIBSSH2
 pgadmin3_SOURCES += \

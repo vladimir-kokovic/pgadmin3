@@ -10,7 +10,7 @@
 #######################################################################
 
 pgadmin3_SOURCES += \
-		ctl/calbox.cpp \
+	ctl/calbox.cpp \
         ctl/ctlAuiNotebook.cpp \
         ctl/ctlCheckTreeView.cpp \
         ctl/ctlColourPicker.cpp \
@@ -24,7 +24,7 @@ pgadmin3_SOURCES += \
         ctl/ctlSeclabelPanel.cpp \
         ctl/ctlSecurityPanel.cpp \
         ctl/ctlTree.cpp \
-		ctl/ctlProgressStatusBar.cpp \
+	ctl/ctlProgressStatusBar.cpp \
         ctl/explainCanvas.cpp \
         ctl/explainShape.cpp \
         ctl/timespin.cpp \
@@ -34,7 +34,10 @@ pgadmin3_SOURCES += \
         ctl/xh_ctlchecktreeview.cpp \
         ctl/xh_ctltree.cpp \
         ctl/xh_sqlbox.cpp \
-        ctl/xh_timespin.cpp
+        ctl/xh_timespin.cpp \
+	ctl/xh_searchctrl.cpp \
+	ctl/xh_ctlListViewVirtual.cpp \
+	ctl/xh_ctlListViewVirtualHistory.cpp
 
 EXTRA_DIST += \
         ctl/module.mk

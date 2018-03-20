@@ -187,15 +187,18 @@ pgObject *pgTextSearchDictionaryFactory::CreateObjects(pgCollection *collection,
 {
 	pgTextSearchDictionary *dict = 0;
 
-	pgSet *dictionaries;
-	dictionaries = collection->GetDatabase()->ExecuteSet(
-	                   wxT("SELECT dict.oid, dict.dictname, pg_get_userbyid(dict.dictowner) as dictowner, t.tmplname, dict.dictinitoption, description\n")
-	                   wxT("  FROM pg_ts_dict dict\n")
-	                   wxT("  LEFT OUTER JOIN pg_ts_template t ON t.oid=dict.dicttemplate\n")
-	                   wxT("  LEFT OUTER JOIN pg_description des ON (des.objoid=dict.oid AND des.classoid='pg_ts_dict'::regclass)\n")
-	                   wxT(" WHERE dict.dictnamespace = ") + collection->GetSchema()->GetOidStr()
-	                   + restriction + wxT("\n")
-	                   wxT(" ORDER BY dict.dictname"));
+	pgSet *dictionaries = 0;
+	if (!(collection->GetConnection()->BackendMinimumVersion(8, 3) && collection->GetConnection()->GetIsGreenplumDevel()))
+	{
+		dictionaries = collection->GetDatabase()->ExecuteSet(
+						   wxT("SELECT dict.oid, dict.dictname, pg_get_userbyid(dict.dictowner) as dictowner, t.tmplname, dict.dictinitoption, description\n")
+						   wxT("  FROM pg_ts_dict dict\n")
+						   wxT("  LEFT OUTER JOIN pg_ts_template t ON t.oid=dict.dicttemplate\n")
+						   wxT("  LEFT OUTER JOIN pg_description des ON (des.objoid=dict.oid AND des.classoid='pg_ts_dict'::regclass)\n")
+						   wxT(" WHERE dict.dictnamespace = ") + collection->GetSchema()->GetOidStr()
+						   + restriction + wxT("\n")
+						   wxT(" ORDER BY dict.dictname"));
+	}
 
 	if (dictionaries)
 	{

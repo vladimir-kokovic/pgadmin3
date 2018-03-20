@@ -27,7 +27,7 @@
                 </object>
                 <object class="sizeritem">
                   <object class="wxTextCtrl" name="txtName" />
-                  <flag>wxTOP|wxLEFT|wxRIGHT|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+                  <flag>wxTOP|wxLEFT|wxRIGHT|wxEXPAND</flag>
                   <border>4</border>
                 </object>
                 <object class="sizeritem">
@@ -42,7 +42,7 @@
                   <object class="wxTextCtrl" name="ctrlTable">
                     <enabled>0</enabled>
                   </object>
-                  <flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+                  <flag>wxALL|wxEXPAND</flag>
                   <border>5</border>
                   <option>1</option>
                 </object>
@@ -57,7 +57,7 @@
                   <object class="wxTextCtrl" name="txtComment">
                     <style>wxTE_MULTILINE</style>
                   </object>
-                  <flag>wxTOP|wxLEFT|wxRIGHT|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+                  <flag>wxTOP|wxLEFT|wxRIGHT|wxEXPAND</flag>
                   <border>4</border>
                 </object>
               </object>
@@ -75,7 +75,7 @@
                 <growablerows>0</growablerows>
                 <object class="sizeritem">
                   <object class="wxListBox" name="lbRoles" />
-                  <flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+                  <flag>wxALL|wxEXPAND</flag>
                   <border>5</border>
                   <option>1</option>
                 </object>
@@ -89,7 +89,7 @@
                         <size>101,15</size>
                         <content />
                       </object>
-                      <flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+                      <flag>wxALL|wxEXPAND</flag>
                       <border>5</border>
                       <option>1</option>
                     </object>
@@ -97,7 +97,7 @@
                       <object class="wxButton" name="btnAdd">
                         <label>Add/Change</label>
                       </object>
-                      <flag>wxTOP|wxLEFT|wxRIGHT|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+                      <flag>wxTOP|wxLEFT|wxRIGHT|wxEXPAND</flag>
                       <border>4</border>
                     </object>
                     <object class="sizeritem">
@@ -109,7 +109,7 @@
                       <border>4</border>
                     </object>
                   </object>
-                  <flag>wxALL|wxEXPAND|wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL</flag>
+                  <flag>wxALL|wxEXPAND</flag>
                   <border>5</border>
                   <option>1</option>
                 </object>
@@ -136,7 +136,7 @@
                 </object>
                 <object class="sizeritem">
                   <object class="wxChoice" name="cbCommand" />
-                  <flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+                  <flag>wxALL|wxEXPAND</flag>
                   <border>5</border>
                   <option>1</option>
                 </object>
@@ -153,7 +153,7 @@
                     <size>-1,-1</size>
                     <style>wxTE_MULTILINE</style>
                   </object>
-                  <flag>wxTOP|wxLEFT|wxRIGHT|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+                  <flag>wxTOP|wxLEFT|wxRIGHT|wxEXPAND</flag>
                   <border>5</border>
                   <option>1</option>
                 </object>
@@ -169,7 +169,7 @@
                   <object class="wxTextCtrl" name="ctrlCheckExpr">
                     <style>wxTE_MULTILINE</style>
                   </object>
-                  <flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+                  <flag>wxALL|wxEXPAND</flag>
                   <border>4</border>
                   <option>1</option>
                 </object>
@@ -178,7 +178,7 @@
             <label>Definition</label>
           </object>
         </object>
-        <flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+        <flag>wxALL|wxEXPAND</flag>
         <border>3</border>
       </object>
       <object class="sizeritem">
@@ -189,7 +189,7 @@
             <object class="wxButton" name="wxID_HELP">
               <label>Help</label>
             </object>
-            <flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_TOP</flag>
+            <flag>wxALL|wxEXPAND</flag>
             <border>3</border>
           </object>
           <object class="spacer">
@@ -201,24 +201,24 @@
               <label>&amp;OK</label>
               <default>1</default>
             </object>
-            <flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_TOP</flag>
+            <flag>wxALL|wxEXPAND</flag>
             <border>3</border>
           </object>
           <object class="sizeritem">
             <object class="wxButton" name="wxID_CANCEL">
               <label>&amp;Cancel</label>
             </object>
-            <flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_TOP</flag>
+            <flag>wxALL|wxEXPAND</flag>
             <border>3</border>
           </object>
         </object>
-        <flag>wxTOP|wxLEFT|wxRIGHT|wxEXPAND|wxALIGN_LEFT|wxALIGN_TOP</flag>
+        <flag>wxTOP|wxLEFT|wxRIGHT|wxEXPAND</flag>
       </object>
       <object class="sizeritem">
         <object class="wxStatusBar" name="unkStatusBar">
           <style>wxST_SIZEGRIP</style>
         </object>
-        <flag>wxEXPAND|wxALIGN_CENTRE</flag>
+        <flag>wxEXPAND</flag>
         <border>3</border>
       </object>
     </object>

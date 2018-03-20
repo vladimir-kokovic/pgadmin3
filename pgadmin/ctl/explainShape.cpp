@@ -524,8 +524,13 @@ void ExplainLine::OnDraw(wxDC &dc)
 {
 	if (m_lineControlPoints)
 	{
+#if wxCHECK_VERSION(3, 0, 0)
+		dc.SetPen(*wxThePenList->FindOrCreatePen(*wxBLACK, 1, wxPENSTYLE_SOLID));
+		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(*wxLIGHT_GREY, wxBRUSHSTYLE_SOLID));
+#else
 		dc.SetPen(*wxThePenList->FindOrCreatePen(*wxBLACK, 1, wxSOLID));
 		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(*wxLIGHT_GREY, wxSOLID));
+#endif
 
 		wxPoint *points = new wxPoint[11];
 		wxRealPoint *point0 = (wxRealPoint *) m_lineControlPoints->Item(0)->GetData();

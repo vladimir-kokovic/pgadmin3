@@ -45,8 +45,8 @@ END_EVENT_TABLE()
 
 frmMaintenance::frmMaintenance(frmMain *form, pgObject *obj) : ExecutionDialog(form, obj)
 {
-	SetFont(settings->GetSystemFont());
 	LoadResource(form, wxT("frmMaintenance"));
+	SetFont(settings->GetSystemFont());
 	RestorePosition();
 
 	SetTitle(object->GetTranslatedMessage(MAINTENANCEDIALOGTITLE));

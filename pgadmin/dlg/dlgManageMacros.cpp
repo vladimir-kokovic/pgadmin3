@@ -41,9 +41,9 @@ END_EVENT_TABLE()
 dlgManageMacros::dlgManageMacros(wxWindow *parent, frmMain *form, queryMacroList *macros) :
 	DialogWithHelp(form)
 {
-	SetFont(settings->GetSystemFont());
 	LoadResource(parent, wxT("dlgManageMacros"));
 	RestorePosition();
+	SetFont(settings->GetSystemFont());
 
 	this->macros = macros;
 

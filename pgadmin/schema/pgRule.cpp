@@ -225,10 +225,15 @@ pgObject *pgRuleFactory::CreateObjects(pgCollection *collection, ctlTree *browse
 
 			if (collection->GetDatabase()->connection()->BackendMinimumVersion(8, 3))
 			{
-				if (rules->GetVal(wxT("ev_enabled")) != wxT("D"))
-					rule->iSetEnabled(true);
-				else
+				if (collection->GetDatabase()->connection()->GetIsGreenplumDevel())
 					rule->iSetEnabled(false);
+				else
+				{
+					if (rules->GetVal(wxT("ev_enabled")) != wxT("D"))
+						rule->iSetEnabled(true);
+					else
+						rule->iSetEnabled(false);
+				}
 			}
 
 			rule->iSetParentIsTable(rules->GetBool(wxT("parentistable")));

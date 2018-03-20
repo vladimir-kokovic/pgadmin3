@@ -50,6 +50,7 @@ TMP_ui += \
 	ui/dlgPackage.xrc \
 	ui/dlgPgpassConfig.xrc \
 	ui/dlgPolicy.xrc \
+	ui/dlgQueryHistory.xrc \
 	ui/dlgReassignDropOwned.xrc \
 	ui/dlgRepCluster.xrc \
 	ui/dlgRepClusterUpgrade.xrc \
@@ -95,7 +96,9 @@ TMP_ui += \
 	ui/frmPassword.xrc \
 	ui/frmReport.xrc \
 	ui/frmRestore.xrc \
-	ui/dlgResourceGroup.xrc
+	ui/dlgResourceGroup.xrc \
+	ui/frmCopyTables.xrc \
+	ui/dlgEditGridOptionsFilter.xrc
 
 EXTRA_DIST += \
 	ui/module.mk \

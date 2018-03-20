@@ -25,6 +25,7 @@
 #include "schema/pgLanguage.h"
 #include "schema/pgSchema.h"
 #include "schema/pgEventTrigger.h"
+#include "schema/asoft.h"
 #include "slony/slCluster.h"
 #include "frm/frmHint.h"
 #include "frm/frmReport.h"
@@ -621,6 +622,7 @@ void pgDatabase::ShowTreeDetail(ctlTree *browser, frmMain *form, ctlListView *pr
 			if (BackendMinimumVersion(9, 6)
 			    && (settings->GetDisplayOption(_("Access Methods"))))
 				browser->AppendCollection(this, accessMethodFactory);
+			browser->AppendCollection(this, asoftgroupfactory);
 			if (settings->GetDisplayOption(_("Catalogs")))
 				browser->AppendCollection(this, catalogFactory);
 			if (settings->GetDisplayOption(_("Casts")))

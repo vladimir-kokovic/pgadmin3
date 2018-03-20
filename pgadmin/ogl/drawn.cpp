@@ -420,7 +420,7 @@ void wxOpSetGDI::Do(wxDC &dc, double WXUNUSED(xoffset), double WXUNUSED(yoffset)
 		{
 			// Check for overriding this operation for outline
 			// colour
-			if (m_image->m_outlineColours.Member((wxObject *)m_gdiIndex))
+			if (m_image->m_outlineColours.Member((wxObject *)(reinterpret_cast<void *>(m_gdiIndex))))
 			{
 				if (m_image->m_outlinePen)
 					dc.SetPen(* m_image->m_outlinePen);
@@ -441,17 +441,21 @@ void wxOpSetGDI::Do(wxDC &dc, double WXUNUSED(xoffset), double WXUNUSED(yoffset)
 		{
 			// Check for overriding this operation for outline or fill
 			// colour
-			if (m_image->m_outlineColours.Member((wxObject *)m_gdiIndex))
+			if (m_image->m_outlineColours.Member((wxObject *)(reinterpret_cast<void *>(m_gdiIndex))))
 			{
 				// Need to construct a brush to match the outline pen's colour
 				if (m_image->m_outlinePen)
 				{
+#if wxCHECK_VERSION(3, 0, 0)
+					wxBrush *br = wxTheBrushList->FindOrCreateBrush(m_image->m_outlinePen->GetColour(), wxBRUSHSTYLE_SOLID);
+#else
 					wxBrush *br = wxTheBrushList->FindOrCreateBrush(m_image->m_outlinePen->GetColour(), wxSOLID);
+#endif
 					if (br)
 						dc.SetBrush(* br);
 				}
 			}
-			else if (m_image->m_fillColours.Member((wxObject *)m_gdiIndex))
+			else if (m_image->m_fillColours.Member((wxObject *)(reinterpret_cast<void *>(m_gdiIndex))))
 			{
 				if (m_image->m_fillBrush)
 				{
@@ -2440,7 +2444,7 @@ void wxPseudoMetaFile::SetPen(wxPen *pen, bool isOutline)
 
 	if (isOutline)
 	{
-		m_outlineColours.Append((wxObject *) (n - 1));
+		m_outlineColours.Append((wxObject *) (reinterpret_cast<void *>((n - 1))));
 	}
 }
 
@@ -2455,7 +2459,7 @@ void wxPseudoMetaFile::SetBrush(wxBrush *brush, bool isFill)
 
 	if (isFill)
 	{
-		m_fillColours.Append((wxObject *) (n - 1));
+		m_fillColours.Append((wxObject *) (reinterpret_cast<void *>((n - 1))));
 	}
 }
 

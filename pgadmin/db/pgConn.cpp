@@ -192,6 +192,19 @@ pgConn::pgConn(const wxString &server, const wxString &service, const wxString &
 		}
 	}
 
+#ifdef VKPQEXEC
+	int query_timeout = PQgetQueryTimeout();
+	if (query_timeout != 10)
+	{
+		PQsetQueryTimeout(10);
+	}
+#else
+	int query_timeout = 10;
+#endif
+	wxString vkstr;
+	vkstr.Printf(_(" connect_timeout=%d"), query_timeout);
+	connstr.Append(vkstr);
+
 	connstr.Trim(false);
 
 	dbHost = server;
@@ -371,6 +384,7 @@ pgConn *pgConn::Duplicate(const wxString &_appName)
 	res->patchVersion = patchVersion;
 	res->isEdb = isEdb;
 	res->isGreenplum = isGreenplum;
+	res->isGreenplumDevel = isGreenplumDevel;
 	res->isHawq = isHawq;
 	res->reservedNamespaces = reservedNamespaces;
 
@@ -415,6 +429,11 @@ bool pgConn::GetIsGreenplum()
 	// to retrieve Greenplum flag
 	BackendMinimumVersion(0, 0);
 	return isGreenplum;
+}
+bool pgConn::GetIsGreenplumDevel()
+{
+	// to retrieve Greenplum devel flag
+	return isGreenplumDevel;
 }
 
 bool pgConn::GetIsHawq()
@@ -479,6 +498,10 @@ bool pgConn::BackendMinimumVersion(int major, int minor)
 	{
 		wxString version = GetVersionString();
 		sscanf(version.ToAscii(), "%*s %d.%d.%d", &majorVersion, &minorVersion, &patchVersion);
+		if (minorVersion < 0 || minorVersion > 99)
+		{
+			minorVersion = patchVersion = 0;
+		}
 		isEdb = version.Upper().Matches(wxT("ENTERPRISEDB*"));
 
 		// EnterpriseDB 8.3 beta 1 & 2 and possibly later actually have PostgreSQL 8.2 style
@@ -492,6 +515,9 @@ bool pgConn::BackendMinimumVersion(int major, int minor)
 		}
 
 		isGreenplum = version.Upper().Matches(wxT("*GREENPLUM DATABASE*"));
+		if (isGreenplum) {
+			isGreenplumDevel = version.Upper().Matches(wxT("*DEVEL*")) || version.Upper().Matches(wxT("*BUILD DEV*"));
+		}
 		isHawq = version.Upper().Matches(wxT("*GREENPLUM DATABASE*")) && version.Upper().Matches(wxT("*HAWQ*"));;
 	}
 
@@ -743,19 +769,17 @@ bool pgConn::ExecuteVoid(const wxString &sql, bool reportError)
 
 	// Execute the query and get the status.
 	PGresult *qryRes;
-
 	wxLogSql(wxT("Void query (%s:%d): %s"), this->GetHost().c_str(), this->GetPort(), sql.c_str());
 
 	SetConnCancel();
-	qryRes = PQexec(conn, sql.mb_str(*conv));
+	qryRes = vkPQexec(conn, sql.mb_str(*conv));
 	ResetConnCancel();
 
 	lastResultStatus = PQresultStatus(qryRes);
 	SetLastResultError(qryRes);
 
 	// Check for errors
-	if (lastResultStatus != PGRES_TUPLES_OK &&
-	        lastResultStatus != PGRES_COMMAND_OK)
+	if (lastResultStatus != PGRES_TUPLES_OK && lastResultStatus != PGRES_COMMAND_OK)
 	{
 		LogError(!reportError);
 		PQclear(qryRes);
@@ -767,7 +791,82 @@ bool pgConn::ExecuteVoid(const wxString &sql, bool reportError)
 	return  true;
 }
 
+//////////////////////////////////////////////////////////////////////////
+// Execute SQL with optional result set
+//////////////////////////////////////////////////////////////////////////
+PGresult * pgConn::ExecuteOptionalResult(const wxString &sql, bool reportError)
+{
+	PGresult *qryRes = 0;
 
+	if (GetStatus() != PGCONN_OK)
+		return qryRes;
+
+	// Execute the query and get the status.
+
+	wxLogSql(wxT("Void query (%s:%d): %s"), this->GetHost().c_str(), this->GetPort(), sql.c_str());
+	qryRes = vkPQexec(conn, sql.mb_str(*conv));
+	lastResultStatus = PQresultStatus(qryRes);
+	SetLastResultError(qryRes);
+
+	// Check for errors
+	if (lastResultStatus != PGRES_COMMAND_OK && lastResultStatus != PGRES_COPY_IN && lastResultStatus != PGRES_COPY_OUT)
+	{
+		LogError(!reportError);
+		PQclear(qryRes);
+		qryRes = 0;
+	}
+
+	return qryRes;
+}
+
+wxArrayString pgConn::ExecuteScalarMulti(const wxString &sql, bool reportError)
+{
+	resultsArray.Clear();
+
+	if (GetStatus() == PGCONN_OK)
+	{
+		wxCharBuffer queryBuf = sql.mb_str(*conv);
+
+		// Execute the query and get the status.
+		PGresult *qryRes;
+		wxLogSql(wxT("ScalarMulti query (%s:%d): %s"), this->GetHost().c_str(), this->GetPort(), sql.c_str());
+
+		SetConnCancel();
+		PQsendQuery(conn, queryBuf);
+		ResetConnCancel();
+
+		int n = 0;
+		while (qryRes = PQgetResult(conn))
+		{
+			n++;
+			lastResultStatus = PQresultStatus(qryRes);
+			SetLastResultError(qryRes);
+
+			// Check for errors
+			if (lastResultStatus != PGRES_TUPLES_OK && lastResultStatus != PGRES_COMMAND_OK)
+			{
+				LogError(!reportError);
+				PQclear(qryRes);
+				return resultsArray;
+			}
+
+			wxString result;
+			// Check for a returned row
+			if (PQntuples(qryRes) > 0)
+			{
+				// Retrieve the query result and return it.
+				result = wxString(PQgetvalue(qryRes, 0, 0), *conv);
+			}
+			resultsArray.Add(result);
+			wxLogSql(wxT("ScalarMulti query result%d: %s"), n, result.c_str());
+
+			// Cleanup
+			PQclear(qryRes);
+		}
+	}
+
+	return resultsArray;
+}
 
 wxString pgConn::ExecuteScalar(const wxString &sql, bool reportError)
 {
@@ -780,7 +879,7 @@ wxString pgConn::ExecuteScalar(const wxString &sql, bool reportError)
 		wxLogSql(wxT("Scalar query (%s:%d): %s"), this->GetHost().c_str(), this->GetPort(), sql.c_str());
 
 		SetConnCancel();
-		qryRes = PQexec(conn, sql.mb_str(*conv));
+		qryRes = vkPQexec(conn, sql.mb_str(*conv));
 		ResetConnCancel();
 
 		lastResultStatus = PQresultStatus(qryRes);
@@ -823,7 +922,7 @@ pgSet *pgConn::ExecuteSet(const wxString &sql, bool reportError)
 		wxLogSql(wxT("Set query (%s:%d): %s"), this->GetHost().c_str(), this->GetPort(), sql.c_str());
 
 		SetConnCancel();
-		qryRes = PQexec(conn, sql.mb_str(*conv));
+		qryRes = vkPQexec(conn, sql.mb_str(*conv));
 		ResetConnCancel();
 
 		lastResultStatus = PQresultStatus(qryRes);
@@ -864,7 +963,7 @@ bool pgConn::StartCopy(const wxString query)
 	PGresult *qryRes;
 
 	wxLogSql(wxT("COPY query (%s:%d): %s"), this->GetHost().c_str(), this->GetPort(), query.c_str());
-	qryRes = PQexec(conn, query.mb_str(*conv));
+	qryRes = vkPQexec(conn, query.mb_str(*conv));
 	lastResultStatus = PQresultStatus(qryRes);
 	SetLastResultError(qryRes);
 
@@ -979,12 +1078,12 @@ bool pgConn::IsAlive()
 		return false;
 	}
 
-	PGresult *qryRes = PQexec(conn, "SELECT 1;");
+	PGresult *qryRes = vkPQexec(conn, "SELECT 1;");
 	lastResultStatus = PQresultStatus(qryRes);
 	if (lastResultStatus != PGRES_TUPLES_OK)
 	{
 		PQclear(qryRes);
-		qryRes = PQexec(conn, "ROLLBACK TRANSACTION; SELECT 1;");
+		qryRes = vkPQexec(conn, "ROLLBACK TRANSACTION; SELECT 1;");
 		lastResultStatus = PQresultStatus(qryRes);
 		SetLastResultError(qryRes);
 	}
@@ -1324,4 +1423,36 @@ void pgError::SetError(PGresult *_res, wxMBConv *_conv)
 		errMsg += context;
 	}
 	formatted_msg = errMsg;
+}
+
+#ifdef VKPQEXEC
+static void myLogNotice(const wxChar *szFormat, ...)
+{
+	wxLogLevel savedlogLevel = sysLogger::logLevel;
+	sysLogger::logLevel = LOG_NOTICE;
+	va_list argptr;
+	va_start(argptr, szFormat);
+#if wxCHECK_VERSION(2, 9, 0)
+	wxChar s_szBuf[8192];
+	if (sysLogger::logLevel >= LOG_NOTICE)
+	{
+		wxVsnprintf(s_szBuf, WXSIZEOF(s_szBuf), szFormat, argptr);
+		wxLog::OnLog(wxLOG_Notice, s_szBuf, time(NULL));
+	}
+#else
+	wxVLogNotice(szFormat, argptr);
+#endif
+	va_end(argptr);
+	sysLogger::logLevel = savedlogLevel;
+}
+#endif
+
+PGresult * pgConn::vkPQexec(PGconn *conn, const char *query)
+{
+#ifdef VKPQEXEC
+	int query_timeout = PQgetQueryTimeout();
+	::myLogNotice(wxT("vkPQexec PQgetQueryTimeout=%d"), query_timeout);
+#endif
+	PGresult *qryRes = PQexec(conn, query);
+	return qryRes;
 }

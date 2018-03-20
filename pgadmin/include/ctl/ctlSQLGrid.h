@@ -15,6 +15,7 @@
 // wxWindows headers
 #include <wx/grid.h>
 
+#include <utils/vkRossiDFP.h>
 
 class ctlSQLGrid : public wxGrid
 {
@@ -29,7 +30,9 @@ public:
 	{
 		return false;
 	}
-	int Copy();
+	int Copy(bool sum = false);
+        vkRossiDFP xSum;
+        int xSumCnt;
 
 	virtual bool CheckRowPresent(int row)
 	{

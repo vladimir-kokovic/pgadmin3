@@ -24,15 +24,30 @@
 //
 // This number MUST be incremented if changing any of the default perspectives
 //
-#define FRMEDITGRID_PERSPECTIVE_VER wxT("8189")
+#define FRMEDITGRID_PERSPECTIVE_VER wxT("8191")
 
 #ifdef __WXMAC__
-#define FRMEDITGRID_DEFAULT_PERSPECTIVE wxT("layout2|name=toolBar;caption=Tool bar;state=16788208;dir=1;layer=10;row=0;pos=0;prop=100000;bestw=240;besth=23;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=limitBar;caption=Limit bar;state=16788208;dir=1;layer=10;row=0;pos=243;prop=100000;bestw=120;besth=21;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=415;floaty=793;floatw=-1;floath=-1|name=sqlGrid;caption=Data grid;state=1020;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=300;besth=200;minw=200;minh=100;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=scratchPad;caption=Scratch pad;state=16779260;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=300;besth=150;minw=200;minh=100;maxw=-1;maxh=-1;floatx=347;floaty=725;floatw=-1;floath=-1|dock_size(1,10,0)=25|dock_size(5,0,0)=84|dock_size(3,0,0)=173|")
+#define FRMEDITGRID_DEFAULT_PERSPECTIVE \
+wxT("layout2|name=toolBar;caption=Tool bar;state=16788208;dir=1;layer=10;row=0;pos=0;prop=100000;bestw=240;besth=23;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|\
+name=limitBar;caption=Limit bar;state=16788208;dir=1;layer=10;row=0;pos=243;prop=100000;bestw=120;besth=21;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=415;floaty=793;floatw=-1;floath=-1|\
+name=searchBar;caption=Search result;state=16788208;dir=1;layer=10;row=0;pos=443;prop=100000;bestw=234;besth=21;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=415;floaty=793;floatw=-1;floath=-1|\
+name=sqlGrid;caption=Data grid;state=1020;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=300;besth=200;minw=200;minh=100;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|\
+name=scratchPad;caption=Scratch pad;state=16779260;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=300;besth=150;minw=200;minh=100;maxw=-1;maxh=-1;floatx=347;floaty=725;floatw=-1;floath=-1|dock_size(1,10,0)=25|dock_size(5,0,0)=84|dock_size(3,0,0)=173|")
 #else
 #ifdef __WXGTK__
-#define FRMEDITGRID_DEFAULT_PERSPECTIVE wxT("layout2|name=toolBar;caption=Tool bar;state=16788208;dir=1;layer=10;row=0;pos=0;prop=100000;bestw=305;besth=30;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=limitBar;caption=Limit bar;state=16788208;dir=1;layer=10;row=0;pos=243;prop=100000;bestw=120;besth=30;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=415;floaty=793;floatw=-1;floath=-1|name=sqlGrid;caption=Data grid;state=1020;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=300;besth=200;minw=200;minh=100;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=scratchPad;caption=Scratch pad;state=16779260;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=300;besth=150;minw=200;minh=100;maxw=-1;maxh=-1;floatx=347;floaty=725;floatw=-1;floath=-1|dock_size(1,10,0)=25|dock_size(5,0,0)=84|dock_size(3,0,0)=173|")
+#define FRMEDITGRID_DEFAULT_PERSPECTIVE \
+wxT("layout2|name=toolBar;caption=Tool bar;state=16788208;dir=1;layer=10;row=0;pos=0;prop=100000;bestw=305;besth=30;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|\
+name=limitBar;caption=Limit bar;state=16788208;dir=1;layer=10;row=0;pos=243;prop=100000;bestw=120;besth=30;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=415;floaty=793;floatw=-1;floath=-1|\
+name=searchBar;caption=Search result;state=16788208;dir=1;layer=10;row=0;pos=443;prop=100000;bestw=234;besth=30;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=415;floaty=793;floatw=-1;floath=-1|\
+name=sqlGrid;caption=Data grid;state=1020;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=300;besth=200;minw=200;minh=100;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|\
+name=scratchPad;caption=Scratch pad;state=16779260;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=300;besth=150;minw=200;minh=100;maxw=-1;maxh=-1;floatx=347;floaty=725;floatw=-1;floath=-1|dock_size(1,10,0)=25|dock_size(5,0,0)=84|dock_size(3,0,0)=173|")
 #else
-#define FRMEDITGRID_DEFAULT_PERSPECTIVE wxT("layout2|name=toolBar;caption=Tool bar;state=16788208;dir=1;layer=10;row=0;pos=0;prop=100000;bestw=232;besth=23;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=limitBar;caption=Limit bar;state=16788208;dir=1;layer=10;row=0;pos=243;prop=100000;bestw=100;besth=21;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=415;floaty=793;floatw=-1;floath=-1|name=sqlGrid;caption=Data grid;state=1020;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=300;besth=200;minw=200;minh=100;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=scratchPad;caption=Scratch pad;state=16779260;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=300;besth=150;minw=200;minh=100;maxw=-1;maxh=-1;floatx=347;floaty=725;floatw=-1;floath=-1|dock_size(1,10,0)=25|dock_size(5,0,0)=84|dock_size(3,0,0)=173|")
+#define FRMEDITGRID_DEFAULT_PERSPECTIVE \
+wxT("layout2|name=toolBar;caption=Tool bar;state=16788208;dir=1;layer=10;row=0;pos=0;prop=100000;bestw=232;besth=23;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|\
+name=limitBar;caption=Limit bar;state=16788208;dir=1;layer=10;row=0;pos=243;prop=100000;bestw=100;besth=21;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=415;floaty=793;floatw=-1;floath=-1|\
+name=searchBar;caption=Search result;state=16788208;dir=1;layer=10;row=0;pos=443;prop=100000;bestw=234;besth=21;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=415;floaty=793;floatw=-1;floath=-1|\
+name=sqlGrid;caption=Data grid;state=1020;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=300;besth=200;minw=200;minh=100;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|\
+name=scratchPad;caption=Scratch pad;state=16779260;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=300;besth=150;minw=200;minh=100;maxw=-1;maxh=-1;floatx=347;floaty=725;floatw=-1;floath=-1|dock_size(1,10,0)=25|dock_size(5,0,0)=84|dock_size(3,0,0)=173|")
 #endif
 #endif
 
@@ -304,6 +319,7 @@ private:
 	void OnToggleToolBar(wxCommandEvent &event);
 	void OnAuiUpdate(wxAuiManagerEvent &event);
 	void OnDefaultView(wxCommandEvent &event);
+	void OnText(wxCommandEvent &event);
 
 	wxAuiManager manager;
 	ctlSQLEditGrid *sqlGrid;
@@ -315,6 +331,7 @@ private:
 	ctlMenuToolbar *toolBar;
 	wxComboBox *cbLimit;
 	wxTextCtrl *scratchPad;
+	wxSearchCtrl *searchctrl;
 
 	char relkind;
 	OID relid;
@@ -327,6 +344,7 @@ private:
 	int limit;
 	sqlCell *editorCell;
 	bool closing;
+	bool ontextactive;
 
 	DECLARE_EVENT_TABLE()
 };

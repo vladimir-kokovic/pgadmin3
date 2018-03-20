@@ -47,8 +47,8 @@ frmBackupServer::frmBackupServer(frmMain *form, pgObject *obj) : ExternProcessDi
 {
 	object = obj;
 
-	SetFont(settings->GetSystemFont());
 	LoadResource(form, wxT("frmBackupServer"));
+	SetFont(settings->GetSystemFont());
 	RestorePosition();
 
 	SetTitle(object->GetTranslatedMessage(BACKUPSERVERTITLE));

@@ -23,16 +23,16 @@
 ///////////////////////////////////////////////////////////////////////////
 
 #include "postgres.h"
-#include "parser/keywords.h"
+#include "parser/keywords_pgadmin.h"
 
 /*
  * List of (keyword-name, keyword-token-value) pairs.
  */
 #define PG_KEYWORD(a,b,c) {a,c},
-const ScanKeyword ScanKeywords[] = {
+const ScanKeyword_pgadmin ScanKeywords_pgadmin[] = {
 #include <parser/kwlist.h>
 };
-const int NumScanKeywords = lengthof(ScanKeywords);
+const int NumScanKeywords_pgadmin = lengthof(ScanKeywords_pgadmin);
 
 /*
  * Additional pairs here. They need to live in a separate array since
@@ -42,7 +42,7 @@ const int NumScanKeywords = lengthof(ScanKeywords);
  *              search is used to locate entries.
  */
 #define PG_KEYWORD2(a,b) {a,b},
-const ScanKeyword ScanKeywordsExtra[] = {
+const ScanKeyword_pgadmin ScanKeywordsExtra[] = {
 	PG_KEYWORD2("connect", RESERVED_KEYWORD)
 	PG_KEYWORD2("convert", RESERVED_KEYWORD)
 	PG_KEYWORD2("distributed", UNRESERVED_KEYWORD)
@@ -66,7 +66,6 @@ const ScanKeyword ScanKeywordsExtra[] = {
 	PG_KEYWORD2("varchar2", RESERVED_KEYWORD)
 };
 const int NumScanKeywordsExtra = lengthof(ScanKeywordsExtra);
-
 /*
  * ScanKeywordLookup - see if a given word is a keyword
  *
@@ -79,74 +78,74 @@ const int NumScanKeywordsExtra = lengthof(ScanKeywordsExtra);
  * keywords are to be matched in this way even though non-keyword identifiers
  * receive a different case-normalization mapping.
  */
-const ScanKeyword *
-ScanKeywordLookup(const char *text)
+const ScanKeyword_pgadmin *
+ScanKeywordLookup_pgadmin(const char *text)
 {
-    int			len,
-                i;
-    char		word[NAMEDATALEN];
-    const ScanKeyword *low;
-    const ScanKeyword *high;
+	int len,
+		i;
+	char word[NAMEDATALEN];
+	const ScanKeyword_pgadmin *low;
+	const ScanKeyword_pgadmin *high;
 
-    len = strlen(text);
-    /* We assume all keywords are shorter than NAMEDATALEN. */
-    if (len >= NAMEDATALEN)
-        return NULL;
+	len = strlen(text);
+	/* We assume all keywords are shorter than NAMEDATALEN. */
+	if (len >= NAMEDATALEN)
+		return NULL;
 
-    /*
-     * Apply an ASCII-only downcasing.	We must not use tolower() since it may
-     * produce the wrong translation in some locales (eg, Turkish).
-     */
-    for (i = 0; i < len; i++)
-    {
-        char		ch = text[i];
+	/*
+	 * Apply an ASCII-only downcasing.	We must not use tolower() since it may
+	 * produce the wrong translation in some locales (eg, Turkish).
+	 */
+	for (i = 0; i < len; i++)
+	{
+		char ch = text[i];
 
-        if (ch >= 'A' && ch <= 'Z')
-            ch += 'a' - 'A';
-        word[i] = ch;
-    }
-    word[len] = '\0';
+		if (ch >= 'A' && ch <= 'Z')
+			ch += 'a' - 'A';
+		word[i] = ch;
+	}
+	word[len] = '\0';
 
-    /*
-     * Now do a binary search using plain strcmp() comparison.
-     */
-    low = &ScanKeywords[0];
-    high = endof(ScanKeywords) - 1;
-    while (low <= high)
-    {
-        const ScanKeyword *middle;
-        int			difference;
+	/*
+	 * Now do a binary search using plain strcmp() comparison.
+	 */
+	low = &ScanKeywords_pgadmin[0];
+	high = endof(ScanKeywords_pgadmin) - 1;
+	while (low <= high)
+	{
+		const ScanKeyword_pgadmin *middle;
+		int difference;
 
-        middle = low + (high - low) / 2;
-        difference = strcmp(middle->name, word);
-        if (difference == 0)
-            return middle;
-        else if (difference < 0)
-            low = middle + 1;
-        else
-            high = middle - 1;
-    }
+		middle = low + (high - low) / 2;
+		difference = strcmp(middle->name, word);
+		if (difference == 0)
+			return middle;
+		else if (difference < 0)
+			low = middle + 1;
+		else
+			high = middle - 1;
+	}
 
 	/*
 	 * If not found, also do a binary search in the list of extra
 	 * keywords.
 	 */
-    low = &ScanKeywordsExtra[0];
-    high = endof(ScanKeywordsExtra) - 1;
-    while (low <= high)
-    {
-        const ScanKeyword *middle;
-        int			difference;
+	low = &ScanKeywordsExtra[0];
+	high = endof(ScanKeywordsExtra) - 1;
+	while (low <= high)
+	{
+		const ScanKeyword_pgadmin *middle;
+		int difference;
 
-        middle = low + (high - low) / 2;
-        difference = strcmp(middle->name, word);
-        if (difference == 0)
-            return middle;
-        else if (difference < 0)
-            low = middle + 1;
-        else
-            high = middle - 1;
-    }
+		middle = low + (high - low) / 2;
+		difference = strcmp(middle->name, word);
+		if (difference == 0)
+			return middle;
+		else if (difference < 0)
+			low = middle + 1;
+		else
+			high = middle - 1;
+	}
 
-    return NULL;
+	return NULL;
 }

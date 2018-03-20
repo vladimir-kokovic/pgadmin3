@@ -42,6 +42,7 @@ pgadmin3_SOURCES += \
 	include/dlg/dlgPackage.h \
 	include/dlg/dlgPgpassConfig.h \
 	include/dlg/dlgProperty.h \
+	include/dlg/dlgQueryHistory.h \
 	include/dlg/dlgReassignDropOwned.h \
 	include/dlg/dlgRole.h \
 	include/dlg/dlgRule.h \
@@ -65,7 +66,8 @@ pgadmin3_SOURCES += \
 	include/dlg/dlgManageMacros.h \
 	include/dlg/dlgExtTable.h \
 	include/dlg/dlgSelectDatabase.h \
-	include/dlg/dlgResourceGroup.h
+	include/dlg/dlgResourceGroup.h \
+	include/dlg/dlgEditGridOptionsFilter.h
 
 EXTRA_DIST += \
         include/dlg/module.mk

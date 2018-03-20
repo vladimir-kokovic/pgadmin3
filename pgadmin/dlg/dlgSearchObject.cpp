@@ -48,8 +48,8 @@ dlgSearchObject::dlgSearchObject(frmMain *p, pgDatabase *db, pgObject *obj)
 	header = wxT("");
 	currentdb = db;
 
-	SetFont(settings->GetSystemFont());
 	LoadResource(p, wxT("dlgSearchObject"));
+	SetFont(settings->GetSystemFont());
 	statusBar = XRCCTRL(*this, "unkStatusBar", wxStatusBar);
 
 	// Icon
@@ -606,6 +606,16 @@ void dlgSearchObject::OnSearch(wxCommandEvent &ev)
 		else // use pd as a subquery
 			pd += wxT(" pd ");
 
+        wxString vk11;
+        if (currentdb->BackendMinimumVersion(11, 0))
+        {
+            vk11 = wxT(" p_.prokind='f' ");
+        }
+        else
+        {
+            vk11 = wxT(" p_.proisagg = false ");
+        }
+
 		searchSQL += wxT("SELECT CASE")
 		             wxT("	WHEN c.relkind = 'r' THEN 'Tables'")
 		             wxT("	WHEN c.relkind = 'S' THEN 'Sequences'")
@@ -641,7 +651,7 @@ void dlgSearchObject::OnSearch(wxCommandEvent &ev)
 		             wxT("       ':Schemas/' || n.nspname || '/' ||")
 		             wxT("         case when p_t.typname = 'trigger' then ':Trigger Functions/' else ':Functions/' end || p_.proname AS path, n.nspname")
 		             wxT("  from ") + pd +
-		             wxT("  join pg_proc p_  on pd.relname = 'pg_proc' and pd.objoid = p_.oid and p_.proisagg = false")
+		             wxT("  join pg_proc p_  on pd.relname = 'pg_proc' and pd.objoid = p_.oid and ") + vk11 +
 		             wxT("	left join pg_type p_t on p_.prorettype = p_t.oid")
 		             wxT("	left join pg_namespace n on p_.pronamespace = n.oid")
 		             wxT("	union")

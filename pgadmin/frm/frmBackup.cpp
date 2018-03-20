@@ -78,8 +78,8 @@ frmBackup::frmBackup(frmMain *form, pgObject *obj) : ExternProcessDialog(form)
 {
 	object = obj;
 
-	SetFont(settings->GetSystemFont());
 	LoadResource(form, wxT("frmBackup"));
+	SetFont(settings->GetSystemFont());
 	RestorePosition();
 
 	SetTitle(object->GetTranslatedMessage(BACKUPTITLE));

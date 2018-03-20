@@ -49,6 +49,7 @@
 #include "images/clip_paste.pngc"
 
 #define CTRLID_LIMITCOMBO       4226
+#define CTRLID_SEARCHCTRL       4227
 
 
 BEGIN_EVENT_TABLE(frmEditGrid, pgFrame)
@@ -83,12 +84,14 @@ BEGIN_EVENT_TABLE(frmEditGrid, pgFrame)
 	EVT_GRID_CELL_RIGHT_CLICK(  frmEditGrid::OnCellRightClick)
 	EVT_GRID_LABEL_RIGHT_CLICK( frmEditGrid::OnLabelRightClick)
 	EVT_AUI_PANE_BUTTON(        frmEditGrid::OnAuiUpdate)
+	EVT_TEXT(CTRLID_SEARCHCTRL,	frmEditGrid::OnText)
 END_EVENT_TABLE()
 
 
 frmEditGrid::frmEditGrid(frmMain *form, const wxString &_title, pgConn *_conn, pgSchemaObject *obj, bool pkAscending)
 	: pgFrame(NULL, _title)
 {
+	ontextactive = false;
 	closing = false;
 
 	SetIcon(*viewdata_png_ico);
@@ -146,14 +149,18 @@ frmEditGrid::frmEditGrid(frmMain *form, const wxString &_title, pgConn *_conn, p
 	// Setup the limit bar
 #ifndef __WXMAC__
 	cbLimit = new wxComboBox(this, CTRLID_LIMITCOMBO, wxEmptyString, wxPoint(0, 0), wxSize(GetCharWidth() * 12, -1), wxArrayString(), wxCB_DROPDOWN);
+//	searchctrl = new wxSearchCtrl(this, CTRLID_SEARCHCTRL, wxEmptyString, wxPoint(0, 0), wxSize(GetCharWidth() * 12, -1));
 #else
 	cbLimit = new wxComboBox(this, CTRLID_LIMITCOMBO, wxEmptyString, wxPoint(0, 0), wxSize(GetCharWidth() * 24, -1), wxArrayString(), wxCB_DROPDOWN);
+//	searchctrl = new wxSearchCtrl(this, CTRLID_SEARCHCTRL, wxEmptyString, wxPoint(0, 0), wxSize(GetCharWidth() * 24, -1));
 #endif
 	cbLimit->Append(_("No limit"));
 	cbLimit->Append(_("1000 rows"));
 	cbLimit->Append(_("500 rows"));
 	cbLimit->Append(_("100 rows"));
 	cbLimit->SetValue(_("No limit"));
+
+	searchctrl = new wxSearchCtrl(this, CTRLID_SEARCHCTRL, wxEmptyString, wxDefaultPosition, wxDefaultSize);
 
 	// Finally, the scratchpad
 	scratchPad = new wxTextCtrl(this, -1, wxT(""), wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE | wxHSCROLL);
@@ -240,6 +247,7 @@ frmEditGrid::frmEditGrid(frmMain *form, const wxString &_title, pgConn *_conn, p
 	// Kickstart wxAUI
 	manager.AddPane(toolBar, wxAuiPaneInfo().Name(wxT("toolBar")).Caption(_("Tool bar")).ToolbarPane().Top().LeftDockable(false).RightDockable(false));
 	manager.AddPane(cbLimit, wxAuiPaneInfo().Name(wxT("limitBar")).Caption(_("Limit bar")).ToolbarPane().Top().LeftDockable(false).RightDockable(false));
+	manager.AddPane(searchctrl, wxAuiPaneInfo().Name(wxT("searchBar")).Caption(_("Search result")).ToolbarPane().Top().LeftDockable(false).RightDockable(false));
 	manager.AddPane(sqlGrid, wxAuiPaneInfo().Name(wxT("sqlGrid")).Caption(_("Data grid")).Center().CaptionVisible(false).CloseButton(false).MinSize(wxSize(200, 100)).BestSize(wxSize(300, 200)));
 	manager.AddPane(scratchPad, wxAuiPaneInfo().Name(wxT("scratchPad")).Caption(_("Scratch pad")).Bottom().MinSize(wxSize(200, 100)).BestSize(wxSize(300, 150)));
 
@@ -251,6 +259,7 @@ frmEditGrid::frmEditGrid(frmMain *form, const wxString &_title, pgConn *_conn, p
 	// and reset the captions for the current language
 	manager.GetPane(wxT("toolBar")).Caption(_("Tool bar"));
 	manager.GetPane(wxT("limitBar")).Caption(_("Limit bar"));
+	manager.GetPane(wxT("searchctrl")).Caption(_("Search result"));
 	manager.GetPane(wxT("sqlGrid")).Caption(_("Data grid"));
 	manager.GetPane(wxT("scratchPad")).Caption(_("Scratch pad"));
 
@@ -384,6 +393,7 @@ void frmEditGrid::OnDefaultView(wxCommandEvent &event)
 	// Reset the captions for the current language
 	manager.GetPane(wxT("toolBar")).Caption(_("Tool bar"));
 	manager.GetPane(wxT("limitBar")).Caption(_("Limit bar"));
+	manager.GetPane(wxT("searchBar")).Caption(_("Search result"));
 	manager.GetPane(wxT("sqlGrid")).Caption(_("Data grid"));
 	manager.GetPane(wxT("scratchPad")).Caption(_("Scratch pad"));
 
@@ -748,7 +758,17 @@ void frmEditGrid::OnCopy(wxCommandEvent &ev)
 			{
 				if (sqlGrid->GetTable()->IsColText(sqlGrid->GetGridCursorCol()))
 				{
+#if wxCHECK_VERSION(3, 0, 0)
+					wxGridCellEditor *gce = sqlGrid->GetCellEditor(sqlGrid->GetGridCursorRow(), sqlGrid->GetGridCursorCol());
+					wxStyledTextCtrl *text = 0;
+					if (gce)
+					{
+						text = (wxStyledTextCtrl *)gce->GetControl();
+						gce->DecRef();
+					}
+#else
 					wxStyledTextCtrl *text = (wxStyledTextCtrl *)sqlGrid->GetCellEditor(sqlGrid->GetGridCursorRow(), sqlGrid->GetGridCursorCol())->GetControl();
+#endif
 					if (text && !text->GetSelectedText().IsEmpty())
 					{
 						wxTheClipboard->SetData(new wxTextDataObject(text->GetSelectedText()));
@@ -757,7 +777,17 @@ void frmEditGrid::OnCopy(wxCommandEvent &ev)
 				}
 				else
 				{
+#if wxCHECK_VERSION(3, 0, 0)
+					wxGridCellEditor *gce = sqlGrid->GetCellEditor(sqlGrid->GetGridCursorRow(), sqlGrid->GetGridCursorCol());
+					wxTextCtrl *text = 0;
+					if (gce)
+					{
+						text = (wxTextCtrl *)gce->GetControl();
+						gce->DecRef();
+					}
+#else
 					wxTextCtrl *text = (wxTextCtrl *)sqlGrid->GetCellEditor(sqlGrid->GetGridCursorRow(), sqlGrid->GetGridCursorCol())->GetControl();
+#endif
 					if (text && !text->GetStringSelection().IsEmpty())
 					{
 						wxTheClipboard->SetData(new wxTextDataObject(text->GetStringSelection()));
@@ -795,7 +825,12 @@ void frmEditGrid::OnPaste(wxCommandEvent &ev)
 			{
 				wxTextDataObject data;
 				wxTheClipboard->GetData(data);
+#if wxCHECK_VERSION(3, 0, 0)
+				wxGridCellEditor *gce = sqlGrid->GetCellEditor(editorCell->GetRow(), editorCell->GetCol());
+				wxControl *ed = gce->GetControl();
+#else
 				wxControl *ed = sqlGrid->GetCellEditor(editorCell->GetRow(), editorCell->GetCol())->GetControl();
+#endif
 				if (ed->IsKindOf(CLASSINFO(wxStyledTextCtrl)))
 				{
 					wxStyledTextCtrl *txtEd = (wxStyledTextCtrl *)ed;
@@ -820,6 +855,9 @@ void frmEditGrid::OnPaste(wxCommandEvent &ev)
 					txtEd->Replace(x, y, data.GetText());
 					//txtEd->SetValue(data.GetText());
 				}
+#if wxCHECK_VERSION(3, 0, 0)
+				gce->DecRef();
+#endif
 			}
 			wxTheClipboard->Close();
 		}
@@ -974,7 +1012,17 @@ void frmEditGrid::OnKey(wxKeyEvent &event)
 		case WXK_TAB:
 			if (event.ControlDown())
 			{
+#if wxCHECK_VERSION(3, 0, 0)
+				wxGridCellEditor *gce = sqlGrid->GetCellEditor(sqlGrid->GetGridCursorRow(), sqlGrid->GetGridCursorCol());
+				wxStyledTextCtrl *text = 0;
+				if (gce)
+				{
+					text = (wxStyledTextCtrl *)gce->GetControl();
+					gce->DecRef();
+				}
+#else
 				wxStyledTextCtrl *text = (wxStyledTextCtrl *)sqlGrid->GetCellEditor(sqlGrid->GetGridCursorRow(), sqlGrid->GetGridCursorCol())->GetControl();
+#endif
 				if (text)
 					text->SetText(wxT("\t"));
 				return;
@@ -1177,7 +1225,17 @@ void frmEditGrid::OnDelete(wxCommandEvent &event)
 
 		if (sqlGrid->GetTable()->IsColText(sqlGrid->GetGridCursorCol()))
 		{
+#if wxCHECK_VERSION(3, 0, 0)
+			wxGridCellEditor *gce = sqlGrid->GetCellEditor(sqlGrid->GetGridCursorRow(), sqlGrid->GetGridCursorCol());
+			wxStyledTextCtrl *text = 0;
+			if (gce)
+			{
+				text = (wxStyledTextCtrl *)gce->GetControl();
+				gce->DecRef();
+			}
+#else
 			wxStyledTextCtrl *text = (wxStyledTextCtrl *)sqlGrid->GetCellEditor(sqlGrid->GetGridCursorRow(), sqlGrid->GetGridCursorCol())->GetControl();
+#endif
 			if (text && text->GetCurrentPos() <= text->GetTextLength())
 			{
 				if (text->GetSelectionStart() == text->GetSelectionEnd())
@@ -1187,7 +1245,17 @@ void frmEditGrid::OnDelete(wxCommandEvent &event)
 		}
 		else
 		{
+#if wxCHECK_VERSION(3, 0, 0)
+			wxGridCellEditor *gce = sqlGrid->GetCellEditor(sqlGrid->GetGridCursorRow(), sqlGrid->GetGridCursorCol());
+			wxTextCtrl *text = 0;
+			if (gce)
+			{
+				text = (wxTextCtrl *)gce->GetControl();
+				gce->DecRef();
+			}
+#else
 			wxTextCtrl *text = (wxTextCtrl *)sqlGrid->GetCellEditor(sqlGrid->GetGridCursorRow(), sqlGrid->GetGridCursorCol())->GetControl();
+#endif
 			if (text)
 			{
 				long x, y;
@@ -1320,6 +1388,24 @@ void frmEditGrid::OnGridSelectCells(wxGridRangeSelectEvent &event)
 		toolBar->EnableTool(MNU_DELETE, enable);
 		editMenu->Enable(MNU_DELETE, enable);
 	}
+
+	if (event.Selecting())
+	{
+		sqlGrid->xSum = vkRossiDFP::ZERO;
+		sqlGrid->xSumCnt = 0;
+		int copied = sqlGrid->Copy(true);
+		if (sqlGrid->xSumCnt)
+		{
+			SetStatusText(wxString::Format(
+					_("Sum from %d rows is %s"),
+					sqlGrid->xSumCnt, std2wx(sqlGrid->xSum.toString()).c_str()));
+		}
+		else
+			SetStatusText(wxT(""));
+	}
+	else
+		SetStatusText(wxT(""));
+
 	event.Skip();
 }
 
@@ -3136,11 +3222,50 @@ bool sqlTable::Paste()
 	return pasted;
 }
 
-
+//static void dumpAttr(wxString comment, wxGrid *sqlGrid, wxGridCellAttr *attr, int row, int col)
+//{
+//	wxGridTableBase *table = sqlGrid->GetTable();
+//	if (attr)
+//	{
+//		wxColour c = attr->GetBackgroundColour();
+//		wxString cstr = c.GetAsString();
+//		unsigned char R = c.Red();
+//		unsigned char G = c.Green();
+//		unsigned char B = c.Blue();
+//
+//		wxFont fnt = attr->GetFont();
+//		wxString fn = fnt.GetFaceName();
+//		int weight = fnt.GetWeight();
+//		int size = fnt.GetPointSize();
+//
+//		int hAlign, vAlign;
+//		attr->GetAlignment(&hAlign, &vAlign);
+//
+//		wxString txt = wxString::Format(
+//				wxT("%-8s attr=%p row=%03d col=%03d color=%-20s R=%03d G=%03d B=%03d weight=%d size=%02d hAlign=%04X vAlign=%04X"),
+//				comment.c_str(), attr, row, col, cstr.c_str(), R, G, B, weight - wxNORMAL, size, hAlign, vAlign);
+//		wxLogSql(wxT("%s"), txt.c_str());
+//	}
+//}
 
 
 wxGridCellAttr *sqlTable::GetAttr(int row, int col, wxGridCellAttr::wxAttrKind  kind)
 {
+	wxGridCellAttr *attrvk = 0;
+	if (CanHaveAttributes())
+	{
+//		if ((row == 12 || row == 13) && col == 3)
+//		{
+//			int ii = 0;
+//			ii++;
+//		}
+		attrvk = wxGridTableBase::GetAttr(row, col, wxGridCellAttr::Cell);
+	}
+	if (attrvk)
+	{
+//		dumpAttr(wxT("GetAttr"), GetView(), attrvk, row, col);
+		return attrvk;
+	}
 	cacheLine *line = GetLine(row);
 	if (line && line->readOnly)
 	{
@@ -3381,4 +3506,82 @@ editGridLimitedFactory::editGridLimitedFactory(menuFactoryList *list, wxMenu *mn
 wxWindow *editGridLimitedFactory::StartDialog(frmMain *form, pgObject *obj)
 {
 	return ViewData(form, obj, false);
+}
+
+void frmEditGrid::OnText(wxCommandEvent &event)
+{
+	if (ontextactive)
+	{
+		event.Skip();
+		return;
+	}
+	wxString txt = searchctrl->GetValue();
+	if (txt.Length() < 3)
+	{
+		return;
+	}
+	int savedrow = -1, savedcol = -1;
+	ontextactive = true;
+	txt = txt.Lower();
+	wxColour cbg = settings->GetSQLBoxColourBackground();
+	wxColour cbgfnd(0xC0, 0xC0, 0xFF);
+	sqlGrid->BeginBatch();
+	for (int i = 0; i < sqlGrid->GetNumberRows(); i++)
+	{
+		for (int j = 0; j < sqlGrid->GetNumberCols(); j++)
+		{
+			wxFont fntLabel = sqlGrid->GetCellFont(i, j);
+			wxString x = sqlGrid->GetCellValue(i, j).Lower();
+			bool ima = x.Contains(txt);
+			if (ima)
+			{
+				if (savedrow == -1)
+				{
+					savedrow = i;
+					savedcol = j;
+				}
+#if wxCHECK_VERSION(3, 0, 0)
+				if (fntLabel.GetWeight() == wxFONTWEIGHT_NORMAL)
+#else
+				if (fntLabel.GetWeight() == wxNORMAL)
+#endif
+				{
+#if wxCHECK_VERSION(3, 0, 0)
+					fntLabel.SetWeight(wxFONTWEIGHT_BOLD);
+#else
+					fntLabel.SetWeight(wxBOLD);
+#endif
+					wxGridCellAttr *attr = sqlGrid->GetOrCreateCellAttr(i, j);
+					wxGridCellAttr *attr1 = attr->Clone();
+					attr1->SetBackgroundColour(cbgfnd);
+					attr1->SetFont(fntLabel);
+					sqlGrid->SetAttr(i, j, attr1);
+//					wxGridTableBase *table = sqlGrid->GetTable();
+//					wxGridCellAttr *attr2 = table->GetAttr(i, j, wxGridCellAttr::Cell);
+//					dumpAttr(wxT("OnText"), sqlGrid, attr2, i, j);
+				}
+			}
+			else
+			{
+#if wxCHECK_VERSION(3, 0, 0)
+				if (fntLabel.GetWeight() != wxFONTWEIGHT_NORMAL)
+#else
+				if (fntLabel.GetWeight() != wxNORMAL)
+#endif
+				{
+#if wxCHECK_VERSION(3, 0, 0)
+					fntLabel.SetWeight(wxFONTWEIGHT_NORMAL);
+#else
+					fntLabel.SetWeight(wxNORMAL);
+#endif
+					sqlGrid->SetCellFont(i, j, fntLabel);
+					sqlGrid->SetCellBackgroundColour(i, j, cbg);
+				}
+			}
+		}
+	}
+	if (savedrow != -1)
+		sqlGrid->MakeCellVisible(savedrow, savedcol);
+	sqlGrid->EndBatch();
+	ontextactive = false;
 }

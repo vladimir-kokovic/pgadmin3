@@ -837,51 +837,74 @@ int pgServer::Connect(frmMain *form, bool askPassword, const wxString &pwd, bool
 		// Check the server version
 		if (conn->GetIsGreenplum())
 		{
-			// Greenplum HAWQ (SQL on Hadoop) is not supported by this pgAdmin version
-			if (conn->GetIsHawq())
+			//<<<<<<< HEAD
+			if (!((conn->BackendMinimumVersion(GP_MIN_VERSION_N >> 8, GP_MIN_VERSION_N & 0x00FF)) ||
+					(conn->BackendMinimumVersion(GP_MAX_VERSION_N >> 8, GP_MAX_VERSION_N & 0x00FF))))
 			{
-				wxLogWarning(_("The server you are connecting to is not a version that is supported by this release of %s.\n\n%s may not function as expected."),
-				             appearanceFactory->GetLongAppName().c_str(),
-				             appearanceFactory->GetLongAppName().c_str());
-			}
-			else
+				wxLogWarning(_("The Greenplum server you are connecting to is not a version that is supported by this release of %s.\n\n%s may not function as expected.\n\nSupported server versions are %s to %s."),
+						appearanceFactory->GetLongAppName().c_str(),
+						appearanceFactory->GetLongAppName().c_str(),
+						wxString(GP_MIN_VERSION_T).c_str(),
+						wxString(GP_MAX_VERSION_T).c_str());
+			} else
 			{
-				// Check for Greenplum specific version
-				// Greenplum always shows PG version "8.2.15" for now
-				// this might change once the merge with recent PG versions makes progress
-				// therefore also check for the max version
-				if (!(conn->BackendMinimumVersion(GP_MIN_VERSION_N >> 8, GP_MIN_VERSION_N & 0x00FF)) ||
-				        (conn->BackendMinimumVersion(GP_MAX_VERSION_N >> 8, (GP_MAX_VERSION_N & 0x00FF) + 1)))
+				// Greenplum HAWQ (SQL on Hadoop) is not supported by this pgAdmin version
+				if (conn->GetIsHawq())
 				{
-					if (GP_MIN_VERSION_N == GP_MAX_VERSION_N)
+					wxLogWarning(_("The server you are connecting to is not a version that is supported by this release of %s.\n\n%s may not function as expected."),
+							appearanceFactory->GetLongAppName().c_str(),
+							appearanceFactory->GetLongAppName().c_str());
+				} else
+				{
+					// Check for Greenplum specific version
+					// Greenplum always shows PG version "8.2.15" for now
+					// this might change once the merge with recent PG versions makes progress
+					// therefore also check for the max version
+					if (!((conn->BackendMinimumVersion(GP_MIN_VERSION_N >> 8, GP_MIN_VERSION_N & 0x00FF)) ||
+							(conn->BackendMinimumVersion(GP_MAX_VERSION_N >> 8, GP_MAX_VERSION_N & 0x00FF))))
 					{
-						wxLogWarning(_("The server you are connecting to is not a version that is supported by this release of %s.\n\n%s may not function as expected.\n\nSupported server version is %s."),
-						             appearanceFactory->GetLongAppName().c_str(),
-						             appearanceFactory->GetLongAppName().c_str(),
-						             wxString(GP_MIN_VERSION_T).c_str());
-					}
-					else
-					{
-						wxLogWarning(_("The server you are connecting to is not a version that is supported by this release of %s.\n\n%s may not function as expected.\n\nSupported server versions are %s to %s."),
-						             appearanceFactory->GetLongAppName().c_str(),
-						             appearanceFactory->GetLongAppName().c_str(),
-						             wxString(GP_MIN_VERSION_T).c_str(),
-						             wxString(GP_MAX_VERSION_T).c_str());
+						if (GP_MIN_VERSION_N == GP_MAX_VERSION_N)
+						{
+							wxLogWarning(_("The server you are connecting to is not a version that is supported by this release of %s.\n\n%s may not function as expected.\n\nSupported server version is %s."),
+									appearanceFactory->GetLongAppName().c_str(),
+									appearanceFactory->GetLongAppName().c_str(),
+									wxString(GP_MIN_VERSION_T).c_str());
+						} else
+						{
+							wxLogWarning(_("The server you are connecting to is not a version that is supported by this release of %s.\n\n%s may not function as expected.\n\nSupported server versions are %s to %s."),
+									appearanceFactory->GetLongAppName().c_str(),
+									appearanceFactory->GetLongAppName().c_str(),
+									wxString(GP_MIN_VERSION_T).c_str(),
+									wxString(GP_MAX_VERSION_T).c_str());
+						}
 					}
 				}
 			}
-		}
-		else
-		{
-			if (!(conn->BackendMinimumVersion(SERVER_MIN_VERSION_N >> 8, SERVER_MIN_VERSION_N & 0x00FF)) ||
-			        (conn->BackendMinimumVersion(SERVER_MAX_VERSION_N >> 8, (SERVER_MAX_VERSION_N & 0x00FF) + 1)))
+			//		else
 			{
-				wxLogWarning(_("The server you are connecting to is not a version that is supported by this release of %s.\n\n%s may not function as expected.\n\nSupported server versions are %s to %s."),
-				             appearanceFactory->GetLongAppName().c_str(),
-				             appearanceFactory->GetLongAppName().c_str(),
-				             wxString(SERVER_MIN_VERSION_T).c_str(),
-				             wxString(SERVER_MAX_VERSION_T).c_str());
+//				if (!((conn->BackendMinimumVersion(SERVER_MIN_VERSION_N >> 8, SERVER_MIN_VERSION_N & 0x00FF)) ||
+//						(conn->BackendMinimumVersion(SERVER_MAX_VERSION_N >> 8, SERVER_MAX_VERSION_N & 0x00FF))))
+//				{
+//					wxLogWarning(_("The server you are connecting to is not a version that is supported by this release of %s.\n\n%s may not function as expected.\n\nSupported server versions are %s to %s."),
+//							appearanceFactory->GetLongAppName().c_str(),
+//							appearanceFactory->GetLongAppName().c_str(),
+//							wxString(SERVER_MIN_VERSION_T).c_str(),
+//							wxString(SERVER_MAX_VERSION_T).c_str());
+//					//>>>>>>> 5dbefb4df7ea48e1db215dfab43bbc02ee88e2be
+//				}
 			}
+			//   else
+//			{
+//				if (!((conn->BackendMinimumVersion(SERVER_MIN_VERSION_N >> 8, SERVER_MIN_VERSION_N & 0x00FF)) ||
+//						(conn->BackendMinimumVersion(SERVER_MAX_VERSION_N >> 8, SERVER_MAX_VERSION_N & 0x00FF))))
+//				{
+//					wxLogWarning(_("The server you are connecting to is not a version that is supported by this release of %s.\n\n%s may not function as expected.\n\nSupported server versions are %s to %s."),
+//							appearanceFactory->GetLongAppName().c_str(),
+//							appearanceFactory->GetLongAppName().c_str(),
+//							wxString(SERVER_MIN_VERSION_T).c_str(),
+//							wxString(SERVER_MAX_VERSION_T).c_str());
+//				}
+//			}
 		}
 
 		connected = true;

@@ -30,11 +30,14 @@ public:
 private:
 	void OnChange(wxCommandEvent &ev);
 	void OnHelp(wxCommandEvent &ev);
-	void OnOK(wxCommandEvent &ev);
+    void CommonFileCLIPBOARD(wxCommandEvent &ev, bool file);
+	void OnCLIPBOARD(wxCommandEvent &ev);
+    void OnOK(wxCommandEvent &ev);
 	void OnCancel(wxCommandEvent &ev);
 	void OnBrowseFile(wxCommandEvent &ev);
 
 	wxWindow *parent;
+    bool toFile;
 
 	DECLARE_EVENT_TABLE()
 };

@@ -29,6 +29,7 @@ class ctlSQLEditGrid;
 class ctlSQLBox;
 class pgConn;
 class frmEditGrid;
+class dlgEditGridOptionsFilter;
 ////////////////////////////////////////////////////////////////////////////////
 // Class declaration
 ////////////////////////////////////////////////////////////////////////////////
@@ -40,7 +41,11 @@ public:
 	// Construction
 	dlgEditGridOptions(frmEditGrid *parent, pgConn *conn, const wxString &rel, ctlSQLEditGrid *grid);
 	~dlgEditGridOptions();
+	wxString getHistoFiltersFileName();
+	wxString FindItem(const wxString &str, long itemno);
+	void SaveFiltersOK(wxString & filt);
 
+	wxArrayString histoFilters;
 private:
 
 #ifdef __WXMAC__
@@ -58,6 +63,14 @@ private:
 	void OnCboColumnsChange(wxCommandEvent &ev);
 	void OnLstSortColsChange(wxListEvent &ev);
 	bool Validate();
+	void OnCbfiltersChange(wxCommandEvent &ev);
+	void LoadFilters();
+	void SaveFilters();
+
+	wxString histoFiltersFileName;
+	void OnSearch(wxCommandEvent &ev);
+	dlgEditGridOptionsFilter *winOptions;
+
 	frmEditGrid *parent;
 	pgConn *connection;
 	wxString relation;

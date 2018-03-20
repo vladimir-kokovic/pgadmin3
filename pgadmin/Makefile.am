@@ -26,6 +26,20 @@ EXTRA_DIST = \
 	ver_svn.bat \
 	ver_svn.sh
 
+pgadmin3_LDADD += \
+pg_scanners/pg95/keywords.o \
+pg_scanners/pg95/kwlookup.o \
+pg_scanners/pg95/pgstrcasecmp.o \
+pg_scanners/pg95/chklocale.o \
+pg_scanners/pg95/wchar.o \
+pg_scanners/pg95/mbutils.o \
+pg_scanners/pg95/encnames.o \
+pg_scanners/pg95/wstrncmp.o \
+pg_scanners/pg95/scansup.o \
+pg_scanners/pg95/pgadminScannerCommon.o \
+pg_scanners/pg95/scan95.o \
+pg_scanners/pg95/pgadminScanner95.o
+
 # Make sure we always have these dependencies, even if dependency tracking
 # is turend off.  The leading dash keeps automake from trying to process this.
 -include $(top_srcdir)/pgadmin/Makefile.deps
@@ -33,6 +47,7 @@ EXTRA_DIST = \
 TMP_ui =
 
 # Include all the sub-Makefiles
+include pg_scanners/module.mk
 include agent/module.mk
 include ctl/module.mk
 include db/module.mk

@@ -357,7 +357,11 @@ void ddRelationshipFigure::OnGenericPopupClick(wxCommandEvent &event, hdDrawingV
 			else
 			{
 				fkIdentifying = false;
+#if wxCHECK_VERSION(3, 0, 0)
+				setLinePen(wxPen(*wxBLACK, 1, wxPENSTYLE_SHORT_DASH));
+#else
 				setLinePen(wxPen(*wxBLACK, 1, wxSHORT_DASH));
+#endif
 				setOptionAtForeignKeys(null);
 			}
 			view->notifyChanged();

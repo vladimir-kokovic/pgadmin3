@@ -14,12 +14,12 @@
 // wxWindows headers
 #include <wx/wx.h>
 #include <wx/clipbrd.h>
+#include <wx/regex.h>
 
 #include "db/pgConn.h"
 #include "ctl/ctlSQLGrid.h"
 #include "utils/sysSettings.h"
 #include "frm/frmExport.h"
-
 
 #define EXTRAEXTENT_HEIGHT 6
 #define EXTRAEXTENT_WIDTH  6
@@ -44,7 +44,11 @@ ctlSQLGrid::ctlSQLGrid(wxWindow *parent, wxWindowID id, const wxPoint &pos, cons
 	SetDefaultCellFont(fntCells);
 	// Set labels font
 	wxFont fntLabel(settings->GetSystemFont());
+#if wxCHECK_VERSION(3, 0, 0)
+	fntLabel.SetWeight(wxFONTWEIGHT_BOLD);
+#else
 	fntLabel.SetWeight(wxBOLD);
+#endif
 	SetLabelFont(fntLabel);
 	SetColLabelAlignment(wxALIGN_LEFT, wxALIGN_CENTER);
 	SetRowLabelSize(50);
@@ -197,7 +201,7 @@ void ctlSQLGrid::AppendColumnHeader(wxString &str, wxArrayInt columns)
 	}
 }
 
-int ctlSQLGrid::Copy()
+int ctlSQLGrid::Copy(bool sum)
 {
 	wxString str;
 	int copied = 0;
@@ -230,6 +234,15 @@ int ctlSQLGrid::Copy()
 
 		for (i = 0 ; i < numRows ; i++)
 		{
+			if (sum && cols.size() == 1)
+			{
+				wxString text = GetCellValue(i, cols[0]);
+				if (!text.IsEmpty() && wxRegEx(wxT("^[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?$")).Matches(text))
+				{
+					xSum += vkRossiDFP(text.ToAscii().data());
+					xSumCnt++;
+				}
+			}
 			str.Append(GetExportLine(i, cols));
 
 			if (numRows > 1)
@@ -253,6 +266,15 @@ int ctlSQLGrid::Copy()
 		for (i = y1; i <= y2; i++)
 		{
 			str.Append(GetExportLine(i, x1, x2));
+			if (sum && x1 == x2)
+			{
+				wxString text = GetCellValue(i, x1);
+				if (!text.IsEmpty() && wxRegEx(wxT("^[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?$")).Matches(text))
+				{
+					xSum += vkRossiDFP(text.ToAscii().data());
+					xSumCnt++;
+				}
+			}
 
 			if (y2 > y1)
 				str.Append(END_OF_LINE);
@@ -260,7 +282,7 @@ int ctlSQLGrid::Copy()
 
 		copied = y2 - y1 + 1;
 	}
-	else
+	else if (!sum)
 	{
 		int row, col;
 
@@ -271,6 +293,34 @@ int ctlSQLGrid::Copy()
 
 		str.Append(GetExportLine(row, col, col));
 		copied = 1;
+	}
+
+	if (sum)
+	{
+		wxGridCellCoordsArray cells = GetSelectedCells();
+		size_t numCells = cells.GetCount();
+		if (numCells)
+		{
+			int row, col;
+			for (i = 0; i < numCells; i++)
+			{
+				row = cells[i].GetRow();
+				col = cells[i].GetCol();
+				wxString text = GetCellValue(row, col);
+				if (!text.IsEmpty() && wxRegEx(wxT("^[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?$")).Matches(text))
+				{
+					xSum += vkRossiDFP(text.ToAscii().data());
+					xSumCnt++;
+				}
+				if (i == 0)
+				{
+					AppendColumnHeader(str, col, col);
+				}
+				str.Append(GetExportLine(row, col, col));
+				copied = 1;
+				str.Append(END_OF_LINE);
+			}
+		}
 	}
 
 	if (copied && wxTheClipboard->Open())

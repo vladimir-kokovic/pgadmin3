@@ -1310,10 +1310,21 @@ wxString dlgRepClusterUpgrade::GetSql()
 
 		bool upgradeSchemaAvailable = false;
 
+        wxString vk11;
+        if (connection->BackendMinimumVersion(11, 0))
+        {
+            vk11 = wxT(" prokind, ");
+        }
+        else
+        {
+            vk11 = wxT(" proisagg, ");
+        }
+
 		{
 			// update functions
 			pgSetIterator func(remoteConn,
-			                   wxT("SELECT proname, proisagg, prosecdef, proisstrict, proretset, provolatile, pronargs, prosrc, probin,\n")
+			                   wxT("SELECT proname, ") + vk11 +
+                               wxT("prosecdef, proisstrict, proretset, provolatile, pronargs, prosrc, probin,\n")
 			                   wxT("       lanname, tr.typname as rettype,\n")
 			                   wxT("       t0.typname AS arg0, t1.typname AS arg1, t2.typname AS arg2, t3.typname AS arg3, t4.typname AS arg4,\n")
 			                   wxT("       t5.typname AS arg5, t6.typname AS arg6, t7.typname AS arg7, t8.typname AS arg8, t9.typname AS arg9, \n")

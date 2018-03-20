@@ -46,5 +46,9 @@ wxFont &hdFontAttribute::font()
 
 void hdFontAttribute::InitFont()
 {
+#if wxCHECK_VERSION(3, 0, 0)
+	defaultFont = new wxFont(10, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
+#else
 	defaultFont = new wxFont(10, wxSWISS, wxNORMAL, wxNORMAL);
+#endif
 }

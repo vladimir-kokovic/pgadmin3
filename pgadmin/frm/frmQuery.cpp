@@ -9,6 +9,8 @@
 //
 //////////////////////////////////////////////////////////////////////////
 
+#include "utils/pgadminScanner.h"
+
 #include "pgAdmin3.h"
 
 // wxWindows headers
@@ -58,6 +60,8 @@
 #include "utils/misc.h"
 #include "pgscript/pgsApplication.h"
 
+//#include <mcheck.h>
+
 // Icons
 #include "images/sql-32.pngc"
 
@@ -82,8 +86,18 @@
 #include "images/help.pngc"
 #include "images/gqbJoin.pngc"
 
+#include <wx/arrimpl.cpp>
+WX_DEFINE_OBJARRAY(Output_Pane_Objects_Array);
+WX_DEFINE_OBJARRAY(vkTabTag_Array);
+
+#define VK_DEBUG
+#ifdef VK_DEBUG
+static int myCounter = 0;
+#endif
+
 #define CTRLID_CONNECTION       4200
 #define CTRLID_DATABASELABEL    4201
+#define CTRLID_SEARCHCTRL       4227
 #define CTL_SQLQUERYBOOK        4202
 
 #define XML_FROM_WXSTRING(s) ((const xmlChar *)(const char *)s.mb_str(wxConvUTF8))
@@ -178,6 +192,9 @@ BEGIN_EVENT_TABLE(frmQuery, pgFrame)
 	EVT_SPLITTER_SASH_POS_CHANGED(GQB_HORZ_SASH, frmQuery::OnResizeHorizontally)
 	EVT_BUTTON(CTL_DELETECURRENTBTN, frmQuery::OnDeleteCurrent)
 	EVT_BUTTON(CTL_DELETEALLBTN,     frmQuery::OnDeleteAll)
+	EVT_COMBOBOX(CTL_SQLQUERIESCBOX, frmQuery::OnComboBoxUpdate)
+	EVT_TEXT(CTRLID_SEARCHCTRL,		 frmQuery::OnText)
+	EVT_BUTTON(CTL_HISTORY,			 frmQuery::OnHistory)
 END_EVENT_TABLE()
 
 class DnDFile : public wxFileDropTarget
@@ -231,7 +248,9 @@ frmQuery::frmQuery(frmMain *form, const wxString &_title, pgConn *_conn, const w
 	  pgsStringOutput(&pgsOutputString),
 	  pgsOutput(pgsStringOutput, wxEOL_UNIX),
 	  pgsTimer(new pgScriptTimer(this)),
-	  m_loadingfile(false)
+	  m_loadingfile(false),
+	  winHistory(0),
+	  sqlQuery(0)
 {
 	pgScript->SetCaller(this, PGSCRIPT_COMPLETE);
 
@@ -470,6 +489,7 @@ frmQuery::frmQuery(frmMain *form, const wxString &_title, pgConn *_conn, const w
 
 	// Create panel for query
 	wxPanel *pnlQuery = new wxPanel(sqlNotebook);
+	vkpnlQuery = pnlQuery;
 
 	// Create the outer box sizer
 	wxBoxSizer *boxQuery = new wxBoxSizer(wxVERTICAL);
@@ -477,6 +497,10 @@ frmQuery::frmQuery(frmMain *form, const wxString &_title, pgConn *_conn, const w
 	// Create the inner box sizer
 	// This one will contain the label, the combobox, and the two buttons
 	wxBoxSizer *boxHistory = new wxBoxSizer(wxHORIZONTAL);
+
+	// Create the inner box sizer
+	// This one will contain the label and the combobox
+	wxBoxSizer *boxQueries = new wxBoxSizer(wxHORIZONTAL);
 
 	// Label
 	wxStaticText *label = new wxStaticText(pnlQuery, 0, _("Previous queries"));
@@ -486,8 +510,12 @@ frmQuery::frmQuery(frmMain *form, const wxString &_title, pgConn *_conn, const w
 	sqlQueries = new wxComboBox(pnlQuery, CTL_SQLQUERYCBOX, wxT(""), wxDefaultPosition, wxDefaultSize, wxArrayString(), wxCB_DROPDOWN | wxCB_READONLY);
 	sqlQueries->SetToolTip(_("Previous queries"));
 	LoadQueries();
+#if wxCHECK_VERSION(3, 0, 0)
+	boxHistory->Add(sqlQueries, 1, wxEXPAND | wxALL, 1);
+#else
 	boxHistory->Add(sqlQueries, 1, wxEXPAND | wxALL | wxALIGN_CENTER_VERTICAL, 1);
-
+#endif
+#if 0
 	// Delete Current button
 	btnDeleteCurrent = new wxButton(pnlQuery, CTL_DELETECURRENTBTN, _("Delete"));
 	btnDeleteCurrent->Enable(false);
@@ -497,6 +525,19 @@ frmQuery::frmQuery(frmMain *form, const wxString &_title, pgConn *_conn, const w
 	btnDeleteAll = new wxButton(pnlQuery, CTL_DELETEALLBTN, _("Delete All"));
 	btnDeleteAll->Enable(sqlQueries->GetCount() > 0);
 	boxHistory->Add(btnDeleteAll, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
+#else
+	// History button
+	btnHistory = new wxButton(pnlQuery, CTL_HISTORY, _("History"));
+	btnHistory->Enable(sqlQueries->GetCount() > 0);
+	boxHistory->Add(btnHistory, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
+
+	// Delete Current button
+	btnDeleteCurrent = new wxButton(pnlQuery, CTL_DELETECURRENTBTN, _("Delete"));
+	btnDeleteCurrent->Enable(false);
+	boxHistory->Add(btnDeleteCurrent, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
+#endif
+
+	vktabtag_array = new vkTabTag_Array();
 
 	boxQuery->Add(boxHistory, 0, wxEXPAND | wxALL, 1);
 
@@ -514,6 +555,18 @@ frmQuery::frmQuery(frmMain *form, const wxString &_title, pgConn *_conn, const w
 	boxSQL->Add(sqlQueryBook, 1, wxEXPAND | wxRIGHT | wxLEFT | wxBOTTOM, 1);
 
 	boxQuery->Add(boxSQL, 1, wxEXPAND | wxRIGHT | wxLEFT | wxBOTTOM, 1);
+
+	cbQueries = new wxComboBox(pnlQuery, CTL_SQLQUERIESCBOX, wxT(""), wxDefaultPosition, wxDefaultSize, wxArrayString(), wxCB_DROPDOWN | wxCB_READONLY);
+	cbQueries->SetToolTip(_("Current queries"));
+	wxStaticText *labelcq = new wxStaticText(pnlQuery, 0, _("Current queries "));
+	boxQueries->Add(labelcq, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
+#if wxCHECK_VERSION(3, 0, 0)
+	boxQueries->Add(cbQueries, 1, wxEXPAND | wxALL, 1);
+#else
+	boxQueries->Add(cbQueries, 1, wxEXPAND | wxALL | wxALIGN_CENTER_VERTICAL, 1);
+#endif
+
+	boxQuery->Add(boxQueries, 0, wxEXPAND | wxALL, 1);
 
 	// Auto-sizing
 	pnlQuery->SetSizer(boxQuery);
@@ -552,10 +605,12 @@ frmQuery::frmQuery(frmMain *form, const wxString &_title, pgConn *_conn, const w
 
 	// Now, the scratchpad
 	scratchPad = new wxTextCtrl(this, CTL_SCRATCHPAD, wxT(""), wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE | wxHSCROLL);
+	searchctrl = new wxSearchCtrl(this, CTRLID_SEARCHCTRL, wxEmptyString, wxDefaultPosition, wxDefaultSize);
 
 	// Kickstart wxAUI
 	manager.AddPane(toolBar, wxAuiPaneInfo().Name(wxT("toolBar")).Caption(_("Tool bar")).ToolbarPane().Top().LeftDockable(false).RightDockable(false));
 	manager.AddPane(cbConnection, wxAuiPaneInfo().Name(wxT("databaseBar")).Caption(_("Connection bar")).ToolbarPane().Top().LeftDockable(false).RightDockable(false));
+	manager.AddPane(searchctrl, wxAuiPaneInfo().Name(wxT("searchBar")).Caption(_("Search result")).ToolbarPane().Top().LeftDockable(false).RightDockable(false));
 	manager.AddPane(outputPane, wxAuiPaneInfo().Name(wxT("outputPane")).Caption(_("Output pane")).Bottom().MinSize(wxSize(200, 100)).BestSize(wxSize(550, 300)));
 	manager.AddPane(scratchPad, wxAuiPaneInfo().Name(wxT("scratchPad")).Caption(_("Scratch pad")).Right().MinSize(wxSize(100, 100)).BestSize(wxSize(250, 200)));
 	manager.AddPane(sqlNotebook, wxAuiPaneInfo().Name(wxT("sqlQuery")).Caption(_("SQL query")).Center().CaptionVisible(false).CloseButton(false).MinSize(wxSize(200, 100)).BestSize(wxSize(350, 200)));
@@ -663,6 +718,16 @@ frmQuery::~frmQuery()
 
 	// Save frmQuery Perspective
 	settings->Write(wxT("frmQuery/Perspective-") + wxString(FRMQUERY_PERSPECTIVE_VER), manager.SavePerspective());
+
+//	if (output_pane_objects_array)
+//	{
+//		for (int index = 1; index < output_pane_objects_array->Count(); index++)
+//		{
+//			output_pane_objects_array->RemoveAt(index);
+//		}
+//		delete output_pane_objects_array;
+//		output_pane_objects_array = NULL;
+//	}
 
 	// Uninitialize wxAUIManager
 	manager.UnInit();
@@ -1240,7 +1305,8 @@ void frmQuery::OnChangeNotebook(wxAuiNotebookEvent &event)
 
 void frmQuery::OnSetFocus(wxFocusEvent &event)
 {
-	sqlQuery->SetFocus();
+	if (sqlQuery)
+		sqlQuery->SetFocus();
 	event.Skip();
 }
 
@@ -2278,6 +2344,104 @@ bool frmQuery::updateFromGqb(bool executing)
 	return false;
 }
 
+void frmQuery::myLogNotice(const wxChar *szFormat, ...)
+{
+	wxLogLevel savedlogLevel = sysLogger::logLevel;
+	sysLogger::logLevel = LOG_NOTICE;
+	va_list argptr;
+	va_start(argptr, szFormat);
+#if wxCHECK_VERSION(2, 9, 0)
+	wxChar s_szBuf[8192];
+	if (sysLogger::logLevel >= LOG_NOTICE)
+	{
+		wxVsnprintf(s_szBuf, WXSIZEOF(s_szBuf), szFormat, argptr);
+		wxLog::OnLog(wxLOG_Notice, s_szBuf, time(NULL));
+	}
+#else
+	wxVLogNotice(szFormat, argptr);
+#endif
+	va_end(argptr);
+	sysLogger::logLevel = savedlogLevel;
+}
+
+outputPaneObjectsTag::~outputPaneObjectsTag()
+{
+	if (index > 0)
+	{
+		if (sqlResult)		{delete sqlResult;		sqlResult		= NULL;}
+		if (explainCanvas)	{delete explainCanvas;	explainCanvas	= NULL;}
+		if (msgResult)		{delete msgResult;		msgResult		= NULL;}
+	}
+	index = -1;
+}
+
+void frmQuery::OnComboBoxUpdate(wxCommandEvent &event)
+{
+	if (!event.GetEventType() == wxEVT_COMMAND_COMBOBOX_SELECTED)
+		return;
+
+	if (vkCurTab->queries.Count() > 1)
+	{
+		vkCurTab->current_output_pane = event.GetSelection();
+#ifdef VK_DEBUG
+		myLogNotice(wxT("frmQuery %d OnComboBoxUpdate current_output_pane=%d"),
+				++myCounter, vkCurTab->current_output_pane);
+#endif
+		OnComboBoxUpdatePrivate(vkCurTab->current_output_pane);
+	}
+}
+
+void frmQuery::OnComboBoxUpdatePrivate(int current_output_pane)
+{
+	if (vkCurTab->queries.Count() > 1)
+	{
+		if (current_output_pane > -1)
+		{
+			if (outputPane->GetPageCount() > 0)
+			{
+				outputPane->RemovePage(3);
+				outputPane->RemovePage(2);
+				outputPane->RemovePage(1);
+				outputPane->RemovePage(0);
+			}
+			outputPaneObjectsTag struc = vkCurTab->output_pane_objects_array->Item(current_output_pane);
+			sqlResult = struc.sqlResult;
+			explainCanvas = struc.explainCanvas;
+			msgResult = struc.msgResult;
+
+			wxString x = wxString::Format(_("%d Data Output"), current_output_pane + 1);
+			outputPane->AddPage(sqlResult, x);
+			x = wxString::Format(_("%d Explain"), current_output_pane + 1);
+			outputPane->AddPage(explainCanvas, x);
+			x = wxString::Format(_("%d Messages"), current_output_pane + 1);
+			outputPane->AddPage(msgResult, x);
+			outputPane->AddPage(msgHistory, _("History"));
+
+			//I don't know why we need SetSelection(1) ?
+			outputPane->SetSelection(1);
+			outputPane->SetSelection(0);
+
+			sqlQuery->Connect(wxID_ANY, wxEVT_SET_FOCUS, wxFocusEventHandler(frmQuery::OnFocus));
+			sqlQuery->Connect(wxID_ANY, wxEVT_KILL_FOCUS, wxFocusEventHandler(frmQuery::OnFocus));
+			sqlResult->Connect(wxID_ANY, wxEVT_SET_FOCUS, wxFocusEventHandler(frmQuery::OnFocus));
+			msgResult->Connect(wxID_ANY, wxEVT_SET_FOCUS, wxFocusEventHandler(frmQuery::OnFocus));
+
+			struc.index = -1;
+
+			sqlQuery->SetFocus();
+		}
+	}
+	int cursel = current_output_pane;
+	cbQueries->Clear();
+	for (int i = 0; i < vkCurTab->queries.Count(); i++)
+	{
+		wxString item = vkCurTab->queries.Item(i);
+		cbQueries->Append(item);
+	}
+	cbQueries->SetSelection(cursel);
+}
+
+
 void frmQuery::OnExecute(wxCommandEvent &event)
 {
 	if(sqlNotebook->GetSelection() == 1)
@@ -2293,8 +2457,202 @@ void frmQuery::OnExecute(wxCommandEvent &event)
 	if (query.IsNull())
 		return;
 
-	execQuery(query);
-	sqlQuery->SetFocus();
+	if (!vkCurTab->saved_sqlResult)
+	{
+		vkCurTab->saved_sqlResult = sqlResult;
+		vkCurTab->saved_explainCanvas = explainCanvas;
+		vkCurTab->saved_msgResult = msgResult;
+	}
+	vkCurTab->firstQuery = true;
+	vkCurTab->queries.Clear();
+	wxArrayInt locs;
+
+//	mtrace();
+
+	struct myScannerNode *head = scanSqlCpp(query.ToUTF8());
+	if (head)
+	{
+		struct myScannerNode *result = getAllCommandsCpp(head);
+		struct myScannerNode *current = result;
+		if (current)
+		{
+			do
+			{
+				wxString x = wxString(current->data.val.str, wxConvUTF8);
+				vkCurTab->queries.Add(x);
+				locs.Add(current->data.loc);
+				current = current->next;
+			}
+			while (current != result);
+			destroylist(result);
+		}
+//		printlist(head);
+		destroylist(head);
+	}
+//	muntrace();
+
+//	wxString gcmm, gdpp;
+//	wxString showsql = wxT(
+//			"BEGIN;"
+//			"SHOW client_min_messages;"
+//			"SHOW debug_print_parse;"
+//			"SET debug_print_parse=on;"
+//			"SET client_min_messages=log;"
+//			"COMMIT;");
+//	wxArrayString resarr = conn->ExecuteScalarMulti(showsql);
+//	if (resarr.Count() == 6)
+//	{
+//		for (unsigned int i = 0; i < resarr.Count(); i++)
+//		{
+//			switch (i)
+//			{
+//				case 1:
+//					gcmm = resarr[i];
+//					break;
+//				case 2:
+//					gdpp = resarr[i];
+//					break;
+//				default:
+//					break;
+//			}
+//		}
+//	}
+//	else
+//	{
+//		wxMessageBox(
+//			_("SHOW or SET stmt failed !\nFor more information, see log file ..."));
+//		return;
+//	}
+
+	if (vkCurTab->queries.Count() > 1)
+	{
+#ifdef VK_DEBUG
+#if wxCHECK_VERSION(2, 9, 0)
+		myLogNotice(wxT("frmQuery %d OnExecute \"%s\""), ++myCounter, (const char *)query.c_str());
+#else
+		myLogNotice(wxT("frmQuery %d OnExecute \"%s\""), ++myCounter, query.c_str());
+#endif
+#endif
+		vkCurTab->multiSQL = true;
+		outputPane->RemovePage(3);
+		outputPane->RemovePage(2);
+		outputPane->RemovePage(1);
+		outputPane->RemovePage(0);
+		if (vkCurTab->output_pane_objects_array)
+		{
+			delete vkCurTab->output_pane_objects_array;
+		}
+		vkCurTab->output_pane_objects_array = new Output_Pane_Objects_Array();
+		vkCurTab->threadCounter = 0;
+		bool saveAutoRollback = settings->GetAutoRollback();
+		settings->SetAutoRollback(false);
+		for (int i = 0; i < vkCurTab->queries.Count(); i++)
+		{
+			wxString item = vkCurTab->queries.Item(i);
+			cbQueries->Append(item);
+			outputPaneObjectsTag *struc = new outputPaneObjectsTag();
+			struc->index = i;
+			struc->offset = locs.Item(i);
+			if (i == 0)
+			{
+				struc->sqlResult = vkCurTab->saved_sqlResult;
+				struc->explainCanvas = vkCurTab->saved_explainCanvas;
+				struc->msgResult = vkCurTab->saved_msgResult;
+			}
+			else
+			{
+				struc->sqlResult = new ctlSQLResult(
+						outputPane, conn, CTL_SQLRESULT, wxDefaultPosition, wxDefaultSize);
+				struc->explainCanvas = new ExplainCanvas(outputPane);
+				struc->msgResult = new wxTextCtrl(
+						outputPane, CTL_MSGRESULT, wxT(""), wxDefaultPosition, wxDefaultSize,
+						wxTE_MULTILINE | wxTE_READONLY | wxTE_DONTWRAP);
+				struc->msgResult->SetFont(settings->GetSQLFont());
+			}
+			vkCurTab->output_pane_objects_array->Add(struc);
+
+			sqlResult = struc->sqlResult;
+			explainCanvas = struc->explainCanvas;
+			msgResult = struc->msgResult;
+
+			sqlResult->Connect(wxID_ANY, wxEVT_SET_FOCUS, wxFocusEventHandler(frmQuery::OnFocus));
+			msgResult->Connect(wxID_ANY, wxEVT_SET_FOCUS, wxFocusEventHandler(frmQuery::OnFocus));
+
+			vkCurTab->threadCounter++;
+			execQuery(item, 0, false, struc->offset);
+			while (vkCurTab->threadCounter > 0)
+			{
+				wxTheApp->Yield(true);
+			}
+		}
+		settings->SetAutoRollback(saveAutoRollback);
+
+		sqlResult = vkCurTab->saved_sqlResult;
+		explainCanvas = vkCurTab->saved_explainCanvas;
+		msgResult = vkCurTab->saved_msgResult;
+
+		wxString x;
+		for (int i = 0; i < vkCurTab->queries.Count(); i++)
+		{
+			wxString item = vkCurTab->queries.Item(i) + wxT("\n");
+			x += item;
+		}
+		size_t curpage = sqlQueryBook->GetSelection();
+		ctlSQLBox *xquery = wxDynamicCast(sqlQueryBook->GetPage(curpage), ctlSQLBox);
+		if (xquery == vkCurTab->sqlQuery)
+		{
+			sqlQueryBook->SetPageToolTip(curpage, x);
+		}
+
+		OnComboBoxUpdatePrivate(0);
+		manager.Update();
+
+		sqlQuery->SetFocus();
+	}
+	else
+	{
+		sqlResult = vkCurTab->saved_sqlResult;
+		explainCanvas = vkCurTab->saved_explainCanvas;
+		msgResult = vkCurTab->saved_msgResult;
+
+		if (vkCurTab->multiSQL)
+		{
+			outputPane->RemovePage(3);
+			outputPane->RemovePage(2);
+			outputPane->RemovePage(1);
+			outputPane->RemovePage(0);
+
+			outputPane->AddPage(sqlResult, _("Data Output"));
+			outputPane->AddPage(explainCanvas, _("Explain"));
+			outputPane->AddPage(msgResult, _("Messages"));
+			outputPane->AddPage(msgHistory, _("History"));
+
+			vkCurTab->multiSQL = false;
+		}
+
+		vkCurTab->queries.Add(query);
+		cbQueries->Clear();
+		cbQueries->Append(query);
+		cbQueries->SetSelection(0);
+
+		size_t curpage = sqlQueryBook->GetSelection();
+		ctlSQLBox *xquery = wxDynamicCast(sqlQueryBook->GetPage(curpage), ctlSQLBox);
+		if (xquery == vkCurTab->sqlQuery)
+		{
+			sqlQueryBook->SetPageToolTip(curpage, query);
+		}
+
+		execQuery(query);
+		sqlQuery->SetFocus();
+	}
+
+//	if (!gcmm.IsEmpty())
+//	{
+//		showsql =
+//				wxT("SET debug_print_parse=") + gdpp +
+//				wxT(";SET client_min_messages=") + gcmm + wxT(";");
+//		conn->ExecuteScalarMulti(showsql);
+//	}
 }
 
 
@@ -2318,7 +2676,11 @@ void frmQuery::OnExecScript(wxCommandEvent &event)
 
 	// Clear markers and indicators
 	sqlQuery->MarkerDeleteAll(0);
+#if wxCHECK_VERSION(3, 1, 1)
+	sqlQuery->StartStyling(0);
+#else
 	sqlQuery->StartStyling(0, wxSTC_INDICS_MASK);
+#endif
 	sqlQuery->SetStyling(sqlQuery->GetText().Length(), 0);
 
 	// Menu stuff to initialize
@@ -2465,6 +2827,15 @@ void frmQuery::showMessage(const wxString &msg, const wxString &msgShort)
 
 void frmQuery::execQuery(const wxString &query, int resultToRetrieve, bool singleResult, const int queryOffset, bool toFile, bool explain, bool verbose)
 {
+#ifdef VK_DEBUG
+#if wxCHECK_VERSION(2, 9, 0)
+	myLogNotice(wxT("frmQuery %d execQuery \"%s\""),
+			++myCounter, (const char *)query.c_str());
+#else
+	myLogNotice(wxT("frmQuery %d execQuery \"%s\""),
+			++myCounter, query.c_str());
+#endif
+#endif
 	setTools(true);
 	queryMenu->Enable(MNU_SAVEHISTORY, true);
 	queryMenu->Enable(MNU_CLEARHISTORY, true);
@@ -2473,7 +2844,11 @@ void frmQuery::execQuery(const wxString &query, int resultToRetrieve, bool singl
 
 	// Clear markers and indicators
 	sqlQuery->MarkerDeleteAll(0);
+#if wxCHECK_VERSION(3, 1, 1)
+	sqlQuery->StartStyling(0);
+#else
 	sqlQuery->StartStyling(0, wxSTC_INDICS_MASK);
+#endif
 	sqlQuery->SetStyling(sqlQuery->GetText().Length(), 0);
 
 	if (!sqlQuery->IsChanged())
@@ -2526,8 +2901,12 @@ void frmQuery::execQuery(const wxString &query, int resultToRetrieve, bool singl
 
 	if (!queryMenu->IsChecked(MNU_AUTOCOMMIT) && conn->GetTxStatus() == PQTRANS_IDLE && !isBeginNotRequired(query))
 		conn->ExecuteVoid(wxT("BEGIN;"));
-
-	if (sqlResult->Execute(query, resultToRetrieve, this, QUERY_COMPLETE, qi) >= 0)
+	int rc = sqlResult->Execute(query, resultToRetrieve, this, QUERY_COMPLETE, qi);
+#ifdef VK_DEBUG
+		myLogNotice(wxT("frmQuery %d execQuery rc=%d"),
+				++myCounter, rc);
+#endif
+	if (rc >= 0)
 	{
 		// Return and wait for the result
 		return;
@@ -2722,6 +3101,10 @@ bool frmQuery::isBeginNotRequired(wxString query)
 // When the query completes, it raises an event which we process here.
 void frmQuery::OnQueryComplete(pgQueryResultEvent &ev)
 {
+#ifdef VK_DEBUG
+	myLogNotice(wxT("frmQuery %d OnQueryComplete"),
+			++myCounter);
+#endif
 	QueryExecInfo *qi = (QueryExecInfo *)ev.GetClientData();
 
 	bool done = false;
@@ -2749,7 +3132,8 @@ void frmQuery::OnQueryComplete(pgQueryResultEvent &ev)
 
 	if (sqlResult->RunStatus() != PGRES_TUPLES_OK)
 	{
-		outputPane->SetSelection(2);
+		if (vkCurTab->queries.Count() <= 1)
+			outputPane->SetSelection(2);
 		if (sqlResult->RunStatus() == PGRES_COMMAND_OK)
 		{
 			done = true;
@@ -2849,7 +3233,11 @@ void frmQuery::OnQueryComplete(pgQueryResultEvent &ev)
 
 				// Set an indicator on the error word (break on any kind of bracket, a space or full stop)
 				int sPos = errPos + selStart - 1, wEnd = 1;
+#if wxCHECK_VERSION(3, 1, 1)
+				sqlQueryExec->StartStyling(sPos);
+#else
 				sqlQueryExec->StartStyling(sPos, wxSTC_INDICS_MASK);
+#endif
 				int c = sqlQueryExec->GetCharAt(sPos + wEnd);
 				size_t len = sqlQueryExec->GetText().Length();
 				while(c != ' ' && c != '(' && c != '{' && c != '[' && c != '.' &&
@@ -2858,7 +3246,11 @@ void frmQuery::OnQueryComplete(pgQueryResultEvent &ev)
 					wEnd++;
 					c = sqlQueryExec->GetCharAt(sPos + wEnd);
 				}
+#if wxCHECK_VERSION(3, 1, 1)
+				sqlQueryExec->SetStyling(wEnd, 0);
+#else
 				sqlQueryExec->SetStyling(wEnd, wxSTC_INDIC0_MASK);
+#endif
 
 				int line = 0, maxLine = sqlQueryExec->GetLineCount();
 				while (line < maxLine && sqlQueryExec->GetLineEndPosition(line) < errPos + selStart + 1)
@@ -2879,12 +3271,13 @@ void frmQuery::OnQueryComplete(pgQueryResultEvent &ev)
 	else
 	{
 		done = true;
-		outputPane->SetSelection(0);
+		if (vkCurTab->queries.Count() <= 1)
+			outputPane->SetSelection(0);
 		long rowsTotal = sqlResult->NumRows();
 
 		if (qi->toFileExportForm)
 		{
-			SetStatusText(wxString::Format(wxPLURAL("%d row.", "%d rows.", rowsTotal), rowsTotal), STATUSPOS_ROWS);
+			SetStatusText(wxString::Format(wxPLURAL("%ld row.", "%ld rows.", rowsTotal), rowsTotal), STATUSPOS_ROWS);
 
 			if (rowsTotal)
 			{
@@ -2965,7 +3358,7 @@ void frmQuery::OnQueryComplete(pgQueryResultEvent &ev)
 		}
 	}
 
-	if (sqlResult->RunStatus() == PGRES_TUPLES_OK || sqlResult->RunStatus() == PGRES_COMMAND_OK)
+	if (vkCurTab->firstQuery && (sqlResult->RunStatus() == PGRES_TUPLES_OK || sqlResult->RunStatus() == PGRES_COMMAND_OK))
 	{
 		// Get the executed query
 		wxString executedQuery = sqlQueryExec->GetSelectedText();
@@ -3007,6 +3400,7 @@ void frmQuery::OnQueryComplete(pgQueryResultEvent &ev)
 			histoQueries.RemoveAt(index);
 			sqlQueries->Delete(index);
 		}
+		vkCurTab->firstQuery = false;
 	}
 
 	// Make sure only the maximum query number is enforced
@@ -3083,6 +3477,10 @@ void frmQuery::writeScriptOutput()
 // Complete the processing of a query
 void frmQuery::completeQuery(bool done, bool explain, bool verbose)
 {
+#ifdef VK_DEBUG
+	myLogNotice(wxT("frmQuery %d completeQuery start"),
+			++myCounter);
+#endif
 	// Display async notifications
 	pgNotification *notify;
 	int notifies = 0;
@@ -3158,10 +3556,13 @@ void frmQuery::completeQuery(bool done, bool explain, bool verbose)
 				}
 			}
 			explainCanvas->SetExplainString(str);
-			outputPane->SetSelection(1);
+			if (vkCurTab->queries.Count() <= 1)
+				outputPane->SetSelection(1);
 		}
 		updateMenu();
 	}
+
+	vkCurTab->threadCounter--;
 
 	// Change the output pane caption so the user knows which tab the result came from
 	sqlQueryExecLast = sqlQueryExec;
@@ -3169,6 +3570,13 @@ void frmQuery::completeQuery(bool done, bool explain, bool verbose)
 
 	sqlQueryExec = NULL;
 	sqlQuery->SetFocus();
+#ifdef VK_DEBUG
+#if wxCHECK_VERSION(2, 9, 0)
+	myLogNotice(wxT("frmQuery %d completeQuery end\n%s\n"), ++myCounter, (const char *)msgResult->GetValue().c_str());
+#else
+	myLogNotice(wxT("frmQuery %d completeQuery end\n%s\n"), ++myCounter, msgResult->GetValue().c_str());
+#endif
+#endif
 }
 
 
@@ -3476,7 +3884,8 @@ void frmQuery::OnChangeQuery(wxCommandEvent &event)
 		SetLineEndingStyle();
 		btnDeleteCurrent->Enable(true);
 	}
-	btnDeleteAll->Enable(sqlQueries->GetCount() > 0);
+	if (btnDeleteAll)
+		btnDeleteAll->Enable(sqlQueries->GetCount() > 0);
 }
 
 
@@ -3492,7 +3901,8 @@ void frmQuery::OnDeleteCurrent(wxCommandEvent &event)
 		sqlQueries->Delete(sqlQueries->GetSelection());
 		sqlQueries->SetValue(wxT(""));
 		btnDeleteCurrent->Enable(false);
-		btnDeleteAll->Enable(sqlQueries->GetCount() > 0);
+		if (btnDeleteAll)
+			btnDeleteAll->Enable(sqlQueries->GetCount() > 0);
 		SaveQueries();
 	}
 }
@@ -3510,7 +3920,8 @@ void frmQuery::OnDeleteAll(wxCommandEvent &event)
 		sqlQueries->Clear();
 		sqlQueries->SetValue(wxT(""));
 		btnDeleteCurrent->Enable(false);
-		btnDeleteAll->Enable(false);
+		if (btnDeleteAll)
+			btnDeleteAll->Enable(false);
 		SaveQueries();
 	}
 }
@@ -3558,6 +3969,45 @@ void frmQuery::OnSqlBookPageChanged(wxAuiNotebookEvent &event)
 		sqlQuery = wxDynamicCast(sqlQueryBook->GetPage(curpage), ctlSQLBox);
 		if (sqlQuery != NULL)
 		{
+			myLogNotice(wxT("frmQuery OnSqlBookPageChanged vktabtag_array->size()=%d"), vktabtag_array->size());
+			for (int i = 0; i < vktabtag_array->size(); i++)
+			{
+				vkTabTag *vk = &vktabtag_array->Item(i);
+				if (vk->sqlQuery == sqlQuery)
+				{
+					myLogNotice(wxT("frmQuery OnSqlBookPageChanged found i=%d"), i);
+					vkCurTab = &vktabtag_array->Item(i);
+					if (vkCurTab->saved_sqlResult)
+					{
+						sqlResult = vkCurTab->saved_sqlResult;
+						explainCanvas = vkCurTab->saved_explainCanvas;
+						msgResult = vkCurTab->saved_msgResult;
+						sqlResult->Connect(wxID_ANY, wxEVT_SET_FOCUS, wxFocusEventHandler(frmQuery::OnFocus));
+						msgResult->Connect(wxID_ANY, wxEVT_SET_FOCUS, wxFocusEventHandler(frmQuery::OnFocus));
+						outputPane->RemovePage(3);
+						outputPane->RemovePage(2);
+						outputPane->RemovePage(1);
+						outputPane->RemovePage(0);
+						outputPane->AddPage(sqlResult, _("Data Output"));
+						outputPane->AddPage(explainCanvas, _("Explain"));
+						outputPane->AddPage(msgResult, _("Messages"));
+						outputPane->AddPage(msgHistory, _("History"));
+						cbQueries->Clear();
+						for (int i = 0; i < vkCurTab->queries.Count(); i++)
+						{
+							wxString item = vkCurTab->queries.Item(i);
+							cbQueries->Append(item);
+						}
+						cbQueries->SetSelection(0);
+						if (vkCurTab->queries.Count() > 1)
+							OnComboBoxUpdatePrivate(0);
+						manager.Update();
+						myLogNotice(wxT("frmQuery OnSqlBookPageChanged i=%d OK"), i);
+					}
+					break;
+				}
+			}
+
 			// Update UI with chosen query's info
 			SetEOLModeDisplay(sqlQuery->GetEOLMode());
 			setExtendedTitle();
@@ -3615,6 +4065,17 @@ void frmQuery::OnSqlBookPageClose(wxAuiNotebookEvent &event)
 		return;
 	}
 
+	for (int i = 0; i < vktabtag_array->size(); i++)
+	{
+		vkTabTag *vk = &vktabtag_array->Item(i);
+		if (vk->sqlQuery == sqlQuery)
+		{
+			vktabtag_array->RemoveAt(i, 1);
+			myLogNotice(wxT("frmQuery OnSqlBookPageClose vktabtag_array->size()=%d removed i=%d"), vktabtag_array->size(), i);
+			break;
+		}
+	}
+
 	// If removing the tab for which results are displayed, reset the output pane's caption
 	if (sqlQuery == sqlQueryExecLast)
 	{
@@ -3660,16 +4121,53 @@ void frmQuery::SqlBookAddPage()
 	bVal = viewMenu->IsChecked(MNU_SHOWLINEENDS);
 	box->SetViewEOL(bVal ? 1 : 0);
 
-	box->Connect(wxID_ANY, wxEVT_SET_FOCUS, wxFocusEventHandler(frmQuery::OnFocus));
-	box->Connect(wxID_ANY, wxEVT_KILL_FOCUS, wxFocusEventHandler(frmQuery::OnFocus));
-
 	sqlQueryCounter ++;
-	caption = wxString::Format(_("Query %i"), (int) sqlQueryCounter);
+#if wxCHECK_VERSION(3, 0, 0)
+	caption = wxString::Format(_("Query %zd"), sqlQueryCounter);
+#else
+	caption = wxString::Format(_("Query %i"), sqlQueryCounter);
+#endif
 	box->SetTitle(caption);
 	sqlQueryBook->AddPage(box, caption, true);
 
-	// Probably not needed, as the line above should trigger the PageChange event
+	box->Connect(wxID_ANY, wxEVT_SET_FOCUS, wxFocusEventHandler(frmQuery::OnFocus));
+	box->Connect(wxID_ANY, wxEVT_KILL_FOCUS, wxFocusEventHandler(frmQuery::OnFocus));
+
+	// Probably not needed, as the AddPage should trigger the PageChange event
 	sqlQuery = box;
+
+	vkTabTag *struc = new vkTabTag();
+	memset(struc, 0, sizeof(vkTabTag));
+
+	struc->sqlQuery = sqlQuery;
+	struc->output_pane_objects_array = NULL;
+	vktabtag_array->Add(struc);
+	int num = vktabtag_array->size() - 1;
+	vkCurTab = &vktabtag_array->Item(num);
+
+	vkCurTab->output_pane_objects_array = new Output_Pane_Objects_Array();
+	outputPaneObjectsTag *strucobj = new outputPaneObjectsTag();
+	strucobj->sqlResult = new ctlSQLResult(outputPane, conn, CTL_SQLRESULT, wxDefaultPosition, wxDefaultSize);
+	strucobj->explainCanvas = new ExplainCanvas(outputPane);
+	strucobj->msgResult = new wxTextCtrl(outputPane, CTL_MSGRESULT, wxT(""), wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE | wxTE_READONLY | wxTE_DONTWRAP);
+	strucobj->msgResult->SetFont(settings->GetSQLFont());
+	vkCurTab->output_pane_objects_array->Add(strucobj);
+	sqlResult = strucobj->sqlResult;
+	explainCanvas = strucobj->explainCanvas;
+	msgResult = strucobj->msgResult;
+	sqlResult->Connect(wxID_ANY, wxEVT_SET_FOCUS, wxFocusEventHandler(frmQuery::OnFocus));
+	msgResult->Connect(wxID_ANY, wxEVT_SET_FOCUS, wxFocusEventHandler(frmQuery::OnFocus));
+	outputPane->RemovePage(3);
+	outputPane->RemovePage(2);
+	outputPane->RemovePage(1);
+	outputPane->RemovePage(0);
+	outputPane->AddPage(sqlResult, _("Data Output"));
+	outputPane->AddPage(explainCanvas, _("Explain"));
+	outputPane->AddPage(msgResult, _("Messages"));
+	outputPane->AddPage(msgHistory, _("History"));
+
+	myLogNotice(wxT("frmQuery SqlBookAddPage vktabtag_array->size()=%d"), vktabtag_array->size());
+	cbQueries->Clear();
 }
 
 void frmQuery::SqlBookDisconnectPage(ctlSQLBox *box)
@@ -4121,3 +4619,88 @@ void pgScriptTimer::Notify()
 	m_parent->writeScriptOutput();
 }
 
+void frmQuery::OnText(wxCommandEvent &event)
+{
+	if (vkCurTab->ontextactive)
+	{
+		event.Skip();
+		return;
+	}
+	wxString txt = searchctrl->GetValue();
+	if (txt.Length() < 3)
+	{
+		return;
+	}
+	int savedrow = -1, savedcol = -1;
+	vkCurTab->ontextactive = true;
+	txt = txt.Lower();
+	wxColour cbg = settings->GetSQLBoxColourBackground();
+	wxColour cbgfnd(0xC0, 0xC0, 0xFF);
+	sqlResult->BeginBatch();
+	for (int i = 0; i < sqlResult->GetNumberRows(); i++)
+	{
+		for (int j = 0; j < sqlResult->GetNumberCols(); j++)
+		{
+			wxFont fntLabel = sqlResult->GetCellFont(i, j);
+			wxString x = sqlResult->GetCellValue(i, j).Lower();
+			bool ima = x.Contains(txt);
+			if (ima)
+			{
+				if (savedrow == -1)
+				{
+					savedrow = i;
+					savedcol = j;
+				}
+#if wxCHECK_VERSION(3, 0, 0)
+				if (fntLabel.GetWeight() == wxFONTWEIGHT_NORMAL)
+#else
+				if (fntLabel.GetWeight() == wxNORMAL)
+#endif
+				{
+#if wxCHECK_VERSION(3, 0, 0)
+					fntLabel.SetWeight(wxFONTWEIGHT_BOLD);
+#else
+					fntLabel.SetWeight(wxBOLD);
+#endif
+					wxGridCellAttr *attr = sqlResult->GetOrCreateCellAttr(i, j);
+					wxGridCellAttr *attr1 = attr->Clone();
+					attr1->SetBackgroundColour(cbgfnd);
+					attr1->SetFont(fntLabel);
+					sqlResult->SetAttr(i, j, attr1);
+//					wxGridTableBase *table = sqlGrid->GetTable();
+//					wxGridCellAttr *attr2 = table->GetAttr(i, j, wxGridCellAttr::Cell);
+//					dumpAttr(wxT("OnText"), sqlGrid, attr2, i, j);
+				}
+			}
+			else
+			{
+#if wxCHECK_VERSION(3, 0, 0)
+				if (fntLabel.GetWeight() != wxFONTWEIGHT_NORMAL)
+#else
+				if (fntLabel.GetWeight() != wxNORMAL)
+#endif
+				{
+#if wxCHECK_VERSION(3, 0, 0)
+					fntLabel.SetWeight(wxFONTWEIGHT_NORMAL);
+#else
+					fntLabel.SetWeight(wxNORMAL);
+#endif
+					sqlResult->SetCellFont(i, j, fntLabel);
+					sqlResult->SetCellBackgroundColour(i, j, cbg);
+				}
+			}
+		}
+	}
+	if (savedrow != -1)
+		sqlResult->MakeCellVisible(savedrow, savedcol);
+	sqlResult->EndBatch();
+	vkCurTab->ontextactive = false;
+}
+
+void frmQuery::OnHistory(wxCommandEvent &event)
+{
+	if (winHistory)
+		delete winHistory;
+	winHistory = new dlgQueryHistory(this);
+	winHistory->ShowModal();
+}

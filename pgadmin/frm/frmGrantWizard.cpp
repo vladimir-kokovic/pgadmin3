@@ -47,8 +47,8 @@ frmGrantWizard::frmGrantWizard(frmMain *form, pgObject *obj) : ExecutionDialog(f
 {
 	nbNotebook = 0;
 
-	SetFont(settings->GetSystemFont());
 	LoadResource(form, wxT("frmGrantWizard"));
+	SetFont(settings->GetSystemFont());
 	RestorePosition();
 
 	SetTitle(object->GetTranslatedMessage(GRANTWIZARDTITLE));

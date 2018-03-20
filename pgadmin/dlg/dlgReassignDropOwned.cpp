@@ -45,8 +45,8 @@ dlgReassignDropOwned::dlgReassignDropOwned(frmMain *win, pgConn *conn,
 	connection = conn;
 	parent = win;
 
-	SetFont(settings->GetSystemFont());
 	LoadResource(win, wxT("dlgReassignDropOwned"));
+	SetFont(settings->GetSystemFont());
 	RestorePosition();
 
 	cbRoles->Clear();

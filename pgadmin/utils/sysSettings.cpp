@@ -431,18 +431,18 @@ bool sysSettings::WriteBool(const wxString &key, bool value)
 // Write a point value
 bool sysSettings::WritePoint(const wxString &key, const wxPoint &value)
 {
-	bool rc = wxConfig::Write(key + wxT("/Left"), value.x);
+	bool rc = WriteInt(key + wxT("/Left"), value.x);
 	if (rc)
-		rc = wxConfig::Write(key + wxT("/Top"), value.y);
+		rc = WriteInt(key + wxT("/Top"), value.y);
 	return rc;
 }
 
 // Write a size value
 bool sysSettings::WriteSize(const wxString &key, const wxSize &value)
 {
-	bool rc = wxConfig::Write(key + wxT("/Width"), value.x);
+	bool rc = WriteInt(key + wxT("/Width"), value.x);
 	if (rc)
-		rc = wxConfig::Write(key + wxT("/Height"), value.y);
+		rc = WriteInt(key + wxT("/Height"), value.y);
 	return rc;
 }
 
@@ -687,7 +687,11 @@ wxFont sysSettings::GetSQLFont()
 		return wxFont(9, wxTELETYPE, wxNORMAL, wxNORMAL);
 #else
 #ifdef __WXGTK__
+#if wxCHECK_VERSION(3, 0, 0)
+		return wxFont(10, wxFONTFAMILY_TELETYPE, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
+#else
 		return wxFont(10, wxTELETYPE, wxNORMAL, wxNORMAL);
+#endif
 #else
 		return wxFont(12, wxTELETYPE, wxNORMAL, wxNORMAL);
 #endif

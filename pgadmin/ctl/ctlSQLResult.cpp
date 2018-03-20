@@ -20,7 +20,7 @@
 #include "ctl/ctlSQLResult.h"
 #include "utils/sysSettings.h"
 #include "frm/frmExport.h"
-
+#include "frm/frmQuery.h"
 
 
 ctlSQLResult::ctlSQLResult(wxWindow *parent, pgConn *_conn, wxWindowID id, const wxPoint &pos, const wxSize &size)
@@ -28,6 +28,7 @@ ctlSQLResult::ctlSQLResult(wxWindow *parent, pgConn *_conn, wxWindowID id, const
 {
 	conn = _conn;
 	thread = NULL;
+	parentframe = parent; // frmQuery outputPane
 
 	SetTable(new sqlResultTable(), true);
 
@@ -35,6 +36,10 @@ ctlSQLResult::ctlSQLResult(wxWindow *parent, pgConn *_conn, wxWindowID id, const
 	SetSizer(new wxBoxSizer(wxVERTICAL));
 
 	Connect(wxID_ANY, wxEVT_GRID_RANGE_SELECT, wxGridRangeSelectEventHandler(ctlSQLResult::OnGridSelect));
+
+#if wxCHECK_VERSION(3, 0, 0)
+        Fit();
+#endif
 }
 
 
@@ -309,6 +314,24 @@ wxString ctlSQLResult::OnGetItemText(long item, long col) const
 
 void ctlSQLResult::OnGridSelect(wxGridRangeSelectEvent &event)
 {
+	ctlAuiNotebook *outputPane = (ctlAuiNotebook *)getParentFrame();
+	frmQuery *queryframe = (frmQuery *)outputPane->getParentFrame();
+	if (event.Selecting())
+	{
+		xSum = vkRossiDFP::ZERO;
+		xSumCnt = 0;
+		int copied = Copy(true);
+		if (xSumCnt)
+		{
+			queryframe->SetStatusText(wxString::Format(
+					_("Sum from %d rows is %s"),
+					xSumCnt, std2wx(xSum.toString()).c_str()), 1);
+		}
+		else
+			queryframe->SetStatusText(wxT(""), 1);
+	}
+	else
+		queryframe->SetStatusText(wxT(""), 1);
 	SetFocus();
 }
 

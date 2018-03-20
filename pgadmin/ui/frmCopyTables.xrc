@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<resource>
+		<object class="wxDialog" name="frmCopyTables">
+				<title>Copy tables selection</title>
+				<size>800,600d</size>
+				<style>wxDEFAULT_DIALOG_STYLE|wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER</style>
+				<object class="wxFlexGridSizer">
+						<cols>1</cols>
+						<rows>2</rows>
+						<growablecols>0</growablecols>
+						<growablerows>0</growablerows>
+						<object class="sizeritem">
+								<object class="ctlCheckTreeView" name="ctvTablesCopy">
+										<style>wxTR_HAS_BUTTONS|wxSIMPLE_BORDER</style>
+								</object>
+								<flag>wxEXPAND|wxALL</flag>
+								<border>3</border>
+						</object>
+						<object class="sizeritem">
+								<object class="wxFlexGridSizer">
+										<cols>4</cols>
+										<growablecols>1</growablecols>
+										<object class="sizeritem">
+												<object class="wxButton" name="wxID_HELP">
+														<label>Help</label>
+												</object>
+												<flag>wxEXPAND|wxALL</flag>
+												<border>3</border>
+										</object>
+										<object class="spacer">
+												<size>0,0d</size>
+										</object>
+										<object class="sizeritem">
+												<object class="wxButton" name="wxID_OK">
+														<label>&amp;OK</label>
+														<default>1</default>
+												</object>
+												<flag>wxEXPAND|wxALL</flag>
+												<border>3</border>
+										</object>
+										<object class="sizeritem">
+												<object class="wxButton" name="wxID_CANCEL">
+														<label>&amp;Cancel</label>
+												</object>
+												<flag>wxEXPAND|wxALL</flag>
+												<border>3</border>
+										</object>
+								</object>
+								<flag>wxEXPAND|wxTOP|wxLEFT|wxRIGHT</flag>
+						</object>
+				</object>
+		</object>
+</resource>

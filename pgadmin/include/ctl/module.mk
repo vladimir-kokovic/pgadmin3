@@ -34,7 +34,10 @@ pgadmin3_SOURCES += \
 	include/ctl/xh_ctlchecktreeview.h \
 	include/ctl/xh_ctltree.h \
 	include/ctl/xh_sqlbox.h \
-	include/ctl/xh_timespin.h
+	include/ctl/xh_timespin.h \
+	include/ctl/xh_searchctrl.h \
+	include/ctl/xh_ctlListViewVirtual.h \
+	include/ctl/xh_ctlListViewVirtualHistory.h
 
 EXTRA_DIST += \
 	include/ctl/module.mk

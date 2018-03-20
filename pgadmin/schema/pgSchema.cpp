@@ -565,6 +565,12 @@ pgObject *pgSchemaBaseFactory::CreateObjects(pgCollection *collection, ctlTree *
 
 	if (schemas)
 	{
+		bool process_acl = false;
+		if (collection->GetDatabase()->BackendMinimumVersion(9, 0))
+		{
+			process_acl = collection->GetDatabase()->ExecuteScalar(
+				wxT("SELECT count(*) FROM pg_catalog.pg_default_acl")) != wxT("0");
+		}
 		while (!schemas->Eof())
 		{
 			wxString name = schemas->GetVal(wxT("nspname"));
@@ -599,15 +605,39 @@ pgObject *pgSchemaBaseFactory::CreateObjects(pgCollection *collection, ctlTree *
 				catalog->iSetAcl(schemas->GetVal(wxT("nspacl")));
 				catalog->iSetCreatePrivilege(false);
 
-				if (collection->GetDatabase()->BackendMinimumVersion(9, 0))
+				if (process_acl && collection->GetDatabase()->BackendMinimumVersion(9, 0))
 				{
-					catalog->iSetDefPrivsOnTables(collection->GetConnection()->ExecuteScalar(wxT("SELECT defaclacl FROM pg_catalog.pg_default_acl dacl WHERE dacl.defaclnamespace = " + catalog->GetOidStr() + wxT(" AND defaclobjtype='r'"))));
-					catalog->iSetDefPrivsOnSeqs(collection->GetConnection()->ExecuteScalar(wxT("SELECT defaclacl FROM pg_catalog.pg_default_acl dacl WHERE dacl.defaclnamespace = " + catalog->GetOidStr() + wxT(" AND defaclobjtype='S'"))));
-					catalog->iSetDefPrivsOnFuncs(collection->GetConnection()->ExecuteScalar(wxT("SELECT defaclacl FROM pg_catalog.pg_default_acl dacl WHERE dacl.defaclnamespace = " + catalog->GetOidStr() + wxT(" AND defaclobjtype='f'"))));
-				}
-				if (collection->GetDatabase()->BackendMinimumVersion(9, 2))
-				{
-					catalog->iSetDefPrivsOnTypes(collection->GetConnection()->ExecuteScalar(wxT("SELECT defaclacl FROM pg_catalog.pg_default_acl dacl WHERE dacl.defaclnamespace = " + catalog->GetOidStr() + wxT(" AND defaclobjtype='T'"))));
+					wxString sqlacl9 = wxT("'r', 'S', 'f'");
+					if (collection->GetDatabase()->BackendMinimumVersion(9, 2))
+					{
+						sqlacl9 += wxT(", 'T'");
+					}
+					sqlacl9 += wxT(")");
+					wxString sqlacl =
+							wxT("SELECT defaclobjtype AS acltype, defaclacl AS defacl ") \
+							wxT("FROM pg_catalog.pg_default_acl dacl ") \
+							wxT("WHERE dacl.defaclnamespace = ") + catalog->GetOidStr() +
+							wxT(" AND defaclobjtype in(") + sqlacl9;
+
+					pgSet *setacl = collection->GetDatabase()->ExecuteSet(sqlacl);
+					if (setacl)
+					{
+						while (!setacl->Eof())
+						{
+							wxString acltype = setacl->GetVal(wxT("acltype"));
+							wxString aclres = setacl->GetVal(wxT("defacl"));
+							if (acltype == wxT("r"))
+								catalog->iSetDefPrivsOnTables(aclres);
+							else if (acltype == wxT("S"))
+								catalog->iSetDefPrivsOnSeqs(aclres);
+							else if (acltype == wxT("f"))
+								catalog->iSetDefPrivsOnFuncs(aclres);
+							else if (acltype == wxT("T"))
+								catalog->iSetDefPrivsOnTypes(aclres);
+							setacl->MoveNext();
+						}
+					}
+					delete setacl;
 				}
 
 				if (browser)
@@ -630,15 +660,40 @@ pgObject *pgSchemaBaseFactory::CreateObjects(pgCollection *collection, ctlTree *
 				schema->iSetAcl(schemas->GetVal(wxT("nspacl")));
 				schema->iSetCreatePrivilege(schemas->GetBool(wxT("cancreate")));
 
-				if (collection->GetDatabase()->BackendMinimumVersion(9, 0))
+				if (process_acl && collection->GetDatabase()->BackendMinimumVersion(9, 0))
 				{
-					schema->iSetDefPrivsOnTables(collection->GetConnection()->ExecuteScalar(wxT("SELECT defaclacl FROM pg_catalog.pg_default_acl dacl WHERE dacl.defaclnamespace = " + schema->GetOidStr() + wxT(" AND defaclobjtype='r'"))));
-					schema->iSetDefPrivsOnSeqs(collection->GetConnection()->ExecuteScalar(wxT("SELECT defaclacl FROM pg_catalog.pg_default_acl dacl WHERE dacl.defaclnamespace = " + schema->GetOidStr() + wxT(" AND defaclobjtype='S'"))));
-					schema->iSetDefPrivsOnFuncs(collection->GetConnection()->ExecuteScalar(wxT("SELECT defaclacl FROM pg_catalog.pg_default_acl dacl WHERE dacl.defaclnamespace = " + schema->GetOidStr() + wxT(" AND defaclobjtype='f'"))));
-				}
-				if (collection->GetDatabase()->BackendMinimumVersion(9, 2))
-				{
-					schema->iSetDefPrivsOnTypes(collection->GetConnection()->ExecuteScalar(wxT("SELECT defaclacl FROM pg_catalog.pg_default_acl dacl WHERE dacl.defaclnamespace = " + schema->GetOidStr() + wxT(" AND defaclobjtype='T'"))));
+					wxString sqlacl9 = wxT("'r', 'S', 'f'");
+					if (collection->GetDatabase()->BackendMinimumVersion(9, 2))
+					{
+						sqlacl9 += wxT(", 'T'");
+					}
+					sqlacl9 += wxT(")");
+					wxString sqlacl =
+							wxT("SELECT defaclobjtype AS acltype, defaclacl AS defacl ") \
+							wxT("FROM pg_catalog.pg_default_acl dacl ") \
+							wxT("WHERE dacl.defaclnamespace = ") + schema->GetOidStr() +
+							wxT(" AND defaclobjtype in(") + sqlacl9 +
+							wxT("");
+
+					pgSet *setacl = collection->GetDatabase()->ExecuteSet(sqlacl);
+					if (setacl)
+					{
+						while (!setacl->Eof())
+						{
+							wxString acltype = setacl->GetVal(wxT("acltype"));
+							wxString aclres = setacl->GetVal(wxT("defacl"));
+							if (acltype == wxT("r"))
+								schema->iSetDefPrivsOnTables(aclres);
+							else if (acltype == wxT("S"))
+								schema->iSetDefPrivsOnSeqs(aclres);
+							else if (acltype == wxT("f"))
+								schema->iSetDefPrivsOnFuncs(aclres);
+							else if (acltype == wxT("T"))
+								schema->iSetDefPrivsOnTypes(aclres);
+							setacl->MoveNext();
+						}
+					}
+					delete setacl;
 				}
 
 				if (collection->GetDatabase()->BackendMinimumVersion(9, 1))

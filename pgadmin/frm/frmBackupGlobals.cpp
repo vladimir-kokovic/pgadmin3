@@ -47,8 +47,8 @@ frmBackupGlobals::frmBackupGlobals(frmMain *form, pgObject *obj) : ExternProcess
 {
 	object = obj;
 
-	SetFont(settings->GetSystemFont());
 	LoadResource(form, wxT("frmBackupGlobals"));
+	SetFont(settings->GetSystemFont());
 	RestorePosition();
 
 	SetTitle(object->GetTranslatedMessage(BACKUPGLOBALS));

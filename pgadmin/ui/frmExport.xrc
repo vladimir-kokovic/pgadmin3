@@ -110,8 +110,14 @@
       <pos>2,125d</pos>
       <style></style>
     </object>
+    <object class="wxButton" name="TO_CLIPBOARD">
+      <label>To clip&amp;Board</label>
+      <default>2</default>
+      <pos>47,125d</pos>
+      <style></style>
+    </object>
     <object class="wxButton" name="wxID_OK">
-      <label>&amp;OK</label>
+      <label>To &amp;File</label>
       <default>1</default>
       <pos>147,125d</pos>
       <style></style>

@@ -61,7 +61,8 @@ pgadmin3_SOURCES += \
 	include/schema/gpExtTable.h \
 	include/schema/gpResQueue.h \
 	include/schema/gpPartition.h \
-	include/schema/edbResourceGroup.h
+	include/schema/edbResourceGroup.h \
+	include/schema/asoft.h
 
 EXTRA_DIST += \
 	include/schema/module.mk

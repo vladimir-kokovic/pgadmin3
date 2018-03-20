@@ -39,6 +39,9 @@
 #include "schema/edbPrivateSynonym.h"
 #include "dlg/dlgProperty.h"
 
+// custom events
+DEFINE_EVENT_TYPE(EVT_THREAD_COPYPASTE_UPDATE_GUI)
+
 // Mutex to protect the "currentObject" from race conditions.
 //
 static wxMutex s_currentObjectMutex;
@@ -77,6 +80,10 @@ BEGIN_EVENT_TABLE(frmMain, pgFrame)
 
 	EVT_AUI_PANE_CLOSE(                     frmMain::OnAuiUpdate)
 	EVT_AUINOTEBOOK_PAGE_CLOSE(wxID_ANY,    frmMain::OnAuiNotebookPageClose)
+
+	EVT_COMMAND(wxID_ANY, EVT_THREAD_COPYPASTE_UPDATE_GUI, frmMain::OnThreadCopypasteUpdateGUI)
+	EVT_TREE_BEGIN_DRAG(CTL_BROWSER,		frmMain::OnBeginDrag)
+	EVT_TREE_END_DRAG(CTL_BROWSER,			frmMain::OnEndDrag)
 
 #ifdef __WXGTK__
 	EVT_TREE_KEY_DOWN(CTL_BROWSER,          frmMain::OnTreeKeyDown)
@@ -163,6 +170,26 @@ void frmMain::OnExit(wxCommandEvent &event)
 
 void frmMain::OnClose(wxCloseEvent &event)
 {
+	if (pasteTables::isActive())
+	{
+		pasteTables *copypasteobject = GetCopypasteobject();
+		if (copypasteobject)
+		{
+			if (wxMessageBox(
+				_("Paste table(s) is active !\nDo you really want to quit ?\n"),
+				_("Paste table(s) is active"), wxYES_NO) == wxNO)
+			{
+				return;
+			}
+			if (copypasteobject->thread)
+			{
+				copypasteobject->thread->Delete();
+				delete copypasteobject->thread;
+				copypasteobject->thread = NULL;
+			}
+		}
+	}
+
 	wxWindow *fr;
 	windowList::Node *node;
 	while ((node = frames.GetFirst()) != NULL)

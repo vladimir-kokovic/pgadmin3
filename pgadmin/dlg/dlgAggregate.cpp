@@ -338,13 +338,23 @@ void dlgAggregate::OnChangeType(wxCommandEvent &ev)
 	// If there are no input_types specified, assume "ANY" for a count(*) style aggregate.
 	if (lstInputTypes->GetItemCount() > 0 && cbStateType->GetGuessedSelection() >= 0)
 	{
+        wxString vk11;
+        if (connection->BackendMinimumVersion(11, 0))
+        {
+            vk11 = wxT(" prokind='f' ");
+        }
+        else
+        {
+            vk11 = wxT(" proisagg = false ");
+        }
+
 		set = connection->ExecuteSet(
 		          wxT("SELECT proname, nspname, prorettype\n")
 		          wxT("  FROM pg_proc p\n")
 		          wxT("  JOIN pg_type t ON t.oid=p.prorettype\n")
 		          wxT("  JOIN pg_namespace n ON n.oid=pronamespace\n")
 		          wxT(" WHERE prorettype = ") + GetTypeOid(cbStateType->GetGuessedSelection() + 1) +
-		          wxT("\n   AND proisagg = FALSE")
+		          wxT("\n   AND ") + vk11 +
 		          wxT("\n   AND proargtypes = '") + GetTypeOid(cbStateType->GetGuessedSelection() + 1) + wxT(" ") + GetInputTypesOidList() + wxT("'"));
 
 		if (set)
@@ -368,7 +378,7 @@ void dlgAggregate::OnChangeType(wxCommandEvent &ev)
 		          wxT("  FROM pg_proc p\n")
 		          wxT("  JOIN pg_type t ON t.oid=p.prorettype\n")
 		          wxT("  JOIN pg_namespace n ON n.oid=pronamespace\n")
-		          wxT(" WHERE proisagg = FALSE")
+		          wxT(" WHERE ") + vk11 +
 		          wxT("\n   AND proargtypes = '") + GetTypeOid(cbStateType->GetGuessedSelection() + 1) + wxT("'"));
 
 		if (set)

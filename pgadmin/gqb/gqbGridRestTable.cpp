@@ -223,22 +223,41 @@ void wxGridCellComboBoxRenderer::Draw(wxGrid &grid, wxGridCellAttr &attr, wxDC &
 
 	// Draw 3-d button
 	wxColour colourBackGround = wxSystemSettings::GetColour(wxSYS_COLOUR_BTNFACE);
+#if wxCHECK_VERSION(3, 0, 0)
+	dc.SetBrush(wxBrush(colourBackGround, wxBRUSHSTYLE_SOLID));
+	dc.SetPen(wxPen(colourBackGround, 1, wxPENSTYLE_SOLID));
+#else
 	dc.SetBrush(wxBrush(colourBackGround, wxSOLID));
 	dc.SetPen(wxPen(colourBackGround, 1, wxSOLID));
+#endif
 	dc.DrawRectangle(rectButton);
+#if wxCHECK_VERSION(3, 0, 0)
+	dc.SetPen(wxPen(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNTEXT), 1, wxPENSTYLE_SOLID));
+#else
 	dc.SetPen(wxPen(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNTEXT), 1, wxSOLID));
+#endif
 	dc.DrawLine(rectButton.GetLeft(), rectButton.GetBottom(),
 	            rectButton.GetRight(), rectButton.GetBottom());
 	dc.DrawLine(rectButton.GetRight(), rectButton.GetBottom(),
 	            rectButton.GetRight(), rectButton.GetTop() - 1);
+#if wxCHECK_VERSION(3, 0, 0)
+	dc.SetPen(wxPen(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNSHADOW),
+	                1, wxPENSTYLE_SOLID));
+#else
 	dc.SetPen(wxPen(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNSHADOW),
 	                1, wxSOLID));
+#endif
 	dc.DrawLine(rectButton.GetLeft() + 1, rectButton.GetBottom() - 1,
 	            rectButton.GetRight() - 1, rectButton.GetBottom() - 1);
 	dc.DrawLine(rectButton.GetRight() - 1, rectButton.GetBottom() - 1,
 	            rectButton.GetRight() - 1, rectButton.GetTop());
+#if wxCHECK_VERSION(3, 0, 0)
+	dc.SetPen(wxPen(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNHIGHLIGHT),
+	                1, wxPENSTYLE_SOLID));
+#else
 	dc.SetPen(wxPen(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNHIGHLIGHT),
 	                1, wxSOLID));
+#endif
 	dc.DrawLine(rectButton.GetRight() - 2, rectButton.GetTop() + 1,
 	            rectButton.GetLeft() + 1, rectButton.GetTop() + 1);
 	dc.DrawLine(rectButton.GetLeft() + 1, rectButton.GetTop() + 1,
@@ -252,12 +271,21 @@ void wxGridCellComboBoxRenderer::Draw(wxGrid &grid, wxGridCellAttr &attr, wxDC &
 	                   rectButton.GetTop() + (rectButton.GetHeight() - nTriHeight) / 2);
 	point[1] = wxPoint(point[0].x + nTriWidth - 1, point[0].y);
 	point[2] = wxPoint(point[0].x + 3, point[0].y + nTriHeight - 1);
+#if wxCHECK_VERSION(3, 0, 0)
+	dc.SetBrush(wxBrush(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNTEXT), wxBRUSHSTYLE_SOLID));
+	dc.SetPen(wxPen(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNTEXT), 1, wxPENSTYLE_SOLID));
+#else
 	dc.SetBrush(wxBrush(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNTEXT), wxSOLID));
 	dc.SetPen(wxPen(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNTEXT), 1, wxSOLID));
+#endif
 	dc.DrawPolygon(3, point);
 	if (m_border == wxLAYOUT_TOP)
 	{
+#if wxCHECK_VERSION(3, 0, 0)
+		dc.SetPen(wxPen(*wxBLACK, 1, wxPENSTYLE_DOT));
+#else
 		dc.SetPen(wxPen(*wxBLACK, 1, wxDOT));
+#endif
 		dc.DrawLine(rectCell.GetRight(), rectCell.GetTop(),
 		            rectCell.GetLeft(), rectCell.GetTop());
 	}
@@ -300,30 +328,54 @@ void wxGridCellButtonRenderer::Draw(wxGrid &grid, wxGridCellAttr &attr, wxDC &dc
 		return;
 
 	wxColour colourBackGround = wxSystemSettings::GetColour(wxSYS_COLOUR_BTNFACE);
+#if wxCHECK_VERSION(3, 0, 0)
+	dc.SetBrush(wxBrush(colourBackGround, wxBRUSHSTYLE_SOLID));
+	dc.SetPen(wxPen(colourBackGround, 1, wxPENSTYLE_SOLID));
+#else
 	dc.SetBrush(wxBrush(colourBackGround, wxSOLID));
 	dc.SetPen(wxPen(colourBackGround, 1, wxSOLID));
+#endif
 	dc.DrawRectangle(rectButton);
+#if wxCHECK_VERSION(3, 0, 0)
+	dc.SetPen(wxPen(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNTEXT), 1, wxPENSTYLE_SOLID));
+#else
 	dc.SetPen(wxPen(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNTEXT), 1, wxSOLID));
+#endif
 	dc.DrawLine(rectButton.GetLeft(), rectButton.GetBottom(),
 	            rectButton.GetRight(), rectButton.GetBottom());
 	dc.DrawLine(rectButton.GetRight(), rectButton.GetBottom(),
 	            rectButton.GetRight(), rectButton.GetTop() - 1);
+#if wxCHECK_VERSION(3, 0, 0)
+	dc.SetPen(wxPen(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNSHADOW),
+	                1, wxPENSTYLE_SOLID));
+#else
 	dc.SetPen(wxPen(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNSHADOW),
 	                1, wxSOLID));
+#endif
 	dc.DrawLine(rectButton.GetLeft() + 1, rectButton.GetBottom() - 1,
 	            rectButton.GetRight() - 1, rectButton.GetBottom() - 1);
 	dc.DrawLine(rectButton.GetRight() - 1, rectButton.GetBottom() - 1,
 	            rectButton.GetRight() - 1, rectButton.GetTop());
+#if wxCHECK_VERSION(3, 0, 0)
+	dc.SetPen(wxPen(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNHIGHLIGHT),
+	                1, wxPENSTYLE_SOLID));
+#else
 	dc.SetPen(wxPen(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNHIGHLIGHT),
 	                1, wxSOLID));
+#endif
 	dc.DrawLine(rectButton.GetRight() - 2, rectButton.GetTop() + 1,
 	            rectButton.GetLeft() + 1, rectButton.GetTop() + 1);
 	dc.DrawLine(rectButton.GetLeft() + 1, rectButton.GetTop() + 1,
 	            rectButton.GetLeft() + 1, rectButton.GetBottom() - 1);
 
 	// Draw little plus symbol
+#if wxCHECK_VERSION(3, 0, 0)
+	dc.SetBrush(wxBrush(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNTEXT), wxBRUSHSTYLE_SOLID));
+	dc.SetPen(wxPen(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNTEXT), 1, wxPENSTYLE_SOLID));
+#else
 	dc.SetBrush(wxBrush(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNTEXT), wxSOLID));
 	dc.SetPen(wxPen(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNTEXT), 1, wxSOLID));
+#endif
 	int nPlusWidth = 7;
 	int nPlusHeight = 7;
 	wxPoint point[4];
@@ -336,7 +388,11 @@ void wxGridCellButtonRenderer::Draw(wxGrid &grid, wxGridCellAttr &attr, wxDC &dc
 
 	if (m_border == wxLAYOUT_TOP)
 	{
+#if wxCHECK_VERSION(3, 0, 0)
+		dc.SetPen(wxPen(*wxBLACK, 1, wxPENSTYLE_DOT));
+#else
 		dc.SetPen(wxPen(*wxBLACK, 1, wxDOT));
+#endif
 		dc.DrawLine(rectCell.GetRight(), rectCell.GetTop(),
 		            rectCell.GetLeft(), rectCell.GetTop());
 	}

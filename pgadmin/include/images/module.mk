@@ -216,6 +216,7 @@ pgadmin3_SOURCES += \
 	include/images/packages.png \
 	include/images/parser.png \
 	include/images/parsers.png \
+	include/images/pastetables.png \
 	include/images/plugins.png \
 	include/images/pgAdmin3.png \
 	include/images/pgAdmin3-16.png \

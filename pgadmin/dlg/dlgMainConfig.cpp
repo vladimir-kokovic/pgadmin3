@@ -75,8 +75,8 @@ static const wxChar *sourceStrings[] =
 dlgMainConfig::dlgMainConfig(pgFrame *parent, pgSettingItem *_item) :
 	DialogWithHelp((frmMain *)parent)
 {
-	SetFont(settings->GetSystemFont());
 	LoadResource((wxWindow *)parent, wxT("dlgMainConfig"));
+	SetFont(settings->GetSystemFont());
 
 	// Icon
 	SetIcon(*property_png_ico);
@@ -107,7 +107,11 @@ dlgMainConfig::dlgMainConfig(pgFrame *parent, pgSettingItem *_item) :
 	txtComment->SetValue(item->newLine->comment);
 
 	wxFont fntLabel = stName->GetFont();
+#if wxCHECK_VERSION(3, 0, 0)
+	fntLabel.SetWeight(wxFONTWEIGHT_BOLD);
+#else
 	fntLabel.SetWeight(wxBOLD);
+#endif
 	stName->SetFont(fntLabel);
 	stName->SetLabel(item->name);
 

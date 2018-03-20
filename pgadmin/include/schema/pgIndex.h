@@ -180,6 +180,28 @@ public:
 	}
 	wxString GetRelOptionsStr() const;
 	void AppendIndexReloptions(ctlListView *properties);
+        wxString GetFillFactor()
+	{
+            wxString result = wxEmptyString;
+
+            if (GetConnection()->BackendMinimumVersion(8, 2) && reloptions.GetCount() > 0)
+            {
+                for (unsigned int i = 0; i < reloptions.GetCount(); i++)
+                {
+                    wxStringTokenizer tokenizer(reloptions[i], wxT("="));
+                    if (tokenizer.CountTokens() == 2)
+                    {
+                       wxString key = tokenizer.GetNextToken();
+                       wxString value = tokenizer.GetNextToken();
+                       if (key == wxT("fillfactor"))
+                       {
+                           return value;
+                       }
+                    }
+                }
+            }
+            return result;
+	}
 	wxString GetProcName() const
 	{
 		return procName;

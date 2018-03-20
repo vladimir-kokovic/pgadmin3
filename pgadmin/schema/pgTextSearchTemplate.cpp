@@ -183,14 +183,17 @@ pgObject *pgTextSearchTemplateFactory::CreateObjects(pgCollection *collection, c
 {
 	pgTextSearchTemplate *tmpl = 0;
 
-	pgSet *templates;
-	templates = collection->GetDatabase()->ExecuteSet(
-	                wxT("SELECT tmpl.oid, tmpl.tmplname, tmpl.tmplinit, tmpl.tmpllexize, description\n")
-	                wxT("  FROM pg_ts_template tmpl\n")
-	                wxT("  LEFT OUTER JOIN pg_description des ON (des.objoid=tmpl.oid AND des.classoid='pg_ts_template'::regclass)\n")
-	                wxT(" WHERE tmpl.tmplnamespace = ") + collection->GetSchema()->GetOidStr()
-	                + restriction + wxT("\n")
-	                wxT(" ORDER BY tmpl.tmplname"));
+	pgSet *templates = 0;
+	if (!(collection->GetConnection()->BackendMinimumVersion(8, 3) && collection->GetConnection()->GetIsGreenplumDevel()))
+	{
+		templates = collection->GetDatabase()->ExecuteSet(
+						wxT("SELECT tmpl.oid, tmpl.tmplname, tmpl.tmplinit, tmpl.tmpllexize, description\n")
+						wxT("  FROM pg_ts_template tmpl\n")
+						wxT("  LEFT OUTER JOIN pg_description des ON (des.objoid=tmpl.oid AND des.classoid='pg_ts_template'::regclass)\n")
+						wxT(" WHERE tmpl.tmplnamespace = ") + collection->GetSchema()->GetOidStr()
+						+ restriction + wxT("\n")
+						wxT(" ORDER BY tmpl.tmplname"));
+	}
 
 	if (templates)
 	{

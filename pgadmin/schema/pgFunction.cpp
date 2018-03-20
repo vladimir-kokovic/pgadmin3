@@ -641,15 +641,24 @@ pgFunction *pgFunctionFactory::AppendFunctions(pgObject *obj, pgSchema *schema, 
 	cacheMap typeCache, exprCache;
 
 	pgFunction *function = 0;
-	wxString argNamesCol, argDefsCol, proConfigCol, proType, seclab;
+	wxString argNamesCol, argDefsCol, proConfigCol, proType, seclab, pg_get_function_result;
 	if (obj->GetConnection()->BackendMinimumVersion(8, 0))
 		argNamesCol = wxT("proargnames, ");
 	if (obj->GetConnection()->HasFeature(FEATURE_FUNCTION_DEFAULTS) && !obj->GetConnection()->BackendMinimumVersion(8, 4))
-		argDefsCol = wxT("proargdefvals, COALESCE(substring(array_dims(proargdefvals), E'1:(.*)\\]')::integer, 0) AS pronargdefaults, ");
+	{
+		if (obj->GetConnection()->BackendMinimumVersion(8, 3) && obj->GetConnection()->GetIsGreenplumDevel())
+		{
+			argDefsCol = wxT("pg_get_expr(proargdefaults, 'pg_catalog.pg_class'::regclass) AS proargdefaultvals, pronargdefaults, ");
+		}
+		else
+			argDefsCol = wxT("proargdefvals, COALESCE(substring(array_dims(proargdefvals), E'1:(.*)\\]')::integer, 0) AS pronargdefaults, ");
+	}
 	if (obj->GetConnection()->BackendMinimumVersion(8, 4))
 		argDefsCol = wxT("pg_get_expr(proargdefaults, 'pg_catalog.pg_class'::regclass) AS proargdefaultvals, pronargdefaults, ");
 	if (obj->GetConnection()->BackendMinimumVersion(8, 3))
+	{
 		proConfigCol = wxT("proconfig, ");
+	}
 	if (obj->GetConnection()->EdbMinimumVersion(8, 1))
 		proType = wxT("protype, ");
 	if (obj->GetConnection()->BackendMinimumVersion(9, 1))
@@ -658,6 +667,20 @@ pgFunction *pgFunctionFactory::AppendFunctions(pgObject *obj, pgSchema *schema, 
 		         wxT("(SELECT array_agg(label) FROM pg_seclabels sl1 WHERE sl1.objoid=pr.oid) AS labels,\n")
 		         wxT("(SELECT array_agg(provider) FROM pg_seclabels sl2 WHERE sl2.objoid=pr.oid) AS providers");
 	}
+	if ((obj->GetConnection()->BackendMinimumVersion(8, 3) && obj->GetConnection()->GetIsGreenplumDevel()) ||
+            (obj->GetConnection()->BackendMinimumVersion(8, 2) && obj->GetConnection()->GetIsGreenplum()))
+	{
+		//stolen from https://github.com/apache/incubator-hawq/blob/master/tools/bin/gppylib/operations/madlib_depcheck/depcheck.py
+		pg_get_function_result =
+				wxT("(SELECT max(rettype) AS rettype ")
+				wxT("FROM (")
+				wxT("SELECT textin(regtypeout(p.prorettype::regtype)) AS rettype ")
+				wxT("FROM pg_proc AS p ")
+				wxT("WHERE p.oid = pr.oid")
+				wxT(") AS f) ");
+	}
+	else
+		pg_get_function_result = wxT("pg_get_function_result(pr.oid) ");
 
 	pgSet *functions;
 	if (obj->GetConnection()->GetIsGreenplum())
@@ -772,7 +795,12 @@ pgFunction *pgFunctionFactory::AppendFunctions(pgObject *obj, pgSchema *schema, 
 			if (obj->GetConnection()->HasFeature(FEATURE_FUNCTION_DEFAULTS) &&
 			        !obj->GetConnection()->BackendMinimumVersion(8, 4))
 			{
-				tmp = functions->GetVal(wxT("proargdefvals"));
+				if (obj->GetConnection()->BackendMinimumVersion(8, 3) && obj->GetConnection()->GetIsGreenplumDevel())
+				{
+					tmp = functions->GetVal(wxT("proargdefaultvals"));
+				}
+				else
+					tmp = functions->GetVal(wxT("proargdefvals"));
 				if (!tmp.IsEmpty())
 					getArrayFromCommaSeparatedList(tmp.Mid(1, tmp.Length() - 2), argDefValArray);
 
@@ -786,8 +814,18 @@ pgFunction *pgFunctionFactory::AppendFunctions(pgObject *obj, pgSchema *schema, 
 
 				function->iSetArgDefValCount(functions->GetLong(wxT("pronargdefaults")));
 
+                bool vk11;
+                if (obj->GetConnection()->BackendMinimumVersion(11, 0))
+                {
+                    wxString vk11s = functions->GetVal(wxT("prokind"));
+                    vk11 = (vk11s == 'w');
+                }
+                else
+                {
+                    vk11 = functions->GetBool(wxT("proiswindow"));
+                }
 				// Check if it is a window function
-				function->iSetIsWindow(functions->GetBool(wxT("proiswindow")));
+				function->iSetIsWindow(vk11);
 			}
 			else
 				function->iSetIsWindow(false);
@@ -978,11 +1016,19 @@ pgFunction *pgFunctionFactory::AppendFunctions(pgObject *obj, pgSchema *schema, 
 			// PostgreSQL 8.3 cost/row estimations
 			if (obj->GetConnection()->BackendMinimumVersion(8, 3))
 			{
-				function->iSetCost(functions->GetLong(wxT("procost")));
-				function->iSetRows(functions->GetLong(wxT("prorows")));
-				wxString cfg = functions->GetVal(wxT("proconfig"));
-				if (!cfg.IsEmpty())
-					FillArray(function->GetConfigList(), cfg.Mid(1, cfg.Length() - 2));
+				if (obj->GetConnection()->GetIsGreenplumDevel())
+				{
+					function->iSetCost(0);
+					function->iSetRows(0);
+				}
+				else
+				{
+					function->iSetCost(functions->GetLong(wxT("procost")));
+					function->iSetRows(functions->GetLong(wxT("prorows")));
+					wxString cfg = functions->GetVal(wxT("proconfig"));
+					if (!cfg.IsEmpty())
+						FillArray(function->GetConfigList(), cfg.Mid(1, cfg.Length() - 2));
+				}
 			}
 
 			if (obj->GetConnection()->BackendMinimumVersion(9, 1))
@@ -1060,10 +1106,19 @@ wxString pgProcedure::GetExecSql(ctlTree *browser)
 
 pgObject *pgFunctionFactory::CreateObjects(pgCollection *collection, ctlTree *browser, const wxString &restr)
 {
-	wxString funcRestriction = wxT(
-	                               " WHERE proisagg = FALSE AND pronamespace = ") + NumToStr(collection->GetSchema()->GetOid())
-	                           + wxT("::oid\n   AND typname NOT IN ('trigger', 'event_trigger') \n");
-
+    wxString funcRestriction;
+    if(collection->GetConnection()->BackendMinimumVersion(11, 0))
+	{
+       funcRestriction = wxT(
+	     " WHERE prokind='f' AND pronamespace = ") + NumToStr(collection->GetSchema()->GetOid())
+	     + wxT("::oid\n   AND typname NOT IN ('trigger', 'event_trigger') \n");
+    }
+    else
+    {
+      funcRestriction = wxT(
+	    " WHERE proisagg = FALSE AND pronamespace = ") + NumToStr(collection->GetSchema()->GetOid())
+	    + wxT("::oid\n   AND typname NOT IN ('trigger', 'event_trigger') \n");
+    }
 	if (collection->GetConnection()->EdbMinimumVersion(8, 1))
 		funcRestriction += wxT("   AND NOT (lanname = 'edbspl' AND protype = '1')\n");
 	else if (collection->GetConnection()->EdbMinimumVersion(8, 0))
@@ -1081,9 +1136,19 @@ pgCollection *pgFunctionFactory::CreateCollection(pgObject *obj)
 
 pgObject *pgTriggerFunctionFactory::CreateObjects(pgCollection *collection, ctlTree *browser, const wxString &restr)
 {
-	wxString funcRestriction = wxT(
-	                               " WHERE proisagg = FALSE AND pronamespace = ") + NumToStr(collection->GetSchema()->GetOid())
-	                           + wxT("::oid\n");
+    wxString funcRestriction;
+    if (collection->GetConnection()->BackendMinimumVersion(11, 0))
+    {
+        funcRestriction = wxT(
+            " WHERE prokind='f' AND pronamespace = ") + NumToStr(collection->GetSchema()->GetOid())
+            + wxT("::oid\n");
+    }
+    else
+    {
+        funcRestriction = wxT(
+	        " WHERE proisagg = FALSE AND pronamespace = ") + NumToStr(collection->GetSchema()->GetOid())
+	        + wxT("::oid\n");
+    }
 	if(collection->GetConnection()->BackendMinimumVersion(9, 3))
 	{
 		funcRestriction += wxT("AND (typname IN ('trigger', 'event_trigger') \nAND lanname NOT IN ('edbspl', 'sql', 'internal'))");

@@ -260,8 +260,8 @@ frmOptions::frmOptions(frmMain *parent)
 	wxTreeItemIdValue cookie;
 
 	mainForm = parent;
-	SetFont(settings->GetSystemFont());
 	LoadResource(parent, wxT("frmOptions"));
+	SetFont(settings->GetSystemFont());
 
 	// Icon
 	SetIcon(*properties_png_ico);

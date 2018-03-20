@@ -407,7 +407,8 @@ pgObject *pgTriggerFactory::CreateObjects(pgCollection *coll, ctlTree *browser, 
 	{
 		trig_sql += wxT("NOT tgisinternal");
 	}
-	else if (collection->GetDatabase()->connection()->BackendMinimumVersion(8, 3))
+	else if (!((collection->GetConnection()->BackendMinimumVersion(8, 3) && collection->GetConnection()->GetIsGreenplumDevel()) ||
+            (collection->GetConnection()->BackendMinimumVersion(8, 2) && collection->GetConnection()->GetIsGreenplum())))
 	{
 		trig_sql += wxT("tgconstraint=0");
 	}

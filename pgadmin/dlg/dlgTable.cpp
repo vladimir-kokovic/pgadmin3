@@ -252,14 +252,17 @@ int dlgTable::Go(bool modal)
 		seclabelPage->Disable();
 
 	// new "of type" combobox
-	wxString typeQuery = wxT("SELECT t.oid, t.typname ")
-	                     wxT("FROM pg_type t, pg_namespace n ")
-	                     wxT("WHERE t.typtype='c' AND t.typnamespace=n.oid ")
-	                     wxT("AND NOT (n.nspname like 'pg_%' OR n.nspname='information_schema') ")
-	                     wxT("ORDER BY typname");
-	cbOfType->Insert(wxEmptyString, 0, (void *)0);
-	cbOfType->FillOidKey(connection, typeQuery);
-	cbOfType->SetSelection(0);
+	if (!table)
+	{
+		wxString typeQuery = wxT("SELECT t.oid, t.typname ")
+				wxT("FROM pg_type t, pg_namespace n ")
+				wxT("WHERE t.typtype='c' AND t.typnamespace=n.oid ")
+				wxT("AND NOT (n.nspname like 'pg_%' OR n.nspname='information_schema') ")
+				wxT("ORDER BY typname");
+		cbOfType->Insert(wxEmptyString, 0, (void *) 0);
+		cbOfType->FillOidKey(connection, typeQuery);
+		cbOfType->SetSelection(0);
+	}
 
 	// "like relation" tab
 	nbNotebook->GetPage(TAB_LIKE)->Enable(!table);
@@ -485,24 +488,27 @@ int dlgTable::Go(bool modal)
 				systemRestriction += wxT(" AND c.oid NOT IN (") + oids + wxT(")");
 		}
 
-		pgSet *set = connection->ExecuteSet(
-		                 wxT("SELECT c.oid, c.relname , nspname\n")
-		                 wxT("  FROM pg_class c\n")
-		                 wxT("  JOIN pg_namespace n ON n.oid=c.relnamespace\n")
-		                 wxT(" WHERE relkind='r'\n")
-		                 + systemRestriction +
-		                 wxT(" ORDER BY relnamespace, c.relname"));
-		if (set)
+		if (!table)
 		{
-			while (!set->Eof())
+			pgSet *set = connection->ExecuteSet(
+					wxT("SELECT c.oid, c.relname , nspname\n")
+					wxT("  FROM pg_class c\n")
+					wxT("  JOIN pg_namespace n ON n.oid=c.relnamespace\n")
+					wxT(" WHERE relkind='r'\n")
+					+ systemRestriction +
+					wxT(" ORDER BY relnamespace, c.relname"));
+			if (set)
 			{
-				cbTables->Append(database->GetQuotedSchemaPrefix(set->GetVal(wxT("nspname")))
-				                 + qtIdent(set->GetVal(wxT("relname"))));
+				while (!set->Eof())
+				{
+					cbTables->Append(database->GetQuotedSchemaPrefix(set->GetVal(wxT("nspname")))
+							+ qtIdent(set->GetVal(wxT("relname"))));
 
-				tableOids.Add(set->GetVal(wxT("oid")));
-				set->MoveNext();
+					tableOids.Add(set->GetVal(wxT("oid")));
+					set->MoveNext();
+				}
+				delete set;
 			}
-			delete set;
 		}
 	}
 

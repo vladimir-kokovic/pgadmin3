@@ -21,9 +21,11 @@
 // wxAUI
 #include <wx/aui/aui.h>
 
+#include "frm/frmEditGrid.h"
 #include "frm/frmQuery.h"
 #include "dlg/dlgClasses.h"
 #include "utils/factory.h"
+#include "utils/pasteTables.h"
 
 //
 // This number MUST be incremented if changing any of the default perspectives
@@ -81,6 +83,11 @@ enum
 	REFRESH_OBJECT_ONLY,
 	REFRESH_OBJECT_AND_CHILDREN
 };
+
+// custom event declarations
+BEGIN_DECLARE_EVENT_TYPES()
+	DECLARE_EVENT_TYPE(EVT_THREAD_COPYPASTE_UPDATE_GUI, -1)
+END_DECLARE_EVENT_TYPES()
 
 #ifdef LIBSSH2
 BEGIN_DECLARE_EVENT_TYPES()
@@ -172,6 +179,17 @@ public:
 		m_refreshing = refresh;
 	}
 
+	void SetCopypasteobject(pasteTables* copypasteobject) {
+		this->copypasteobject = copypasteobject;
+	}
+	pasteTables *GetCopypasteobject() const {
+		return copypasteobject;
+	}
+	copyTableFactory *GetCopyTableFactory()
+	{
+		return copytablefactory;
+	}
+
 #ifdef LIBSSH2
 	void OnSSHTunnelEvent(wxCommandEvent &event);
 #endif
@@ -197,6 +215,16 @@ private:
 	actionFactory *reportMenuFactory;
 	actionFactory *scriptingMenuFactory;
 	actionFactory *viewdataMenuFactory;
+
+	pasteTables *copypasteobject;
+	pgObject *m_draggedObject;
+	pasteTablesFactory *pastetablesfactory;
+	copyTableFactory *copytablefactory;
+	copyTableOptionalSelectFactory *copytableoptionalselecrfactory;
+	editGridFactory *editGridFactoryMain;
+	editGridLimitedFactory *editGridLimitedFactoryMain;
+	editGridLimitedFactory *editGridLimitedFactoryMain1;
+	editGridFilteredFactory *editGridFilteredFactoryMain;
 
 	wxStopWatch stopwatch;
 	wxString timermsg;
@@ -265,6 +293,10 @@ private:
 	void AddPluginUtility(PluginUtility *util);
 	void CreatePluginUtility(PluginUtility *util);
 	void ClearPluginUtility(PluginUtility *util);
+
+	void OnThreadCopypasteUpdateGUI(wxCommandEvent &event);
+	void OnBeginDrag(wxTreeEvent &event);
+	void OnEndDrag(wxTreeEvent &event);
 
 	DECLARE_EVENT_TABLE()
 };

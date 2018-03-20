@@ -73,6 +73,9 @@
 #include "ctl/xh_ctltree.h"
 #include "ctl/xh_ctlchecktreeview.h"
 #include "ctl/xh_ctlcolourpicker.h"
+#include "ctl/xh_searchctrl.h"
+#include "ctl/xh_ctlListViewVirtual.h"
+#include "ctl/xh_ctlListViewVirtualHistory.h"
 
 #define DOC_DIR       wxT("/docs")
 #define UI_DIR        wxT("/ui")
@@ -194,8 +197,8 @@ void frmDlgTest::OnSelect(wxCommandEvent &ev)
 	if (!dlgName.IsEmpty())
 	{
 		pgDialog *dlg = new pgDialog;
-		dlg->SetFont(settings->GetSystemFont());
 		dlg->LoadResource(this, dlgName);
+		dlg->SetFont(settings->GetSystemFont());
 		dlg->SetTitle(dlgName);
 		dlg->Show();
 	}
@@ -439,6 +442,9 @@ bool pgAdmin3::OnInit()
 	wxXmlResource::Get()->AddHandler(new ctlTreeXmlHandler);
 	wxXmlResource::Get()->AddHandler(new ctlCheckTreeViewXmlHandler);
 	wxXmlResource::Get()->AddHandler(new ctlColourPickerXmlHandler);
+	wxXmlResource::Get()->AddHandler(new wxSearchTextCtrlXmlHandler);
+	wxXmlResource::Get()->AddHandler(new wxListViewVirtualXmlHandler);
+	wxXmlResource::Get()->AddHandler(new wxListViewVirtualHistoryXmlHandler);
 
 	InitXml();
 

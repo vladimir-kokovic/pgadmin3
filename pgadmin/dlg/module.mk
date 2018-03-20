@@ -43,6 +43,7 @@ pgadmin3_SOURCES += \
 	dlg/dlgPgpassConfig.cpp \
 	dlg/dlgPolicy.cpp \
 	dlg/dlgProperty.cpp \
+	dlg/dlgQueryHistory.cpp \
 	dlg/dlgReassignDropOwned.cpp \
 	dlg/dlgRole.cpp \
 	dlg/dlgRule.cpp \
@@ -66,7 +67,8 @@ pgadmin3_SOURCES += \
 	dlg/dlgManageMacros.cpp \
 	dlg/dlgExtTable.cpp \
 	dlg/dlgSelectDatabase.cpp \
-	dlg/dlgResourceGroup.cpp
+	dlg/dlgResourceGroup.cpp \
+	dlg/dlgEditGridOptionsFilter.cpp
 
 EXTRA_DIST += \
         dlg/module.mk

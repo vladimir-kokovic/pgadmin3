@@ -46,8 +46,8 @@ END_EVENT_TABLE()
 dlgManageFavourites::dlgManageFavourites(wxWindow *parent, queryFavouriteFolder *favourites) :
 	pgDialog()
 {
-	SetFont(settings->GetSystemFont());
 	LoadResource(parent, wxT("dlgManageFavourites"));
+	SetFont(settings->GetSystemFont());
 	RestorePosition();
 
 	anythingChanged = false;

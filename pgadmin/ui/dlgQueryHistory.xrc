@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<resource>
+  <object class="wxDialog" name="dlgQueryHistory">
+    <object class="wxFlexGridSizer">
+      <object class="sizeritem">
+        <object class="wxScrolledWindow" name="scrolledwindow">
+          <object class="wxBoxSizer">
+            <orient>wxVERTICAL</orient>
+            <object class="sizeritem">
+              <object class="wxPanel" name="pnlFilters">
+                <object class="wxGridBagSizer">
+                  <object class="sizeritem">
+                    <object class="wxStaticText" name="lblFilters">
+                      <label>Search text </label>
+                    </object>
+                    <cellpos>0,0</cellpos>
+                    <cellspan>1</cellspan>
+                  </object>
+                  <object class="sizeritem">
+                    <object class="wxTextCtrl" name="searchTxt"/>
+                    <flag>wxEXPAND</flag>
+                    <cellpos>0,1</cellpos>
+                    <cellspan>1</cellspan>
+                  </object>
+                  <object class="sizeritem">
+                    <object class="ctlListViewVirtualHistory" name="lstFilters">
+                      <tooltip>Lists the queries from the history file.</tooltip>
+                    </object>
+                    <flag>wxALL|wxEXPAND|wxGROW</flag>
+                    <cellpos>1,0</cellpos>
+                    <cellspan>2</cellspan>
+                  </object>
+                  <vgap>5</vgap>
+                  <hgap>5</hgap>
+                  <growablecols>1</growablecols>
+                  <growablerows>1</growablerows>
+                </object>
+                <style>wxTAB_TRAVERSAL</style>
+              </object>
+              <option>5</option>
+              <flag>wxBOTTOM|wxALL|wxEXPAND</flag>
+              <minsize>5</minsize>
+              <ratio>5</ratio>
+            </object>
+          </object>
+          <size>-1,-1</size>
+          <style>wxHSCROLL|wxVSCROLL|wxTAB_TRAVERSAL</style>
+        </object>
+        <flag>wxALL|wxEXPAND|wxGROW|wxVERTICAL|wxHORIZONTAL</flag>
+      </object>
+      <object class="sizeritem">
+        <object class="wxFlexGridSizer">
+          <cols>3</cols>
+          <growablecols>0</growablecols>
+          <object class="spacer">
+            <size>0,0d</size>
+          </object>
+          <object class="sizeritem">
+            <object class="wxButton" name="wxID_OK">
+              <label>&amp;OK</label>
+              <tooltip>Accept the current query and close the dialogue.</tooltip>
+            </object>
+            <flag>wxEXPAND|wxALL</flag>
+            <border>3</border>
+          </object>
+          <object class="sizeritem">
+            <object class="wxButton" name="wxID_CANCEL">
+              <label>&amp;Cancel</label>
+              <tooltip>Cancel any changes and close the dialogue.</tooltip>
+            </object>
+            <flag>wxEXPAND|wxALL</flag>
+            <border>3</border>
+          </object>
+        </object>
+        <flag>wxEXPAND|wxTOP|wxLEFT|wxRIGHT</flag>
+      </object>
+      <cols>1</cols>
+      <rows>2</rows>
+      <growablecols>0</growablecols>
+      <growablerows>0</growablerows>
+    </object>
+    <size>300,265d</size>
+    <title>Previous Queries</title>
+    <style>wxDEFAULT_DIALOG_STYLE|wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER</style>
+  </object>
+</resource>

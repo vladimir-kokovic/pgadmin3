@@ -47,8 +47,8 @@ dlgSelectConnection::dlgSelectConnection(wxWindow *parent, frmMain *form) :
 	long style = wxCB_DROPDOWN;
 	remoteServer = NULL;
 
-	SetFont(settings->GetSystemFont());
 	LoadResource(parent, wxT("dlgSelectConnection"));
+	SetFont(settings->GetSystemFont());
 
 	SetIcon(*connect_png_ico);
 	RestorePosition();

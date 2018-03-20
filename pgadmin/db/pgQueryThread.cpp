@@ -199,7 +199,7 @@ int pgQueryThread::Execute()
 	if (PQstatus(m_conn->conn) != CONNECTION_OK)
 	{
 		rc = pgQueryResultEvent::PGQ_CONN_LOST;
-		err.msg_primary = _("Connection to the database server lost");
+		err.msg_primary = _("Connection to the database server lost(status)");
 
 		return(RaiseEvent(rc));
 	}
@@ -212,6 +212,15 @@ int pgQueryThread::Execute()
 
 		return(RaiseEvent(rc));
 	}
+
+#ifdef VKPQEXEC
+	if (!m_conn->IsAlive())
+	{
+		rc = pgQueryResultEvent::PGQ_CONN_LOST;
+		err.msg_primary = _("Connection to the database server lost(IsAlive)");
+		return(RaiseEvent(rc));
+	}
+#endif
 
 	// Honour the parameters (if any)
 	if (params && params->GetCount() > 0)

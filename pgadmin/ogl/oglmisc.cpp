@@ -35,8 +35,22 @@ wxList          oglObjectCopyMapping(wxKEY_INTEGER);
 
 void wxOGLInitialize()
 {
-	g_oglBullseyeCursor = new wxCursor(wxCURSOR_BULLSEYE);
+#if wxCHECK_VERSION(3, 0, 0)
+#ifdef __WXQT__
+        g_oglBullseyeCursor = new wxCursor(wxCURSOR_DEFAULT);
+#else
+        g_oglBullseyeCursor = new wxCursor(wxCURSOR_BULLSEYE);
+#endif
+	g_oglNormalFont = new wxFont(10, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
 
+	g_oglBlackPen = new wxPen(wxT("BLACK"), 1, wxPENSTYLE_SOLID);
+
+	g_oglWhiteBackgroundPen = new wxPen(wxT("WHITE"), 1, wxPENSTYLE_SOLID);
+	g_oglTransparentPen = new wxPen(wxT("WHITE"), 1, wxPENSTYLE_TRANSPARENT);
+	g_oglWhiteBackgroundBrush = new wxBrush(wxT("WHITE"), wxBRUSHSTYLE_SOLID);
+	g_oglBlackForegroundPen = new wxPen(wxT("BLACK"), 1, wxPENSTYLE_SOLID);
+#else
+        g_oglBullseyeCursor = new wxCursor(wxCURSOR_BULLSEYE);
 	g_oglNormalFont = new wxFont(10, wxSWISS, wxNORMAL, wxNORMAL);
 
 	g_oglBlackPen = new wxPen(wxT("BLACK"), 1, wxSOLID);
@@ -45,6 +59,7 @@ void wxOGLInitialize()
 	g_oglTransparentPen = new wxPen(wxT("WHITE"), 1, wxTRANSPARENT);
 	g_oglWhiteBackgroundBrush = new wxBrush(wxT("WHITE"), wxSOLID);
 	g_oglBlackForegroundPen = new wxPen(wxT("BLACK"), 1, wxSOLID);
+#endif
 
 	OGLInitializeConstraintTypes();
 
@@ -104,7 +119,11 @@ void wxOGLCleanUp()
 
 wxFont *oglMatchFont(int point_size)
 {
+#if wxCHECK_VERSION(3, 0, 0)
+	wxFont *font = wxTheFontList->FindOrCreateFont(point_size, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
+#else
 	wxFont *font = wxTheFontList->FindOrCreateFont(point_size, wxSWISS, wxNORMAL, wxNORMAL);
+#endif
 #if 0
 	switch (point_size)
 	{

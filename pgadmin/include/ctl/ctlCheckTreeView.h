@@ -24,11 +24,22 @@ class ctlCheckTreeView : public wxTreeCtrl
 public:
 	ctlCheckTreeView(wxWindow *parent, wxWindowID id, const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize, long style = wxTR_HAS_BUTTONS);
 	bool IsChecked(const wxTreeItemId &node);
+	void SetCopytables(void *copytables)
+	{
+		this->copytables = copytables;
+	}
+
+	void *GetCopytables() const
+	{
+		return copytables;
+	}
 
 private:
 	void OnLeftClick(wxMouseEvent &evt);
 	void SetParentAndChildImage(wxTreeItemId node, int newimage);
 	void SetParentImage(wxTreeItemId node, int newimage);
+
+	void *copytables;
 
 	DECLARE_EVENT_TABLE()
 };

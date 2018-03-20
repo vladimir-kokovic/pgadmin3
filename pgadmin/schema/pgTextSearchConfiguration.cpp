@@ -188,15 +188,18 @@ pgObject *pgTextSearchConfigurationFactory::CreateObjects(pgCollection *collecti
 {
 	pgTextSearchConfiguration *config = 0;
 
-	pgSet *configurations;
-	configurations = collection->GetDatabase()->ExecuteSet(
-	                     wxT("SELECT cfg.oid, cfg.cfgname, pg_get_userbyid(cfg.cfgowner) as cfgowner, cfg.cfgparser, parser.prsname as parsername, description\n")
-	                     wxT("  FROM pg_ts_config cfg\n")
-	                     wxT("  LEFT OUTER JOIN pg_ts_parser parser ON parser.oid=cfg.cfgparser\n")
-	                     wxT("  LEFT OUTER JOIN pg_description des ON (des.objoid=cfg.oid AND des.classoid='pg_ts_config'::regclass)\n")
-	                     wxT(" WHERE cfg.cfgnamespace = ") + collection->GetSchema()->GetOidStr()
-	                     + restriction + wxT("\n")
-	                     wxT(" ORDER BY cfg.cfgname"));
+	pgSet *configurations = 0;
+	if (!(collection->GetConnection()->BackendMinimumVersion(8, 3) && collection->GetConnection()->GetIsGreenplumDevel()))
+	{
+		configurations = collection->GetDatabase()->ExecuteSet(
+							 wxT("SELECT cfg.oid, cfg.cfgname, pg_get_userbyid(cfg.cfgowner) as cfgowner, cfg.cfgparser, parser.prsname as parsername, description\n")
+							 wxT("  FROM pg_ts_config cfg\n")
+							 wxT("  LEFT OUTER JOIN pg_ts_parser parser ON parser.oid=cfg.cfgparser\n")
+							 wxT("  LEFT OUTER JOIN pg_description des ON (des.objoid=cfg.oid AND des.classoid='pg_ts_config'::regclass)\n")
+							 wxT(" WHERE cfg.cfgnamespace = ") + collection->GetSchema()->GetOidStr()
+							 + restriction + wxT("\n")
+							 wxT(" ORDER BY cfg.cfgname"));
+	}
 
 	if (configurations)
 	{

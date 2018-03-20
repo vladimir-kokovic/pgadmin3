@@ -115,8 +115,8 @@ dlgProperty::dlgProperty(pgaFactory *f, frmMain *frame, const wxString &resName)
 	item = (void *)NULL;
 	owneritem = (void *)NULL;
 	chkReadOnly = (wxCheckBox *)NULL;
-	SetFont(settings->GetSystemFont());
 	LoadResource(frame, resName);
+	SetFont(settings->GetSystemFont());
 
 #ifdef __WXMSW__
 	SetWindowStyleFlag(GetWindowStyleFlag() & ~wxMAXIMIZE_BOX);

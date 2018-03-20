@@ -58,10 +58,10 @@ wxTreeItemId ctlTree::FindItem(const wxTreeItemId &idParent, const wxString &pre
 		}
 	}
 
-	// look for the item starting with the given prefix after it
+	// look for the item starting with the given infix after it
 	while ( id.IsOk() &&
 	        ( ( GetItemText(id) == wxT("Dummy") && !GetItemData(id) ) ||
-	          !GetItemText(id).Lower().StartsWith(prefix) ))
+	          !GetItemText(id).Lower().Contains(prefix) ))
 	{
 		wxCookieType cookie;
 		if ( HasChildren(id) )
@@ -110,7 +110,7 @@ wxTreeItemId ctlTree::FindItem(const wxTreeItemId &idParent, const wxString &pre
 		// and try all the items (stop when we get to the one we started from)
 		while ( id.IsOk() && id != idParent &&
 		        (( GetItemText(id) == wxT("Dummy") && !GetItemData(id) ) ||
-		         !GetItemText(id).Lower().StartsWith(prefix) ))
+		         !GetItemText(id).Lower().Contains(prefix) ))
 		{
 			wxCookieType cookie;
 			if ( HasChildren(id) )

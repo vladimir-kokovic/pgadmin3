@@ -191,14 +191,17 @@ pgObject *pgTextSearchParserFactory::CreateObjects(pgCollection *collection, ctl
 {
 	pgTextSearchParser *parser = 0;
 
-	pgSet *parsers;
-	parsers = collection->GetDatabase()->ExecuteSet(
-	              wxT("SELECT prs.oid, prs.prsname, prs.prsstart, prs.prstoken, prs.prsend, prs.prslextype, prs.prsheadline, description\n")
-	              wxT("  FROM pg_ts_parser prs\n")
-	              wxT("  LEFT OUTER JOIN pg_description des ON (des.objoid=prs.oid AND des.classoid='pg_ts_parser'::regclass)\n")
-	              wxT(" WHERE prs.prsnamespace = ") + collection->GetSchema()->GetOidStr()
-	              + restriction + wxT("\n")
-	              wxT(" ORDER BY prs.prsname"));
+	pgSet *parsers = 0;
+	if (!(collection->GetConnection()->BackendMinimumVersion(8, 3) && collection->GetConnection()->GetIsGreenplumDevel()))
+	{
+		parsers = collection->GetDatabase()->ExecuteSet(
+					  wxT("SELECT prs.oid, prs.prsname, prs.prsstart, prs.prstoken, prs.prsend, prs.prslextype, prs.prsheadline, description\n")
+					  wxT("  FROM pg_ts_parser prs\n")
+					  wxT("  LEFT OUTER JOIN pg_description des ON (des.objoid=prs.oid AND des.classoid='pg_ts_parser'::regclass)\n")
+					  wxT(" WHERE prs.prsnamespace = ") + collection->GetSchema()->GetOidStr()
+					  + restriction + wxT("\n")
+					  wxT(" ORDER BY prs.prsname"));
+	}
 
 	if (parsers)
 	{

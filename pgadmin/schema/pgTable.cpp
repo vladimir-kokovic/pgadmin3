@@ -870,8 +870,13 @@ bool pgTable::EnableTriggers(const bool b)
 
 void pgTable::UpdateRows()
 {
-	pgSet *props = ExecuteSet(wxT("SELECT count(*) AS rows FROM ONLY ") + GetQuotedFullIdentifier());
-	if (props)
+	pgSet *props = 0;
+	//Greenplum may return "ERROR:  quicklz compression not supported (quicklz_compression.c:26)"
+	if (GetDatabase()->connection()->BackendMinimumVersion(8, 3) && GetDatabase()->connection()->GetIsGreenplumDevel())
+		props = GetDatabase()->connection()->ExecuteSet(wxT("SELECT count(*) AS rows FROM ONLY ") + GetQuotedFullIdentifier(), false);
+	else
+		props = ExecuteSet(wxT("SELECT count(*) AS rows FROM ONLY ") + GetQuotedFullIdentifier());
+	if (props && props->NumRows())
 	{
 		rows = props->GetLongLong(0);
 		delete props;

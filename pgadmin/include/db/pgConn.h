@@ -110,6 +110,7 @@ public:
 	}
 	bool GetIsEdb();
 	bool GetIsGreenplum();
+        bool GetIsGreenplumDevel();
 	bool GetIsHawq();
 	wxString EncryptPassword(const wxString &user, const wxString &password);
 	wxString qtDbString(const wxString &value);
@@ -126,9 +127,12 @@ public:
 		return pg_valid_server_encoding_id(encid) == 0 ? false : true;
 	}
 
+	PGresult * ExecuteOptionalResult(const wxString &sql, bool reportError = true);
+
 	void Close();
 	bool Reconnect();
 	bool ExecuteVoid(const wxString &sql, bool reportError = true);
+	wxArrayString ExecuteScalarMulti(const wxString &sql, bool reportError = true);
 	wxString ExecuteScalar(const wxString &sql, bool reportError = true);
 	pgSet *ExecuteSet(const wxString &sql, bool reportError = true);
 	void CancelExecution(void);
@@ -261,6 +265,8 @@ public:
 
 	bool TableHasColumn(wxString schemaname, wxString tblname, const wxString &colname);
 
+        PGresult *vkPQexec(PGconn *conn, const char *query);
+
 protected:
 	PGconn   *conn;
 	PGcancel *m_cancelConn;
@@ -269,7 +275,7 @@ protected:
 
 	int connStatus;
 
-	void SetLastResultError(PGresult *res, const wxString &msg = wxEmptyString);
+        void SetLastResultError(PGresult *res, const wxString &msg = wxEmptyString);
 	void SetConnCancel(void);
 	void ResetConnCancel(void);
 	pgError lastResultError;
@@ -296,6 +302,7 @@ private:
 	int minorVersion, majorVersion, patchVersion;
 	bool isEdb;
 	bool isGreenplum;
+        bool isGreenplumDevel;
 	bool isHawq;
 
 	wxString reservedNamespaces;
@@ -306,6 +313,8 @@ private:
 	int save_port, save_sslmode;
 	bool save_sslcompression;
 	OID save_oid;
+
+	wxArrayString resultsArray;
 };
 
 #endif

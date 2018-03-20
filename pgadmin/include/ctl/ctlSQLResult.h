@@ -67,6 +67,7 @@ public:
 	void SetMaxRows(int rows);
 	void ResultsFinished();
 	void OnGridSelect(wxGridRangeSelectEvent &event);
+        void *getParentFrame() { return parentframe; }
 
 	wxArrayString colNames;
 	wxArrayString colTypes;
@@ -76,6 +77,7 @@ private:
 	pgQueryThread *thread;
 	pgConn *conn;
 	bool rowcountSuppressed;
+        void *parentframe; // frmQuery outputPane
 };
 
 class sqlResultTable : public wxGridTableBase

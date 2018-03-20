@@ -159,6 +159,10 @@ public:
 	{
 		triggerFunction = fkt;
 	}
+	pgFunction *GetTriggerFunction() const
+	{
+		return triggerFunction;
+	}
 	wxString GetQuotedFullTable() const
 	{
 		return quotedFullTable;

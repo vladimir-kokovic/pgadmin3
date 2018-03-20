@@ -15,6 +15,7 @@
 #include "ctl/ctlAuiNotebook.h"
 #include "db/pgQueryResultEvent.h"
 #include "dlg/dlgClasses.h"
+#include "dlg/dlgQueryHistory.h"
 #include "gqb/gqbViewController.h"
 #include "gqb/gqbModel.h"
 #include "frm/frmExport.h"
@@ -32,17 +33,20 @@
 #include <wx/dcbuffer.h>
 #include <wx/timer.h>
 
+#include <wx/dynarray.h>
+
 //
 // This number MUST be incremented if changing any of the default perspectives
 //
+
 #define FRMQUERY_PERSPECTIVE_VER wxT("8320")
 #ifdef __WXMAC__
-#define FRMQUERY_DEFAULT_PERSPECTIVE wxT("layout2|name=toolBar;caption=Tool bar;state=16788208;dir=1;layer=10;row=0;pos=0;prop=100000;bestw=465;besth=23;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=databaseBar;caption=Database bar;state=16788208;dir=1;layer=10;row=0;pos=396;prop=100000;bestw=300;besth=21;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=sqlQuery;caption=SQL query;state=17404;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=350;besth=200;minw=200;minh=100;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=outputPane;caption=Output pane;state=16779260;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=550;besth=300;minw=200;minh=100;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=scratchPad;caption=Scratch pad;state=16779260;dir=2;layer=0;row=0;pos=0;prop=100000;bestw=250;besth=200;minw=100;minh=100;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(1,10,0)=25|dock_size(5,0,0)=200|dock_size(3,0,0)=290|dock_size(2,0,0)=255|")
+#define FRMQUERY_DEFAULT_PERSPECTIVE wxT("layout2|name=toolBar;caption=Tool bar;state=16788208;dir=1;layer=10;row=0;pos=0;prop=100000;bestw=465;besth=23;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=databaseBar;caption=Database bar;state=16788208;dir=1;layer=10;row=0;pos=396;prop=100000;bestw=300;besth=21;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=searchBar;caption=Search result;state=16788208;dir=1;layer=10;row=0;pos=443;prop=100000;bestw=234;besth=21;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=415;floaty=793;floatw=-1;floath=-1|name=sqlQuery;caption=SQL query;state=17404;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=350;besth=200;minw=200;minh=100;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=outputPane;caption=Output pane;state=16779260;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=550;besth=300;minw=200;minh=100;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=scratchPad;caption=Scratch pad;state=16779260;dir=2;layer=0;row=0;pos=0;prop=100000;bestw=250;besth=200;minw=100;minh=100;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(1,10,0)=25|dock_size(5,0,0)=200|dock_size(3,0,0)=290|dock_size(2,0,0)=255|")
 #else
 #ifdef __WXGTK__
-#define FRMQUERY_DEFAULT_PERSPECTIVE wxT("layout2|name=toolBar;caption=Tool bar;state=16788208;dir=1;layer=10;row=0;pos=0;prop=100000;bestw=590;besth=30;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=databaseBar;caption=Database bar;state=16788208;dir=1;layer=10;row=0;pos=396;prop=100000;bestw=300;besth=30;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=sqlQuery;caption=SQL query;state=17404;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=350;besth=200;minw=200;minh=100;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=outputPane;caption=Output pane;state=16779260;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=550;besth=300;minw=200;minh=100;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=scratchPad;caption=Scratch pad;state=16779260;dir=2;layer=0;row=0;pos=0;prop=100000;bestw=250;besth=200;minw=100;minh=100;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(1,10,0)=25|dock_size(5,0,0)=200|dock_size(3,0,0)=290|dock_size(2,0,0)=255|")
+#define FRMQUERY_DEFAULT_PERSPECTIVE wxT("layout2|name=toolBar;caption=Tool bar;state=16788208;dir=1;layer=10;row=0;pos=0;prop=100000;bestw=590;besth=30;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=databaseBar;caption=Database bar;state=16788208;dir=1;layer=10;row=0;pos=396;prop=100000;bestw=300;besth=30;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=searchBar;caption=Search result;state=16788208;dir=1;layer=10;row=0;pos=443;prop=100000;bestw=234;besth=30;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=415;floaty=793;floatw=-1;floath=-1|name=sqlQuery;caption=SQL query;state=17404;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=350;besth=200;minw=200;minh=100;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=outputPane;caption=Output pane;state=16779260;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=550;besth=300;minw=200;minh=100;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=scratchPad;caption=Scratch pad;state=16779260;dir=2;layer=0;row=0;pos=0;prop=100000;bestw=250;besth=200;minw=100;minh=100;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(1,10,0)=25|dock_size(5,0,0)=200|dock_size(3,0,0)=290|dock_size(2,0,0)=255|")
 #else
-#define FRMQUERY_DEFAULT_PERSPECTIVE wxT("layout2|name=toolBar;caption=Tool bar;state=16788208;dir=1;layer=10;row=0;pos=0;prop=100000;bestw=465;besth=23;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=databaseBar;caption=Database bar;state=16788208;dir=1;layer=10;row=0;pos=396;prop=100000;bestw=300;besth=21;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=sqlQuery;caption=SQL query;state=17404;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=350;besth=200;minw=200;minh=100;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=outputPane;caption=Output pane;state=16779260;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=550;besth=300;minw=200;minh=100;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=scratchPad;caption=Scratch pad;state=16779260;dir=2;layer=0;row=0;pos=0;prop=100000;bestw=250;besth=200;minw=100;minh=100;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(1,10,0)=25|dock_size(5,0,0)=200|dock_size(3,0,0)=290|dock_size(2,0,0)=255|")
+#define FRMQUERY_DEFAULT_PERSPECTIVE wxT("layout2|name=toolBar;caption=Tool bar;state=16788208;dir=1;layer=10;row=0;pos=0;prop=100000;bestw=465;besth=23;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=databaseBar;caption=Database bar;state=16788208;dir=1;layer=10;row=0;pos=396;prop=100000;bestw=300;besth=21;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=searchBar;caption=Search result;state=16788208;dir=1;layer=10;row=0;pos=443;prop=100000;bestw=234;besth=21;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=415;floaty=793;floatw=-1;floath=-1|name=sqlQuery;caption=SQL query;state=17404;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=350;besth=200;minw=200;minh=100;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=outputPane;caption=Output pane;state=16779260;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=550;besth=300;minw=200;minh=100;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=scratchPad;caption=Scratch pad;state=16779260;dir=2;layer=0;row=0;pos=0;prop=100000;bestw=250;besth=200;minw=100;minh=100;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(1,10,0)=25|dock_size(5,0,0)=200|dock_size(3,0,0)=290|dock_size(2,0,0)=255|")
 #endif
 #endif
 
@@ -80,6 +84,38 @@ enum
 	ORIGIN_GQB
 };
 
+struct outputPaneObjectsTag
+{
+	int		index;
+	int		offset;
+	ctlSQLResult	*sqlResult;
+	ExplainCanvas	*explainCanvas;
+	wxTextCtrl	*msgResult;
+	outputPaneObjectsTag() : index(-1), offset(0), sqlResult(NULL), explainCanvas(NULL), msgResult(NULL)
+	{
+	}
+	~outputPaneObjectsTag();
+};
+
+WX_DECLARE_OBJARRAY(struct outputPaneObjectsTag, Output_Pane_Objects_Array);
+
+struct vkTabTag
+{
+    ctlSQLBox                   *sqlQuery; //this field identified the tab
+    wxArrayString               queries;
+    Output_Pane_Objects_Array   *output_pane_objects_array;
+    int                         current_output_pane;
+    int                         threadCounter;
+    bool                        firstQuery;
+    ctlSQLResult                *saved_sqlResult;
+    ExplainCanvas               *saved_explainCanvas;
+    wxTextCtrl                  *saved_msgResult;
+    bool                        multiSQL;
+    bool                        ontextactive;
+};
+
+WX_DECLARE_OBJARRAY(struct vkTabTag, vkTabTag_Array);
+
 class frmQuery : public pgFrame
 {
 public:
@@ -91,6 +127,10 @@ public:
 	void setExtendedTitle();
 	void SetLineEndingStyle();
 
+	ctlSQLBox *GetQueryText()
+	{
+		return sqlQuery;
+	}
 	void SetQueryText(wxString str)
 	{
 		sqlQuery->SetText(str);
@@ -120,6 +160,13 @@ public:
 	void UpdateAllFavouritesList();
 	void UpdateAllMacrosList();
 
+	wxArrayString *GetHistoQueries()
+	{
+		return &histoQueries;
+	}
+
+        vkTabTag *vkCurTab;
+
 private:
 	frmMain *mainForm;
 	wxAuiManager manager;
@@ -133,7 +180,9 @@ private:
 	wxComboBox *sqlQueries;
 	wxButton *btnDeleteCurrent;
 	wxButton *btnDeleteAll;
+	wxButton *btnHistory;
 	wxArrayString histoQueries;
+	wxSearchCtrl *searchctrl;
 
 	ctlAuiNotebook *sqlQueryBook;  //container for all SQL tabs
 	size_t sqlQueryCounter;  //for initial tab names
@@ -157,6 +206,7 @@ private:
 	void OnResizeHorizontally(wxSplitterEvent &event);
 	void adjustGQBSizes();
 	bool updateFromGqb(bool executing);
+	void OnPageChange(wxAuiNotebookEvent &event);
 	ctlAuiNotebook *sqlNotebook;
 	gqbModel *model;
 	gqbController *controller;
@@ -241,6 +291,8 @@ private:
 	void OnDeleteAll(wxCommandEvent &event);
 
 	void OnTimer(wxTimerEvent &event);
+	void OnText(wxCommandEvent &event);
+	void OnHistory(wxCommandEvent &event);
 
 	void OpenLastFile();
 	void updateMenu(bool allowUpdateModelSize = true);
@@ -312,6 +364,15 @@ private:
 	// Required because the pgScript parser isn't currently thread-safe :-(
 	static bool    ms_pgScriptRunning;
 
+	//vk
+        wxPanel         *vkpnlQuery;
+	wxComboBox	*cbQueries;
+	dlgQueryHistory *winHistory;
+        void OnComboBoxUpdate(wxCommandEvent &event);
+	void OnComboBoxUpdatePrivate(int current_output_pane);
+	void myLogNotice(const wxChar *szFormat, ...);
+        vkTabTag_Array *vktabtag_array; //vk tabs
+
 	DECLARE_EVENT_TABLE()
 };
 
@@ -340,7 +401,10 @@ enum
 	CTL_SQLQUERYCBOX,
 	CTL_DELETECURRENTBTN,
 	CTL_DELETEALLBTN,
-	CTL_SCRATCHPAD
+	CTL_SCRATCHPAD,
+	CTL_SQLQUERIESCBOX,
+	CTL_MSGEDITGRID,
+	CTL_HISTORY
 };
 
 ///////////////////////////////////////////////////////

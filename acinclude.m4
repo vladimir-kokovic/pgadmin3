@@ -801,6 +801,7 @@ AC_DEFUN([SETUP_WXWIDGETS],
 
 				LDFLAGS="$LDFLAGS -headerpad_max_install_names"
 				CPPFLAGS="$CPPFLAGS $OSX_ARCH"
+				CFLAGS="$CFLAGS $OSX_ARCH"
 
 				# Strip any existing arch flags from LDFLAGS and add the desired ones
 				# This is required as wxWidgets 2.8 (but not 2.9) includes the arch flags

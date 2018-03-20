@@ -58,15 +58,27 @@ ctlSeclabelPanel::ctlSeclabelPanel(wxNotebook *nb)
 	lbSeclabels = new ctlListView(this, CTL_LBSECLABEL, wxDefaultPosition, wxDefaultSize, wxSUNKEN_BORDER | wxLC_REPORT);
 	lbSeclabels->AddColumn(_("Provider"), 70, wxLIST_FORMAT_LEFT);
 	lbSeclabels->AddColumn(_("Security label"), 70, wxLIST_FORMAT_LEFT);
+#if wxCHECK_VERSION(3, 0, 0)
+    sizer1->Add(lbSeclabels, 0, wxEXPAND | wxTOP | wxLEFT | wxRIGHT, 4);
+#else
 	sizer1->Add(lbSeclabels, 0, wxEXPAND | wxALIGN_CENTRE_VERTICAL | wxTOP | wxLEFT | wxRIGHT, 4);
+#endif
 	sizer0->Add(sizer1, 0, wxEXPAND | wxALL, 5);
 
 	// buttons sizer
 	wxBoxSizer *sizer2 = new wxBoxSizer(wxHORIZONTAL);
 	btnAddSeclabel = new wxButton(this, CTL_ADDSECLABEL, _("Add/Change"));
+#if wxCHECK_VERSION(3, 0, 0)
+    sizer2->Add(btnAddSeclabel, 0, wxEXPAND | wxTOP | wxLEFT | wxRIGHT, 4);
+#else
 	sizer2->Add(btnAddSeclabel, 0, wxEXPAND | wxALIGN_CENTRE_VERTICAL | wxTOP | wxLEFT | wxRIGHT, 4);
+#endif
 	btnDelSeclabel = new wxButton(this, CTL_DELSECLABEL, _("Remove"));
+#if wxCHECK_VERSION(3, 0, 0)
+    sizer2->Add(btnDelSeclabel, 0, wxEXPAND | wxTOP | wxLEFT | wxRIGHT, 4);
+#else
 	sizer2->Add(btnDelSeclabel, 0, wxEXPAND | wxALIGN_CENTRE_VERTICAL | wxTOP | wxLEFT | wxRIGHT, 4);
+#endif
 	sizer0->Add(sizer2, 0, wxEXPAND | wxALL, 0);
 
 
@@ -74,13 +86,29 @@ ctlSeclabelPanel::ctlSeclabelPanel(wxNotebook *nb)
 	wxFlexGridSizer *sizer3 = new wxFlexGridSizer(2, 2, 5, 5);
 	sizer3->AddGrowableCol(1);
 	label = new wxStaticText(this, 0, _("Provider"));
+#if wxCHECK_VERSION(3, 0, 0)
+    sizer3->Add(label, 0, wxEXPAND | wxTOP | wxLEFT | wxRIGHT, 4);
+#else
 	sizer3->Add(label, 0, wxEXPAND | wxALIGN_CENTRE_VERTICAL | wxTOP | wxLEFT | wxRIGHT, 4);
+#endif
 	txtProvider = new wxTextCtrl(this, CTL_PROVIDER);
+#if wxCHECK_VERSION(3, 0, 0)
+    sizer3->Add(txtProvider, 0, wxEXPAND | wxTOP | wxLEFT | wxRIGHT, 4);
+#else
 	sizer3->Add(txtProvider, 0, wxEXPAND | wxALIGN_CENTRE_VERTICAL | wxTOP | wxLEFT | wxRIGHT, 4);
+#endif
 	label = new wxStaticText(this, 0, _("Security label"));
+#if wxCHECK_VERSION(3, 0, 0)
+    sizer3->Add(label, 0, wxEXPAND | wxTOP | wxLEFT | wxRIGHT, 4);
+#else
 	sizer3->Add(label, 0, wxEXPAND | wxALIGN_CENTRE_VERTICAL | wxTOP | wxLEFT | wxRIGHT, 4);
+#endif
 	txtSeclabel = new wxTextCtrl(this, CTL_SECLABEL);
+#if wxCHECK_VERSION(3, 0, 0)
+    sizer3->Add(txtSeclabel, 0, wxEXPAND | wxTOP | wxLEFT | wxRIGHT, 4);
+#else
 	sizer3->Add(txtSeclabel, 0, wxEXPAND | wxALIGN_CENTRE_VERTICAL | wxTOP | wxLEFT | wxRIGHT, 4);
+#endif
 	sizer0->Add(sizer3, 0, wxEXPAND | wxALL, 5);
 
 	// compute sizes

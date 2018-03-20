@@ -51,7 +51,7 @@ extern "C"
 #define YYSTYPE_IS_DECLARED
 #define DECIMAL DECIMAL_P
 	typedef int YYSTYPE;
-#include "parser/keywords.h"
+#include "parser/keywords_pgadmin.h"
 }
 
 // we dont have an appropriate wxLongLong method
@@ -345,9 +345,9 @@ void FillKeywords(wxString &str)
 
 	str = wxString();
 
-	for (i = 0; i < NumScanKeywords; i++)
+	for (i = 0; i < NumScanKeywords_pgadmin; i++)
 	{
-		str += wxT(" ") + wxString::FromAscii(ScanKeywords[i].name);
+		str += wxT(" ") + wxString::FromAscii(ScanKeywords_pgadmin[i].name);
 	}
 	for (i = 0; i < NumScanKeywordsExtra; i++)
 	{
@@ -399,7 +399,7 @@ static bool needsQuoting(wxString &value, bool forTypes)
 	}
 
 	// is it a keyword?
-	const ScanKeyword *sk = ScanKeywordLookup(value.ToAscii());
+	const ScanKeyword_pgadmin *sk = ScanKeywordLookup_pgadmin(value.ToAscii());
 	if (!sk)
 		return false;
 	if (sk->category == UNRESERVED_KEYWORD)
@@ -1405,3 +1405,32 @@ bool getArrayFromCommaSeparatedList(const wxString &str, wxArrayString &res)
 	return true;
 }
 
+
+wxString std2wx(std::string s)
+{
+	wxString wx;
+	const char* my_string = s.c_str();
+	wxMBConvUTF8 *wxconv = new wxMBConvUTF8();
+	wx = wxString(wxconv->cMB2WC(my_string), wxConvUTF8);
+	delete wxconv;
+	// test if conversion works of not. In case it fails convert from Ascii
+	if (wx.length() == 0)
+		wx = wxString(wxString::FromAscii(s.c_str()));
+	return wx;
+}
+
+std::string wx2std(wxString s)
+{
+	std::string s2;
+	if (s.wxString::IsAscii())
+	{
+		s2 = s.wxString::ToAscii();
+	}
+	else
+	{
+		const wxWX2MBbuf tmp_buf = wxConvCurrent->cWX2MB(s);
+		const char *tmp_str = (const char*) tmp_buf;
+		s2 = std::string(tmp_str, strlen(tmp_str));
+	}
+	return s2;
+}

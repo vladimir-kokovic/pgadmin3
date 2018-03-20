@@ -789,15 +789,21 @@ public:
 	// Functions for storing settings
 	bool Write(const wxString &key, const wxString &value)
 	{
-		return wxConfig::Write(key, value);
+		bool b = wxConfig::Write(key, value);
+		wxConfig::Flush();
+		return b;
 	}
 	bool WriteLong(const wxString &key, long value)
 	{
-		return wxConfig::Write(key, value);
+		bool b = wxConfig::Write(key, value);
+		wxConfig::Flush();
+		return b;
 	}
 	bool WriteInt(const wxString &key, int value)
 	{
-		return wxConfig::Write(key, value);
+		bool b = wxConfig::Write(key, value);
+		wxConfig::Flush();
+		return b;
 	}
 	bool WriteBool(const wxString &key, bool value);
 	bool WritePoint(const wxString &key, const wxPoint &value);

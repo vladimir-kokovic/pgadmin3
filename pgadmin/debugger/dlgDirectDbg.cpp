@@ -69,8 +69,8 @@ dlgDirectDbg::dlgDirectDbg(frmDebugger *_parent, dbgController *_controller,
 {
 	int width, height, totalWidth = 0;
 
-	SetFont(settings->GetSystemFont());
 	LoadResource(_parent, wxT("dlgDirectDbg"));
+	SetFont(settings->GetSystemFont());
 
 	// Icon
 	SetIcon(*debugger_png_ico);

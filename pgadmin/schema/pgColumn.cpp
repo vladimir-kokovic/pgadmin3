@@ -310,6 +310,7 @@ wxString pgColumn::GetDefinition()
 {
 	wxString sql = wxEmptyString;
 	wxString seqDefault1, seqDefault2;
+	bool sequence9 = (GetDatabase()->BackendMinimumVersion(9, 0));
 
 	if (table->GetOfTypeOid() == 0)
 		sql += GetQuotedTypename();
@@ -361,8 +362,9 @@ wxString pgColumn::GetDefinition()
 	}
 
 	if ((sql == wxT("integer") || sql == wxT("bigint") || sql == wxT("smallint") ||
-	        sql == wxT("pg_catalog.integer") || sql == wxT("pg_catalog.bigint") || sql == wxT("pg_catalog.smallint"))
-	        && (GetDefault() == seqDefault1 || GetDefault() == seqDefault2))
+			sql == wxT("pg_catalog.integer") || sql == wxT("pg_catalog.bigint") || sql == wxT("pg_catalog.smallint"))
+			&& ((sequence9 && !GetSerialSequence().IsEmpty()) ||
+			(!sequence9 && (GetDefault() == seqDefault1 || GetDefault() == seqDefault2))))
 	{
 		if (GetDatabase()->BackendMinimumVersion(8, 1))
 		{

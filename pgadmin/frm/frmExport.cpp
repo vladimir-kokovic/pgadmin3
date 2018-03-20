@@ -14,13 +14,15 @@
 // App headers
 #include "pgAdmin3.h"
 #include <wx/file.h>
+#include <wx/clipbrd.h>
 #include "frm/frmExport.h"
 #include "utils/sysSettings.h"
 #include "utils/misc.h"
 #include "ctl/ctlSQLResult.h"
 
 #define txtFilename     CTRL_TEXT("txtFilename")
-#define btnOK           CTRL_BUTTON("wxID_OK")
+#define btnOK           CTRL_BUTTON("wxID_OK")      //To File
+#define btnwxClipBoard  CTRL_BUTTON("TO_CLIPBOARD") //To clipBoard
 #define rbUnicode       CTRL_RADIOBUTTON("rbUnicode")
 #define rbLocal         CTRL_RADIOBUTTON("rbLocal")
 #define rbCRLF          CTRL_RADIOBUTTON("rbCRLF")
@@ -34,14 +36,15 @@
 
 
 BEGIN_EVENT_TABLE(frmExport, pgDialog)
-	EVT_TEXT(XRCID("txtFilename"),          frmExport::OnChange)
-	EVT_RADIOBUTTON(XRCID("rbQuoteNone"),   frmExport::OnChange)
+	EVT_TEXT(XRCID("txtFilename"),           frmExport::OnChange)
+	EVT_RADIOBUTTON(XRCID("rbQuoteNone"),    frmExport::OnChange)
 	EVT_RADIOBUTTON(XRCID("rbQuoteStrings"), frmExport::OnChange)
-	EVT_RADIOBUTTON(XRCID("rbQuoteAll"),    frmExport::OnChange)
-	EVT_BUTTON(XRCID("btnFilename"),        frmExport::OnBrowseFile)
-	EVT_BUTTON(wxID_HELP,                   frmExport::OnHelp)
-	EVT_BUTTON(wxID_OK,                     frmExport::OnOK)
-	EVT_BUTTON(wxID_CANCEL,                 frmExport::OnCancel)
+	EVT_RADIOBUTTON(XRCID("rbQuoteAll"),     frmExport::OnChange)
+	EVT_BUTTON(XRCID("btnFilename"),         frmExport::OnBrowseFile)
+	EVT_BUTTON(wxID_HELP,                    frmExport::OnHelp)
+	EVT_BUTTON(XRCID("TO_CLIPBOARD"),        frmExport::OnCLIPBOARD)
+	EVT_BUTTON(wxID_OK,                      frmExport::OnOK)
+	EVT_BUTTON(wxID_CANCEL,                  frmExport::OnCancel)
 END_EVENT_TABLE()
 
 
@@ -50,8 +53,8 @@ frmExport::frmExport(wxWindow *p)
 {
 	parent = p;
 
-	SetFont(settings->GetSystemFont());
 	LoadResource(p, wxT("frmExport"));
+	SetFont(settings->GetSystemFont());
 	RestorePosition();
 
 	// Icon
@@ -107,9 +110,11 @@ void frmExport::OnChange(wxCommandEvent &ev)
 }
 
 
-void frmExport::OnOK(wxCommandEvent &ev)
+void frmExport::CommonFileCLIPBOARD(wxCommandEvent &ev, bool file)
 {
-	settings->SetExportUnicode(rbUnicode->GetValue());
+    toFile = file;
+
+    settings->SetExportUnicode(rbUnicode->GetValue());
 	settings->SetExportRowSeparator(rbCRLF->GetValue() ? wxT("\r\n") : wxT("\n"));
 	settings->SetExportColSeparator(cbColSeparator->GetValue());
 
@@ -129,6 +134,17 @@ void frmExport::OnOK(wxCommandEvent &ev)
 		EndModal(wxID_OK);
 	else
 		Destroy();
+
+}
+
+void frmExport::OnCLIPBOARD(wxCommandEvent &ev)
+{
+  CommonFileCLIPBOARD(ev, false);
+}
+
+void frmExport::OnOK(wxCommandEvent &ev)
+{
+    CommonFileCLIPBOARD(ev, true);
 }
 
 
@@ -144,12 +160,25 @@ bool frmExport::Export(pgSet *set)
 	else
 		wxLogInfo(wxT("Exporting data from a resultset"));
 
-	wxFile file(txtFilename->GetValue(), wxFile::write);
-	if (!file.IsOpened())
-	{
-		wxLogError(__("Failed to open file %s."), txtFilename->GetValue().c_str());
-		return false;
-	}
+	wxString clipBoardText;
+    wxFile *file;
+    if (toFile)
+    {
+	  file = new wxFile(txtFilename->GetValue(), wxFile::write);
+      if (!file->IsOpened())
+      {
+          wxLogError(__("Failed to open file %s."), txtFilename->GetValue().c_str());
+          return false;
+      }
+    }
+    else
+    {
+        if (!wxTheClipboard->Open())
+        {
+            wxLogError(__("WX clipboard is not opened."));
+            return false;
+        }
+    }
 
 	wxString line;
 	long skipped = 0;
@@ -205,14 +234,32 @@ bool frmExport::Export(pgSet *set)
 			line += wxT("\n");
 
 		if (rbUnicode->GetValue())
-			file.Write(line, wxConvUTF8);
+        {
+            if (toFile)
+            {
+                file->Write(line, wxConvUTF8);
+            }
+            else
+            {
+				clipBoardText += line;
+            }
+        }
 		else
 		{
 			buf = line.mb_str(wxConvLibc);
 			if (!buf)
 				skipped++;
 			else
-				file.Write(line, wxConvLibc);
+            {
+                if (toFile)
+                {
+                    file->Write(line, wxConvLibc);
+                }
+                else
+                {
+                    clipBoardText += line;
+                }
+            }
 		}
 	}
 
@@ -271,20 +318,48 @@ bool frmExport::Export(pgSet *set)
 			line += wxT("\n");
 
 		if (rbUnicode->GetValue())
-			file.Write(line, wxConvUTF8);
+        {
+            if (toFile)
+            {
+                file->Write(line, wxConvUTF8);
+            }
+            else
+            {
+                clipBoardText += line;
+            }
+        }
 		else
 		{
 			buf = line.mb_str(wxConvLibc);
 			if (!buf)
 				skipped++;
 			else
-				file.Write(line, wxConvLibc);
+            {
+                if (toFile)
+                {
+                    file->Write(line, wxConvLibc);
+                }
+                else
+                {
+                    clipBoardText += line;
+                }
+            }
 		}
 
 		if (set)
 			set->MoveNext();
 	}
-	file.Close();
+
+    if (toFile)
+    {
+        file->Close();
+        delete file;
+    }
+	else
+	{
+		wxTheClipboard->SetData(new wxTextDataObject(clipBoardText));
+		wxTheClipboard->Close();
+	}
 
 	if (skipped)
 		wxLogError(wxPLURAL(

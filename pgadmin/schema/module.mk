@@ -63,7 +63,8 @@ pgadmin3_SOURCES += \
         schema/gpExtTable.cpp \
         schema/gpResQueue.cpp \
         schema/gpPartition.cpp \
-        schema/edbResourceGroup.cpp
+        schema/edbResourceGroup.cpp \
+        schema/asoft.cpp
 
 EXTRA_DIST += \
         schema/module.mk

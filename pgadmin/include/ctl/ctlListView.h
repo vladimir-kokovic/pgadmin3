@@ -71,5 +71,38 @@ public:
 	}
 };
 
+class ctlListViewVirtual : public ctlListView
+{
+public:
+	ctlListViewVirtual(wxWindow *p, int id, wxPoint pos, wxSize siz, long attr = 0)
+		: ctlListView(p, id, pos, siz, attr | wxLC_VIRTUAL)
+	{
+	}
+private:
+	wxString		OnGetItemText(long item, long column) const;
+	int				OnGetItemColumnImage(long item, long column) const;
+    wxListItemAttr *OnGetItemAttr(long item) const;
+};
+
+class ctlListViewVirtualHistory : public ctlListView
+{
+public:
+	ctlListViewVirtualHistory(wxWindow *p, int id, wxPoint pos, wxSize siz, long attr = 0)
+		: ctlListView(p, id, pos, siz, attr | wxLC_VIRTUAL | wxLC_SINGLE_SEL), info(new wxListItem())
+	{
+		parentfrm = 0;
+	}
+    void            OnListItemSelection(wxListEvent& event);
+    void            SetParent(void *ptr) {
+		parentfrm = ptr;
+    }
+private:
+	wxString		OnGetItemText(long item, long column) const;
+	int				OnGetItemColumnImage(long item, long column) const;
+    wxListItemAttr *OnGetItemAttr(long item) const;
+
+	wxListItem *info;
+    void *parentfrm; //frmQuery
+};
 
 #endif

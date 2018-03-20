@@ -60,8 +60,8 @@ frmImport::frmImport(frmMain *form, pgObject *_object, pgConn *_conn)
 	done = false;
 
 	// Set-up window
-	SetFont(settings->GetSystemFont());
 	LoadResource(form, wxT("frmImport"));
+	SetFont(settings->GetSystemFont());
 	RestorePosition();
 	SetTitle(wxT("Import data from file into ") + object->GetName());
 	SetIcon(*reload_png_ico);

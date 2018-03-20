@@ -35,8 +35,8 @@ make-mo:
 	echo "make mo..."
 	@pub_tx='$(PUB_TX)'; \
 	for DIR in $$pub_tx; do \
-		msgfmt $$DIR/pgadmin3.po -o $$DIR/pgadmin3.mo; \
-		msgfmt $$DIR/wxstd.po -o $$DIR/wxstd.mo; \
+		msgfmt $(srcdir)/$$DIR/pgadmin3.po -o $(srcdir)/$$DIR/pgadmin3.mo; \
+		msgfmt $(srcdir)/$$DIR/wxstd.po -o $(srcdir)/$$DIR/wxstd.mo; \
 	done
 
 install-data-local: make-mo

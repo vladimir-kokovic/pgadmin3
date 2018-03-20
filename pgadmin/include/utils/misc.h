@@ -15,8 +15,10 @@
 #include <wx/wx.h>
 #include <wx/datetime.h>
 #include <wx/tokenzr.h>
+#include "wx/srchctrl.h"
 
 #include "utils/misc.h"
+#include <string>
 
 class wxImageList;
 extern wxImageList *imageList;
@@ -94,6 +96,9 @@ extern sysSettings *settings;
 #define CTRL_FONTPICKER(id)     (XRCCTRL(*this, id, wxFontPickerCtrl))
 #define CTRL_CHECKTREEVIEW(id)  (XRCCTRL(*this, id, ctlCheckTreeView))
 #define CTRL_GAUGE(id)          (XRCCTRL(*this, id, wxGauge))
+#define CTRL_SEARCHTEXT(id)     (XRCCTRL(*this, id, wxSearchCtrl))
+#define CTRL_LISTVIEWVIRTUAL(id)((ctlListViewVirtual*)(XRCCTRL(*this, id, ctlListView)))
+#define CTRL_LISTVIEWVIRTUALHISTORY(id)((ctlListViewVirtualHistory*)(XRCCTRL(*this, id, ctlListViewVirtualHistory)))
 
 #endif // PGSCLI
 
@@ -271,6 +276,10 @@ wxString commandLineCleanOption(const wxString &option, bool schemaObject = fals
 // Quoting
 wxString qtIdent(const wxString &value);    // add " if necessary
 wxString qtTypeIdent(const wxString &value);    // add " if necessary
+
+//string/WxString conversions
+wxString std2wx(std::string s);
+std::string wx2std(wxString s);
 
 #endif
 

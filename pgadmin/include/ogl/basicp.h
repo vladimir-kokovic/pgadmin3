@@ -227,7 +227,11 @@ public:
 	{
 		return m_penStyle;
 	}
+#if wxCHECK_VERSION(3, 0, 0)
+        inline void SetPenStyle(wxPenStyle style)
+#else
 	inline void SetPenStyle(int style)
+#endif
 	{
 		m_penStyle = style;
 		m_actualPenObject = NULL;
@@ -268,7 +272,11 @@ public:
 
 	// New members for specifying divided rectangle division colour/style 30/6/94
 	wxString              m_penColour;
+#if wxCHECK_VERSION(3, 0, 0)
+        wxPenStyle            m_penStyle;
+#else
 	int                   m_penStyle;
+#endif
 	wxPen                *m_actualPenObject;
 
 };
