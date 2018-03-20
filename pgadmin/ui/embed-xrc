@@ -12,7 +12,7 @@
 
 echo Rebuilding xrcdialogs.cpp...
 
-LD_LIBRARY_PATH=/mnt/sdd1/opt/wxWidgets-debug-git/lib /mnt/sdd1/opt/wxWidgets-debug-git/bin/wxrc -c -o $( dirname $0 )/xrcDialogs.cpp.new $( dirname $0 )/*.xrc
+wxrc -c -o $( dirname $0 )/xrcDialogs.cpp.new $( dirname $0 )/*.xrc
 
 diff $( dirname $0 )/xrcDialogs.cpp.new $( dirname $0 )/xrcDialogs.cpp 1> /dev/null
 rc=$?

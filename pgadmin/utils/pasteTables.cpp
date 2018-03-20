@@ -29,11 +29,7 @@
 #include <errno.h>
 
 #include <wx/arrimpl.cpp>
-#if wxCHECK_VERSION(3, 1, 1)
 #include <wx/generic/treectlg.h>
-#else
-#include <wx-2.8/wx/generic/treectlg.h>
-#endif
 WX_DEFINE_OBJARRAY(pgTableCopyPasteArray);
 WX_DEFINE_OBJARRAY(selectedTablesArray);
 
