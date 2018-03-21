@@ -9,16 +9,16 @@
 //
 //////////////////////////////////////////////////////////////////////////
 
-//#if !defined(PG_VERSION_NUM)
-//#include <pg_config.h>
-//#endif
+#if !defined(PG_VERSION_NUM)
+#include <pg_config.h>
+#endif
 
-//#if PG_VERSION_NUM >= 90600
-//#include <postgres.h>
-//#ifndef endof
-//#define endof(array)	(&array[lengthof(array)])
-//#endif
-//#else
+#if PG_VERSION_NUM >= 90600
+#include <server/postgres.h>
+#ifndef endof
+#define endof(array)	(&array[lengthof(array)])
+#endif
+#else
 //#if defined(PG_VERSION_NUM)
 //#define msg "PG_VERSION_NUM= " ## #PG_VERSION_NUM
 //#else
@@ -32,4 +32,4 @@
 #define YYTOKENTYPE
 #define YYSTYPE int
 #define NAMEDATALEN 32
-//#endif
+#endif
