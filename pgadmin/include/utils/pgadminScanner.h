@@ -15,7 +15,7 @@ extern "C" {
 #ifdef PGADMIN_SCANNER
 #include "postgres.h"
 #else
-#include "postgres_fe.h"
+#include "server/postgres_fe.h"
 #include "parser/keywords_pgadmin.h"
 #undef _
 #undef PACKAGE_NAME
