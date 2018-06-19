@@ -1165,9 +1165,18 @@ pgObject *pgTriggerFunctionFactory::CreateObjects(pgCollection *collection, ctlT
 
 pgObject *pgProcedureFactory::CreateObjects(pgCollection *collection, ctlTree *browser, const wxString &restr)
 {
-	wxString funcRestriction = wxT(
-	                               " WHERE proisagg = FALSE AND pronamespace = ") + NumToStr(collection->GetSchema()->GetOid())
-	                           + wxT("::oid AND lanname = 'edbspl'\n");
+    wxString vk11;
+    if (collection->GetConnection()->BackendMinimumVersion(11, 0))
+    {
+        vk11 = wxT(" prokind='f' ");
+    }
+    else
+    {
+        vk11 = wxT(" proisagg = false ");
+    }
+    wxString funcRestriction = wxT(
+            " WHERE " + vk11 + " AND pronamespace = ") + NumToStr(collection->GetSchema()->GetOid())
+            + wxT("::oid AND lanname = 'edbspl'\n");
 
 	if (collection->GetConnection()->EdbMinimumVersion(8, 1))
 		funcRestriction += wxT("   AND protype = '1'\n");
