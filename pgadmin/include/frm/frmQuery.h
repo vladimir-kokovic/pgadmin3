@@ -96,8 +96,9 @@ struct outputPaneObjectsTag
 	}
 	~outputPaneObjectsTag();
 };
+typedef struct outputPaneObjectsTag outputPaneObjectsTagx;
 
-WX_DECLARE_OBJARRAY(struct outputPaneObjectsTag, Output_Pane_Objects_Array);
+WX_DECLARE_OBJARRAY(outputPaneObjectsTagx, Output_Pane_Objects_Array);
 
 struct vkTabTag
 {
@@ -113,8 +114,9 @@ struct vkTabTag
     bool                        multiSQL;
     bool                        ontextactive;
 };
+typedef struct vkTabTag vkTabTagx;
 
-WX_DECLARE_OBJARRAY(struct vkTabTag, vkTabTag_Array);
+WX_DECLARE_OBJARRAY(vkTabTagx, vkTabTag_Array);
 
 class frmQuery : public pgFrame
 {
