@@ -2351,7 +2351,7 @@ void frmQuery::myLogNotice(const wxChar *szFormat, ...)
 	va_list argptr;
 	va_start(argptr, szFormat);
 #if wxCHECK_VERSION(2, 9, 0)
-	wxChar s_szBuf[8192];
+	wxChar s_szBuf[16384];
 	if (sysLogger::logLevel >= LOG_NOTICE)
 	{
 		wxVsnprintf(s_szBuf, WXSIZEOF(s_szBuf), szFormat, argptr);
