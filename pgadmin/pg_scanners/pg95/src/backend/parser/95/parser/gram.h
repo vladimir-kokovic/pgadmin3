@@ -505,7 +505,8 @@ extern int base_yydebug;
     ROUTINES = 715,
     GROUPS = 716,
     OTHERS = 717,
-    TIES = 718
+    TIES = 718,
+    INCLUDE = 719
 
 /* #if (PG_VERSION_NUM / 100) < 901 */
     ,
