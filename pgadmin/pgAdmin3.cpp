@@ -1771,6 +1771,7 @@ void pgAdmin3::InitLogger()
 	sysLogger::logLevel = settings->GetLogLevel();
 
 	logger = new sysLogger();
+    wxLog::SetTimestamp("%Y-%m-%d %H:%M:%S"); 
 	wxLog::SetVerbose(true);
 	wxLog::SetActiveTarget(logger);
 	wxLog::Resume();
