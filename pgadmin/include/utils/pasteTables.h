@@ -43,6 +43,7 @@ struct copy_object_tag
 	wxString tablename;
 	pgObject *object;
 };
+typedef struct copy_object_tag copy_object_tagx;
 
 class pasteTables;
 class pgTableCopyPaste;
@@ -215,7 +216,7 @@ WX_DECLARE_OBJARRAY(pgTableCopyPaste, pgTableCopyPasteArray);
 
 WX_DECLARE_STRING_HASH_MAP(wxString, MyHash);
 
-WX_DECLARE_OBJARRAY(struct copy_object_tag, selectedTablesArray);
+WX_DECLARE_OBJARRAY(copy_object_tagx, selectedTablesArray);
 
 class frmCopyTables : public ExecutionDialog
 {
