@@ -34,9 +34,9 @@
 #include "dlg/dlgEditGridOptions.h"
 #include "dlg/dlgEditGridOptionsFilter.h"
 
-static dlgEditGridOptionsFilter *THIS;
+static dlgEditGridOptionsFilter *VK_THIS;
 
-#define MY_CTRL_TEXT(id) (XRCCTRL(*THIS, id, wxTextCtrl))
+#define MY_CTRL_TEXT(id) (XRCCTRL(*VK_THIS, id, wxTextCtrl))
 #define searchTxt		MY_CTRL_TEXT("searchTxt")
 #define lstFilters		CTRL_LISTVIEWVIRTUAL("lstFilters")
 #define btnFind			CTRL_BUTTON("wxID_FIND")
@@ -53,7 +53,7 @@ END_EVENT_TABLE()
 
 dlgEditGridOptionsFilter::dlgEditGridOptionsFilter(frmEditGrid *win, dlgEditGridOptions *dlgOptions)
 {
-	THIS = this;
+	VK_THIS = this;
 	this->dlgOptions = dlgOptions;
 
 	LoadResource(win, wxT("dlgEditGridOptionsFilter"));
@@ -141,15 +141,15 @@ void dlgEditGridOptionsFilter::OnText(wxCommandEvent &event)
 
 wxString ctlListViewVirtual::OnGetItemText(long item, long column) const
 {
-	if (THIS->dlgOptions->histoFilters.GetCount() < 1)
+	if (VK_THIS->dlgOptions->histoFilters.GetCount() < 1)
 		return wxEmptyString;
 	wxString str;
 	if (searchTxt->IsEmpty())
 	{
-		str = THIS->dlgOptions->histoFilters.Item(item);
+		str = VK_THIS->dlgOptions->histoFilters.Item(item);
 		return (column) ? str.Mid(20) : str.Mid(0, 19);
 	}
-	str = THIS->dlgOptions->FindItem(searchTxt->GetValue(), item);
+	str = VK_THIS->dlgOptions->FindItem(searchTxt->GetValue(), item);
     return (column) ? str.Mid(20) : str.Mid(0, 19);
 }
 

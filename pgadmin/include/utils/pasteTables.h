@@ -51,7 +51,7 @@ class pgTableCopyPasteArray;
 
 struct transfer_tag
 {
-	pasteTables *THIS;
+	pasteTables *VK_THIS;
 	pgDatabase *srcdatabase;
 	wxString srcschemaname;
 	pgSchema *srcschema;

@@ -385,7 +385,7 @@ public:
 
     /* non-numbers per IEEE 854-1987 */
     static const char FINITE = 0;   // Normal finite numbers
-    static const char INFINITE = 1; // Infinity
+    static const char DFP_INFINITE = 1; // Infinity
     static const char SNANDFP = 2;     // Signaling NaN
     static const char QNAN = 3;     // Quiet NaN
 

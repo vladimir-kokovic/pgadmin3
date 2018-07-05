@@ -115,10 +115,10 @@ dfp dfp::string2dfp(std::string fpin)
 
 	/* Check some special cases */
 	if (fpin == ("Infinite"))
-		return create((char) 1, INFINITE);
+		return create((char) 1, DFP_INFINITE);
 
 	if (fpin == ("-Infinite"))
-		return create((char) - 1, INFINITE);
+		return create((char) - 1, DFP_INFINITE);
 
 	if (fpin == ("NaN"))
 		return create((char) 1, QNAN);
@@ -464,7 +464,7 @@ dfp dfp::dotrap(int type, const char *what, dfp *oper, dfp *result)
 			if (nans == FINITE && mant[DIGITS-1] != 0)  // normal case, we are finite, non-zero
             {
               def.sign = sign * oper->sign;
-              def.nans = INFINITE;
+              def.nans = DFP_INFINITE;
             }
 
             if (nans == FINITE && mant[DIGITS-1] == 0)  //  0/0
@@ -472,12 +472,12 @@ dfp dfp::dotrap(int type, const char *what, dfp *oper, dfp *result)
               def.nans = QNAN;
             }
 
-            if (nans == INFINITE || nans == QNAN)
+            if (nans == DFP_INFINITE || nans == QNAN)
             {
               def.nans = QNAN;
             }
 
-            if (nans == INFINITE || nans == SNANDFP)
+            if (nans == DFP_INFINITE || nans == SNANDFP)
             {
               def.nans = QNAN;
             }
@@ -498,7 +498,7 @@ dfp dfp::dotrap(int type, const char *what, dfp *oper, dfp *result)
         case FLAG_OVERFLOW:
 			result->exp = result->exp - errScale;
             def.sign = result->sign;
-            def.nans = INFINITE;
+            def.nans = DFP_INFINITE;
             break;
 
         default: def = *result;
@@ -539,8 +539,8 @@ std::string dfp::toString()
 	{
 		switch (sign * nans)
 		{
-			case INFINITE: return "Infinity";
-			case -INFINITE: return "-Infinity";
+			case DFP_INFINITE: return "Infinity";
+			case -DFP_INFINITE: return "-Infinity";
 			case QNAN: return "NaN";
 			case -QNAN: return "NaN";
 			case SNANDFP: return "NaN";
@@ -771,13 +771,13 @@ int dfp::compare(dfp & a, dfp & b)
 	}
 
 	/* deal with the infinities */
-	if (a.nans == INFINITE && b.nans == FINITE)
+	if (a.nans == DFP_INFINITE && b.nans == FINITE)
 		return a.sign;
 
-	if (a.nans == FINITE && b.nans == INFINITE)
+	if (a.nans == FINITE && b.nans == DFP_INFINITE)
 		return -b.sign;
 
-	if (a.nans == INFINITE && b.nans == INFINITE)
+	if (a.nans == DFP_INFINITE && b.nans == DFP_INFINITE)
 		return 0;
 
 	/* Handle special case when a or b is zero, by ignoring the exponents */
@@ -840,16 +840,16 @@ dfp dfp::add(dfp x)
 		if (x.nans == QNAN || x.nans == SNANDFP)
 			return x;
 
-		if (nans == INFINITE && x.nans == FINITE)
+		if (nans == DFP_INFINITE && x.nans == FINITE)
 			return *this;
 
-		if (x.nans == INFINITE && nans == FINITE)
+		if (x.nans == DFP_INFINITE && nans == FINITE)
 			return x;
 
-		if (x.nans == INFINITE && nans == INFINITE && sign == x.sign)
+		if (x.nans == DFP_INFINITE && nans == DFP_INFINITE && sign == x.sign)
 			return x;
 
-		if (x.nans == INFINITE && nans == INFINITE && sign != x.sign)
+		if (x.nans == DFP_INFINITE && nans == DFP_INFINITE && sign != x.sign)
 		{
 			ieeeFlags |= FLAG_INVALID;
 			result = zero;
@@ -1021,7 +1021,7 @@ dfp dfp::nextAfter(dfp x)
 		result = this->subtract(inc);
 	}
 
-	if (result.classify() == INFINITE && this->classify() != INFINITE)
+	if (result.classify() == DFP_INFINITE && this->classify() != DFP_INFINITE)
 	{
 		ieeeFlags |= FLAG_INEXACT;
 		result = dotrap(FLAG_INEXACT, "nextAfter", &x, &result);
@@ -1053,29 +1053,29 @@ dfp dfp::multiply(dfp x)
 		if (x.nans == QNAN || x.nans == SNANDFP)
 			return x;
 
-		if (nans == INFINITE && x.nans == FINITE && x.mant[DIGITS - 1] != 0)
+		if (nans == DFP_INFINITE && x.nans == FINITE && x.mant[DIGITS - 1] != 0)
 		{
 			result = *this;
 			result.sign = (sign * x.sign);
 			return result;
 		}
 
-		if (x.nans == INFINITE && nans == FINITE && mant[DIGITS - 1] != 0)
+		if (x.nans == DFP_INFINITE && nans == FINITE && mant[DIGITS - 1] != 0)
 		{
 			result = x;
 			result.sign = (sign * x.sign);
 			return result;
 		}
 
-		if (x.nans == INFINITE && nans == INFINITE)
+		if (x.nans == DFP_INFINITE && nans == DFP_INFINITE)
 		{
 			result = *this;
 			result.sign = (sign * x.sign);
 			return result;
 		}
 
-		if ((x.nans == INFINITE && nans == FINITE && mant[DIGITS - 1] == 0) ||
-				(nans == INFINITE && x.nans == FINITE && x.mant[DIGITS - 1] == 0))
+		if ((x.nans == DFP_INFINITE && nans == FINITE && mant[DIGITS - 1] == 0) ||
+				(nans == DFP_INFINITE && x.nans == FINITE && x.mant[DIGITS - 1] == 0))
 		{
 			ieeeFlags |= FLAG_INVALID;
 			result = zero;
@@ -1150,13 +1150,13 @@ dfp dfp::multiply(int x)
 		if (nans == QNAN || nans == SNANDFP)
 			return *this;
 
-		if (nans == INFINITE && x != 0)
+		if (nans == DFP_INFINITE && x != 0)
 		{
 			result = *this;
 			return result;
 		}
 
-		if (nans == INFINITE && x == 0)
+		if (nans == DFP_INFINITE && x == 0)
 		{
 			ieeeFlags |= FLAG_INVALID;
 			result = zero;
@@ -1230,21 +1230,21 @@ dfp dfp::divide(dfp divisor)
 		if (divisor.nans == QNAN || divisor.nans == SNANDFP)
 			return divisor;
 
-		if (nans == INFINITE && divisor.nans == FINITE)
+		if (nans == DFP_INFINITE && divisor.nans == FINITE)
 		{
 			result = *this;
 			result.sign = (sign * divisor.sign);
 			return result;
 		}
 
-		if (divisor.nans == INFINITE && nans == FINITE)
+		if (divisor.nans == DFP_INFINITE && nans == FINITE)
 		{
 			result = zero;
 			result.sign = (sign * divisor.sign);
 			return result;
 		}
 
-		if (divisor.nans == INFINITE && nans == INFINITE)
+		if (divisor.nans == DFP_INFINITE && nans == DFP_INFINITE)
 		{
 			ieeeFlags |= FLAG_INVALID;
 			result = zero;
@@ -1260,7 +1260,7 @@ dfp dfp::divide(dfp divisor)
 		ieeeFlags |= FLAG_DIV_ZERO;
 		result = zero;
 		result.sign = (sign * divisor.sign);
-		result.nans = INFINITE;
+		result.nans = DFP_INFINITE;
 		result = dotrap(FLAG_DIV_ZERO, "divide", &divisor, &result);
 		return result;
 	}
@@ -1438,7 +1438,7 @@ dfp dfp::divide(int divisor)
 		if (nans == QNAN || nans == SNANDFP)
 			return *this;
 
-		if (nans == INFINITE)
+		if (nans == DFP_INFINITE)
 		{
 			result = *this;
 			return result;
@@ -1451,7 +1451,7 @@ dfp dfp::divide(int divisor)
 		ieeeFlags |= FLAG_DIV_ZERO;
 		result = zero;
 		result.sign = sign;
-		result.nans = INFINITE;
+		result.nans = DFP_INFINITE;
 		dfp zero1 = zero;
 		result = dotrap(FLAG_DIV_ZERO, "divide", &zero1, &result);
 		return result;
@@ -1504,7 +1504,7 @@ dfp dfp::sqrt() /* returns the square root of this */
 
 	if (nans != FINITE)
 	{
-		if (nans == INFINITE && sign == 1) // if positive infinity
+		if (nans == DFP_INFINITE && sign == 1) // if positive infinity
 			return *this;
 
 		if (nans == QNAN)
@@ -1617,7 +1617,7 @@ dfp dfp::trunc(int rmode)
 	if (nans == SNANDFP || nans == QNAN)
 		return *this;
 
-	if (nans == INFINITE)
+	if (nans == DFP_INFINITE)
 		return *this;
 
 	if (mant[DIGITS - 1] == 0) // a is zero

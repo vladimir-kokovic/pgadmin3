@@ -33,9 +33,9 @@
 #include "frm/frmQuery.h"
 #include "dlg/dlgQueryHistory.h"
 
-static dlgQueryHistory *THIS;
+static dlgQueryHistory *VK_THIS;
 
-#define MY_CTRL_TEXT(id) (XRCCTRL(*THIS, id, wxTextCtrl))
+#define MY_CTRL_TEXT(id) (XRCCTRL(*VK_THIS, id, wxTextCtrl))
 #define searchTxt		MY_CTRL_TEXT("searchTxt")
 #define lstFilters		CTRL_LISTVIEWVIRTUALHISTORY("lstFilters")
 #define btnFind			CTRL_BUTTON("wxID_FIND")
@@ -58,7 +58,7 @@ END_EVENT_TABLE()
 
 dlgQueryHistory::dlgQueryHistory(frmQuery *win)
 {
-	THIS = this;
+	VK_THIS = this;
 	parentdlg = win;
 
 	LoadResource(win, wxT("dlgQueryHistory"));
@@ -66,7 +66,7 @@ dlgQueryHistory::dlgQueryHistory(frmQuery *win)
 
 	// Setup the list box
 	lstfilters = lstFilters;
-	lstfilters->SetItemCount(THIS->parentdlg->GetHistoQueries()->GetCount());
+	lstfilters->SetItemCount(VK_THIS->parentdlg->GetHistoQueries()->GetCount());
 	lstfilters->SetParent((void *)parentdlg);
 
 	RestorePosition();
@@ -148,7 +148,7 @@ void dlgQueryHistory::OnText(wxCommandEvent &event)
 
 wxString ctlListViewVirtualHistory::OnGetItemText(long itemx, long column) const
 {
-	int cnt = THIS->parentdlg->GetHistoQueries()->GetCount();
+	int cnt = VK_THIS->parentdlg->GetHistoQueries()->GetCount();
 	if (cnt < 1)
 	{
 		return wxEmptyString;
@@ -158,11 +158,11 @@ wxString ctlListViewVirtualHistory::OnGetItemText(long itemx, long column) const
 	wxString str;
 	if (searchTxt->IsEmpty())
 	{
-		str = THIS->parentdlg->GetHistoQueries()->Item(rev);
+		str = VK_THIS->parentdlg->GetHistoQueries()->Item(rev);
 		info->m_text = str;
 		return str;
 	}
-	str = THIS->FindItem(searchTxt->GetValue(), itemx);
+	str = VK_THIS->FindItem(searchTxt->GetValue(), itemx);
 	info->m_text = str;
     return str;
 }
@@ -181,7 +181,7 @@ wxListItemAttr *ctlListViewVirtualHistory::OnGetItemAttr(long item) const {
 			wxString str = info->m_text;
 			if (!searchTxt->IsEmpty())
 			{
-				str = THIS->FindItem(searchTxt->GetValue(), item);
+				str = VK_THIS->FindItem(searchTxt->GetValue(), item);
 			}
 			if (!str.IsEmpty())
 			{
@@ -201,13 +201,13 @@ wxString dlgQueryHistory::FindItem(const wxString &str, long itemno) {
 	bool found = false;
 	while (index >= 0)
 	{
-		wxString str2 = THIS->parentdlg->GetHistoQueries()->Item(index).Lower();
+		wxString str2 = VK_THIS->parentdlg->GetHistoQueries()->Item(index).Lower();
 		found = str2.Contains(str1);
 		if (found)
 		{
 			if (cnt == itemno)
 			{
-				return THIS->parentdlg->GetHistoQueries()->Item(index);
+				return VK_THIS->parentdlg->GetHistoQueries()->Item(index);
 			}
 			cnt++;
 		}

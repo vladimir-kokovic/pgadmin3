@@ -1522,13 +1522,13 @@ wxWindow *bugReportFactory::StartDialog(frmMain *form, pgObject *obj)
 void frmMain::OnThreadCopypasteUpdateGUI(wxCommandEvent &ev)
 {
 	struct transfer_tag *transfer = (transfer_tag *)ev.GetClientData();
-	if (transfer->THIS->thread)
+	if (transfer->VK_THIS->thread)
 	{
-		transfer->THIS->thread->Delete();
-		delete transfer->THIS->thread;
-		transfer->THIS->thread = NULL;
+		transfer->VK_THIS->thread->Delete();
+		delete transfer->VK_THIS->thread;
+		transfer->VK_THIS->thread = NULL;
 	}
-	transfer->THIS->commitChanges();
+	transfer->VK_THIS->commitChanges();
 
 	int numfiles = transfer->numberOfCopypasteTables;
 	numfiles--;
@@ -1537,26 +1537,26 @@ void frmMain::OnThreadCopypasteUpdateGUI(wxCommandEvent &ev)
 		wxString msg1 = _("the selection list");
 #if wxCHECK_VERSION(3, 0, 0)
 		wxString pastemsg = wxString::Format(_("%d of %zd table(s) copied from %s to %s"),
-			transfer->THIS->copied,
-			transfer->THIS->tableCopyPasteArray->Count(),
+			transfer->VK_THIS->copied,
+			transfer->VK_THIS->tableCopyPasteArray->Count(),
 			(frmCopyTables::selectedTables.IsEmpty()) ?
 			(transfer->srcdatabase->GetQuotedIdentifier() + wxT(".") + transfer->srcschemaname).c_str() : msg1.c_str(),
 			(transfer->targetdatabase->GetQuotedIdentifier() + wxT(".") + transfer->targetschemaname).c_str());
 #else
 		wxString pastemsg = wxString::Format(_("%d of %d table(s) copied from %s to %s"),
-			transfer->THIS->copied,
-			transfer->THIS->tableCopyPasteArray->Count(),
+			transfer->VK_THIS->copied,
+			transfer->VK_THIS->tableCopyPasteArray->Count(),
 			(frmCopyTables::selectedTables.IsEmpty()) ?
 			(transfer->srcdatabase->GetQuotedIdentifier() + wxT(".") + transfer->srcschemaname).c_str() : msg1.c_str(),
 			(transfer->targetdatabase->GetQuotedIdentifier() + wxT(".") + transfer->targetschemaname).c_str());
 #endif
-		if (transfer->THIS->copied && transfer->targetdatabase)
+		if (transfer->VK_THIS->copied && transfer->targetdatabase)
 		{
-			pgSchema *targetschema = transfer->THIS->findSchema(this, transfer->targetdatabase, transfer->targetschemaname);
+			pgSchema *targetschema = transfer->VK_THIS->findSchema(this, transfer->targetdatabase, transfer->targetschemaname);
 			if (targetschema)
 			{
 				Refresh(transfer->targetschema);
-				targetschema = transfer->THIS->findSchema(this, transfer->targetdatabase, transfer->targetschemaname);
+				targetschema = transfer->VK_THIS->findSchema(this, transfer->targetdatabase, transfer->targetschemaname);
 				if (targetschema)
 				{
 					targetschema->ShowTreeDetail(GetBrowser());
@@ -1565,7 +1565,7 @@ void frmMain::OnThreadCopypasteUpdateGUI(wxCommandEvent &ev)
 			}
 		}
 		GetStatusBar()->SetStatusText(pastemsg, 1);
-		transfer->THIS->GetFactory()->GetToolbar()->SetToolShortHelp(transfer->THIS->GetFactory()->GetId(), pastemsg);
+		transfer->VK_THIS->GetFactory()->GetToolbar()->SetToolShortHelp(transfer->VK_THIS->GetFactory()->GetId(), pastemsg);
 	}
 
 	if (!transfer->targetconn->IsAlive())
@@ -1589,9 +1589,9 @@ void frmMain::OnThreadCopypasteUpdateGUI(wxCommandEvent &ev)
 
 	if (numfiles < 1)
 	{
-		transfer->THIS->tableCopyPasteArray->Empty();
-		delete transfer->THIS->tableCopyPasteArray;
-		delete transfer->THIS;
+		transfer->VK_THIS->tableCopyPasteArray->Empty();
+		delete transfer->VK_THIS->tableCopyPasteArray;
+		delete transfer->VK_THIS;
 		delete transfer;
 		SetCopypasteobject(NULL);
 		pasteTables::setActive(false);
@@ -1599,14 +1599,14 @@ void frmMain::OnThreadCopypasteUpdateGUI(wxCommandEvent &ev)
 	}
 
 	transfer->numberOfCopypasteTables = numfiles;
-	bool OK = transfer->THIS->pasteNextTable();
+	bool OK = transfer->VK_THIS->pasteNextTable();
 
 	if (OK && !transfer->pastesuccess)
 	{
-		if (transfer->THIS->thread)
+		if (transfer->VK_THIS->thread)
 		{
-			transfer->THIS->thread->Delete();
-			transfer->THIS->thread = NULL;
+			transfer->VK_THIS->thread->Delete();
+			transfer->VK_THIS->thread = NULL;
 		}
 		if (transfer->sourceconn->GetDbname() == transfer->targetconn->GetDbname() &&
 			transfer->sourceconn->GetHost() == transfer->targetconn->GetHost() &&
@@ -1619,10 +1619,10 @@ void frmMain::OnThreadCopypasteUpdateGUI(wxCommandEvent &ev)
 			delete transfer->targetconn;
 		}
 		delete transfer->sourceconn;
-		transfer->THIS->tableCopyPasteArray->Empty();
-		delete transfer->THIS->tableCopyPasteArray;
-		transfer->THIS->GetFactory()->GetToolbar()->SetToolShortHelp(transfer->THIS->GetFactory()->GetId(), transfer->THIS->lastResultError.formatted_msg);
-		delete transfer->THIS;
+		transfer->VK_THIS->tableCopyPasteArray->Empty();
+		delete transfer->VK_THIS->tableCopyPasteArray;
+		transfer->VK_THIS->GetFactory()->GetToolbar()->SetToolShortHelp(transfer->VK_THIS->GetFactory()->GetId(), transfer->VK_THIS->lastResultError.formatted_msg);
+		delete transfer->VK_THIS;
 		delete transfer;
 		SetCopypasteobject(NULL);
 		pasteTables::setActive(false);

@@ -319,7 +319,7 @@ void pasteTables::handleCopyOut(pgConn *conn, wxFile & copystream)
 		counter++;
 		if (counter % 100)
 		{
-			if (transfer->THIS->thread && transfer->THIS->thread->TestDestroy())
+			if (transfer->VK_THIS->thread && transfer->VK_THIS->thread->TestDestroy())
 				break;
 		}
 		ret = PQgetCopyData(conn->connection(), &buf, 0);
@@ -399,7 +399,7 @@ void pasteTables::handleCopyIn(pgConn *conn, wxFile & copystream, bool isbinary)
 			counter++;
 			if (counter % 100)
 			{
-				if (transfer->THIS->thread && transfer->THIS->thread->TestDestroy())
+				if (transfer->VK_THIS->thread && transfer->VK_THIS->thread->TestDestroy())
 					break;
 			}
 			int buflen = copystream.Read(buf, 1);
@@ -422,7 +422,7 @@ void pasteTables::handleCopyIn(pgConn *conn, wxFile & copystream, bool isbinary)
 			counter++;
 			if (counter % 100)
 			{
-				if (transfer->THIS->thread && transfer->THIS->thread->TestDestroy())
+				if (transfer->VK_THIS->thread && transfer->VK_THIS->thread->TestDestroy())
 					break;
 			}
 			wxString buf1 = textfile.ReadLine() + wxT("\n");
@@ -532,7 +532,7 @@ void pasteTables::copyTable(struct transfer_tag *transfer)
 	lastResultError.formatted_msg = wxT("");
 	bool rc;
 
-	if (transfer->THIS->thread && transfer->THIS->thread->TestDestroy())
+	if (transfer->VK_THIS->thread && transfer->VK_THIS->thread->TestDestroy())
 		return;
 #if wxCHECK_VERSION(2, 9, 0)
 	myLogNotice(wxT("CopyPaste=\"\n%s\""), (const char *)(transfer->createsql.c_str()));
@@ -546,7 +546,7 @@ void pasteTables::copyTable(struct transfer_tag *transfer)
 		lastResultError.formatted_msg = pastemsg + wxT("\n") + lastResultError.formatted_msg;
 		return;
 	}
-	if (transfer->THIS->thread && transfer->THIS->thread->TestDestroy())
+	if (transfer->VK_THIS->thread && transfer->VK_THIS->thread->TestDestroy())
 		return;
 	if (!transfer->searchPath.IsEmpty())
 	{
@@ -559,7 +559,7 @@ void pasteTables::copyTable(struct transfer_tag *transfer)
 		}
 	}
 
-	if (transfer->THIS->thread && transfer->THIS->thread->TestDestroy())
+	if (transfer->VK_THIS->thread && transfer->VK_THIS->thread->TestDestroy())
 		return;
 	if (transfer->sourceconn->GetDbname() == transfer->targetconn->GetDbname() &&
 			transfer->sourceconn->GetHost() == transfer->targetconn->GetHost() &&
@@ -607,7 +607,7 @@ void pasteTables::copyTable(struct transfer_tag *transfer)
 			lastResultError.formatted_msg = pastemsg + wxT("\n") + lastResultError.formatted_msg;
 			return;
 		}
-		if (transfer->THIS->thread && transfer->THIS->thread->TestDestroy())
+		if (transfer->VK_THIS->thread && transfer->VK_THIS->thread->TestDestroy())
 			return;
 	}
 	else
@@ -622,7 +622,7 @@ void pasteTables::copyTable(struct transfer_tag *transfer)
 			lastResultError.formatted_msg = _("Can't create temporary file: ") + tmpFilename;
 			return;
 		}
-		if (transfer->THIS->thread && transfer->THIS->thread->TestDestroy())
+		if (transfer->VK_THIS->thread && transfer->VK_THIS->thread->TestDestroy())
 			return;
 		wxString copysql;
 		if (copyTableOptionalSelectFactory::available)
@@ -640,7 +640,7 @@ void pasteTables::copyTable(struct transfer_tag *transfer)
 				+ qtIdent(transfer->srcschemaname) + wxT(".") + qtIdent(transfer->table->srctablename)
 				+ wxT(" TO STDOUT");
 		do_copy(transfer->sourceconn, copysql, tmpFile);
-		if (transfer->THIS->thread && transfer->THIS->thread->TestDestroy())
+		if (transfer->VK_THIS->thread && transfer->VK_THIS->thread->TestDestroy())
 			return;
 		if (lastResultError.formatted_msg.IsEmpty())
 		{
@@ -652,7 +652,7 @@ void pasteTables::copyTable(struct transfer_tag *transfer)
 				wxRemoveFile(tmpFilename);
 				return;
 			}
-			if (transfer->THIS->thread && transfer->THIS->thread->TestDestroy())
+			if (transfer->VK_THIS->thread && transfer->VK_THIS->thread->TestDestroy())
 			{
 				wxRemoveFile(tmpFilename);
 				return;
@@ -674,9 +674,9 @@ void *copyPasteThread::Entry()
 {
 	if (transfer)
 	{
-		if (transfer->THIS)
+		if (transfer->VK_THIS)
 		{
-			transfer->THIS->copyTable(transfer);
+			transfer->VK_THIS->copyTable(transfer);
 			if (!TestDestroy())
 			{
 				wxCommandEvent event(EVT_THREAD_COPYPASTE_UPDATE_GUI);
@@ -906,8 +906,8 @@ int pasteTables::process()
 
 	transfer = new struct transfer_tag();
 
-	transfer->THIS = this;
-	transfer->THIS->thread = NULL;
+	transfer->VK_THIS = this;
+	transfer->VK_THIS->thread = NULL;
 	transfer->targetdatabase = targetschema->GetDatabase();
 	transfer->targetschemaname = targetschema->GetIdentifier();
 	transfer->numberOfCopypasteTables = tableCopyPasteArray->Count();
@@ -1028,8 +1028,8 @@ int pasteTables::processListOfTables()
 
 	transfer = new struct transfer_tag();
 
-	transfer->THIS = this;
-	transfer->THIS->thread = NULL;
+	transfer->VK_THIS = this;
+	transfer->VK_THIS->thread = NULL;
 	transfer->targetdatabase = targetschema->GetDatabase();
 	transfer->targetschemaname = targetschema->GetIdentifier();
 	transfer->numberOfCopypasteTables = tableCopyPasteArray->Count();
@@ -1092,20 +1092,20 @@ bool pasteTables::pasteNextTable()
 		lastResultError.formatted_msg = pastemsg + wxT("\n") +
 			_("Source/Target schema disappeared\nProbably DB server stopped or schema deleted !");
 		wxMessageBox(lastResultError.formatted_msg);
-		if (transfer->THIS->thread)
+		if (transfer->VK_THIS->thread)
 		{
-			transfer->THIS->thread->Delete();
-			transfer->THIS->thread = NULL;
+			transfer->VK_THIS->thread->Delete();
+			transfer->VK_THIS->thread = NULL;
 		}
-		while (transfer->THIS->tableCopyPasteArray->Count() > 0)
+		while (transfer->VK_THIS->tableCopyPasteArray->Count() > 0)
 		{
-			transfer->THIS->tableCopyPasteArray->RemoveAt(0);
+			transfer->VK_THIS->tableCopyPasteArray->RemoveAt(0);
 		}
 //		OVO NE RADI !!!
 //		transfer->THIS->tableCopyPasteArray->Empty();
-		delete transfer->THIS->tableCopyPasteArray;
-		transfer->THIS->GetFactory()->GetToolbar()->SetToolShortHelp(
-			transfer->THIS->GetFactory()->GetId(), transfer->THIS->lastResultError.formatted_msg);
+		delete transfer->VK_THIS->tableCopyPasteArray;
+		transfer->VK_THIS->GetFactory()->GetToolbar()->SetToolShortHelp(
+			transfer->VK_THIS->GetFactory()->GetId(), transfer->VK_THIS->lastResultError.formatted_msg);
 		delete transfer;
 		mainform->SetCopypasteobject(NULL);
 		pasteTables::setActive(false);
@@ -1116,7 +1116,7 @@ bool pasteTables::pasteNextTable()
 	transfer->srcdatabase = item.Getsrctable()->GetDatabase();
 	transfer->srcschemaname = item.Getsrctable()->GetSchema()->GetIdentifier();
 	transfer->pastesuccess = true;
-	transfer->THIS->thread = NULL;
+	transfer->VK_THIS->thread = NULL;
 	wxString targetdatabasename = transfer->targetdatabase->GetQuotedIdentifier();
 	wxString srcdatabasename = transfer->srcdatabase->GetQuotedIdentifier();
 
@@ -1208,7 +1208,7 @@ bool pasteTables::pasteNextTable()
 						copysuffix = wxT("_1");
 
 						//skip this table
-						transfer->THIS->thread = NULL;
+						transfer->VK_THIS->thread = NULL;
 						transfer->numberOfCopypasteTables--;
 						wxCommandEvent event(EVT_THREAD_COPYPASTE_UPDATE_GUI);
 						event.SetClientData(transfer);
