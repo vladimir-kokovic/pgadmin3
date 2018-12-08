@@ -14,10 +14,10 @@
 #endif
 
 #if PG_VERSION_NUM >= 90600
-#include <server/postgres.h>
-#ifndef endof
-#define endof(array)	(&array[lengthof(array)])
-#endif
+#  include <server/postgres.h>
+#  ifndef endof
+#    define endof(array)	(&array[lengthof(array)])
+#  endif
 #else
 //#if defined(PG_VERSION_NUM)
 //#define msg "PG_VERSION_NUM= " ## #PG_VERSION_NUM
